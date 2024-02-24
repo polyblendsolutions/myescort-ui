@@ -1,0 +1,84 @@
+<section class="verificer-main">
+  <app-account-top-section
+    [title]="'Verificer Profil'"
+  ></app-account-top-section>
+
+  <div class="verificer-main-parent">
+    <div class="verificer-main-sidebar">
+      <app-account-sidebar></app-account-sidebar>
+    </div>
+
+    <div class="verificer-child">
+      <div class="verificer-child-main">
+        <div class="verificer-child-main-top">
+          <h2>Verificer Profil</h2>
+
+          <p *ngIf="!user?.images.length">
+            For at verificere din profil, send os et billede af dig med en
+            aktuel avis eller et skilt, der indeholder den aktuelle dato og
+            navnet på vores side myescort.dk, hvor både dit ansigt og de nævnte
+            elementer er synlige. Billedet må ikke indeholde filtre eller være
+            digitalt redigeret. Verificeringsprocessen tager op til 24 timer, og
+            billedet bliver slettet fra vores system efter verificering.
+          </p>
+
+          <p *ngIf="user?.images.length">
+            Din profil er blevet verificeret med succes!
+          </p>
+        </div>
+        <!-- END! subscription-child-main-top -->
+
+        <div class="img-upload" *ngIf="!user?.images.length">
+          <div class="select-type-drop">
+            <div
+              class="custom-dropzone"
+              ngx-dropzone
+              [accept]="'image/*'"
+              (change)="onSelect($event)"
+            >
+              <ngx-dropzone-label>
+                <div class="label">
+                  <h1>Drop filer her for at tilfoje dem.</h1>
+                  <button type="button">Browser filer</button>
+                </div>
+              </ngx-dropzone-label>
+
+              <ngx-dropzone-image-preview
+                ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let f of files"
+                [file]="f"
+                [removable]="true"
+                (removed)="onRemove(f)"
+              >
+              </ngx-dropzone-image-preview>
+            </div>
+
+            <p class="dp">Image maximum size 10 MB.</p>
+            <div class="card">
+              <div
+                *ngFor="let image of oldImages; let i = index"
+                class="images"
+              >
+                <img [src]="image" class="parent-image" alt="" />
+                <div class="hover-button">
+                  <a (click)="removeOldImage(i)"
+                    ><img
+                      src="./assets/images/svg/delete.svg"
+                      style="width: 25px"
+                      alt="img"
+                  /></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-btn">
+            <button type="submit" (click)="submit()">{{ "Send" | uppercase }}</button>
+          </div>
+        </div>
+        <!-- END! img-upload -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END! verificer -->

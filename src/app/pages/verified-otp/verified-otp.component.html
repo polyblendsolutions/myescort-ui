@@ -1,0 +1,5 @@
+<div class="container">
+  <app-otp-verification (onEnterOtp)="onEnterOtp($event)" (onResentOtp)="onResentOtp($event)" [isResentOtp]="isResentOtp"></app-otp-verification>
+
+  <button *ngIf="isLoading" mat-raised-button color="primary"> Please wait..</button>
+</div>

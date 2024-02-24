@@ -1,0 +1,32 @@
+<div class="product-list-data-right">
+  <div class="title-box product-category-title-box">
+    <p *ngIf="!zoneData && !areaData && !divisionData" class="heading-data"> <a href="/">Myescort.dk </a> <span> > sex annoncer in myescort.dk</span> </p>
+    <p *ngIf="zoneData || areaData || divisionData" class="heading-data"> <a href="/">Myescort.dk </a> <span> > sex annoncer in
+      <span *ngIf="zoneData && !divisionData">{{zoneData}}</span>
+      <span *ngIf="areaData && !divisionData">{{areaData}}</span>
+      <span *ngIf="divisionData">{{divisionData}}</span>
+    </span> </p>
+<!--    <p *ngIf="areaData" class="heading-data"> <a href="/">Myescort.dk </a> <span> > sex annoncer in {{areaData}}</span> </p>-->
+<!--    <p *ngIf="divisionData" class="heading-data"> <a href="/">Myescort.dk </a> <span> > sex annoncer in {{divisionData}}</span> </p>-->
+    <h1 *ngIf="divisionData">Alle wwf annoncer in {{divisionData}}</h1>
+    <h1 *ngIf="areaData && !divisionData">Alle wwf annoncer in {{areaData}}</h1>
+    <h1 *ngIf="zoneData && !divisionData">Alle wwf annoncer in {{zoneData}}</h1>
+    <h1 *ngIf="!zoneData && !areaData && !divisionData">Alle wwf annoncer in myescort.dk</h1>
+    <div class="line"></div>
+  </div>
+
+  <div class="product-list-main">
+    <div class="all-product-item-cards">
+      <ng-container *ngFor="let data of products">
+        <app-marketplace-card [data]="data"></app-marketplace-card>
+      </ng-container>
+    </div>
+    <div class="load-more" *ngIf="totalProducts > products?.length" style="margin-top: 38px">
+      <a (click)="onLoadMore()" class="button" [class.loading]="isLoadMore">
+        {{
+          totalProducts > products?.length ? "Load More" : ""
+        }}
+      </a>
+    </div>
+  </div>
+</div>

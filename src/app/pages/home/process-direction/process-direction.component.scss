@@ -1,0 +1,75 @@
+@import "src/theme/variables";
+
+/* --- process-main --- */
+.process-main {
+  width: 100%;
+  background-color: $bg-one;
+}
+
+/* --- process-main-child --- */
+.process-main-child {
+  padding: 50px 0;
+  width: 100%;
+}
+
+/* --- process-title --- */
+.process-title {
+  h3 {
+    font-family: $font-en-primary2;
+    font-size: 27px;
+    font-weight: 600;
+    color: #000000;
+  }
+
+  .process-line {
+    width: 200px;
+    height: 3px;
+    background-color: $pink-color;
+    margin-top: 12px;
+  }
+}
+
+.process-text {
+  margin-top: 20px;
+
+  .just-text {
+    margin-bottom: 13px;
+
+    a {
+      font-family: $font-en-primary2;
+      font-size: 17px;
+      font-weight: 400;
+      color: $text-color-two;
+      line-height: 24px;
+      color: #535252;
+      display: inline !important;
+    }
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      margin-bottom: 13px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      p {
+        font-family: $font-en-primary2;
+        font-size: 17px;
+        font-weight: 400;
+        color: #535252;
+        line-height: 38px;
+
+        a {
+          color: $pink-color;
+          display: inline !important;
+        }
+      }
+    }
+  }
+}

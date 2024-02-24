@@ -1,0 +1,289 @@
+<div class="filter-area-main-par">
+  <div class="filter-area">
+    <div class="filter-area-three">
+      <div class="filter-area-three-range-slider">
+        <div class="filter-area-three-range-slider-top">
+          <p>Height</p>
+        </div>
+        <mat-slider
+          min="150"
+          max="200"
+          showTickMarks
+          discrete
+          [displayWith]="formatLabel"
+        >
+          <input value="0" matSliderStartThumb />
+          <input value="500" matSliderEndThumb />
+        </mat-slider>
+      </div>
+      <!-- END! filter-area-three-range-slider -->
+
+      <div class="filter-area-three-range-slider">
+        <div class="filter-area-three-range-slider-top">
+          <p>Weight</p>
+        </div>
+
+        <mat-slider
+          min="50"
+          max="300"
+          showTickMarks
+          discrete
+          [displayWith]="formatLabel"
+        >
+          <input value="0" matSliderStartThumb />
+          <input value="300" matSliderEndThumb />
+        </mat-slider>
+      </div>
+      <!-- END! filter-area-three-range-slider -->
+
+      <div class="filter-area-three-range-slider">
+        <div class="filter-area-three-range-slider-top">
+          <p>Age</p>
+        </div>
+
+        <mat-slider
+          min="18"
+          max="80"
+          showTickMarks
+          discrete
+          [displayWith]="formatLabel"
+        >
+          <input value="0" matSliderStartThumb />
+          <input value="500" matSliderEndThumb />
+        </mat-slider>
+      </div>
+      <!-- END! filter-area-three-range-slider -->
+    </div>
+
+    <br />
+
+    <div class="filter-area-child-one">
+      <div class="sec-home-input-area-par">
+        <label for="BodyType">Body Type</label>
+        <div class="sec-home-input-area">
+          <select
+            (change)="onCheckChange($event, 'intimateHair', 1)"
+            id="BodyType"
+          >
+            <option value="null" selected>All Types</option>
+            <ng-container *ngFor="let data of bodyTypes; let i = index">
+              <option>{{ data.name }}</option>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+      <!-- END! sec-home-input-area-par -->
+
+      <div class="sec-home-input-area-par">
+        <label for="BodyType">Eye Color</label>
+        <div class="sec-home-input-area">
+          <select id="BodyType">
+            <option value="null" selected>All Types</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+      </div>
+      <!-- END! sec-home-input-area-par -->
+
+      <div class="sec-home-input-area-par">
+        <label for="BodyType">Hair Color</label>
+        <div class="sec-home-input-area">
+          <select
+            (change)="onCheckChange($event, 'hairColor', 1)"
+            id="hairColor"
+          >
+            <option value="null" selected>All Types</option>
+            <ng-container *ngFor="let data of hairColors; let i = index">
+              <option>{{ data.name }}</option>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+      <!-- END! sec-home-input-area-par -->
+
+      <div class="sec-home-input-area-par">
+        <label for="BodyType">Pubichair</label>
+        <div class="sec-home-input-area">
+          <select id="BodyType">
+            <option value="null" selected>All Types</option>
+            <option *ngFor="let data of intimateHairs">{{ data.name }}</option>
+          </select>
+        </div>
+      </div>
+      <!-- END! sec-home-input-area-par -->
+
+      <div class="sec-home-input-area-par">
+        <label for="BodyType">Brasize</label>
+        <div class="sec-home-input-area">
+          <select id="BodyType">
+            <option value="null" selected>All Types</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+      </div>
+      <!-- END! sec-home-input-area-par -->
+
+      <div class="sec-home-input-area-par">
+        <label for="BodyType">Nationality</label>
+        <div class="sec-home-input-area">
+          <select id="BodyType">
+            <option value="null" selected>All Types</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+      </div>
+      <!-- END! sec-home-input-area-par -->
+    </div>
+
+    <br />
+    <br />
+
+    <div class="filter-area-child-two">
+      <div class="filter-area-check">
+        <input id="escort" type="checkbox" />
+        <label for="escort">Escort</label>
+      </div>
+      <!-- END! filter-area-check -->
+
+      <div class="filter-area-check">
+        <input id="place" type="checkbox" />
+        <label for="place">Place</label>
+      </div>
+      <!-- END! filter-area-check -->
+
+      <div class="filter-area-check">
+        <input id="handicapped" type="checkbox" />
+        <label for="handicapped">Handicapped</label>
+      </div>
+      <!-- END! filter-area-check -->
+
+      <div class="filter-area-check">
+        
+      </div>
+      <!-- END! filter-area-check -->
+
+      <div class="filter-area-check">
+        
+      </div>
+      <!-- END! filter-area-check -->
+
+      <div class="dummy-div"></div>
+      <!-- END! dummy-div -->
+
+      <div class="filter-area-btn">
+        <button type="button">Clear filters</button>
+      </div>
+
+      <div class="filter-area-btn filter-area-btn-search">
+        <button type="button">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Search</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="overlay"
+  (click)="onHideFilterArea()"
+  [class.active]="filterArea"
+></div>
+
+<!-- 
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="CATEGORY">
+      <mat-option *ngFor="let data of categories; let i = index">
+        <mat-checkbox
+          [checked]="data.select"
+          (change)="onCheckChange($event, 'category', i)"
+          >{{ data.name }}</mat-checkbox
+        >
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="TYPES">
+      <mat-option *ngFor="let data of types; let i = index">
+        <mat-checkbox
+          [checked]="data.select"
+          (change)="onCheckChange($event, 'type', i)"
+          >{{ data.name }}</mat-checkbox
+        >
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="LOCATION">
+      <mat-option *ngFor="let data of divisions; let i = index">
+        <mat-checkbox
+          [checked]="data.select"
+          (change)="onCheckChange($event, 'division', i)"
+          >{{ data.name }}</mat-checkbox
+        >
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Intimate Hair">
+      <mat-option *ngFor="let data of intimateHairs; let i = index">
+        <mat-checkbox
+          [checked]="data.select"
+          (change)="onCheckChange($event, 'intimateHair', i)"
+          >{{ data.name }}</mat-checkbox
+        >
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Body Type">
+      <mat-option *ngFor="let data of bodyTypes; let i = index">
+        <mat-checkbox
+          [checked]="data.select"
+          (change)="onCheckChange($event, 'bodyType', i)"
+          >{{ data.name }}</mat-checkbox
+        >
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Hair Colors">
+      <mat-option *ngFor="let data of hairColors; let i = index">
+        <mat-checkbox
+          [checked]="data.select"
+          (change)="onCheckChange($event, 'hairColor', i)"
+          >{{ data.name }}</mat-checkbox
+        >
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Orientations">
+      <mat-option *ngFor="let data of orientations; let i = index">
+        <mat-checkbox
+          [checked]="data.select"
+          (change)="onCheckChange($event, 'orientation', i)"
+          >{{ data.name }}</mat-checkbox
+        >
+      </mat-option>
+    </mat-select>
+  </mat-form-field> 
+-->

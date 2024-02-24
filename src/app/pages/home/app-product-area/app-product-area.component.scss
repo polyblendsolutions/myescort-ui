@@ -1,0 +1,36 @@
+@import "/src/theme/variables";
+@import "/src/theme/exports/title";
+
+/* --- product-category-area --- */
+.product-category-area {
+    background-color: $bg-two;
+    width: 100%;
+}
+
+/* --- product-category-area-main --- */
+.product-category-area-main {
+    width: 100%;
+    padding: 48px 0 60px;
+}
+
+/* --- product-category-area-cards --- */
+.product-category-area-cards {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 22px;
+    padding-top: 23px;
+}
+
+@media (max-width: 952px) {
+    .product-category-area-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 624px) {
+    .product-category-area-cards {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 16px;
+        padding-top: 34px;
+    }
+}

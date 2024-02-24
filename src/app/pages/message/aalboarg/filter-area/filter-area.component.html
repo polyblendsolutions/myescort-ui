@@ -1,0 +1,160 @@
+<!--<div class="product-filter-area" [class]="filterArea?'filter-slide-active':'filter-slide-inactive'">-->
+
+
+<!--  <div class="filtered">-->
+<!--    <div class="filter-title">-->
+<!--      <h3>FILTER BY CATEGORY</h3>-->
+<!--    </div>-->
+<!--    <div class="filter-body">-->
+<!--      <ul>-->
+<!--        <li *ngFor="let data of categories; let i =index">-->
+<!--          <mat-checkbox-->
+<!--            [checked]="data.select"-->
+<!--            class="mat-check"-->
+<!--            (change)="onCheckChange($event, 'category', i)">-->
+<!--            <div>-->
+<!--              <span>{{data.name}}</span>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;            <div>&ndash;&gt;-->
+<!--            &lt;!&ndash;              <span>({{data.total}})</span>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </mat-checkbox>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--    <div class="filter-btn">-->
+<!--      <button (click)="resetCategoryFilter()"><i class="fa fa-trash"></i>Clear</button>-->
+<!--    </div>-->
+<!--  </div>&lt;!&ndash; END FILTER BY CATEGORY &ndash;&gt;-->
+
+<!--  <div class="filtered">-->
+<!--    <div class="filter-title">-->
+<!--      <h3>FILTER BY TYPES</h3>-->
+<!--    </div>-->
+<!--    <div class="filter-body">-->
+<!--      <ul>-->
+<!--        <li *ngFor="let data of types; let i =index">-->
+<!--          <mat-checkbox-->
+<!--            [checked]="data.select"-->
+<!--            class="mat-check"-->
+<!--            (change)="onCheckChange($event, 'type', i)">-->
+<!--            <div>-->
+<!--              <span>{{data.name}}</span>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;            <div>&ndash;&gt;-->
+<!--            &lt;!&ndash;              <span>({{data.total}})</span>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </mat-checkbox>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--    <div class="filter-btn">-->
+<!--      <button (click)="resetTypeFilter()"><i class="fa fa-trash"></i>Clear</button>-->
+<!--    </div>-->
+<!--  </div>&lt;!&ndash; END FILTER BY SUB CATEGORY &ndash;&gt;-->
+
+<!--  <div class="filtered">-->
+<!--    <div class="filter-title">-->
+<!--      <h3>FILTER BY LOCATION</h3>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;          <div class="filter-search">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <input type="text" value="" placeholder="Search...">&ndash;&gt;-->
+<!--    &lt;!&ndash;          </div>&ndash;&gt;-->
+
+<!--    <div class="filter-body">-->
+<!--      <ul>-->
+<!--        <li *ngFor="let data of divisions; let i =index">-->
+<!--          <mat-checkbox-->
+<!--            [checked]="data.select"-->
+<!--            class="mat-check"-->
+<!--            (change)="onCheckChange($event, 'division', i)">-->
+<!--            <div>-->
+<!--              <span>{{data.name}}</span>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;            <div>&ndash;&gt;-->
+<!--            &lt;!&ndash;              <span>({{data.total}})</span>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </mat-checkbox>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+
+<!--    <div class="filter-btn">-->
+<!--      <button (click)="resetDivisionFilter()"><i class="fa fa-trash"></i>Clear</button>-->
+<!--    </div>-->
+<!--  </div>&lt;!&ndash; END FILTER BY BRAND &ndash;&gt;-->
+
+
+<!--</div> &lt;!&ndash; END LEFT FILTER AREA&ndash;&gt;-->
+
+
+
+
+
+<div class="filter-area">
+
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="CATEGORY">
+      <mat-option *ngFor="let data of categories; let i =index">
+        <mat-checkbox [checked]="data.select" (change)="onCheckChange($event, 'category', i)">{{data.name}}</mat-checkbox>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="TYPES">
+      <mat-option  *ngFor="let data of types; let i =index">
+        <mat-checkbox [checked]="data.select" (change)="onCheckChange($event, 'type', i)">{{data.name}}</mat-checkbox>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="LOCATION">
+      <mat-option  *ngFor="let data of divisions; let i =index">
+        <mat-checkbox [checked]="data.select" (change)="onCheckChange($event, 'division', i)">{{data.name}}</mat-checkbox>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Intimate Hair">
+      <mat-option  *ngFor="let data of intimateHairs; let i =index">
+        <mat-checkbox [checked]="data.select" (change)="onCheckChange($event, 'intimateHair', i)">{{data.name}}</mat-checkbox>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Body Type">
+      <mat-option  *ngFor="let data of bodyTypes; let i =index">
+        <mat-checkbox [checked]="data.select" (change)="onCheckChange($event, 'bodyType', i)">{{data.name}}</mat-checkbox>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Hair Colors">
+      <mat-option  *ngFor="let data of hairColors; let i =index">
+        <mat-checkbox [checked]="data.select" (change)="onCheckChange($event, 'hairColor', i)">{{data.name}}</mat-checkbox>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Orientations">
+      <mat-option  *ngFor="let data of orientations; let i =index">
+        <mat-checkbox [checked]="data.select" (change)="onCheckChange($event, 'orientation', i)">{{data.name}}</mat-checkbox>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div
+  class="overlay"
+  (click)="onHideFilterArea()"
+  [class.active]="filterArea"
+></div>

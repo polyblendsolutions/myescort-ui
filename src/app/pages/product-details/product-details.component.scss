@@ -1,0 +1,65 @@
+@import "src/theme/variables";
+
+/* --- product-details --- */
+.product-details {
+  padding: 50px 0;
+}
+
+/* --- product-details-child --- */
+.product-details-child {
+  margin: auto;
+  display: grid;
+  grid-template-columns: calc(100% - 494px) 463px;
+  gap: 30px;
+}
+
+@media (max-width: 1000px) {
+  .product-details-child {
+    max-width: 100%;
+    margin: auto;
+  }
+}
+@media (max-width: 992px) {
+  .product-details-child {
+    grid-gap: 30px;
+    grid-template-columns: 100%;
+  }
+}
+
+/* --- pricing-select-day --- */
+.pricing-select-day {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 44px;
+  max-width: 600px;
+  
+  &.two {
+    max-width: inherit;
+    grid-template-columns: repeat(2, 1fr);
+
+    app-select-days {
+      border-right: 1px solid $border-color-two;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .pricing-select-day {
+    grid-template-columns: repeat(1, 1fr);
+    border-radius: 0;
+    grid-gap: 24px;
+    box-shadow: none;
+    margin-top: 0;
+    overflow: inherit;
+
+    &.two {
+      grid-template-columns: repeat(1, 1fr);
+
+      app-select-days {
+        border-right: 0 solid $border-color-two;
+      }
+    }
+  }
+}

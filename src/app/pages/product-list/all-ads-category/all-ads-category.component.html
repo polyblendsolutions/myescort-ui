@@ -1,0 +1,49 @@
+<section
+  class="ads-category-area ads-category-area-pink ads-category-area-pd-list"
+>
+  <div class="container">
+    <div class="ads-category-area-main">
+      <div class="title-box ads-category-title-box">
+        <h1>{{ title }}</h1>
+        <div class="line"></div>
+      </div>
+      <div class="ads-category-area-cards">
+        <swiper
+          [speed]="1000"
+          [autoplay]="true"
+          [loop]="false"
+          [navigation]="false"
+          [slidesPerView]="1"
+          [grabCursor]="true"
+          [pagination]="{
+            clickable: true
+          }"
+          [breakpoints]="{
+            '0': {
+              slidesPerView: 2,
+              spaceBetween: 22
+            },
+            '624px': {
+              slidesPerView: 2,
+              spaceBetween: 22
+            },
+            '952px': {
+              slidesPerView: 3,
+              spaceBetween: 22
+            },
+            '992': {
+              slidesPerView: 6,
+              spaceBetween: 22
+            }
+          }"
+          class="mySwiper carousel-swiper ads-swiper"
+        >
+          <ng-template swiperSlide *ngFor="let data of products">
+            <app-marketplace-card [data]="data"></app-marketplace-card>
+          </ng-template>
+        </swiper>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END CATEGORY AREA -->

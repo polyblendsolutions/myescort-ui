@@ -1,0 +1,61 @@
+
+.dialog-container {
+  width: 400px;
+  padding: 30px 20px;
+}
+
+.info{
+  text-align: center;
+  h1{
+    color: #f65eac;
+  }
+}
+
+.btn-round {
+  margin: auto;
+  width: 150px;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 50px;
+  border: 1px solid #f65eac;
+  color: #f65eac;
+}
+
+
+.actions-around {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+
+  button {
+    ::ng-deep {
+      span {
+        color: #fff;
+      }
+    }
+  }
+}
+
+@media only screen and (max-device-width: 599px) {
+
+  .dialog-container {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .btn-round {
+    margin: auto;
+    width: 130px;
+    padding: 5px;
+    font-size: 14.5px;
+    border-radius: 50px;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+
+
+
+}

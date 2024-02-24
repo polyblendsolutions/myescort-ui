@@ -1,0 +1,223 @@
+<header
+  [ngClass]="{
+  active: changeColor,
+  }"
+  class="show-header"
+>
+  <div class="container-header">
+    <div class="nav">
+      <div class="nav-left">
+        <div class="left-img">
+          <img
+            class="pre-scroll-img"
+            routerLink="/"
+            src="./assets/images/logo/logo-svg.png"
+            alt="marketplace"
+          />
+
+          <img
+            class="scroll-img"
+            routerLink="/"
+            src="./assets/images/logo/color-png.png"
+            alt="marketplace"
+          />
+        </div>
+      </div>
+      <!-- END! nav-left -->
+
+      <div class="nav-right" [class.active]="showHideResponsiveNav">
+        <div class="right-responsive-img">
+          <img src="/assets/images/logo/color.png" alt="marketplace" />
+
+          <div class="cross-btn">
+            <a (click)="onShowHideResponsiveNav()"
+              ><i class="fa-solid fa-circle-xmark"></i
+            ></a>
+          </div>
+        </div>
+        <ul class="head-nav">
+          <li class="active">
+            <a
+              (click)="onShowHideResponsiveNav()"
+              routerLink="ads"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >All Ads</a
+            >
+          </li>
+          <li>
+            <a
+              (click)="onShowHideResponsiveNav()"
+              routerLink="/blogs"
+              routerLinkActive="active"
+              >Good to know</a
+            >
+          </li>
+          <li>
+            <a
+              (click)="onShowHideResponsiveNav()"
+              routerLink="pages/support"
+              routerLinkActive="active"
+              >Support</a
+            >
+          </li>
+          <li>
+            <a
+              class="user-logo"
+              (click)="onShowHideResponsiveNav()"
+              routerLink="/account/profile"
+              routerLinkActive="active"
+              ><i class="fa-regular fa-user"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              class="create-btn"
+              (click)="onShowHideResponsive()"
+              routerLinkActive="active"
+              ><i class="fas fa-plus"></i> Create Ad</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div
+        class="right-responsive-overlay"
+        [class.active]="showHideResponsiveNav"
+        (click)="onShowHideResponsiveNav()"
+      ></div>
+      <!-- END! nav-right -->
+
+      <div class="nav-bars">
+        <a (click)="onShowHideResponsiveNav()">
+          <i class="fa-solid fa-bars"></i>
+        </a>
+      </div>
+    </div>
+    <!-- END! nav -->
+  </div>
+</header>
+<!-- END! header -->
+
+<header
+  class="fixed-header"
+  [ngClass]="{
+    active: changeColor,
+    'active-two': headerFixed == true
+  }"
+>
+  <div class="container-header">
+    <div class="nav">
+      <div class="nav-left">
+        <div class="left-img">
+          <img
+            class="pre-scroll-img"
+            routerLink="/"
+            src="./assets/images/logo/logo-svg.png"
+            alt="marketplace"
+          />
+          <img
+            class="scroll-img"
+            routerLink="/"
+            src="./assets/images/logo/color-png.png"
+            alt="marketplace"
+          />
+        </div>
+      </div>
+      <!-- END! nav-left -->
+
+      <div class="nav-right" [class.active]="showHideResponsiveNav">
+        <div class="right-responsive-img">
+          <img src="./assets/images/logo/color-png.png" alt="marketplace" />
+
+          <div class="cross-btn">
+            <a (click)="onShowHideResponsiveNav()"
+              ><i class="fa-solid fa-circle-xmark"></i
+            ></a>
+          </div>
+        </div>
+        <ul class="head-nav">
+          <li class="active">
+            <a
+              (click)="onShowHideResponsiveNav()"
+              routerLink="products"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >All Ads</a
+            >
+          </li>
+          <li>
+            <a
+              (click)="onShowHideResponsiveNav()"
+              routerLink="/blogs"
+              routerLinkActive="active"
+              >Good to know</a
+            >
+          </li>
+          <li>
+            <a
+              (click)="onShowHideResponsiveNav()"
+              routerLink="pages/support"
+              routerLinkActive="active"
+              >Support</a
+            >
+          </li>
+          <li>
+            <a
+              class="user-logo"
+              (click)="onShowHideResponsiveNav()"
+              routerLink="/account/profile"
+              routerLinkActive="active"
+              ><i class="fa-regular fa-user"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              class="create-btn"
+              (click)="onShowHideResponsive()"
+              routerLinkActive="active"
+              ><i class="fas fa-plus"></i> Create Ad</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div
+        class="right-responsive-overlay"
+        [class.active]="showHideResponsiveNav"
+        (click)="onShowHideResponsiveNav()"
+      ></div>
+      <!-- END! nav-right -->
+
+      <div class="nav-bars">
+        <a (click)="onShowHideResponsiveNav()">
+          <i class="fa-solid fa-bars"></i>
+        </a>
+      </div>
+    </div>
+    <!-- END! nav -->
+  </div>
+</header>
+<!-- END! header -->
+
+<button
+  class="footer-marquee"
+  (click)="isShowCooki()"
+  #menuTrigger
+  *ngIf="!isShow"
+>
+  Cookie Info
+</button>
+
+<div class="dialog footer-marquee-details" *ngIf="isShow">
+  <div mat-dialog-content>
+    <p>
+      This website uses cookies to ensure you get the best esperience on our
+      website.
+      <span mat-dialog-close routerLink="/pages/privacy-policy"
+        >Learn more</span
+      >
+    </p>
+  </div>
+  <div class="dialog-btn" mat-dialog-actions>
+    <button class="dialog-button" (click)="isHideCooki()">Got it</button>
+  </div>
+</div>

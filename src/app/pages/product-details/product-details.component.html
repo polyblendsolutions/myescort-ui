@@ -1,0 +1,56 @@
+<div class="product-details">
+  <div class="container">
+    <div class="product-details-child">
+      <app-product-details-image-area
+        [product]="product"
+        [selectedImage]="selectedImage"
+      ></app-product-details-image-area>
+      <!-- END! product-details-image-area -->
+
+      <app-product-details-right-area
+        [product]="product"
+      ></app-product-details-right-area>
+      <!-- END! product-details-right-area -->
+    </div>
+    <!-- END! product-details-child -->
+
+    <div
+      class="pricing-select-day"
+      [ngClass]="{
+        two:
+          (product?.mondayHours.length ||
+            product?.tuesdayHours.length ||
+            product?.wednesdayHours.length ||
+            product?.thursdayHours.length ||
+            product?.fridayHours.length ||
+            product?.saturdayHours.length) &&
+          product?.pricing?.length
+      }"
+    >
+      <ng-container
+        *ngIf="
+          product?.mondayHours.length ||
+          product?.tuesdayHours.length ||
+          product?.wednesdayHours.length ||
+          product?.thursdayHours.length ||
+          product?.fridayHours.length ||
+          product?.saturdayHours.length
+        "
+      >
+        <app-select-days [product]="product"></app-select-days>
+      </ng-container>
+      <!-- END! select-days -->
+
+      <ng-container *ngIf="product?.pricing?.length">
+        <app-product-details-pricing
+          [product]="product"
+        ></app-product-details-pricing>
+        <!-- END! product-details-pricing -->
+      </ng-container>
+    </div>
+    <!-- END! pricing-select-day -->
+
+    <app-related-products [products]="products"></app-related-products>
+    <!-- END! related-products -->
+  </div>
+</div>

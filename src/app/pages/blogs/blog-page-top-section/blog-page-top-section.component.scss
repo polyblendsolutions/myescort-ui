@@ -1,0 +1,34 @@
+@import "src/theme/variables";
+
+/* --- blog-page-top-section --- */
+.blog-page-top-section {
+  width: 100%;
+  background-color: $primary-color-two;
+  position: relative;
+}
+
+/* --- blog-title-second --- */
+.blog-title-second {
+  padding: 44px 0 6px;
+  display: flex;
+  justify-content: flex-start !important;
+  flex-direction: column;
+  width: 100%;
+
+  h1 {
+    font-family: $font-en-primary;
+    font-size: 34px;
+    font-weight: 500;
+    color: $color-white;
+    letter-spacing: 1px;
+  }
+
+  h4 {
+    padding-top: 15px;
+    font-family: $font-en-primary;
+    font-size: 20px;
+    font-weight: 500;
+    color: $color-white;
+    letter-spacing: 1px;
+  }
+}

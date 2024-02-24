@@ -1,0 +1,99 @@
+@import "src/theme/variables";
+
+/* --- account-main --- */
+.account-main {
+  width: 100%;
+  padding: 50px 0;
+}
+
+.container1 {
+  display: block;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  padding: 0 16px;
+}
+
+@media (max-width: 556px) {
+  .account-main {
+    padding: 32px 0;
+  }
+}
+
+/* --- account-child --- */
+.account-child {
+  width: 100%;
+}
+
+/* --- account-cards --- */
+.account-cards {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 24px;
+}
+
+@media (max-width: 667px) {
+  .account-cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* --- verify-account --- */
+
+.verify-account-card {
+  a {
+    padding: 20px 22px;
+    background-color: #dfefef;
+    border-radius: 4px;
+    box-shadow: 0 0 11px -2px #85858547;
+  }
+}
+
+.top-icon-verify {
+  margin-bottom: 12px;
+  text-align: center;
+  i {
+    font-size: 26px;
+    color: #288887;
+  }
+}
+
+.page-name-verify {
+  text-align: center;
+
+  h1 {
+    font-family: $font-en-primary;
+    font-size: 20px;
+    font-weight: 600;
+    color: $color-white;
+    color: #288887;
+    border-radius: 4px;
+    padding-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  h2 {
+    font-family: $font-en-primary;
+    font-size: 16px;
+    font-weight: 400;
+    color: $color-white;
+    background-color: #288887;
+    border-radius: 4px;
+    padding: 9px 9px;
+    letter-spacing: 0.5px;
+  }
+
+  button {
+    font-family: $font-en-primary;
+    font-size: 16px;
+    font-weight: 400;
+    color: $color-white;
+    background-color: #288887;
+    border-radius: 4px;
+    padding: 9px 9px;
+    letter-spacing: 0.5px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+  }
+}

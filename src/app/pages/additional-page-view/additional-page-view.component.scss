@@ -1,0 +1,18 @@
+@import "src/theme/variables";
+
+.container {
+  width: 100%;
+  max-width: 1250px;
+  padding: 30px 16px;
+  margin: 0 auto;
+
+  min-height: calc(100vh - 200px);
+}
+
+.description {
+  background-color: $color-white;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  padding: 40px;
+  margin: 30px 0;
+  border-radius: 10px;
+}

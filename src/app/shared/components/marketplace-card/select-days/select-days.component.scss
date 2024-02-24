@@ -1,0 +1,218 @@
+@import "src/theme/variables";
+
+/* --- opening-hours-main --- */
+.opening-hours-main {
+  width: 100%;
+  background-color: $color-white;
+  border-radius: 4px;
+  box-shadow: 0 0 15px #63636326;
+  margin-top: 44px;
+}
+
+.opening-hours-title {
+  h1 {
+    padding: 14px;
+    border-bottom: 1px solid $border-color-two;
+    font-family: $font-en-primary;
+    font-size: 22px;
+    font-weight: 500;
+    color: $heading-color;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+
+    i {
+      color: $pink-color-two;
+      font-size: 20px;
+    }
+  }
+}
+
+.opening-hours-child {
+  padding: 14px;
+}
+
+.checkbox-first {
+  margin-bottom: 20px;
+
+  .checkbox-main {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+
+    input {
+      height: 16px;
+      width: 16px;
+    }
+
+    label {
+      font-family: $font-en-primary;
+      font-size: 18px;
+      font-weight: 500;
+      color: $heading-color;
+    }
+  }
+
+  p {
+    font-family: $font-en-primary;
+    font-size: 14px;
+    font-weight: 400;
+    color: $text-color-two;
+    padding-top: 6px;
+  }
+}
+
+.checkbox-first.checkbox-first-second {
+  margin-bottom: 0;
+}
+
+.week-opening-hours {
+  margin-bottom: 20px;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      margin-bottom: 24px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+
+      .checkbox-second {
+        display: grid;
+        grid-template-columns: 100px calc(100% - 130px);
+        grid-gap: 30px;
+        align-items: center;
+      }
+
+      .week-day {
+        h4 {
+          font-family: $font-en-primary;
+          font-size: 17px;
+          font-weight: 500;
+          color: $text-color-two;
+        }
+      }
+
+      .check-second {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        input {
+          margin-top: 1px;
+        }
+
+        label {
+          font-family: $font-en-primary;
+          font-size: 16px;
+          padding-top: 1px;
+          color: $heading-color;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
+
+.opening-hours-selected-data {
+  padding: 14px;
+  .selected-data-title {
+    margin-bottom: 14px;
+
+    h1 {
+      font-family: $font-en-primary;
+      font-size: 16px;
+      font-weight: 500;
+      color: #04ab04;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+.table-data-selected-table {
+  width: 100%;
+  border: 1px solid $border-color-two;
+}
+
+.selected-table-main {
+  display: grid;
+  grid-template-columns: 200px calc(100% - 200px);
+  align-items: center;
+  border-bottom: 1px solid $border-color-two;
+  height: 50px;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  .table-top {
+    border-right: 1px solid $border-color-two;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    &:last-child {
+      border-right: 0px solid $border-color-two;
+    }
+
+    h1 {
+      font-family: $font-en-primary;
+      font-size: 18px;
+      color: $heading-color;
+      font-weight: 700;
+      padding: 0 16px;
+    }
+  }
+
+  .table-main-data {
+    border-right: 1px solid $border-color-two;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    h2 {
+      padding: 0 16px;
+      font-family: $font-en-primary;
+      font-size: 15px;
+      font-weight: 500;
+      color: $text-color-two;
+    }
+
+    &:last-child {
+      border-right: 0px solid $border-color-two;
+
+      h2 {
+        font-size: 14px;
+        color: $text-color-two;
+      }
+    }
+  }
+
+  &.active {
+    .table-main-data {
+      &:last-child {
+        h2 {
+          color: #04ab04;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 667px) {
+  .opening-hours-main {
+    margin-top: 28px;
+  }
+
+  .selected-table-main {
+    grid-template-columns: 140px calc(100% - 140px);
+  }
+}

@@ -1,0 +1,17 @@
+<section class="product-category-area">
+  <div class="container">
+    <div class="product-category-area-main">
+      <div class="title-box product-category-title-box">
+        <h1>{{ title }}</h1>
+        <p>{{ description }}</p>
+        <div class="line"></div>
+      </div>
+      <div class="product-category-area-cards">
+        <ng-container *ngFor="let data of products">
+          <app-marketplace-card [data]="data"></app-marketplace-card>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END CATEGORY AREA -->

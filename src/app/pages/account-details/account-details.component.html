@@ -1,0 +1,187 @@
+<app-page-top-section [titleData]="'Account details'"></app-page-top-section>
+
+<div class="account-details">
+  <div class="container">
+    <div class="account-details-main">
+      <form class="select-form" [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+        <div class="select-type">
+          <h2>
+            <i class="fa-solid fa-tags"></i>
+            <span>Select type</span>
+          </h2>
+
+
+          <div class="uName">
+            <h4><span>User name:</span> {{user?.username}}</h4>
+          </div>
+
+
+          <!-- <div class="form-input-select">
+            <label for="first_name">First name <span>*</span></label>
+            <div class="input-main">
+              <input type="text" id="first_name" placeholder=" Enter first name" formControlName="firstname" />
+              <span class="invalid-txt"
+                *ngIf="dataForm?.get('firstname')?.touched && dataForm.get('firstname')?.invalid">This field is
+                required</span>
+            </div>
+          </div> -->
+
+
+          <!-- <div class="form-input-select">
+            <label for="last_name">Last name <span>*</span></label>
+            <div class="input-main">
+              <input type="text" placeholder="Enter last name" formControlName="lastname" />
+              <span class="invalid-txt"
+                *ngIf="dataForm?.get('lastname')?.touched && dataForm.get('lastname')?.invalid">This field is
+                required</span>
+
+            </div>
+          </div> -->
+
+
+          <div class="form-input-select">
+            <label for="email">Email <span>*</span></label>
+            <div class="input-main">
+              <input type="email" id="email" placeholder="Enter email" formControlName="email" />
+              <span class="invalid-txt" *ngIf="dataForm?.get('email')?.touched && dataForm.get('email')?.invalid">This
+                field is required</span>
+
+            </div>
+          </div>
+
+
+          <div class="form-input-select">
+            <label for="profile_picture">Profile picture<span>*</span></label>
+            <div class="file-main">
+              <div class="images">
+                <div class="submit-img">
+                  <img [src]="imgPlaceHolder" [alt]="'Picked Image'" (click)="profileImagePicker.click()">
+                  <input [hidden]="true" #profileImagePicker type="file" (change)="fileChangeEvent($event)"
+                    accept="image/*" />
+                </div>
+                <div class="select-image" *ngIf="false">
+                  <div class="add-del">
+                    <a (click)="add_file.click()"><i class="fa-solid fa-plus"></i></a>
+                    <a><i class="fa-solid fa-trash"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-input-select">
+            <label for="telephone">Telephone </label>
+            <div class="input-main">
+              <input type="text" id="telephone" placeholder="Enter Telephone" formControlName="telephone" />
+            </div>
+          </div>
+
+
+          <div class="form-input-select">
+            <label for="whatsapp">Whatsapp no. </label>
+            <div class="input-main">
+              <input type="text" id="whatsapp" placeholder="Enter whatsapp no." formControlName="whatsappNo" />
+            </div>
+          </div>
+
+
+          <div class="form-input-select">
+            <label for="home_page">Home Page </label>
+            <div class="input-main">
+              <input type="text" id="home_page" placeholder="Enter homepage" formControlName="homePageUrl" />
+            </div>
+          </div>
+
+        </div>
+
+        <div class="select-type">
+          <h2>
+            <i class="fa-solid fa-tags"></i>
+            <span>Location</span>
+          </h2>
+
+          <div class="form-input-select">
+            <label for="">Region <span>*</span></label>
+            <div class="select-main">
+              <select (change)="onChangeRegion($event)">
+                <option selected hidden>--selected--</option>
+                <option [value]="d?._id" *ngFor="let d of divisions">{{d?.name}}</option>
+              </select>
+              <span class="invalid-txt" *ngIf="dataForm?.get('region')?.touched && dataForm.get('region')?.invalid">This
+                field is required</span>
+            </div>
+          </div>
+
+          <div class="form-input-select" *ngIf="area && area.length">
+            <label for="">Area <span>*</span></label>
+            <div class="select-main">
+              <select (change)="onChangeArea($event)">
+                <option selected hidden>--selected--</option>
+                <option [value]="a?._id" *ngFor="let a of area">{{a?.name}}</option>
+              </select>
+              <span class="invalid-txt" *ngIf="dataForm?.get('area')?.touched && dataForm.get('area')?.invalid">This
+                field is required</span>
+
+            </div>
+          </div>
+
+          <div class="form-input-select" *ngIf="zone && zone.length">
+            <label>Zone <span>*</span></label>
+            <div class="select-main">
+              <select formControlName="zone">
+                <option selected hidden>--selected--</option>
+                <option [value]="z?.name" *ngFor="let z of zone">{{z?.name}}</option>
+              </select>
+              <span class="invalid-txt" *ngIf="dataForm?.get('zone')?.touched && dataForm.get('zone')?.invalid">This
+                field is required</span>
+            </div>
+          </div>
+
+
+          <div class="form-input-select">
+            <label for="zip_codes">Zip codes</label>
+            <div class="input-main">
+              <input type="text" id="zip_codes" placeholder=" Enter zip codes" formControlName="zipCode" />
+            </div>
+          </div>
+
+
+          <div class="form-input-select">
+            <label for="address">Address</label>
+            <div class="input-main">
+              <textarea name="" id="" cols="30" rows="6" placeholder="Enter address"
+                formControlName="addresses"></textarea>
+            </div>
+          </div>
+
+
+          <div class="form-input-select">
+            <label for="facebook">The social profile </label>
+            <div class="input-main social-input">
+              <input type="text" id="text" placeholder="By facebook" formControlName="facebook" />
+
+              <input type="text" id="text" placeholder="By twitter" formControlName="twiter" />
+
+              <input type="text" id="text" placeholder="By youtube" formControlName="youtube" />
+
+              <input type="text" id="text" placeholder="Until instagram" formControlName="instagram" />
+
+              <input type="text" id="text" placeholder="By linkedIn" formControlName="linkedin" />
+
+              <input type="text" id="text" placeholder="By pinterest" formControlName="pinterest" />
+
+              <input type="text" id="text" placeholder="By reddit" formControlName="reddit" />
+            </div>
+          </div>
+
+          <div class="submit-btn">
+            <button type="submit">
+              Account Update
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<section class="login-main">
+  <div class="container">
+    <div class="login-main-child">
+      <div class="login-main-left">
+        <img src="./assets/images/jpg/flower.avif" alt="" />
+      </div>
+      <!-- END! login-main-left -->
+
+      <div class="login-form" *ngIf="showCreate">
+        <div class="login-form-title">
+          <h1>Log to your account</h1>
+          <p class="login-here">Step into Passion's Portal: Log In Here!</p>
+        </div>
+        <!-- END! login-form-title -->
+
+        <form
+          #formElement="ngForm"
+          (ngSubmit)="onSubmit()"
+          [formGroup]="dataForm"
+        >
+          <div class="form-input">
+            <label for="username">User Name</label>
+            <input
+              id="username"
+              [class.active]="
+                dataForm.get('username').touched &&
+                dataForm.get('username').invalid
+              "
+              type="text"
+              formControlName="username"
+              placeholder="Enter..."
+            />
+            <p
+              *ngIf="
+                dataForm.get('username').touched &&
+                dataForm.get('username').invalid
+              "
+            >
+              This field is required.
+            </p>
+          </div>
+          <div class="form-input">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              [class.active]="
+                dataForm.get('password')?.touched &&
+                dataForm.get('password')?.invalid
+              "
+              formControlName="password"
+              type="password"
+              placeholder="Enter..."
+            />
+            <p
+              *ngIf="
+                dataForm.get('password')?.touched &&
+                dataForm.get('password')?.invalid
+              "
+            >
+              This field is required.
+            </p>
+
+            <a class="forgot-pass">Forgot Password</a>
+          </div>
+
+          <div class="submit-and-agree">
+            <div class="form-checkbox">
+              <input type="checkbox" id="remember" />
+              <label for="remember">Remember me</label>
+            </div>
+
+            <div class="submit-btn">
+              <button *ngIf="!isLoading" type="submit">Login</button>
+              <button *ngIf="isLoading" type="button" disabled>
+                Please wait...
+              </button>
+
+              <p>
+                Not a member? Register
+                <a
+                  routerLink="/sign-up"
+                  [queryParams]="{ navigateFrom: this.navigateFrom }"
+                  [queryParamsHandling]="'merge'"
+                  >here
+                </a>
+              </p>
+            </div>
+          </div>
+        </form>
+        <!-- END! form -->
+      </div>
+      <!-- END! login-form -->
+    </div>
+  </div>
+</section>

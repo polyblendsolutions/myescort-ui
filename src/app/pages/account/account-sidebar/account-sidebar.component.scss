@@ -1,0 +1,140 @@
+@import "src/theme/variables";
+
+/* --- account-sidebar --- */
+.account-sidebar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.account-sidebar {
+  ul {
+    width: 100%;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 28%);
+    border: 1px solid #eaeaea;
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      a {
+        font-family: $font-en-primary;
+        color: #f54da3;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        padding: 16px 12px;
+        text-align: center;
+        border-bottom: 1px solid #eaeaea;
+        transition: al 0.12s linear;
+
+        &:hover {
+          background-color: #dcdcdc6b;
+        }
+
+        &.active {
+          background-color: #dcdcdc6b;
+        }
+      }
+
+      &:first-child {
+        display: none;
+      }
+
+      &:last-child {
+        a {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 888px) {
+  .account-sidebar {
+    position: fixed;
+    top: 0;
+    width: 320px;
+    background-color: #fff;
+    z-index: 11111;
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: auto;
+    left: -100%;
+    transition: all 0.14s linear;
+
+    &.open {
+      left: 0;
+    }
+  }
+
+  .account-sidebar {
+    ul {
+      box-shadow: none;
+
+      li {
+        a {
+          text-align: left;
+          padding: 18px 20px;
+        }
+
+        &:first-child {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid #eaeaea;
+          padding: 18px 20px;
+
+          p {
+            font-family: $font-en-primary;
+            font-size: 15px;
+            color: #0c0c0c;
+            padding-top: 1px;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+          }
+
+          a {
+            border-bottom: 0;
+            padding: 0;
+
+            span {
+              i {
+                font-size: 22px;
+                color: #ff0000c2;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* --- overflow ---  */
+.overflow {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.383);
+  z-index: 1111;
+  display: none;
+}
+
+@media (max-width: 888px) {
+  .overflow {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.14s linear;
+
+    &.open {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

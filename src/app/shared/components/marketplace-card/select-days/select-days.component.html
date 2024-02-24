@@ -1,0 +1,40 @@
+
+<div class="opening-hours-main">
+  <div class="opening-hours-title">
+    <h1>
+      <i class="fa-regular fa-clock"></i>
+      <span>Arbejdstimer</span>
+    </h1>
+  </div>
+  <div class="opening-hours-selected-data">
+    <div class="selected-data-title">
+      <h1>Available schedule</h1>
+    </div>
+
+    <div class="table-data-selected-table">
+      <div class="selected-table-main">
+        <div class="table-top">
+          <h1>Day</h1>
+        </div>
+        <div class="table-top">
+          <h1>Hour</h1>
+        </div>
+      </div>
+
+      <div class="selected-table-main" *ngFor="let data of product?.dayHours">
+        <div class="table-main-data">
+          <h2>{{data.day}}</h2>
+        </div>
+        <div class="table-main-data">
+          <h2>{{data.startHour}}</h2>
+          <span>to</span>
+          <h2>{{data.endHour}}</h2>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>

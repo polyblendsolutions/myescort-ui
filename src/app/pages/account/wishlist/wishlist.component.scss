@@ -1,0 +1,112 @@
+@import "src/theme/variables";
+
+/* --- wishlist-main --- */
+.wishlist-main-parent {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 200px calc(100% - (200px + 24px));
+  grid-gap: 24px;
+}
+
+@media (max-width: 888px) {
+  .wishlist-main-parent {
+    grid-template-columns: 100%;
+    grid-gap: 0;
+  }
+}
+
+/* --- wishlist-child --- */
+.wishlist-child {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+/* --- wishlist-child-main --- */
+.wishlist-child-main {
+  width: 100%;
+  background-color: $color-white;
+  padding: 28px;
+  box-shadow: 0 5px 6px rgb(0 0 0 / 29%);
+}
+
+@media (max-width: 556px) {
+  .wishlist-child-main {
+    padding: 20px;
+  }
+}
+
+/* --- wishlist-child-main-top --- */
+.wishlist-child-main-top {
+  h2 {
+    font-family: $font-en-primary;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0c0c0c;
+    padding-bottom: 22px;
+    letter-spacing: 0.6px;
+  }
+}
+
+@media (max-width: 556px) {
+  .wishlist-child-main-top {
+    h2 {
+      padding-bottom: 13px;
+      font-size: 19px;
+    }
+  }
+}
+
+/* --- wishlist-child-main-cards --- */
+.wishlist-child-main-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+@media (max-width: 1036px) {
+  .wishlist-child-main-cards {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+  }
+}
+
+@media (max-width: 956px) {
+  .wishlist-child-main-cards {
+    grid-gap: 20px;
+  }
+}
+
+@media (max-width: 888px) {
+  .wishlist-child-main-cards {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 16px;
+  }
+}
+
+@media (max-width: 804px) {
+  .wishlist-child-main-cards {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 22px;
+  }
+}
+
+@media (max-width: 636px) {
+  .wishlist-child-main-cards {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 36px;
+  }
+}
+
+@media (max-width: 426px) {
+  .wishlist-child-main-cards {
+    grid-gap: 20px;
+  }
+}
+
+@media (max-width: 370px) {
+  .wishlist-child-main-cards {
+    grid-gap: 16px;
+  }
+}

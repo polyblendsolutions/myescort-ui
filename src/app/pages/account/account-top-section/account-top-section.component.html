@@ -1,0 +1,15 @@
+<div class="account-main-title-top">
+  <h1>{{ title }}</h1>
+
+  <div class="main-title-top-slider-btn">
+    <button type="button" (click)="onShowSideBar()">
+      <span>MENU</span>
+      <i class="fa-solid fa-sliders"></i>
+    </button>
+  </div>
+</div>
+
+<div class="account-side">
+  <app-account-sidebar #accountSlider></app-account-sidebar>
+</div>
+<!-- END! account-side -->

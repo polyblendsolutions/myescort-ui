@@ -1,0 +1,14 @@
+<div class="similar-ads" *ngIf="products.length">
+  <div class="title-box title-box-pd-details">
+    <h1>Alle escort annoncer gd sdfds</h1>
+    <p>Alle escort annoncer på vores escort side</p>
+  </div>
+  <!-- END! title-box -->
+
+  <div class="similar-ads-cards">
+    <ng-container *ngFor="let data of products">
+      <app-marketplace-card [data]="data"></app-marketplace-card>
+    </ng-container>
+  </div>
+  <!-- END! similar-ads-cards -->
+</div>

@@ -1,0 +1,31 @@
+<section class="my-list-main">
+  <app-account-top-section [title]="'My List'"></app-account-top-section>
+
+  <div class="my-list-main-parent">
+    <div class="my-list-main-sidebar">
+      <app-account-sidebar></app-account-sidebar>
+    </div>
+
+    <div class="my-list-child">
+      <div class="my-list-child-main">
+        <div class="my-list-child-main-top">
+          <h2>Current Active Posts</h2>
+
+          <h4>
+            Ads are active for 1 month, depending when the activation starts
+          </h4>
+        </div>
+        <!-- END! my-list-child-main-top -->
+
+        <div class="my-list-child-main-cards">
+          <ng-container *ngFor="let data of products">
+            <app-list-card [data]="data"></app-list-card>
+          </ng-container>
+        </div>
+        <!-- END! my-list-child-main-cards -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END! my-list -->
+

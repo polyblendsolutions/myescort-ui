@@ -1,0 +1,21 @@
+<a *ngIf="data"  class="category-card" [routerLink]="['/ads']" [queryParams]="{categories: data.slug}" [queryParamsHandling]="'merge'">
+    <div class="category-card-img">
+      <img
+        [src]="data.image"
+        alt="image"
+      />
+    </div>
+<!--  <img class="watermarked" src="/assets/images/logo/color.png" alt="">-->
+  <!-- <span class="watermarked">myescort.dk</span>
+    <div class="category-card-body1">
+    </div>
+    <div class="category-card-body">
+      <h3>
+        <span>{{data.name}}</span>
+      </h3>
+      <p>
+        <span>{{data.description}}</span>
+      </p>
+    </div> -->
+  </a>
+  <!-- END! marketplace-card-one -->

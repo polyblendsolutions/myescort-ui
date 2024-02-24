@@ -1,0 +1,87 @@
+@import "src/theme/variables";
+
+/* --- my-list-main --- */
+.my-list-main-parent {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 200px calc(100% - (200px + 24px));
+  grid-gap: 24px;
+}
+
+@media (max-width: 888px) {
+  .my-list-main-parent {
+    grid-template-columns: 100%;
+    grid-gap: 0;
+  }
+}
+
+/* --- my-list-child --- */
+.my-list-child {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+/* --- my-list-child-main --- */
+.my-list-child-main {
+  width: 100%;
+  background-color: $color-white;
+  padding: 28px;
+  box-shadow: 0 5px 6px rgb(0 0 0 / 29%);
+}
+
+@media (max-width: 630px) {
+  .my-list-child-main {
+    padding: 18px;
+  }
+}
+
+/* --- my-list-child-main-top --- */
+.my-list-child-main-top {
+  h2 {
+    font-family: $font-en-primary;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0c0c0c;
+    padding-bottom: 22px;
+    letter-spacing: 0.6px;
+  }
+
+  h4 {
+    font-family: $font-en-primary;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 600;
+    color: #b3b3b3;
+    letter-spacing: 0.5px;
+    text-align: right;
+    padding-bottom: 12px;
+  }
+}
+
+@media (max-width: 630px) {
+  .my-list-child-main-top {
+    h4 {
+      font-size: 12px;
+      font-weight: 600;
+      padding-bottom: 13px;
+    }
+  }
+}
+
+@media (max-width: 556px) {
+  .my-list-child-main-top {
+    h2 {
+      padding-bottom: 13px;
+      font-size: 19px;
+    }
+  }
+}
+
+/* --- my-list-child-main-cards --- */
+.my-list-child-main-cards {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 20px;
+}

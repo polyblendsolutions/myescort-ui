@@ -1,0 +1,46 @@
+<div class="account-sidebar" [class.open]="sliderShow">
+  <ul>
+    <li>
+      <p>ACCOUNT MENU</p>
+
+      <a (click)="onSLiderShow()">
+        <span>
+          <i class="fa-regular fa-circle-xmark"></i>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a
+        routerLink="/account/profile"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Dashboard</a
+      >
+    </li>
+    <li>
+      <a routerLink="/account/my-list" routerLinkActive="active">My Lists</a>
+    </li>
+    <li>
+      <a routerLink="/account/wishlist" routerLinkActive="active">Favorite</a>
+    </li>
+
+    <li>
+      <a routerLink="/account/subscription" routerLinkActive="active"
+        >Subscription</a
+      >
+    </li>
+    <li>
+      <a>Kontoinstllinger</a>
+    </li>
+    <li>
+      <a routerLink="/account/verificer-profil" routerLinkActive="active"
+        >Verificer Profile</a
+      >
+    </li>
+    <li>
+      <a (click)="onLogout()">Log Ud</a>
+    </li>
+  </ul>
+</div>
+
+<div class="overflow" [class.open]="sliderShow" (click)="onSLiderShow()"></div>

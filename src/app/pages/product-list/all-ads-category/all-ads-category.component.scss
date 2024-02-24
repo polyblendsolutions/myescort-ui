@@ -1,0 +1,35 @@
+@import "/src/theme/variables";
+@import "/src/theme/swipper";
+@import "/src/theme/exports/title";
+
+/* --- ads-category-area --- */
+.ads-category-area {
+  background-color: $bg-two;
+  width: 100%;
+
+  &.ads-category-area-pink {
+    background-image: linear-gradient(to bottom, #f9d5e7, #fbe6e9);
+  }
+
+  &.ads-category-area-pd-list {
+    margin-top: 20px;
+  }
+}
+
+/* --- ads-category-area-main --- */
+.ads-category-area-main {
+  width: 100%;
+  padding: 16px 0 10px;
+}
+
+/* --- ads-category-area-cards --- */
+.ads-category-area-cards {
+  width: 100%;
+  padding-top: 23px;
+}
+
+@media (max-width: 624px) {
+  .ads-category-area-cards {
+    padding-top: 34px;
+  }
+}

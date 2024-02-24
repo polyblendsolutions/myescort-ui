@@ -1,0 +1,67 @@
+/*** font-family ****/
+// $font-en-primary: Arial, Helvetica, sans-serif;
+$font-en-primary: "Roboto", sans-serif;
+$font-en-secondary: "Rubik", sans-serif;
+//$font-en-primary1: "Poppins", sans-serif;
+$font-en-primary2: "Roboto", sans-serif;
+$font-en-primary3: "Open Sans", sans-serif;
+$font-en-secondery: "Barlow", sans-serif;
+$font-en-secondery1: "Baloo Da 2", sans-serif;
+$font-en-secondery2: "Righteous", sans-serif;
+
+$bank-gothic-medium: "bank_gothic_medium", "arial", sans-serif;
+$nexa-bold: "nexa_bold", "arial", sans-serif;
+$nexa-light: "nexa_light", "arial", sans-serif;
+$cocon-regular: "cocon_regular", "arial", sans-serif;
+$shorif-jonota: "shorif_jonota", sans-serif;
+$segoe_ui_regular: "segoe_ui_regular", sans-serif;
+$segoe_ui_bold: "segoe_ui_bold", sans-serif;
+$shorif-jonota: "shorif_jonota", sans-serif;
+$box-shadow-primary: 0px 15px 35px 0px rgba(0, 0, 0, 0.1);
+
+/**** containerr ***/
+$container-max-width: 1700px;
+$container-two-max-width: 1300px;
+
+// MAT TOOLBAR, SIDENAV & LIST
+$toolbar-height: 85px;
+$toolbar-height-sm: 65px;
+$mat-sidenav-width: 295px;
+$list-hover-color: #c8d5e4;
+$list-text-color: #4a4a4a;
+$list-text-size: 15.5px;
+
+// BREAKPOINTS
+$max-tablet-width: 899px;
+
+/* --- color --- */
+$btn-color: #f54da3;
+$btn-color-hover: rgb(244, 44, 147);
+// $primary-color: #f54da3;
+$primary-color: #5f4848;
+$primary-color-two: #303030;
+$color-primary: #5aafed;
+$color-white: #fff;
+
+$color-primary-3: #5bb8fa;
+$black-color: #000;
+$color-border: #e8e8e8;
+$red-color: red;
+$heading-color: #2f2f2f;
+$input-color: #2f2f2f9c;
+$text-color: #4f4f4f;
+$text-color-two: #777777;
+$border-color: rgb(155, 155, 155);
+$border-color-two: rgb(193, 193, 193);
+$pink-color: rgb(245, 77, 163);
+$pink-color-two: #f54da3;
+$submit-btn-color: $btn-color;
+$mobile-menu-color: #afb7ad;
+
+$bg-one: #fff;
+$bg-two: #f5f7fa;
+
+// FONT SIZE
+$font-title-size: 38px;
+$font-title--md-size: 18px;
+$font-dis-size: 16px;

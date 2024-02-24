@@ -1,0 +1,14 @@
+<!--<button mat-button mat-dialog-close class="close-btn"><i class="fa-solid fa-xmark"></i></button>-->
+<div class="product-details">
+  <div class="container">
+    <div class="product-details-child">
+      <app-product-details-image-area [product]="product" [selectedImage]="selectedImage"></app-product-details-image-area>
+      <app-product-details-right-area  [product]="product"></app-product-details-right-area>
+    </div>
+
+    <app-product-details-info [product]="product"></app-product-details-info >
+
+    <app-select-days [product]="product"></app-select-days>
+<!--    <app-related-products [products]="products"></app-related-products>-->
+  </div>
+</div>

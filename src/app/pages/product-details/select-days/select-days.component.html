@@ -1,0 +1,128 @@
+<div class="opening-hours-main">
+  <div class="opening-hours-title">
+    <h1>
+      <span>Arbejdstimer</span>
+    </h1>
+  </div>
+  <div class="opening-hours-selected-data">
+    <div class="table-data-selected-table">
+      <div *ngIf="product?.monday ===true">
+        <div class="selected-table-main" >
+          <div class="table-main-data">
+            <h2>Monday</h2>
+          </div>
+          <div class="table-main-data table-main-data-td" *ngIf="product?.monday ===true && product?.mondaySlot === false || product?.mondaySlot === null">
+           <div class="timing" *ngFor="let data of product?.mondayHours">
+             <h2>Abent (24 timer)</h2>
+           </div>
+          </div>
+          <div class="table-main-data table-main-data-td" *ngIf="product?.mondayHours[0]?.startHour && product?.monday ===true && product?.mondaySlot === true">
+           <div class="timing" *ngFor="let data of product?.mondayHours">
+            <h2>{{ data?.startHour }}</h2>
+            <span>to</span>
+            <h2>{{ data?.endHour }}</h2>
+           </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="product?.tuesday ===true">
+        <div class="selected-table-main" >
+          <div class="table-main-data">
+            <h2>Tuesday</h2>
+          </div>
+          <div class="table-main-data table-main-data-td" *ngIf="product?.tuesday ===true && product?.tuesdaySlot === false || product?.tuesdaySlot === null">
+            <div class="timing" *ngFor="let data of product?.tuesdayHours">
+              <h2>Abent (24 timer)</h2>
+            </div>
+          </div>
+
+          <div class="table-main-data table-main-data-td" *ngIf="product?.tuesdayHours[0]?.startHour && product?.tuesday ===true && product?.tuesdaySlot === true">
+            <div class="timing" *ngFor="let data of product?.tuesdayHours">
+              <h2>{{ data?.startHour }}</h2>
+              <span>to</span>
+              <h2>{{ data?.endHour }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <div *ngIf="product?.wednesday ===true">
+      <div class="selected-table-main">
+        <div class="table-main-data">
+          <h2>Wednesday</h2>
+        </div>
+        <div class="table-main-data table-main-data-td" *ngIf="product?.wednesday === true && product?.wednesdaySlot === false || product?.wednesdaySlot === null">
+          <div class="timing"  *ngFor="let data of product?.wednesdayHours">
+            <h2>Abent (24 timer)</h2>
+        </div>
+        </div>
+
+        <div class="table-main-data table-main-data-td" *ngIf="product?.wednesdayHours[0]?.startHour && product?.wednesday ===true && product?.wednesdaySlot === true">
+          <div class="timing"  *ngFor="let data of product?.wednesdayHours">
+          <h2>{{ data?.startHour }}</h2>
+          <span>to</span>
+          <h2>{{ data?.endHour }}</h2>
+        </div>
+        </div>
+      </div>
+     </div>
+     <div *ngIf="product?.thursday ===true">
+      <div class="selected-table-main" >
+        <div class="table-main-data">
+          <h2>Thursday</h2>
+        </div>
+        <div class="table-main-data table-main-data-td" *ngIf="product?.thursday ===true && product?.thursdaySlot === false || product?.thursdaySlot === null">
+          <div class="timing" *ngFor="let data of product?.thursdayHours">
+            <h2>Abent (24 timer)</h2>
+        </div>
+        </div>
+        <div class="table-main-data table-main-data-td" *ngIf="product?.thursdayHours[0]?.startHour && product?.thursday ===true && product?.thursdaySlot === true">
+          <div class="timing" *ngFor="let data of product?.thursdayHours">
+          <h2>{{ data?.startHour }}</h2>
+          <span>to</span>
+          <h2>{{ data?.endHour }}</h2>
+        </div>
+        </div>
+      </div>
+     </div>
+      <div *ngIf="product?.friday ===true">
+        <div class="selected-table-main" >
+          <div class="table-main-data">
+            <h2>Friday</h2>
+          </div>
+          <div class="table-main-data table-main-data-td" *ngIf="product?.friday ===true && product?.fridaySlot === false || product?.fridaySlot === null">
+            <div class="timing" *ngFor="let data of product?.fridayHours">
+              <h2>Abent (24 timer)</h2>
+          </div>
+          </div>
+          <div class="table-main-data table-main-data-td" *ngIf="product?.fridayHours[0]?.startHour && product?.friday ===true && product?.fridaySlot === true">
+            <div class="timing" *ngFor="let data of product?.fridayHours">
+            <h2>{{ data?.startHour }}</h2>
+            <span>to</span>
+            <h2>{{ data?.endHour }}</h2>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="product?.saturday ===true">
+        <div class="selected-table-main" >
+          <div class="table-main-data">
+            <h2>Saturday</h2>
+          </div>
+          <div class="table-main-data table-main-data-td" *ngIf="product?.saturday ===true && product?.saturdaySlot === false || product?.saturdaySlot === null">
+            <div class="timing" *ngFor="let data of product?.saturdayHours">
+              <h2>Abent (24 timer)</h2>
+            </div>
+          </div>
+          <div class="table-main-data table-main-data-td" *ngIf="product?.saturdayHours[0]?.startHour && product?.saturday ===true && product?.saturdaySlot === true">
+            <div class="timing" *ngFor="let data of product?.saturdayHours">
+              <h2>{{ data?.startHour }}</h2>
+              <span>to</span>
+              <h2>{{ data?.endHour }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

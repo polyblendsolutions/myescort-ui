@@ -1,0 +1,280 @@
+@import "src/theme/variables";
+
+/* --- sign-up-main --- */
+.sign-up-main {
+  width: 100%;
+  padding: 82px 0;
+}
+
+@media (max-width: 556px) {
+  .sign-up-main {
+    padding: 52px 0;
+  }
+}
+
+/* --- sign-up-main-parent --- */
+.sign-up-main-parent {
+  box-shadow: 0 0 15px rgb(99 99 99 / 8%);
+  max-width: 1100px;
+  display: grid;
+  background-color: $color-white;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: auto;
+}
+
+@media (max-width: 788px) {
+  .sign-up-main-parent {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- sign-up-main-left --- */
+.sign-up-main-left {
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 788px) {
+  .sign-up-main-left {
+    img {
+      height: 160px;
+      object-position: bottom center;
+    }
+  }
+}
+
+@media (max-width: 556px) {
+  .sign-up-main-left {
+    display: none;
+
+    img {
+      height: 100px;
+    }
+  }
+}
+
+/* --- sign-up-child --- */
+.sign-up-child {
+  background-color: $color-white;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px 18px 18px 18px;
+
+  .login-form-title {
+    h1 {
+      font-family: $font-en-secondery2;
+      font-size: 50px;
+      text-align: center;
+      letter-spacing: 1px;
+      color: #f54da3;
+      padding-bottom: 20px;
+      font-weight: 400;
+      line-height: 30px;
+  
+    }
+
+    p.login-here {
+      font-family: $font-en-secondery2;
+      font-size: 13px;
+      font-weight: 400;
+      text-align: center;
+      letter-spacing: 1px;
+      color: #706d6d;
+      padding-bottom: 20px;
+    }
+  }
+
+  form {
+    width: 100%;
+
+    .form-input {
+      margin-bottom: 22px;
+    }
+
+    .form-checkbox {
+      margin-bottom: 22px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 788px) {
+  .sign-up-child {
+    .login-form-title {
+      h1 {
+        font-size: 32px;
+        padding-bottom: 9px;
+      }
+
+      p.login-here {
+        padding-bottom: 14px;
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .sign-up-child {
+    .login-form-title {
+      h1 {
+        font-size: 32px;
+        padding-bottom: 7px;
+      }
+
+      p.login-here {
+        font-size: 10px;
+      }
+    }
+  }
+}
+/* --- form-input --- */
+.form-input {
+  width: 100%;
+
+  label {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #555555;
+    font-family: $font-en-primary;
+    padding-bottom: 4px;
+
+    span {
+      color: $submit-btn-color;
+      font-size: 18px;
+    }
+  }
+
+  input {
+    width: 100%;
+    height: 44px;
+    border-radius: 4px;
+    border: 1px solid $border-color;
+    font-family: $font-en-primary;
+    font-size: 15px;
+    font-weight: 400;
+    color: $input-color;
+    outline: 0;
+    padding: 0 8px;
+
+    &::placeholder{
+      color: #aaa6a6;
+    }
+
+    &.active {
+      border: 1px solid $red-color;
+    }
+  }
+
+  p {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: $red-color;
+    font-family: $font-en-primary;
+    font-style: italic;
+    padding-top: 4px;
+  }
+
+  h4 {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: $text-color-two;
+    font-family: $font-en-primary;
+    padding-top: 6px;
+  }
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+
+  input {
+    cursor: pointer;
+    margin-top: 4px;
+  }
+
+  label {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.5px;
+    color: $text-color;
+    font-family: $font-en-primary;
+
+    a {
+      color: $pink-color;
+      display: inline !important;
+    }
+  }
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+
+  button {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: $color-white;
+    font-family: $font-en-primary;
+    background-image: linear-gradient(to right, #f04a9f, #a71d64);
+    padding: 12px 30px;
+    border: 0;
+    border-radius: 4px;
+    outline: 0;
+    transition: all 0.12s linear;
+
+    &:hover {
+      background-color: #ff7e94;
+    }
+  }
+
+  p {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.5px;
+    color: $text-color;
+    font-family: $font-en-primary;
+
+    a {
+      color: $pink-color;
+      display: inline !important;
+    }
+  }
+}
+
+@media (max-width: 556px) {
+  .submit-btn {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div class="account-card">
+  <a
+    [style.background]="accountCard.bgColor"
+    [routerLink]="[accountCard?.route]"
+  >
+    <div class="top-icon">
+      <i [style.color]="accountCard.color" [class]="accountCard.iconClass"></i>
+    </div>
+    <!-- END! top-icon -->
+
+    <div class="page-name">
+      <h1 [style.color]="accountCard.color">{{ accountCard?.titleText }}</h1>
+      <h2 [style.background]="accountCard?.color">
+        {{ accountCard?.btnText }}
+      </h2>
+    </div>
+    <!-- END! page-name -->
+  </a>
+</div>
+<!-- account-card -->

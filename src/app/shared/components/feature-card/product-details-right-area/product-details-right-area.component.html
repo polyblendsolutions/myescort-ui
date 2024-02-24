@@ -1,0 +1,47 @@
+<div class="product-details-right">
+  <!---product-details-->
+
+  <div class="product-details-right-top">
+    <div class="pro-right-title">
+      <h2>{{product?.title}}</h2>
+    </div>
+    <div class="pro-right-detail">
+      <div class="phone-number">
+        <a href="tel:{{product?.phone}}">
+          <i class="fa-solid fa-phone-flip"></i>
+          <span>{{product?.phone}}</span>
+        </a>
+
+        <h3>Click to display phone numbers</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-details-right-bottom">
+    <div class="pro-right-title-bottom">
+      <h2>{{product?.title}}</h2>
+    </div>
+    <div class="pro-right-detail-two">
+      <ul>
+        <li>
+          <p>
+            <span>Category:</span>
+            <small>{{product?.category?.name}}</small>
+          </p>
+        </li>
+        <li>
+          <p>
+            <span>Age:</span>
+            <small>{{product?.age}}</small>
+          </p>
+        </li>
+        <li *ngIf="(product?.runningOut | lowercase) === 'yes'">
+          <p>
+            <span>Drives out:</span>
+            <small>{{product?.runningOut}}</small>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

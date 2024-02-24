@@ -1,0 +1,60 @@
+@import "src/theme/variables";
+
+/* --- hm-popular-category-main --- */
+.hm-popular-category-main {
+  width: 100%;
+  padding: 30px 0 24px;
+  background-color: #ffffff;
+}
+
+/* --- hm-popular-category-title --- */
+.hm-popular-category-title {
+  width: 100%;
+  padding-bottom: 18px;
+
+  h2 {
+    font-family: $font-en-primary2;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #1e1e1e;
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+/* --- hm-popular-category-items --- */
+.hm-popular-category-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 26px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    overflow-x: auto;
+    padding-bottom: 10px;
+
+    li {
+      a {
+        white-space: nowrap;
+        font-family: $font-en-primary2;
+        font-weight: 300;
+        letter-spacing: 1px;
+        color: #1e1e1e;
+        font-size: 18px;
+        text-align: center;
+        transition: all 0.1s linear;
+
+        &:hover {
+          color: #f54da3;
+        }
+      }
+    }
+  }
+}

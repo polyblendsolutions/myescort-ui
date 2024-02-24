@@ -1,0 +1,50 @@
+<section class="profile-main">
+  <app-account-top-section [title]="'Your Profile'"></app-account-top-section>
+  <!-- END! account-top-section -->
+
+  <div class="profile-main-parent">
+    <div class="profile-main-sidebar">
+      <app-account-sidebar #accountSlider></app-account-sidebar>
+    </div>
+
+    <div class="profile-child">
+      <div class="profile-top">
+        <!-- <div class="profile-img">
+            <img [src]="imgPlaceHolder" alt="profile-img" />
+          </div> -->
+        <div class="profile-data">
+          <h3>{{ user?.username }}</h3>
+          <h4>
+            e-mail: <span>{{ user?.email }}</span>
+          </h4>
+
+          <h5 *ngIf="products[0]?.status === 'publish'" class="active-ad">You have an active ad!</h5>
+          <h5 *ngIf="products[0]?.status !== 'publish'" class="active-ad" style="color: red;">You have an Deactive ad!</h5>
+        </div>
+      </div>
+
+      <div class="member-report-main">
+        <h1>Member report</h1>
+
+        <ul>
+          <li>
+            <h4>Status:</h4>
+            <h5 *ngIf="products[0]?.status === 'publish'" class="inactive" style="color: #48eb6c;">Active</h5>
+            <h5 *ngIf="products[0]?.status !== 'publish'" class="inactive">Deactive</h5>
+          </li>
+          <li>
+            <h4>Validity:</h4>
+            <h5><span>Expires on</span> 02/08/2023 @ 00:00</h5>
+          </li>
+        </ul>
+
+        <div class="subscription-renew-btn">
+          <button type="button" routerLink="/account/subscription">
+            Renew Subscription
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--END PROFILE-->

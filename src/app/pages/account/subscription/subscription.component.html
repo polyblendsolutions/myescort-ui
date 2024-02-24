@@ -1,0 +1,55 @@
+<section class="subscription-main">
+  <app-account-top-section [title]="'Subscription'"></app-account-top-section>
+
+  <div class="subscription-main-parent">
+    <div class="subscription-main-sidebar">
+      <app-account-sidebar></app-account-sidebar>
+    </div>
+
+    <div class="subscription-child">
+      <div class="subscription-child-main">
+        <div class="subscription-child-main-top">
+          <h2>Administrer Abonnement</h2>
+
+          <p>
+            Fremhævning af Annonce:
+            <span
+              >Din annonce vil visuelt skille sig ud, hvilket vil tiltrække
+              større opmærksomhed fra potentielle kunder.</span
+            >
+          </p>
+
+          <p>
+            Altid Over Gratis Annoncer:
+            <span>
+              Din annonce vil altid blive vist over gratis annoncer, hvilket
+              øger dens synlighed.</span
+            >
+          </p>
+
+          <p>
+            Flere Visninger:
+            <span>
+              Takket være en højere placering og fremhævning vil din annonce
+              modtage flere visninger, hvilket øger chancerne for succes.</span
+            >
+          </p>
+        </div>
+        <!-- END! subscription-child-main-top -->
+
+        <div class="subscription-child-main-cards">
+          <app-subscription-card></app-subscription-card>
+          <app-subscription-card></app-subscription-card>
+          <app-subscription-card></app-subscription-card>
+        </div>
+
+        <div class="subscription-child-main-bottom">
+          <p>
+            Ved køb af enhver plan accepterer du vores vilkår og betingelser
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END! subscription -->

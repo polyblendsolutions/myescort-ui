@@ -1,0 +1,46 @@
+@import "src/theme/variables";
+
+/* --- account-card --- */
+.account-card {
+  a {
+    padding: 20px 22px;
+    background-color: #ebdeef;
+    border-radius: 4px;
+    box-shadow: 0 0 11px -2px #85858547;
+  }
+}
+
+.top-icon {
+  margin-bottom: 12px;
+  text-align: center;
+  i {
+    font-size: 26px;
+    color: #7c2b94;
+  }
+}
+
+.page-name {
+  text-align: center;
+
+  h1 {
+    font-family: $font-en-primary;
+    font-size: 20px;
+    font-weight: 600;
+    color: $color-white;
+    color: #7c2b94;
+    border-radius: 4px;
+    padding-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  h2 {
+    font-family: $font-en-primary;
+    font-size: 16px;
+    font-weight: 400;
+    color: $color-white;
+    background-color: #7c2b94;
+    border-radius: 4px;
+    padding: 9px 9px;
+    letter-spacing: 0.5px;
+  }
+}

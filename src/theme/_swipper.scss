@@ -1,0 +1,134 @@
+@import "./variables";
+
+/*** swipper ***/
+::ng-deep.mySwiper .swiper-pagination-bullet-active {
+  background-color: #004851 !important;
+}
+
+::ng-deep.mySwiper .swiper-pagination-bullet {
+  width: 11px;
+  height: 11px;
+  border: 1px solid #fff;
+  opacity: 1;
+  background-color: #fff;
+}
+
+::ng-deep.swiper-button-next {
+  font-size: 20px;
+}
+
+::ng-deep.swiper-button-next,
+::ng-deep.swiper-button-prev {
+  background-color: transparent;
+  border: 2px solid #f54da3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  top: 56%;
+  z-index: 20;
+  border-radius: 50%;
+  transition: all 0.3s linear;
+}
+
+::ng-deep.swiper-button-next:after,
+::ng-deep.swiper-button-prev:after {
+  content: "\f054";
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Font Awesome 5 Free";
+  display: block;
+  color: #f54da3;
+  transition: all 0.3s linear;
+}
+
+::ng-deep.swiper-button-prev:after {
+  content: "\f053";
+}
+
+::ng-deep.swiper-button-next.swiper-button-disabled,
+::ng-deep.swiper-button-prev.swiper-button-disabled {
+  z-index: 20;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transition: all 0.3s linear;
+}
+
+::ng-deep.small-carousel .mySwiper {
+  padding: 0px 30px;
+}
+
+::ng-deep.mySwiper.mySwiper-two {
+  padding: 10px 0;
+}
+
+::ng-deep.small-carousel ::ng-deep.swiper-button-next {
+  right: 0px;
+  width: 25px;
+  height: 25px;
+  top: 60%;
+}
+
+::ng-deep.small-carousel ::ng-deep.swiper-button-prev {
+  left: 0px;
+  width: 25px;
+  height: 25px;
+  top: 60%;
+}
+
+::ng-deep.swiper {
+  padding: 6px 0px 0;
+  box-sizing: border-box;
+}
+
+// use for carousel
+::ng-deep.carousel-swiper.swiper {
+  padding: 0px 0px;
+  box-sizing: border-box;
+}
+
+::ng-deep.carousel-swiper .swiper-pagination-bullet {
+  width: 11px;
+  height: 11px;
+  border: 1px solid #f54da3;
+  opacity: 1;
+  background-color: #d9d9d9;
+}
+
+::ng-deep.carousel-swiper .swiper-pagination-bullet-active {
+  background-color: #f54da3 !important;
+}
+
+::ng-deep.carousel-swiper ::ng-deep.swiper-button-next {
+  right: 0px;
+  width: 25px;
+  height: 25px;
+  top: 60%;
+  display: none;
+}
+
+::ng-deep.carousel-swiper ::ng-deep.swiper-button-prev {
+  left: 0px;
+  width: 25px;
+  height: 25px;
+  top: 60%;
+  display: none;
+}
+
+::ng-deep {
+  .swiper-horizontal > .swiper-pagination-bullets,
+  .swiper-pagination-bullets.swiper-pagination-horizontal,
+  .swiper-pagination-custom,
+  .swiper-pagination-fraction {
+    bottom: -2px;
+  }
+}
+
+::ng-deep.ads-swiper {
+  padding: 8px 7px 25px !important;
+}
+
+::ng-deep.mySwiperTwo {
+  padding: 0 !important;
+}

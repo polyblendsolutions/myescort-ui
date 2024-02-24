@@ -1,0 +1,98 @@
+<app-blog-page-top-section></app-blog-page-top-section>
+<!-- END! blog-page-top-section -->
+
+<div class="section1">
+  <div class="container">
+    <div class="section1-main">
+      <ng-container *ngIf="isLoading">
+        <div class="loader">
+          <app-blog-card-loader></app-blog-card-loader>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!isLoading">
+        <div *ngFor="let data of blogs; let i = index" [id]="data?._id">
+          <a
+            class="blog"
+            [routerLink]="['/blog-details', data?._id]"
+            routerLinkActive="router-link-active"
+          >
+            <div class="blog-left">
+              <div class="blog-img">
+                <img
+                  [src]="
+                    data?.image
+                      ? data?.image
+                      : './assets/images/temp/jpg/f642da57256363cb2958fd4dd6266c06.webp'
+                  "
+                  alt=""
+                />
+              </div>
+            </div>
+
+            <div class="blog-right">
+              <div class="blog-date">
+                <h4>{{ data?.createdAt | date }}</h4>
+              </div>
+              <!-- END! blog-date -->
+
+              <div class="blog-title">
+                <h3>{{ data?.name | titlecase }}</h3>
+
+                <p>
+                  <!-- {{
+                    data?.userDesignation
+                      ? data?.userDesignation
+                      : "No description here"
+                  }} -->
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Veniam, magnam saepe fuga ipsum molestiae id labore! Cumque
+                  placeat enim minus ut quas id aut est voluptates, nesciunt
+                  ratione iusto ab ducimus. Nihil ullam modi deleniti dolorum
+                  voluptate maiores harum, veniam laboriosam esse laborum ipsam
+                  perspiciatis alias, suscipit commodi sequi incidunt error
+                  libero a ut nobis voluptatem magni, nam odio! Saepe assumenda
+                  reprehenderit dignissimos sunt nisi sapiente quidem ipsum,
+                  modi nobis expedita explicabo debitis enim minima deserunt
+                  doloribus accusantium. Harum perferendis, alias laudantium
+                  asperiores voluptatum, fuga sit maxime rem ab eveniet
+                  explicabo corrupti placeat iste modi, eaque hic aliquam! Qui
+                  illum nulla assumenda ipsam consectetur expedita voluptatum
+                  alias tempore, esse sit accusamus excepturi sequi, voluptates
+                  autem atque deserunt optio. Rem suscipit consectetur unde
+                  atque explicabo minus aliquid quae dicta temporibus, doloribus
+                  distinctio numquam molestias modi iure commodi laborum, sint
+                  adipisci quod nihil quos ullam sed ipsum sunt! Ab quos
+                  dolorem, esse exercitationem nemo aspernatur vitae soluta
+                  deserunt atque doloribus aut et perspiciatis numquam dolor
+                  fuga cumque ullam explicabo eaque tenetur laborum eum. Illum
+                  deleniti minima, voluptas iure dolorum magnam, asperiores
+                  impedit suscipit maxime mollitia commodi voluptatibus
+                  voluptates, tempore ratione libero ullam. Autem, natus. Quidem
+                  aperiam error autem consectetur blanditiis? Earum ab
+                  voluptates delectus impedit maxime nobis aspernatur
+                  consequuntur error praesentium quod. Eius quidem, assumenda
+                  totam nostrum vero non perferendis natus ipsa laboriosam
+                  delectus laudantium aut ex eaque esse reiciendis obcaecati
+                  aspernatur cumque neque, vitae sit fugiat reprehenderit
+                  temporibus nemo? Voluptatem sed minima similique repudiandae
+                  dolore. Ipsa laborum, obcaecati voluptatem sint harum, modi
+                  eaque nemo aliquam quis animi quisquam porro quo consequatur
+                  nesciunt iure repudiandae reprehenderit provident atque
+                  aspernatur tenetur culpa? Tenetur sit neque impedit
+                  praesentium voluptatem temporibus, aperiam dolores laboriosam
+                  sequi tempora iusto eligendi. Iste inventore libero commodi
+                  vero autem nisi necessitatibus repellendus, voluptas nesciunt
+                  iure velit culpa, quibusdam nulla reprehenderit!
+                </p>
+                <!-- <a>Show More</a> -->
+              </div>
+              <!-- END! blog-title -->
+            </div>
+          </a>
+        </div>
+        <!-- END! blog -->
+      </ng-container>
+    </div>
+  </div>
+</div>
+<!----END BLOGS AREA---->

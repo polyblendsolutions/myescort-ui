@@ -1,0 +1,128 @@
+<section class="sign-up-main">
+  <div class="container">
+    <div class="sign-up-main-parent">
+      <div class="sign-up-main-left">
+        <img src="./assets/images/jpg/flower.avif" alt="" />
+      </div>
+
+      <div class="sign-up-child">
+        <div class="login-form-title">
+          <h1>Register for FREE</h1>
+          <p class="login-here">Join the biggest sdfdsf community in Denmark</p>
+        </div>
+        <!-- END! login-form-title -->
+
+        <form
+          #formElement="ngForm"
+          [formGroup]="dataForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="form-input">
+            <label for="u_name">User name <span>*</span></label>
+            <input
+              nfNoSpaces
+              formControlName="username"
+              [class.invalid]="username.touched && username.invalid"
+              type="text"
+              id="u_name"
+              placeholder="Enter..."
+            />
+            <p style="color: #a50000; font-weight: bold">
+              {{
+                generateUsername ? "Username will be :" + generateUsername : ""
+              }}
+            </p>
+            <p *ngIf="username.touched && username.invalid">
+              This field is required.
+            </p>
+            <h4>User name cannot be changed</h4>
+          </div>
+
+          <div class="form-input">
+            <label for="email">E-mail <span>*</span></label>
+            <input
+              formControlName="email"
+              [class.invalid]="email.touched && email.invalid"
+              type="email"
+              id="email"
+              placeholder="Enter..."
+            />
+            <p *ngIf="email.touched && email.invalid">
+              This field is required.
+            </p>
+          </div>
+
+          <div class="form-input">
+            <label for="Phone">Phone number <span>*</span></label>
+            <input
+              formControlName="phone"
+              [class.invalid]="phone.touched && phone.invalid"
+              type="text"
+              id="Phone"
+              placeholder="Enter..."
+            />
+            <p *ngIf="phone.touched && phone.invalid">
+              This field is required.
+            </p>
+          </div>
+
+          <div class="form-input">
+            <label for="password">Password <span>*</span></label>
+            <input
+              formControlName="password"
+              [minlength]="6"
+              [class.invalid]="password.touched && password.invalid"
+              type="password"
+              id="password"
+              placeholder="Enter..."
+            />
+            <p *ngIf="password.touched && password.invalid">
+              This field is required.
+            </p>
+          </div>
+
+          <div class="form-input">
+            <label for="confirm-password"
+              >Confirm password <span>*</span></label
+            >
+            <input
+              formControlName="confirmPassword"
+              [minlength]="6"
+              [class.invalid]="
+                confirmPassword.touched && confirmPassword.invalid
+              "
+              type="password"
+              id="confirm-password"
+              placeholder="Enter..."
+            />
+            <p *ngIf="confirmPassword.touched && confirmPassword.invalid">
+              This field is required.
+            </p>
+          </div>
+
+          <div class="form-checkbox">
+            <input formControlName="isAccept" type="checkbox" id="conditions" />
+            <label for="conditions"
+              >I have read and agree to the website
+              <a>Terms and conditions</a></label
+            >
+          </div>
+
+          <div class="submit-btn">
+            <button type="submit">{{ "Join Us" | uppercase }}</button>
+
+            <p>
+              Already a member? Login
+              <a
+                routerLink="/login"
+                [queryParams]="{ navigateFrom: this.navigateFrom }"
+                [queryParamsHandling]="'merge'"
+                >here</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

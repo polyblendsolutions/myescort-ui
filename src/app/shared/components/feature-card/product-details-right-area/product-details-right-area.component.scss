@@ -1,0 +1,151 @@
+@import "src/theme/variables";
+.zoom-viewer {
+  width: 100%;
+  background: #FFFFFF;
+  background-repeat: no-repeat;
+  position: absolute;
+  right:0px;
+  top: 0px;
+  z-index: 20;
+
+  img {
+    width: 100%;
+    max-width: 610px;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+/* --- product-details-right --- */
+.product-details-right {
+  position: sticky;
+  top: 10px;
+  z-index: 7;
+  background: transparent;
+  height: auto;
+}
+
+.product-details-right-top {
+  height: auto;
+  background-color: $color-white;
+  box-shadow: 0 0 10px rgba(65, 65, 65, 0.196);
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+
+.pro-right-title {
+  padding: 14px 20px;
+  border-bottom: 1px solid $border-color-two;
+
+  h2 {
+    font-family: $font-en-primary;
+    font-size: 18px;
+    font-weight: 600;
+    color: $heading-color;
+  }
+}
+
+.pro-right-detail {
+  padding: 18px 16px 16px 16px;
+}
+
+.phone-number {
+  background-color: #f2f2f2;
+  padding: 14px;
+  border-radius: 4px;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+
+    i {
+      color: $pink-color-two;
+      font-size: 16px;
+    }
+
+    span {
+      font-family: $font-en-primary;
+      font-size: 15px;
+      font-weight: 600;
+      color: $heading-color;
+    }
+  }
+
+  h3 {
+    padding-top: 12px;
+    font-family: $font-en-primary;
+    font-size: 14px;
+    font-weight: 400;
+    color: $text-color-two;
+  }
+}
+
+.product-details-right-bottom {
+  height: auto;
+  background-color: $color-white;
+  box-shadow: 0 0 10px rgba(65, 65, 65, 0.196);
+  border-radius: 4px;
+  margin-bottom: 24px;
+  padding: 14px;
+}
+
+.pro-right-title-bottom {
+  margin-bottom: 28px;
+
+  h2 {
+    font-family: $font-en-primary;
+    font-size: 20px;
+    font-weight: 600;
+    color: $heading-color;
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 80px;
+      height: 3px;
+      background-color: $pink-color-two;
+      position: absolute;
+      bottom: -9px;
+      left: 0;
+    }
+  }
+}
+
+.pro-right-detail-two {
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      margin-bottom: 8px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+
+      p {
+        font-family: $font-en-primary;
+        font-size: 14px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+
+        span {
+          font-weight: $heading-color;
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        small {
+          font-weight: 400;
+          font-size: 14px;
+          color: $text-color-two;
+        }
+      }
+    }
+  }
+}

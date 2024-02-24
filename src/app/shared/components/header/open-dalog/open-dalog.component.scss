@@ -1,0 +1,26 @@
+button {
+  //margin-right: 8px;
+  background-color: #ffffff;
+  color: #f54da3!important;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+}
+
+.dialog{
+  background-color: #f54da3;
+  p{
+    color: #FFFFFF;
+    padding-bottom: 22px;
+    span{
+      cursor: pointer;
+      text-decoration: underline;
+      border: none !important;
+    }
+  }
+}
+
+.dialog-btn{
+  display: flex;
+  justify-content: center;
+}

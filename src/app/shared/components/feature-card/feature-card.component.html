@@ -1,0 +1,47 @@
+<div class="product">
+  <!----future-card-img-->
+  <div class="product-image" [routerLink]="['/ad-details', data?._id]">
+    <img
+      [src]="data?.images && data?.images.length ? data?.images[0] : ''"
+      alt="image"
+    />
+  </div>
+
+  <div class="details-div">
+    <div class="product-body">
+      <div>
+        <h4>{{tesData}}</h4>
+        <div>
+          <a [routerLink]="['/ad-details', data?._id]">
+            {{ titleData }}
+          </a>
+        </div>
+        <!-- <p class="shortDescription" [innerHTML]="data?.shortDescription"></p> -->
+        <p class="shortDescription" >{{data?.shortDescription}}</p>
+      </div>
+      <div class="location-div">
+        <div class="bottom-align-text">
+          <p>Escort</p>
+          <p>{{ data?.division?.name }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-div">
+      <div class="btn-link">
+        <a [routerLink]="['/ad-details', data?._id]">Se mere</a>
+      </div>
+
+    <div class="icon-text">
+      <p (click)="onAddToWishList($event)"
+      [ngClass]="{ active: data?._id === wishlist?.product?._id }">
+        <i class="fa-regular fa-heart"></i> Tilfoj til favoritter
+      </p>
+      <p (click)="openComponentDialog(data?._id)">
+        <i *ngIf="data" class="fa-solid fa-search"></i> Hurtig visning
+      </p>
+    </div>
+    </div>
+  </div>
+</div>
+<!---end-->

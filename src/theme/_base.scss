@@ -1,0 +1,93 @@
+@import "./variables";
+@import "~quill/dist/quill.bubble.css";
+@import "~quill/dist/quill.snow.css";
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: block;
+  width: 100%;
+  //user-select: none;
+  height: auto;
+  box-sizing: border-box;
+  font-family: $font-en-primary;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  scroll-behavior: smooth;
+  padding: 0px;
+  margin: 0px;
+  overflow-x: hidden;
+  background-color: #f5f6f7;
+}
+a {
+  display: block;
+  text-decoration: none;
+  color: #f54da3;
+  cursor: pointer;
+}
+a,
+button,
+img {
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: none;
+  color: #f31c8b;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  display: block;
+  margin: 0px !important;
+}
+img {
+  display: block;
+  width: 100%;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container-header {
+  display: block;
+  max-width: $container-two-max-width;
+  width: 100%;
+  margin: auto;
+  padding: 0px 16px;
+}
+
+.container {
+  display: block;
+  max-width: $container-two-max-width;
+  width: 100%;
+  margin: auto;
+  padding: 0px 16px;
+}
+
+/* --- Global notification --- */
+
+.success-snackbar {
+  --mdc-snackbar-container-color: #00bf61 !important;
+}
+
+.warn-snackbar {
+  --mdc-snackbar-container-color: #ff7515 !important;
+}
+
+.wrong-snackbar {
+  --mdc-snackbar-container-color: #fe3030 !important;
+}

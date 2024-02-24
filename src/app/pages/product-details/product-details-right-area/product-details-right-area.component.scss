@@ -1,0 +1,232 @@
+@import "src/theme/variables";
+
+/* --- product-details-right --- */
+.product-details-right {
+  z-index: 7;
+  background: transparent;
+  height: auto;
+}
+
+.product-details-right-main-top {
+  box-shadow: 0 0 15px rgb(99 99 99 / 8%);
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.product-details-right-top {
+  height: auto;
+  background-color: $color-white;
+  border-bottom: 1px solid rgb(193, 193, 193);
+}
+
+.pro-right-title {
+  padding: 14px 20px 13px;
+  border-bottom: 1px solid $border-color-two;
+
+  h2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+
+    span {
+      font-family: $font-en-primary;
+      font-size: 26px;
+      font-weight: 600;
+      color: #403e3e;
+      letter-spacing: 1px;
+    }
+
+    small {
+      display: flex;
+
+      svg {
+        fill: #1d9bf0;
+        width: 26px;
+        height: 26px;
+      }
+    }
+  }
+
+  p {
+    font-family: $font-en-primary;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    color: #403e3e;
+    padding-top: 5px;
+  }
+}
+
+.pro-right-detail {
+  padding: 16px 16px 20px;
+}
+
+.phone-number {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 2px 4px 0px rgb(0 0 0 / 32%);
+    padding: 9px 15px;
+
+    i {
+      color: $pink-color-two;
+      font-size: 16px;
+
+      &.fa-whatsapp {
+        color: #60d66a;
+        font-size: 20px;
+      }
+    }
+
+    span {
+      font-family: $font-en-primary;
+      font-weight: 400;
+      color: #403e3e;
+      font-size: 15px;
+      padding-top: 1px;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+.product-details-right-bottom {
+  height: auto;
+  background-color: $color-white;
+  padding: 16px 16px 20px;
+}
+
+.pro-right-title-bottom {
+  margin-bottom: 28px;
+
+  h2 {
+    font-family: $font-en-primary;
+    font-size: 20px;
+    font-weight: 600;
+    color: #272626;
+    position: relative;
+    letter-spacing: 1px;
+
+    &::after {
+      content: "";
+      width: 40px;
+      height: 3px;
+      background-color: $pink-color-two;
+      position: absolute;
+      bottom: -9px;
+      left: 0;
+    }
+  }
+}
+
+.pro-right-detail-two {
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+
+      p {
+        font-family: $font-en-primary;
+        font-size: 14px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+
+        span {
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          color: #4c4c4c;
+        }
+
+        small {
+          font-weight: 400;
+          font-size: 15px;
+          color: $text-color-two;
+          letter-spacing: 0.5px;
+        }
+      }
+    }
+  }
+}
+
+/* --- product-details-right-main-bottom --- */
+.product-details-right-main-bottom {
+  box-shadow: 0 0 10px rgba(65, 65, 65, 0.196);
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  overflow: hidden;
+
+
+  ul {
+    padding: 20px 16px;
+    margin: 0;
+    list-style: none;
+    cursor: pointer;
+
+    
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      cursor: pointer;
+  
+      &:last-child {
+        margin-bottom: 0;
+      }
+     
+      span {
+        font-family: $font-en-primary;
+        font-size: 16px;
+        color: #948585;
+        padding-top: 2px;
+        letter-spacing: 0.5px;
+
+
+        
+        
+      }
+
+      i {
+        font-size: 18px;
+        color: #767272;
+        
+      }
+
+      &:hover {
+
+
+        span{
+          color: $pink-color;
+        }
+        i{
+          color: $pink-color;
+        }
+      }
+    }
+  }
+}

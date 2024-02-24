@@ -1,0 +1,35 @@
+@import "/src/theme/variables";
+@import "/src/theme/exports/title";
+
+/* --- category-area --- */
+.category-area {
+  background-color: $bg-one;
+  width: 100%;
+}
+
+/* --- category-area-main --- */
+.category-area-main {
+  width: 100%;
+  padding: 0px 0;
+}
+/* --- category-area-cards --- */
+.category-area-cards {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 26px;
+  padding-top: 50px;
+}
+
+@media (max-width: 952px) {
+  .category-area-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 624px) {
+  .category-area-cards {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 16px;
+    padding-top: 34px;
+  }
+}

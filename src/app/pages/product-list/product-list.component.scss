@@ -1,0 +1,29 @@
+@import "src/theme/variables";
+
+.product-list-main {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 30px;
+  padding: 24px 0 50px;
+}
+
+@media (max-width: 1000px) {
+  .product-list-main {
+    max-width: 100%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 888px) {
+  .product-list-main {
+    grid-gap: 0;
+    grid-template-columns: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .product-list-main {
+    padding-top: 24px;
+  }
+}

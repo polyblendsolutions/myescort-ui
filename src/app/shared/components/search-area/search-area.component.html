@@ -1,0 +1,135 @@
+<section
+  class="section-one-home"
+  [style.background]="'url(' + banners[0]?.image + ')'"
+>
+  <div class="container">
+    <div class="section-one-main">
+<!--      <div class="sec-one-home-title wrapper">-->
+<!--        <h1 class="static-txt">Find escort piger i</h1>-->
+
+<!--        &lt;!&ndash; <span class="typed-element"></span> &ndash;&gt;-->
+
+<!--        <div class="ul-main">-->
+<!--          <ul class="slider" id="sliderOne">-->
+<!--            <ng-container *ngFor="let data of arrData; index as i">-->
+<!--              <li>{{ data }}</li>-->
+<!--            </ng-container>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="sec-one-inputs">
+        <form
+          class="search-form"
+          #formElement="ngForm"
+          [formGroup]="dataForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="sec-home-input-area">
+            <button
+              type="button"
+              [matMenuTriggerFor]="menu"
+              class="nested-sec-select"
+            >
+              <span>
+                {{ isSelectedValue ? isSelectedValue : "Select Area" }}
+              </span>
+
+              <i class="fa-solid fa-angle-down"></i>
+            </button>
+
+            <mat-menu #menu="matMenu" class="mat-menu sec-one-mat">
+              <p>Pick a region</p>
+
+              <button
+                (click)="onSelectBtnDis(disData?.name, $event)"
+                class="divisions"
+                type="button"
+                *ngFor="let disData of divisions"
+              >
+                {{ disData?.name }}
+                <button
+                  (click)="onSelectBtnDis(area?.name, $event)"
+                  class="area"
+                  type="button"
+                  *ngFor="let area of disData?.area"
+                >
+                  {{ area.name }}
+
+                  <button
+                    (click)="onSelectBtnDis(zone?.name, $event)"
+                    class="zone"
+                    type="button"
+                    *ngFor="let zone of area?.zone"
+                  >
+                    {{ zone?.name }}
+                  </button>
+                </button>
+              </button>
+            </mat-menu>
+          </div>
+
+          <div class="sec-home-input-area">
+            <select formControlName="category">
+              <option value="null" selected>Select a category</option>
+              <option *ngFor="let data of categorys" [value]="data?.slug">
+                {{ data?.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="sec-home-input-area">
+            <select formControlName="type">
+              <option value="null" selected>Select Type</option>
+              <option *ngFor="let data of types" [value]="data?.slug">
+                {{ data?.name }}
+              </option>
+            </select>
+          </div>
+          <div class="sec-home-input-area">
+            <form #searchForm="ngForm" (click)="onClickSearchArea($event)">
+              <input
+                #searchInput
+                id="searchInput"
+                class="tw"
+                type="text"
+                placeholder="Indtast dit nøgleord her..."
+                (input)="onSearchChange($event.target.value)"
+                (focus)="handleFocus($event)"
+                (ngModelChangeDebounced)="searchQuery = $event"
+                (blur)="handleBlur()"
+                name="searchTerm"
+                autocomplete="off"
+                ngModel
+                required
+                (keydown.enter)="onSearchNavigate()"
+              />
+            </form>
+          </div>
+
+          <div class="sec-home-sub-btn">
+            <button type="submit">Search</button>
+          </div>
+        </form>
+
+        <ul
+          id="auto-suggestion"
+          class="auto-complete-box"
+          [ngClass]="valueInput && isOpen ? 'active' : ''"
+        >
+          <li
+            class="list-view"
+            *ngFor="let data of searchProducts"
+            (click)="onSelectItem(data?._id)"
+          >
+            <div class="search-result-left">
+              <div class="desc">
+                <h3>{{ data?.name }}</h3>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

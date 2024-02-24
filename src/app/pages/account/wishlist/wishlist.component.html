@@ -1,0 +1,29 @@
+<section class="wishlist-main">
+  <app-account-top-section [title]="'Favoritaktive'"></app-account-top-section>
+
+  <div class="wishlist-main-parent">
+    <div class="wishlist-main-sidebar">
+      <app-account-sidebar></app-account-sidebar>
+    </div>
+
+    <div class="wishlist-child">
+      <div class="wishlist-child-main">
+        <div class="wishlist-child-main-top">
+          <h2>Favoritaktive Annoncer</h2>
+        </div>
+        <!-- END! wishlist-child-main-top -->
+
+        <div class="wishlist-child-main-cards">
+          <ng-container *ngFor="let data of wishlists">
+            <app-marketplace-card
+              [data]="data?.product"
+            ></app-marketplace-card>
+          </ng-container>
+        </div>
+        <!-- END! wishlist-child-main-cards -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END! wishlist -->
+

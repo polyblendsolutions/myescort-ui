@@ -1,0 +1,293 @@
+<section class="search-area">
+  <div class="container">
+    <div class="search-area-child">
+      <div *ngIf="data == '/massage-aalborg'" class="heading-data">
+        <h4>You create the ad by providing all the</h4>
+        <p>
+          You create the ad by providing all the information and pressing create
+          ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+        </p>
+        <p>
+          You create the ad by <a routerLink="/ads">click hear</a>.
+          providing all the information and pressing create ad, then you press
+          'Create ad'.<a routerLink="/login">click hear</a>.
+        </p>
+      </div>
+
+      <div *ngIf="data == '/massage-odense'" class="heading-data">
+        <h4>You create the ad by providing all the</h4>
+        <p>
+          You create the ad by providing all the information and pressing create
+          ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+        </p>
+        <p>
+          You create the ad by <a routerLink="/ads">click hear</a>.
+          providing all the information and pressing create ad, then you press
+          'Create ad'.<a routerLink="/login">click hear</a>.
+        </p>
+      </div>
+
+      <div *ngIf="data == '/massage-copenhagen'" class="heading-data">
+        <h4>You create the ad by providing all the</h4>
+        <p>
+          You create the ad by providing all the information and pressing create
+          ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+        </p>
+        <p>
+          You create the ad by <a routerLink="/ads">click hear</a>.
+          providing all the information and pressing create ad, then you press
+          'Create ad'.<a routerLink="/login">click hear</a>.
+        </p>
+      </div>
+
+      <div *ngIf="data == '/massage-aarhus'" class="heading-data">
+        <h4>You create the ad by providing all the</h4>
+        <p>
+          You create the ad by providing all the information and pressing create
+          ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+        </p>
+        <p>
+          You create the ad by <a routerLink="/ads">click hear</a>.
+          providing all the information and pressing create ad, then you press
+          'Create ad'.<a routerLink="/login">click hear</a>.
+        </p>
+      </div>
+
+      <div *ngIf="data == '/escort-aalborg'" class="heading-data">
+        <h4>You create the ad by providing all the</h4>
+        <p>
+          You create the ad by providing all the information and pressing create
+          ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+        </p>
+        <p>
+          You create the ad by <a routerLink="/ads">click hear</a>.
+          providing all the information and pressing create ad, then you press
+          'Create ad'.<a routerLink="/login">click hear</a>.
+        </p>
+      </div>
+
+      <div *ngIf="data == '/escort-odense'" class="heading-data">
+        <h4>You create the ad by providing all the</h4>
+        <p>
+          You create the ad by providing all the information and pressing create
+          ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+        </p>
+        <p>
+          You create the ad by <a routerLink="/ads">click hear</a>.
+          providing all the information and pressing create ad, then you press
+          'Create ad'.<a routerLink="/login">click hear</a>.
+        </p>
+      </div>
+
+      <div *ngIf="data == '/escort-copenhagen'" class="heading-data">
+        <h4>You create the ad by providing all the</h4>
+        <p>
+          You create the ad by providing all the information and pressing create
+          ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+        </p>
+        <p>
+          You create the ad by <a routerLink="/ads">click hear</a>.
+          providing all the information and pressing create ad, then you press
+          'Create ad'.<a routerLink="/login">click hear</a>.
+        </p>
+      </div>
+
+      <div *ngIf="data == '/escort-aarhus'" class="heading-data">
+        <h4>You create the ad by providing all the</h4>
+        <p>
+          You create the ad by providing all the information and pressing create
+          ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+        </p>
+        <p>
+          You create the ad by <a routerLink="/ads">click hear</a>.
+          providing all the information and pressing create ad, then you press
+          'Create ad'.<a routerLink="/login">click hear</a>.
+        </p>
+      </div>
+
+      <div *ngIf="data == '/escort-valby'" class="heading-data">
+        <h4>You create the ad by providing all the</h4>
+        <p>
+          You create the ad by providing all the information and pressing create
+          ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+        </p>
+        <p>
+          You create the ad by <a routerLink="/ads">click hear</a>.
+          providing all the information and pressing create ad, then you press
+          'Create ad'.<a routerLink="/login">click hear</a>.
+        </p>
+      </div>
+
+      <!-- <form  class="search-form"
+        #formElement="ngForm"
+        [formGroup]="dataForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="form-left-input">
+          <div class="sec-home-input-area">
+            <select formControlName="location">
+              <option value="null" selected>Chose location</option>
+              <option *ngFor="let d of divisions" [value]="d.name">
+                {{ d?.name }}
+              </option>
+            </select> -->
+      <!-- <div class="sec-home-input-area">
+              <button
+                type="button"
+                [matMenuTriggerFor]="menu"
+                class="nested-sec-select"
+              >
+                <span>
+                  {{ isSelectedValue ? isSelectedValue : "Select Area" }}
+                </span>
+  
+                <i class="fa-solid fa-angle-down"></i>
+              </button>
+  
+              <mat-menu #menu="matMenu" class="mat-menu">
+                <button
+                  (click)="onSelectBtnDis(disData?.name, $event)"
+                  class="divisions"
+                  type="button"
+                  *ngFor="let disData of divisions"
+                >
+                  {{ disData?.name }}
+                  <button
+                    (click)="onSelectBtnDis(area?.name, $event)"
+                    class="area"
+                    type="button"
+                    *ngFor="let area of disData?.area"
+                  >
+                    {{ area.name }}
+  
+                    <button
+                      (click)="onSelectBtnDis(zone?.name, $event)"
+                      class="zone"
+                      type="button"
+                      *ngFor="let zone of area?.zone"
+                    >
+                      {{ zone?.name }}
+                    </button>
+                  </button>
+                </button>
+              </mat-menu>
+            </div> -->
+      <!-- </div>
+
+          <div class="sec-home-input-area">
+            <select formControlName="category">
+              <option value="null" selected>Select a category</option>
+              <option *ngFor="let data of categorys" [value]="data.slug">
+                {{ data.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="sec-home-input-area">
+            <select formControlName="type">
+              <option value="null" selected>Select Type</option>
+              <option *ngFor="let data of types" [value]="data.slug">
+                {{ data.name }}
+              </option>
+            </select>
+          </div>
+          <div class="sec-home-input-area">
+            <form #searchForm="ngForm" (click)="onClickSearchArea($event)">
+            <input
+            #searchInput
+            id="searchInput"
+            class="tw"
+            type="text"
+            placeholder="|"
+            (input)="onSearchChange($event.target.value)"
+            (focus)="handleFocus($event)"
+            (ngModelChangeDebounced)="searchQuery = $event"
+            (blur)="handleBlur()"
+            name="searchTerm"
+            autocomplete="off"
+            ngModel
+            required
+            (keydown.enter)="onSearchNavigate()"
+            />
+          </form>
+          </div>
+          <div class="sec-home-sub-btn">
+            <button type="submit">SØGNING</button>
+          </div>
+        </div>
+
+        <ul
+        id="auto-suggestion"
+        class="auto-complete-box"
+        [ngClass]="valueInput && isOpen ? 'active' : ''"
+      > -->
+      <!-- <li
+      class="list-view"
+    >
+      <div class="search-result-left">
+          <div class="result-product-img">
+            <i style="display: block; width: 20px; height: 20px;">
+              <svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" stroke-width="0" class="shopee-svg-icon"><path d="m13 1.9c-.2-.5-.8-1-1.4-1h-8.4c-.6.1-1.2.5-1.4 1l-1.4 4.3c0 .8.3 1.6.9 2.1v4.8c0 .6.5 1 1.1 1h10.2c.6 0 1.1-.5 1.1-1v-4.6c.6-.4.9-1.2.9-2.3zm-11.4 3.4 1-3c .1-.2.4-.4.6-.4h8.3c.3 0 .5.2.6.4l1 3zm .6 3.5h.4c.7 0 1.4-.3 1.8-.8.4.5.9.8 1.5.8.7 0 1.3-.5 1.5-.8.2.3.8.8 1.5.8.6 0 1.1-.3 1.5-.8.4.5 1.1.8 1.7.8h.4v3.9c0 .1 0 .2-.1.3s-.2.1-.3.1h-9.5c-.1 0-.2 0-.3-.1s-.1-.2-.1-.3zm8.8-1.7h-1v .1s0 .3-.2.6c-.2.1-.5.2-.9.2-.3 0-.6-.1-.8-.3-.2-.3-.2-.6-.2-.6v-.1h-1v .1s0 .3-.2.5c-.2.3-.5.4-.8.4-1 0-1-.8-1-.8h-1c0 .8-.7.8-1.3.8s-1.1-1-1.2-1.7h12.1c0 .2-.1.9-.5 1.4-.2.2-.5.3-.8.3-1.2 0-1.2-.8-1.2-.9z" fill="#f53d2d"></path></svg>
+            </i>
+           </div>
+        <div class="desc">
+          <h3>{{valueInput}}</h3>
+        </div>
+      </div>
+        <div class="price">
+           <h5>shops</h5>
+         </div>
+    </li> -->
+      <!-- <li
+          class="list-view"
+          *ngFor="let data of searchProducts"
+          (click)="onSelectItem(data?._id)"
+        >
+          <div class="search-result-left"> -->
+      <!--                  <div class="result-product-img">-->
+      <!--                    <img-->
+      <!--                      class="img-thumb"-->
+      <!--                      [src]="-->
+      <!--                      data?.images && data?.images?.length-->
+      <!--                        ? data?.images[0]-->
+      <!--                        : '/assets/images/placeholder/test.png'-->
+      <!--                    "-->
+      <!--                    />-->
+      <!--                  </div>-->
+      <!-- <div class="desc"> -->
+      <!--                  <h3>{{ data?.name }} {{ data?.milligram }}</h3>-->
+      <!-- <h3>{{ data?.name }}</h3>
+            </div>
+          </div> -->
+      <!--                <div class="price">-->
+      <!--                  <h5 *ngIf="data?.discountType"> <del> ৳{{ data.salePrice }} </del></h5>-->
+      <!--                  <h5> ৳{{ data | price : "salePrice" }}</h5>-->
+      <!--                </div>-->
+      <!-- </li>
+      </ul>
+      </form> -->
+
+      <app-search-filter></app-search-filter>
+
+      <div class="show-filter">
+        <div class="container">
+
+          <div class="form-left-input form-left-input-two">
+            <div class="gaping-div"></div>
+            <div class="gaping-div"></div>
+            <div class="gaping-div"></div>
+            <div class="gaping-div"></div>
+
+            <div class="sec-home-sub-btn sec-home-sub-btn-second">
+              <button type="button" (click)="onHideFilter()">
+                {{ "Flere Filter" | uppercase }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-filter-area *ngIf="advanchFilter"></app-filter-area>
+  </div>
+</section>

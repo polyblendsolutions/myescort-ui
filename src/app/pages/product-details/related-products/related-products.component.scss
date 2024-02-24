@@ -1,0 +1,36 @@
+@import "src/theme/variables";
+@import "/src/theme/exports/title";
+
+/* --- similar-address --- */
+.similar-ads {
+  width: 100%;
+  margin-top: 40px;
+}
+
+@media (max-width: 667px) {
+  .similar-ads {
+    margin-top: 28px;
+  }
+}
+
+/* --- similar-ads-cards --- */
+.similar-ads-cards {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 22px;
+  padding-top: 24px;
+}
+
+@media (max-width: 952px) {
+  .similar-ads-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 624px) {
+  .similar-ads-cards {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 16px;
+    padding-top: 34px;
+  }
+}

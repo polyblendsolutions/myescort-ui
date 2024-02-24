@@ -1,0 +1,12 @@
+<div *ngIf="product?.pricing" class="product-details-pricing-info">
+  <h5>
+    <span>Pricing</span>
+  </h5>
+  <div *ngFor="let data of product?.pricing" class="description">
+    <div>
+      <p>{{data?.timing}} - {{data?.priceValue}} DKK</p>
+    </div>
+    <span>{{data?.serviceDescription}}</span>
+  </div>
+  <!-- <div class="description" [innerHTML]="product?.pricing | safeHtml"></div> -->
+</div>

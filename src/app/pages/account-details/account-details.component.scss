@@ -1,0 +1,258 @@
+@import "src/theme/variables";
+
+/* --- account-details --- */
+.account-details {
+  padding: 50px 0;
+}
+
+/* --- account-details-main --- */
+.account-details-main {
+  width: 100%;
+  background-color: $color-white;
+  border-radius: 4px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 18px;
+  box-shadow: 0 0 24px #0000002e;
+}
+
+/* --- select-form --- */
+form.select-form {
+  width: 100%;
+
+  .form-input {
+    margin-bottom: 24px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.uName {
+  margin-bottom: 24px;
+
+  h4 {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: $text-color-two;
+    font-family: $font-en-primary;
+    padding-bottom: 8px;
+
+    span {
+      font-weight: 600;
+      color: $text-color;
+    }
+  }
+}
+
+.select-type {
+  width: 100%;
+  margin-bottom: 38px;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    border-bottom: 1px solid $border-color;
+    padding: 10px 0px 16px;
+    margin-bottom: 20px !important;
+
+    span {
+      font-size: $font-en-primary;
+      font-size: 24px;
+      font-weight: 600;
+      color: $heading-color;
+    }
+
+    i {
+      font-size: 24px;
+      color: $submit-btn-color;
+      padding-top: 2px;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
+}
+
+.form-input-select {
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
+
+  label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: $text-color;
+    font-family: $font-en-primary;
+    padding-bottom: 8px;
+
+    span {
+      color: $submit-btn-color;
+      font-size: 18px;
+    }
+  }
+
+  .select-main {
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    overflow: hidden;
+
+    select {
+      width: 100%;
+      height: 40px;
+      font-family: $font-en-primary;
+      font-size: 15px;
+      font-weight: 400;
+      color: $input-color;
+      outline: 0;
+      padding: 0 8px;
+      border: none;
+      border-right: 7px solid transparent;
+
+      &.active {
+        border: 1px solid $red-color;
+      }
+    }
+  }
+
+  .input-main {
+    input,
+    textarea {
+      width: 100%;
+      height: 40px;
+      font-family: $font-en-primary;
+      font-size: 15px;
+      font-weight: 400;
+      color: $input-color;
+      outline: 0;
+      padding: 0 8px;
+      border: 1px solid $border-color;
+      border-radius: 3px;
+
+      &.active {
+        border: 1px solid $red-color;
+      }
+    }
+
+    textarea {
+      height: auto;
+      resize: vertical;
+    }
+  }
+
+  .input-main.social-input {
+    input {
+      margin-bottom: 12px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+
+  .file-main {
+    .images {
+      display: flex;
+      justify-content: flex-start;
+      gap: 16px;
+      .submit-img {
+        img {
+          width: 100px;
+          height: 120px;
+          object-fit: cover;
+        }
+      }
+
+      .select-image {
+        position: relative;
+        width: 100px;
+        height: 120px;
+        background-color: #eeeeee;
+
+        .add-del {
+          background-color: #f8f8f8;
+          position: absolute;
+          top: 0;
+          right: 0;
+
+          a {
+            width: 30px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i {
+              color: #008000;
+              font-size: 16px;
+            }
+
+            i.fa-trash {
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .form-check {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+
+    label {
+      padding: 0px;
+    }
+
+    input {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 28px;
+
+  button {
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: $color-white;
+    font-family: $font-en-primary;
+    background-color: $submit-btn-color;
+    padding: 15px 37px;
+    border: 0;
+    border-radius: 4px;
+    outline: 0;
+    transition: all 0.12s linear;
+
+    &:hover {
+      background-color: #ff7e94;
+    }
+  }
+}
+
+
+.invalid-txt{
+  color: red;
+  font-size: 15px;
+  display: block;
+  margin-top: 7px;
+}

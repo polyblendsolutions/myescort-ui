@@ -1,0 +1,45 @@
+@import "../variables";
+
+/* --- title-box --- */
+.title-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+
+  &.ads-category-title-box {
+    align-items: flex-start;
+  }
+
+  &.product-category-title-box {
+    align-items: flex-start;
+  }
+
+  &.title-box-pd-details {
+    gap: 16px;
+  }
+
+  h1 {
+    font-family: $font-en-primary;
+    font-size: 32px;
+    font-weight: 600;
+    color: #333333;
+  }
+
+  p {
+    font-family: $font-en-primary;
+    font-size: 15px;
+    font-weight: 400;
+    color: #616060;
+    letter-spacing: 0.6px;
+  }
+
+  .line {
+    width: 160px;
+    height: 3px;
+    background-color: $pink-color;
+    margin-top: 8px;
+  }
+}

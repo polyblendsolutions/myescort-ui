@@ -1,0 +1,42 @@
+@import "src/theme/variables";
+
+/* --- product-details-info --- */
+.product-details-info {
+  background-color: $color-white;
+  padding: 14px;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(99, 99, 99, 0.1490196078);
+  margin-top: 44px;
+  width: 100%;
+
+  h5 {
+    font-family: $font-en-primary;
+    font-size: 22px;
+    font-weight: 500;
+    color: $heading-color;
+    padding-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+
+    i {
+      color: $pink-color-two;
+      font-size: 20px;
+    }
+  }
+
+  p {
+    font-family: $font-en-primary;
+    font-size: 15px;
+    font-weight: 400;
+    color: $text-color-two;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 667px) {
+  .product-details-info {
+    margin-top: 28px;
+  }
+}

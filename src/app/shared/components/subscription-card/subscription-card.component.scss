@@ -1,0 +1,87 @@
+@import "src/theme/variables";
+
+/* --- subscription-card --- */
+.subscription-card {
+  padding: 12px;
+  border-radius: 15px;
+  border: 1px solid #f54da3;
+  overflow: hidden;
+}
+
+/* --- subscription-price --- */
+.subscription-price {
+  height: 154px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  h2 {
+    text-align: center;
+    font-family: $font-en-primary;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #000000;
+    padding-top: 35px;
+  }
+}
+
+.subscription-plan {
+  p {
+    text-align: center;
+    font-family: $font-en-primary;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #000000;
+    padding-bottom: 9px;
+  }
+}
+
+.subscription-subscribe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 23px 0 26px 0;
+
+  button {
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 38%);
+    font-family: $font-en-primary;
+    font-size: 15px;
+    color: #f65eac;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 16px 20px;
+    transition: all 0.12 linear;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+@media (max-width: 846px) {
+  .subscription-price {
+    h2 {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+
+  .subscription-plan {
+    p {
+      font-size: 12px;
+      font-weight: 600;
+      padding-bottom: 7px;
+    }
+  }
+
+  .subscription-subscribe {
+    button {
+      font-size: 13px;
+      padding: 10px 14px;
+    }
+  }
+}

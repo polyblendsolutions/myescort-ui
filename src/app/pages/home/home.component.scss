@@ -1,0 +1,37 @@
+@import "src/theme/variables";
+.footer-marquee {
+  position: fixed;
+  bottom: 0;
+  left: 20px;
+  width: 150px;
+  z-index: 99;
+  background-color: #f54da3;
+  border: none;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  color: #e1e1e1;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+  right: 0;
+  font-family: $font-en-primary;
+}
+
+
+//@media (max-width: 800px) {
+//  .footer-marquee {
+//    position: fixed;
+//    bottom: 77px;
+//    left: 0;
+//    width: 100%;
+//    z-index: 99;
+//    background-color: rgba(31, 29, 29, 0.8);
+//    border-top: 3px solid #2E3192;
+//    color: #e1e1e1;
+//    font-size: 14px;
+//    font-weight: bold;
+//    padding: 10px;
+//    right: 0;
+//    font-family: "SiyamRupali",sans-serif;
+//  }
+//}

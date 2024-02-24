@@ -1,0 +1,25 @@
+@import "src/theme/variables";
+
+/* --- process-main --- */
+.process-main {
+  width: 100%;
+  background-color: $bg-one;
+}
+
+.container {
+  padding-top: 56px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.img-thumb {
+  width: 100%;
+
+  img {
+    max-height: 180px;
+    margin: auto;
+    object-fit: contain;
+  }
+}
+// add

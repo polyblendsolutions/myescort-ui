@@ -1,0 +1,145 @@
+<div class="product-details-right">
+  <div class="product-details-right-main-top">
+    <div class="product-details-right-top">
+      <div class="pro-right-title">
+        <h2>
+          <span>{{ product?.name }}</span>
+
+          <small>
+            <svg
+              viewBox="0 0 12 13"
+              width="16"
+              height="16"
+              fill="currentColor"
+              title="Verified account"
+              class="x19dipnz x1lliihq x1k90msu x2h7rmj x1qfuztq"
+              style="--color: var(--accent)"
+            >
+              <g fill-rule="evenodd" transform="translate(-98 -917)">
+                <path
+                  d="m106.853 922.354-3.5 3.5a.499.499 0 0 1-.706 0l-1.5-1.5a.5.5 0 1 1 .706-.708l1.147 1.147 3.147-3.147a.5.5 0 1 1 .706.708m3.078 2.295-.589-1.149.588-1.15a.633.633 0 0 0-.219-.82l-1.085-.7-.065-1.287a.627.627 0 0 0-.6-.603l-1.29-.066-.703-1.087a.636.636 0 0 0-.82-.217l-1.148.588-1.15-.588a.631.631 0 0 0-.82.22l-.701 1.085-1.289.065a.626.626 0 0 0-.6.6l-.066 1.29-1.088.702a.634.634 0 0 0-.216.82l.588 1.149-.588 1.15a.632.632 0 0 0 .219.819l1.085.701.065 1.286c.014.33.274.59.6.604l1.29.065.703 1.088c.177.27.53.362.82.216l1.148-.588 1.15.589a.629.629 0 0 0 .82-.22l.701-1.085 1.286-.064a.627.627 0 0 0 .604-.601l.065-1.29 1.088-.703a.633.633 0 0 0 .216-.819"
+                ></path>
+              </g>
+            </svg>
+          </small>
+        </h2>
+
+        <p>{{ product?.division?.name }}, {{ product?.age }}y</p>
+      </div>
+      <div class="pro-right-detail" *ngIf="product?.phone || product?.whatsApp">
+        <div class="pro-right-title-bottom" >
+          <h2>Contact</h2>
+        </div>
+
+        <div class="phone-number" >
+          <a href="tel:{{ product?.phone }}" *ngIf="product?.phone">
+            <i class="fa-solid fa-phone"></i>
+            <span>{{ product?.phone }}</span>
+          </a>
+          <a href="https://www.whatsapp.com/" target="_blank" *ngIf="product?.whatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span >{{ product?.whatsApp }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-details-right-bottom" *ngIf="product?.category || product?.age || product?.height || product?.bodyType?.name || product?.orientation?.name || product?.runningOut || product?.hairColor?.name || product?.intimateHair?.name">
+      <div class="pro-right-title-bottom">
+        <!-- <h2>{{ product?.title }}</h2> -->
+        <h2>Oversigt</h2>
+      </div>
+      <div class="pro-right-detail-two">
+        <ul>
+          <li *ngIf="product?.category">
+            <p>
+              <span>Category:</span>
+              <small>{{ product?.category?.name }}</small>
+            </p>
+          </li>
+
+          <li *ngIf="product?.age">
+            <p>
+              <span>Age:</span>
+              <small>{{ product?.age }}</small>
+            </p>
+          </li>
+
+          <!-- <li *ngIf="(product?.runningOut | lowercase) === 'yes'">
+            <p>
+              <span>Drives out:</span>
+              <small>{{ product?.runningOut }}</small>
+            </p>
+          </li> -->
+
+          <li *ngIf="product?.height">
+            <p>
+              <span>Height:</span>
+              <small>{{ product?.height }}</small>
+            </p>
+          </li>
+
+          <li *ngIf="product?.bodyType?.name">
+            <p>
+              <span>Body type:</span>
+              <small>{{ product?.bodyType?.name }}</small>
+            </p>
+          </li>
+
+          <li *ngIf="product?.orientation?.name">
+            <p>
+              <span>Briefing:</span>
+              <small>{{ product?.orientation?.name }}</small>
+            </p>
+          </li>
+
+          <li *ngIf="product?.runningOut">
+            <p>
+              <span>Running out:</span>
+              <small>{{ product?.runningOut }}</small>
+            </p>
+          </li>
+
+          <li *ngIf="product?.hairColor?.name">
+            <p>
+              <span>
+                Hair color:</span>
+              <small>{{ product?.hairColor?.name }}</small>
+            </p>
+          </li>
+
+          <li *ngIf="product?.intimateHair?.name">
+            <p>
+              <span>
+                Intimate hair:</span>
+              <small>{{ product?.intimateHair?.name }}</small>
+            </p>
+          </li>
+
+          <!-- <li>
+            <p>
+              <span>Accepts disabled people:</span>
+              <small>dgasf</small>
+            </p>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- END! product-details-right-main-top -->
+
+  <div class="product-details-right-main-bottom">
+    <ul>
+      <li (click)="onAddToWishList($event)">
+        <i class="fa-regular fa-heart"></i>
+        <span (click)="onAddToWishList($event)"
+        [ngClass]="{ active: product?._id === wishlist?.product?._id }">Tilføj til favoritter</span>
+      </li>
+
+      <li>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span (click)="openReviewDialog(product?._id)">Rapporterer misbrug</span>
+      </li>
+    </ul>
+  </div>
+</div>

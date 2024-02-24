@@ -1,0 +1,166 @@
+<section class="search-area">
+    <div class="container">
+        <div class="search-area-child">
+<!--            <form #formElement="ngForm" [formGroup]="dataForm" (ngSubmit)="onSubmit()">-->
+<!--                <div class="form-left-input">-->
+<!--                    <div class="sec-home-input-area">-->
+<!--                        <select formControlName="location">-->
+<!--                            <option value="null" selected>Chose location</option>-->
+<!--                            <option *ngFor="let d of divisions" [value]="d.name">-->
+<!--                                {{ d?.name }}-->
+<!--                            </option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+
+<!--                    <div class="sec-home-input-area">-->
+<!--                        <select formControlName="category">-->
+<!--                            <option value="null" selected>Select a category</option>-->
+<!--                            <option *ngFor="let data of categorys" [value]="data.slug">-->
+<!--                                {{ data.name }}-->
+<!--                            </option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+
+<!--                    <div class="sec-home-input-area">-->
+<!--                        <select formControlName="type">-->
+<!--                            <option value="null" selected>Select Type</option>-->
+<!--                            <option *ngFor="let data of types" [value]="data.slug">-->
+<!--                                {{ data.name }}-->
+<!--                            </option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <div class="sec-home-input-area">-->
+<!--                        <input type="text" formControlName="name" placeholder="Enter your keyword here..." />-->
+<!--                    </div>-->
+<!--                    <div class="sec-home-sub-btn">-->
+<!--                        <button type="submit">SØGNING</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </form>-->
+          <app-search-filter></app-search-filter>
+            <div *ngIf="data == '/massage-aalborg'" class="heading-data">
+                <h4>sghjhkjdkkfdg cggcg hhsdhd ufyufujcfasd urt utr:</h4>
+                <p>
+                    djujsduijgbtgiawscfgjsbaicgkjawsbcdniyugtnkbcsyugbjkasdxbygkjnbxigas
+                    edhujnhjuoisazxtgyuihgas87tgbisahg87tguasgh87hjuasxhb87ytghoiujashxd87ytg tywu7efdhuijhduigehwquij <a
+                        routerLink="/">tryk</a>.
+                </p>
+                <p>
+                    You create the ad by <a routerLink="/ads">tryk</a>.
+                    providing all the information and pressing create ad, then you press
+                    'Create ad'.<a routerLink="/login">tryk</a>.
+                </p>
+            </div>
+
+            <!-- <div *ngIf="data == '/massage-odense'" class="heading-data">
+                <h4>You create the ad by providing all the</h4>
+                <p>
+                    You create the ad by providing all the information and pressing create
+                    ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+                </p>
+                <p>
+                    You create the ad by <a routerLink="/ads">click hear</a>.
+                    providing all the information and pressing create ad, then you press
+                    'Create ad'.<a routerLink="/login">click hear</a>.
+                </p>
+            </div> -->
+            <!--
+            <div *ngIf="data == '/massage-copenhagen'" class="heading-data">
+                <h4>You create the ad by providing all the</h4>
+                <p>
+                    You create the ad by providing all the information and pressing create
+                    ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+                </p>
+                <p>
+                    You create the ad by <a routerLink="/ads">click hear</a>.
+                    providing all the information and pressing create ad, then you press
+                    'Create ad'.<a routerLink="/login">click hear</a>.
+                </p>
+            </div> -->
+
+            <!-- <div *ngIf="data == '/massage-aarhus'" class="heading-data">
+                <h4>You create the ad by providing all the</h4>
+                <p>
+                    You create the ad by providing all the information and pressing create
+                    ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+                </p>
+                <p>
+                    You create the ad by <a routerLink="/ads">click hear</a>.
+                    providing all the information and pressing create ad, then you press
+                    'Create ad'.<a routerLink="/login">click hear</a>.
+                </p>
+            </div> -->
+
+            <!-- <div *ngIf="data == '/escort-aalborg'" class="heading-data">
+                <h4>You create the ad by providing all the</h4>
+                <p>
+                    You create the ad by providing all the information and pressing create
+                    ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+                </p>
+                <p>
+                    You create the ad by <a routerLink="/ads">click hear</a>.
+                    providing all the information and pressing create ad, then you press
+                    'Create ad'.<a routerLink="/login">click hear</a>.
+                </p>
+            </div> -->
+
+            <!-- <div *ngIf="data == '/escort-odense'" class="heading-data">
+                <h4>You create the ad by providing all the</h4>
+                <p>
+                    You create the ad by providing all the information and pressing create
+                    ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+                </p>
+                <p>
+                    You create the ad by <a routerLink="/ads">click hear</a>.
+                    providing all the information and pressing create ad, then you press
+                    'Create ad'.<a routerLink="/login">click hear</a>.
+                </p>
+            </div> -->
+
+            <!-- <div *ngIf="data == '/escort-copenhagen'" class="heading-data">
+                <h4>You create the ad by providing all the</h4>
+                <p>
+                    You create the ad by providing all the information and pressing create
+                    ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+                </p>
+                <p>
+                    You create the ad by <a routerLink="/ads">click hear</a>.
+                    providing all the information and pressing create ad, then you press
+                    'Create ad'.<a routerLink="/login">click hear</a>.
+                </p>
+            </div> -->
+
+            <!-- <div *ngIf="data == '/escort-aarhus'" class="heading-data">
+                <h4>You create the ad by providing all the</h4>
+                <p>
+                    You create the ad by providing all the information and pressing create
+                    ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+                </p>
+                <p>
+                    You create the ad by <a routerLink="/ads">click hear</a>.
+                    providing all the information and pressing create ad, then you press
+                    'Create ad'.<a routerLink="/login">click hear</a>.
+                </p>
+            </div> -->
+
+            <!-- <div *ngIf="data == '/escort-valby'" class="heading-data">
+                <h4>You create the ad by providing all the</h4>
+                <p>
+                    You create the ad by providing all the information and pressing create
+                    ad, then you press 'Create ad' <a routerLink="/">click hear</a>.
+                </p>
+                <p>
+                    You create the ad by <a routerLink="/ads">click hear</a>.
+                    providing all the information and pressing create ad, then you press
+                    'Create ad'.<a routerLink="/login">click hear</a>.
+                </p>
+            </div> -->
+
+
+
+
+        </div>
+
+        <app-filter-area *ngIf="advanchFilter"></app-filter-area>
+        </div>
+        </section>
