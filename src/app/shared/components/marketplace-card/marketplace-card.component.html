@@ -1,4 +1,4 @@
-<div class="app-marketplace-card-main">
+<div class="app-marketplace-card-main" (click)="onClickToPrepopulate(data?._id)">
   <svg
     *ngIf="data"
     class="mk-qv"
@@ -19,9 +19,8 @@
   </svg>
   <!-- END! fa-circle-question -->
 
-  <a
+  <div
     *ngIf="data"
-    [routerLink]="['/ad-details', data?._id]"
     class="marketplace-card"
     [class.qa-hover]="isQaHover"
   >
@@ -61,7 +60,7 @@
         <span>{{ data?.division?.name }}, {{ data?.age }}y</span>
       </h3>
     </div>
-  </a>
+  </div>
   <!-- END! marketplace-card -->
 </div>
 <!-- END! app-marketplace-card-main -->

@@ -74,7 +74,7 @@
             <div class="select-type select-type-create-second">
               <div class="gap" style="margin-top: 30px"></div>
               <div class="form-input-select">
-                <label for="the_name">Name/Title *</label>
+                <label for="the_name">Title/Name *</label>
                 <div class="input-main">
                   <input
                     type="text"
@@ -201,7 +201,7 @@
 
                 <div class="more-content-grid-view">
                   <div class="form-input-select">
-                    <label for="Height">Height</label>
+                    <label for="Height">Højde</label>
                     <div class="input-main">
                       <input
                         type="text"
@@ -215,7 +215,7 @@
                   </div>
 
                   <div class="form-input-select">
-                    <label for="Hair-color">Hair color</label>
+                    <label for="Hair-color">Hårfarve</label>
                     <div class="select-main">
                       <select id="Hair-color" formControlName="hairColor">
                         <option value="null">Select from the list</option>
@@ -230,7 +230,7 @@
                   </div>
 
                   <div class="form-input-select">
-                    <label for="Weight">Weight </label>
+                    <label for="Weight">Vægt </label>
                     <div class="input-main">
                       <input
                         type="text"
@@ -242,7 +242,7 @@
                   </div>
 
                   <div class="form-input-select">
-                    <label for="Intimate-hair">Intimate hair</label>
+                    <label for="Intimate-hair">Intimbehåring</label>
                     <div class="select-main">
                       <select id="Intimate-hair" formControlName="intimateHair">
                         <option value="null">Select from the list</option>
@@ -257,7 +257,7 @@
                   </div>
 
                   <div class="form-input-select">
-                    <label for="Body_type">Body type </label>
+                    <label for="Body_type">Kropstype </label>
                     <div class="select-main">
                       <select id="Body_type" formControlName="bodyType">
                         <option value="null">Select from the list</option>
@@ -272,7 +272,7 @@
                   </div>
 
                   <div class="form-input-select form-input-select-rad">
-                    <p>Running out</p>
+                    <p>Kører ud</p>
                     <div class="input-radio input-radio-running">
                       <div class="input-radio-child">
                         <input
@@ -317,7 +317,7 @@
                   </div>
 
                   <div class="form-input-select">
-                    <label for="Orientation">Orientation</label>
+                    <label for="Orientation">Orientering</label>
                     <div class="select-main">
                       <select id="Orientation" formControlName="orientation">
                         <option value="null">Select from the list</option>
@@ -332,7 +332,7 @@
                   </div>
 
                   <div class="form-input-select">
-                    <label for="Age">Age(will be shown in preview)</label>
+                    <label for="Age">Alder(will be shown in preview)</label>
                     <div class="input-main">
                       <input
                         type="number"
@@ -361,7 +361,7 @@
 
                 <div class="more-content-grid-view">
                   <div class="form-input-select">
-                    <label for="Telephone">Telephone</label>
+                    <label for="Telephone">Telefon</label>
                     <div class="input-main">
                       <input
                         type="text"
@@ -373,7 +373,7 @@
                   </div>
 
                   <div class="form-input-select">
-                    <label for="address">Address</label>
+                    <label for="address">Adresse</label>
                     <div class="input-main">
                       <input
                         type="text"
@@ -385,7 +385,7 @@
                   </div>
 
                   <div class="form-input-select">
-                    <label for="Whatsapp_number">Whatsapp number</label>
+                    <label for="Whatsapp_number">Whatsapp-nummer</label>
                     <div class="input-main">
                       <input
                         type="text"
@@ -415,7 +415,7 @@
               </div>
 
               <div class="more-content">
-                <h3>Pictures</h3>
+                <h3>Billeder</h3>
 
                 <div class="select-type select-type-drop">
                   <div
@@ -464,7 +464,7 @@
             </div>
 
             <div class="more-content more-content-opening-hours">
-              <h3>Opening Hours</h3>
+              <h3>Åbningstider</h3>
 
               <div class="opening-hours-child opening-hours-child-second">
                 <div class="checkbox-first checkbox-first-second">
@@ -1221,7 +1221,7 @@
                   ><span style="margin-right: 5px"
                     >I have read to agree to the website</span
                   >
-                  <a>Trams and condition</a></label
+                  <a>Terms and condition</a></label
                 >
               </div>
             </div>
@@ -1241,6 +1241,8 @@
             <ng-container *ngFor="let data of products">
               <app-marketplace-card
                 [data]="data"
+                [isOutputEventEmission]="true"
+                (onClickCard)="initUpdateForm($event)"
               ></app-marketplace-card>
             </ng-container>
           </div>

@@ -96,15 +96,17 @@ export class HeaderComponent implements OnInit {
   onShowHideResponsive() {
     this.showHideResponsiveNav = !this.showHideResponsiveNav;
 
-    if(this.products){
-      // this.uiService.warn('Already added one post')
-      this.router.navigate(['/account/my-list']).then()
-      // return;
-    }
+    // TODO: @sewren : update the logic condition
 
-    if(!this.products) {
+    // if(this.products?.length){
+    //   // this.uiService.warn('Already added one post')
+    //   this.router.navigate(['/account/my-list']).then()
+    //   // return;
+    // }
+
+    // if(!this.products?.length) {
       this.router.navigate(['/create-new']).then()
-    }
+    // }
 
   }
 

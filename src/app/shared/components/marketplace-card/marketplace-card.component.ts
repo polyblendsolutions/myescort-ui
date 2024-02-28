@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Product } from '../../../interfaces/common/product.interface';
@@ -7,6 +7,8 @@ import {User} from "../../../interfaces/common/user.interface";
 import {UserDataService} from "../../../services/common/user-data.service";
 import {ReloadService} from "../../../services/core/reload.service";
 import {Subscription} from "rxjs";
+import { ProductService } from 'src/app/services/common/product.service';
+
 
 @Component({
   selector: 'app-marketplace-card',
@@ -15,6 +17,8 @@ import {Subscription} from "rxjs";
 })
 export class MarketplaceCardComponent implements OnInit {
   @Input() data?: Product;
+  @Input() isOutputEventEmission?: boolean;
+  @Output() onClickCard = new EventEmitter<any>();
   tesData: any;
   isQaHover: boolean = false;
   user: User;
@@ -26,6 +30,7 @@ export class MarketplaceCardComponent implements OnInit {
     private router: Router,
     private userDataService: UserDataService,
     private reloadService:ReloadService,
+    private productService: ProductService,
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +63,27 @@ export class MarketplaceCardComponent implements OnInit {
       }
     )
   }
+
+  onClickToPrepopulate(id){
+
+    if(this.isOutputEventEmission){
+
+    this.productService.getProductById(id).subscribe(
+      (res) => {
+        if (res.success) {
+          this.onClickCard.emit(res.data);
+        }
+      },
+      (err) => {
+        if (err) {
+          console.log(err);
+        }
+      }
+    );}else{
+      this.router.navigate(['/ad-details', this.data?._id]);
+    }
+  }
+
   public openComponentDialog(id?: string) {
     this.dialog.open(QuickViewDialogComponent, {
       data: id,

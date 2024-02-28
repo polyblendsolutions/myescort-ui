@@ -49,7 +49,7 @@ const routes: Routes = [
       },
       {
         path: 'create-new',
-        loadChildren: () => import('./pages/create-ads-three//create-ads-three.module').then(m => m.CreateAdsThreeModule),
+        loadChildren: () => import('./pages/create-ads-three/create-ads-three.module').then(m => m.CreateAdsThreeModule),
         canActivate: [UserAuthGuard],
       },
       {
