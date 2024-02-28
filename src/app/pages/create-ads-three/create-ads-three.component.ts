@@ -37,8 +37,6 @@ import { IntimateHairService } from '../../services/common/intimateHair.service'
 import { OrientationService } from '../../services/common/orientation.service';
 import { TypeService } from '../../services/common/type.service';
 
-
-
 @Component({
   selector: 'app-create-ads-three',
   templateUrl: './create-ads-three.component.html',
@@ -224,7 +222,6 @@ export class CreateAdsThreeComponent implements OnInit {
       saturday: [null],
       saturdaySlot: [null],
     });
-
 
     this.mondayHoursArray = this.dataForm.get('mondayHours') as FormArray;
     this.tuesdayHoursArray = this.dataForm.get('tuesdayHours') as FormArray;

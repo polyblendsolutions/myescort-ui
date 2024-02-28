@@ -24,12 +24,6 @@
     class="marketplace-card"
     [class.qa-hover]="isQaHover"
   >
-  <!-- <a
-    *ngIf="data"
-    [routerLink]="['/ad-details', data?._id]"
-    class="marketplace-card"
-    [class.qa-hover]="isQaHover"
-  > -->
     <div class="marketplace-card-img">
       <img
         [src]="data?.images && data?.images?.length ? data?.images[0] : ''"
@@ -67,7 +61,6 @@
       </h3>
     </div>
   </div>
-  <!-- </a> -->
   <!-- END! marketplace-card -->
 </div>
 <!-- END! app-marketplace-card-main -->
