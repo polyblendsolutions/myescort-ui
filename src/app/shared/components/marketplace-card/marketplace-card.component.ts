@@ -17,6 +17,7 @@ import { ProductService } from 'src/app/services/common/product.service';
 })
 export class MarketplaceCardComponent implements OnInit {
   @Input() data?: Product;
+  @Input() isOutputEventEmission?: boolean;
   @Output() onClickCard = new EventEmitter<any>();
   tesData: any;
   isQaHover: boolean = false;
@@ -64,6 +65,9 @@ export class MarketplaceCardComponent implements OnInit {
   }
 
   onClickToPrepopulate(id){
+
+    if(this.isOutputEventEmission){
+
     this.productService.getProductById(id).subscribe(
       (res) => {
         if (res.success) {
@@ -75,7 +79,9 @@ export class MarketplaceCardComponent implements OnInit {
           console.log(err);
         }
       }
-    );
+    );}else{
+      this.router.navigate(['/ad-details', this.data?._id]);
+    }
   }
 
   public openComponentDialog(id?: string) {

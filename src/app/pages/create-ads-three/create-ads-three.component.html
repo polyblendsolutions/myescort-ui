@@ -1241,6 +1241,7 @@
             <ng-container *ngFor="let data of products">
               <app-marketplace-card
                 [data]="data"
+                [isOutputEventEmission]="true"
                 (onClickCard)="initUpdateForm($event)"
               ></app-marketplace-card>
             </ng-container>
