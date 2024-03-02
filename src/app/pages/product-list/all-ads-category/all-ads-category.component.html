@@ -42,6 +42,11 @@
             <app-marketplace-card [data]="data"></app-marketplace-card>
           </ng-template>
         </swiper>
+        <div *ngIf="!products?.length">
+          <p style="text-align: center !important;; padding-bottom: 23px;">
+            Udforske flere muligheder.
+        </p>
+        </div>
       </div>
     </div>
   </div>

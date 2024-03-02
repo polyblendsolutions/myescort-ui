@@ -423,7 +423,7 @@ export class SectionOneComponent implements OnInit, OnDestroy {
   onSearchNavigate() {
     let inputVal = (this.searchInput.nativeElement as HTMLInputElement).value;
     if (inputVal) {
-      this.router.navigate(['/', 'ads'], {
+      this.router.navigate(['/', 'home'], {
         queryParams: { searchQuery: inputVal },
         queryParamsHandling: '',
       });

@@ -16,3 +16,7 @@
   margin: 30px 0;
   border-radius: 10px;
 }
+
+.description ::ng-deep li {
+  margin-left: 40px !important; /* Adjust the space according to your preference */
+}

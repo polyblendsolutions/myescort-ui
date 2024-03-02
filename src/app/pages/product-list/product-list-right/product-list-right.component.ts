@@ -95,8 +95,8 @@ export class ProductListRightComponent implements OnInit {
    */
 
   private searchQueryFromQueryParam(qParam: any) {
-    if (qParam && qParam['search']) {
-      this.searchQuery = qParam['search'];
+    if (qParam && qParam['searchQuery']) {
+      this.searchQuery = qParam['searchQuery'];
     } else {
       this.searchQuery = null;
     }

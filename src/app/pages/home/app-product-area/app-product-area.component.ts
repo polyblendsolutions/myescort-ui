@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/interfaces/common/product.interface';
 import { FilterData } from 'src/app/interfaces/core/filter-data';
@@ -18,19 +19,46 @@ export class AppProductAreaComponent implements OnInit, OnDestroy {
   @Input() filter: any = null;
   @Input() pagination: Pagination = null;
   products: Product[] = [];
+  searchQuery: string;
 
   // Subscriptions
-  private subDataOne: Subscription;
+  private loadFilteredProductsSubscription: Subscription;
+  private searchQuerySubscription: Subscription;
 
 
   constructor(
     private productService: ProductService,
+    private activatedRoute: ActivatedRoute,
   ) {
   }
 
   ngOnInit(): void {
-    // Reload
-    this.getAllProduct();
+    // // Reload
+    // this.getAllProduct();
+
+    this.searchQuerySubscription = this.activatedRoute.queryParams.subscribe(qParam => {
+      // this.id = qParam['id'];
+      // this.categorySlug = qParam['category'];
+
+      this.searchQueryFromQueryParam(qParam);
+      this.getAllProduct();
+
+      // if (this.id && this.categorySlug) {
+      //   this.getSingleCategoryById();
+      // }
+      // if (this.id && this.brandSlug) {
+      //   this.getSingleBrandById()
+      // }
+
+    });
+  }
+
+  private searchQueryFromQueryParam(qParam: any) {
+    if (qParam && qParam['searchQuery']) {
+      this.searchQuery = qParam['searchQuery'];
+    } else {
+      this.searchQuery = null;
+    }
   }
 
   private getAllProduct() {
@@ -55,8 +83,8 @@ export class AppProductAreaComponent implements OnInit, OnDestroy {
       sort: { createdAt: -1 },
     };
 
-    this.subDataOne = this.productService
-      .getAllProducts(filter, null)
+    this.loadFilteredProductsSubscription = this.productService
+      .getAllProducts(filter, this.searchQuery)
       .subscribe({
         next: (res) => {
           if (res.success) {
@@ -71,8 +99,11 @@ export class AppProductAreaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.subDataOne) {
-      this.subDataOne.unsubscribe();
+    if (this.loadFilteredProductsSubscription) {
+      this.loadFilteredProductsSubscription.unsubscribe();
+    }
+    if (this.searchQuerySubscription) {
+      this.searchQuerySubscription.unsubscribe();
     }
   }
 

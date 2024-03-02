@@ -21,6 +21,11 @@
         <app-marketplace-card [data]="data"></app-marketplace-card>
       </ng-container>
     </div>
+    <div *ngIf="!products?.length">
+      <p style="text-align: center !important;; padding-bottom: 23px;">
+        Udforske flere muligheder.
+    </p>
+    </div>
     <div class="load-more" *ngIf="totalProducts > products?.length" style="margin-top: 38px">
       <a (click)="onLoadMore()" class="button" [class.loading]="isLoadMore">
         {{

@@ -35,8 +35,13 @@
         >
           <ng-template swiperSlide *ngFor="let data of products">
             <app-marketplace-card [data]="data"></app-marketplace-card>
-          </ng-template>
+          </ng-template>  
         </swiper>
+        <div *ngIf="!products?.length">
+          <p style="text-align: center; padding-bottom: 23px;">
+            Udforske flere muligheder.
+        </p>
+        </div>
       </div>
     </div>
   </div>

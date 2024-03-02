@@ -128,7 +128,7 @@ export class AllAdsCategoryComponent implements OnInit, OnDestroy {
       sort: { createdAt: -1 }
     }
 
-    this.subDataOne = this.productService.getAllProducts(filterData).subscribe((res) => {
+    this.subDataOne = this.productService.getAllProducts(filterData, this.searchQuery).subscribe((res) => {
       if (res.success) {
 
         this.products = res.data;
