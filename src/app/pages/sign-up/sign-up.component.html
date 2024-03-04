@@ -35,7 +35,8 @@
               }}
             </p>
             <p *ngIf="username.touched && username.invalid">
-              This field is required.
+              <span *ngIf="dataForm.controls['username'].hasError('required')">This field is required.</span>
+              <span *ngIf="dataForm.controls['username'].hasError('minlength')">Min. 5 characters required.</span>
             </p>
             <h4>User name cannot be changed</h4>
           </div>

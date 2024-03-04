@@ -46,7 +46,7 @@ export class SignUpComponent implements OnInit {
    */
   private initDataForm() {
     this.dataForm = this.fb.group({
-      username: [null, Validators.required],
+      username: [null, Validators.compose([Validators.required, Validators.minLength(5)])],
       firstName: [null],
       lastName: [null],
       email: [null, [Validators.required, Validators.email]],
