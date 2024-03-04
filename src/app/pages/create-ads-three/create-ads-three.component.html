@@ -140,13 +140,12 @@
                 >
               </div>
 
-              <div class="form-input-select">
+              <div class="form-input-select" *ngIf="area.length > 0">
                 <label for="">Area *</label>
                 <div class="select-main">
                   <select
                     (change)="onChangeArea($event)"
                     formControlName="area"
-                    required
                   >
                     <option value="null">Pick a area...</option>
                     <option [value]="a?._id" *ngFor="let a of area">{{a?.name}}</option>
@@ -161,13 +160,11 @@
                 >This field is required</span>
               </div>
 
-
-              <div class="form-input-select">
+              <div class="form-input-select" *ngIf="zone.length > 0">
                 <label for="">City *</label>
                 <div class="select-main">
                   <select
                     formControlName="zone"
-                    required
                   >
                     <option value="null">Pick a city...</option>
                     <option [value]="z?._id" *ngFor="let z of zone">{{z?.name}}</option>
