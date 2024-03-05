@@ -1144,6 +1144,13 @@
                             placeholder="ex.300 DKK"
                           />
                         </div>
+                        <span
+                        class="invalid-txt"
+                        *ngIf="
+                          data.get('priceValue')?.touched &&
+                          data.get('priceValue')?.invalid
+                        "
+                      >This field is required</span>
                       </div>
                       <div class="form-input-select">
                         <label>Timing</label>
@@ -1156,6 +1163,13 @@
                             <option>Whole night</option>
                           </select>
                         </div>
+                        <span
+                        class="invalid-txt"
+                        *ngIf="
+                          data.get('timing')?.touched &&
+                          data.get('timing')?.invalid
+                        "
+                      >This field is required</span>
                       </div>
                     </div>
 
@@ -1172,6 +1186,13 @@
                             placeholder="What do you include your service"
                           />
                         </div>
+                        <span
+                        class="invalid-txt"
+                        *ngIf="
+                          data.get('serviceDescription')?.touched &&
+                          data.get('serviceDescription')?.invalid
+                        "
+                      >This field is required</span>
                       </div>
                     </div>
                   </div>

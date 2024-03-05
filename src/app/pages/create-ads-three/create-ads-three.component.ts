@@ -305,9 +305,9 @@ export class CreateAdsThreeComponent implements OnInit {
           endHour: [e?.endHour],
         })))||[]),
         pricing: this.fb.array(data?.pricing?.map(e => (this.fb.group({
-          serviceDescription: [e?.serviceDescription],
-          timing: [e?.timing],
-          priceValue: [e?.priceValue],
+          serviceDescription: [e?.serviceDescription, Validators.required],
+          timing: [e?.timing, Validators.required],
+          priceValue: [e?.priceValue, Validators.required],
         }))) || [
           this.createObjectElement()
         ]),
@@ -348,9 +348,9 @@ export class CreateAdsThreeComponent implements OnInit {
 
   createObjectElement() {
     return this.fb.group({
-      serviceDescription: [null],
-      timing: [null],
-      priceValue: [null],
+      serviceDescription: [null, Validators.required],
+      timing: [null, Validators.required],
+      priceValue: [null, Validators.required],
     });
   }
 
@@ -947,11 +947,12 @@ export class CreateAdsThreeComponent implements OnInit {
           this.isLoading = false;
           this.router.navigate(['/account/my-list']);
         }
+        else{
+          this.uiService.wrong(res.message);
+        }
       },
       (err) => {
-        if (err) {
-          console.log(err);
-        }
+        this.uiService.wrong(err?.error?.message);
       }
     );
   }
@@ -966,11 +967,12 @@ export class CreateAdsThreeComponent implements OnInit {
             this.isLoading = false;
             this.router.navigate(['/account/my-list']);
           }
+          else{
+            this.uiService.wrong(res.message);
+          }
         },
         (err) => {
-          if (err) {
-            console.log(err);
-          }
+          this.uiService.wrong(err?.error?.message);
         }
       );
   }
