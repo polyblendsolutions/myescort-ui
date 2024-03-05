@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, finalize } from 'rxjs';
 import { User } from 'src/app/interfaces/common/user.interface';
 import { UserDataService } from 'src/app/services/common/user-data.service';
 import { UserService } from 'src/app/services/common/user.service';
@@ -28,6 +28,9 @@ export class ProfileVarificationComponent implements OnInit{
   private subDataFour: Subscription;
   private subDataFive: Subscription;
   private subDataSix: Subscription;
+
+  // Boolean for button Logic
+  private isButtonDisabled: boolean = false;
 
   constructor(
     private uiService: UiService,
@@ -114,6 +117,7 @@ export class ProfileVarificationComponent implements OnInit{
 
 
   private addProductWithImage() {
+    this.isButtonDisabled = true;
     this.subDataFive = this.fileUploadService
       .uploadMultiImageOriginal(this.files)
       .subscribe((res) => {
@@ -121,15 +125,21 @@ export class ProfileVarificationComponent implements OnInit{
         const mData = { ...{ images: images } };
         // this.addProductByUser(mData);
         this.onVerified(mData)
-      });
+      },
+      (error) => {
+        this.isButtonDisabled = false; // Enable the button in case of an error
+      }
+      );
   }
 
-
-
   onVerified(mData) {
-    // console.log("thiiii",this.user)
      this.userService
       .updateUsersById(this.user._id,mData )
+      .pipe(
+        finalize(() => {         
+          this.isButtonDisabled = false; // Enable the button
+        })
+      )
       .subscribe({
         next: (res) => {
           if (res.success) {
@@ -138,11 +148,11 @@ export class ProfileVarificationComponent implements OnInit{
             this.uiService.warn(res.message);
           }
         },
-        error: (error) => {
+      error: (error) => {
 
           console.log(error);
         },
-      });
+      });      
   }
 
   public submit(){

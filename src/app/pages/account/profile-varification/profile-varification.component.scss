@@ -249,6 +249,11 @@
     &:hover {
       background-color: #ff7e94;
     }
+    &:disabled {
+      background-image: none;  
+      background-color: #ddd; 
+      cursor: not-allowed;
+    }
   }
 
   p {
@@ -276,5 +281,16 @@
     button {
       width: 100%;
     }
+  }
+}
+.verification-message-container {
+  background-color:$btn-color; 
+  color: $color-white;
+  padding: 15px;
+  border: 1px solid $btn-color; 
+  border-radius: 5px; 
+  margin: 20px 0; 
+  .verification-message {
+    margin: 0;
   }
 }
