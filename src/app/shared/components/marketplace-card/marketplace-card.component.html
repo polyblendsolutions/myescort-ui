@@ -1,4 +1,4 @@
-<div class="app-marketplace-card-main" (click)="onClickToPrepopulate(data?._id)">
+<div class="app-marketplace-card-main" >
   <svg
     *ngIf="data"
     class="mk-qv"
@@ -23,6 +23,7 @@
     *ngIf="data"
     class="marketplace-card"
     [class.qa-hover]="isQaHover"
+    (click)="onClickToPrepopulate(data?._id)"
   >
     <div class="marketplace-card-img">
       <img
