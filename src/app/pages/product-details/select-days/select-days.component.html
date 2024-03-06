@@ -5,7 +5,7 @@
     </h1>
   </div>
   <div class="opening-hours-selected-data">
-    <div class="table-data-selected-table">
+    <div *ngIf="product?.monday || product?.tuesday || product?.wednesday || product?.thursday || product?.friday || product?.saturday" class="table-data-selected-table">
       <div *ngIf="product?.monday ===true">
         <div class="selected-table-main" >
           <div class="table-main-data">
@@ -124,5 +124,6 @@
         </div>
       </div>
     </div>
+    <p *ngIf="!product?.monday || !product?.tuesday || !product?.wednesday || !product?.thursday || !product?.friday || !product?.saturday" >Nyd fleksibiliteten og få mest muligt ud af din tid!</p>
   </div>
 </div>

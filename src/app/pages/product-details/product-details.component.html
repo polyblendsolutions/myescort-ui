@@ -17,31 +17,15 @@
     <div
       class="pricing-select-day"
       [ngClass]="{
-        two:
-          (product?.mondayHours.length ||
-            product?.tuesdayHours.length ||
-            product?.wednesdayHours.length ||
-            product?.thursdayHours.length ||
-            product?.fridayHours.length ||
-            product?.saturdayHours.length) &&
-          product?.pricing?.length
+        two: true
       }"
     >
-      <ng-container
-        *ngIf="
-          product?.mondayHours.length ||
-          product?.tuesdayHours.length ||
-          product?.wednesdayHours.length ||
-          product?.thursdayHours.length ||
-          product?.fridayHours.length ||
-          product?.saturdayHours.length
-        "
-      >
+      <ng-container>
         <app-select-days [product]="product"></app-select-days>
       </ng-container>
       <!-- END! select-days -->
 
-      <ng-container *ngIf="product?.pricing?.length">
+      <ng-container>
         <app-product-details-pricing
           [product]="product"
         ></app-product-details-pricing>
