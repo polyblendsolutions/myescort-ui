@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {UiService} from "../../../services/core/ui.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../services/common/user.service";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   showCreate: boolean = true;
 
   isLoading: boolean = false;
-
+  private loginSubscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -76,8 +77,9 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    this.userService.userLogin(this.dataForm.value, this.navigateFrom);
-
+    this.loginSubscription =this.userService.userLogin(this.dataForm.value, this.navigateFrom).subscribe(() => {
+      this.isLoading = false;
+    });
   }
 
   onShowCreate() {
@@ -101,5 +103,9 @@ export class LoginComponent implements OnInit {
     return this.dataForm.get('password');
   }
 
-
+  ngOnDestroy(): void {
+    if (this.loginSubscription) {
+      this.loginSubscription.unsubscribe();
+    }
+  }
 }

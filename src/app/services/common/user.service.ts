@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {Router} from '@angular/router';
 import {UiService} from '../core/ui.service';
@@ -23,6 +23,7 @@ export class UserService {
   private userStatusListener = new Subject<boolean>();
   // Hold The Count Time..
   private tokenTimer: any;
+  private loginResponseSubscription: Subscription
 
   constructor(
     private httpClient: HttpClient,
@@ -191,50 +192,55 @@ export class UserService {
     });
   }
 
-  userLogin(data: { username: string, password: string }, navigateFrom?: string) {
-    this.httpClient.post<UserAuthResponse>
-    (API_URL_USER + 'login', data)
-      .subscribe(async res => {
-        if (res.success) {
-          this.token = res.token;
-          // When Role & Permissions
-          if (res.data) {
-            this.userId = res.data._id;
-          }
-          // When Token
-          if (res.token) {
-            this.isUser = true;
-            this.userStatusListener.next(true);
-            // For Token Expired Time..
-            const expiredInDuration = res.tokenExpiredIn;
-            this.setSessionTimer(expiredInDuration);
-            // Save Login Time & Expiration Time & Token to Local Storage..
-            const now = new Date();
-            const expirationDate = new Date(now.getTime() + expiredInDuration * 1000);
-            // Store to Local
-            this.saveUserData(res.token, expirationDate, this.userId);
-
-            this.spinner.hide();
-            // Snack bar..
-            this.uiService.success(res.message);
-            // Navigate..
-            if (navigateFrom) {
-              this.router.navigate([navigateFrom]);
-            } else {
-              this.router.navigate([environment.userBaseUrl]);
+  userLogin(data: { username: string, password: string }, navigateFrom?: string): Observable<boolean> {
+    return new Observable<boolean>(observer => {
+      this.loginResponseSubscription=this.httpClient.post<UserAuthResponse>(API_URL_USER + 'login', data)
+        .subscribe(async res => {
+          if (res.success) {
+            this.token = res.token;
+            // When Role & Permissions
+            if (res.data) {
+              this.userId = res.data._id;
             }
+            // When Token
+            if (res.token) {
+              this.isUser = true;
+              this.userStatusListener.next(true);
+              // For Token Expired Time..
+              const expiredInDuration = res.tokenExpiredIn;
+              this.setSessionTimer(expiredInDuration);
+              // Save Login Time & Expiration Time & Token to Local Storage..
+              const now = new Date();
+              const expirationDate = new Date(now.getTime() + expiredInDuration * 1000);
+              // Store to Local
+              this.saveUserData(res.token, expirationDate, this.userId);
+  
+              this.spinner.hide();
+              // Snack bar..
+              this.uiService.success(res.message);
+              // Navigate..
+              if (navigateFrom) {
+                this.router.navigate([navigateFrom]);
+              } else {
+                this.router.navigate([environment.userBaseUrl]);
+              }  
+              observer.next(true); // Return true when login is successful
+              observer.complete();
+            }
+          } else {
+            this.uiService.wrong(res.message);
+            this.spinner.hide();
+            this.userStatusListener.next(false);
+            observer.next(false); // Return false when login is unsuccessful
+            observer.complete();
           }
-        } else {
-          this.uiService.wrong(res.message);
+        }, error => {
           this.spinner.hide();
           this.userStatusListener.next(false);
-        }
-
-      }, error => {
-        this.spinner.hide();
-        this.userStatusListener.next(false);
-        // console.log(error);
-      });
+          observer.next(false); // Return false on error
+          observer.complete();
+        });
+    });
   }
 
 
@@ -416,6 +422,11 @@ export class UserService {
     return this.httpClient.put<{ message: string, success: boolean }>(API_URL_USER + 'update-data-user/' + id, data);
   }
 
+  ngOnDestroy(): void {
+    if (this.loginResponseSubscription) {
+      this.loginResponseSubscription.unsubscribe();
+    }
+  }
 
 
 }
