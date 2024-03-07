@@ -10,6 +10,10 @@
       <span>{{data?.serviceDescription}}</span>
     </div>
   </div>
-  <p class="description" *ngIf="!product?.pricing?.length">Det ser ud til, at vi allerede giver dig det bedste tilbud!</p>
+  <div class="description" *ngIf="!product?.pricing?.length">
+    <span>
+      Det ser ud til, at vi allerede giver dig det bedste tilbud!
+    </span>
+  </div>
   <!-- <div class="description" [innerHTML]="product?.pricing | safeHtml"></div> -->
 </div>
