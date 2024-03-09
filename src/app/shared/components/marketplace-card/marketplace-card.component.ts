@@ -9,7 +9,6 @@ import {ReloadService} from "../../../services/core/reload.service";
 import {Subscription} from "rxjs";
 import { ProductService } from 'src/app/services/common/product.service';
 
-
 @Component({
   selector: 'app-marketplace-card',
   templateUrl: './marketplace-card.component.html',
@@ -22,6 +21,9 @@ export class MarketplaceCardComponent implements OnInit {
   tesData: any;
   isQaHover: boolean = false;
   user: User;
+
+  imgPlaceHolder = "/assets/images/png/fallbackImage.png";
+
   //Subscription
   private subUserData: Subscription;
   private subRealod:Subscription;

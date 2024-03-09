@@ -26,6 +26,7 @@ export class ProductDetailsImaaeAreaComponent implements OnInit {
   wishlist: WishList = null;
   image: string;
   zoomImage: string;
+
   // Image Zoom & View Area
   @ViewChild('zoomViewer', {static: true}) zoomViewer;
   //Subscription
@@ -138,7 +139,7 @@ export class ProductDetailsImaaeAreaComponent implements OnInit {
   */
 
   private setDefaultImage() {
-    this.image = this.product.images && this.product.images.length > 0 ? this.product.images[0] : '/assets/images/placeholder/test.png';
+    this.image = this.product.images && this.product.images.length > 0 ? this.product.images[0] : '/assets/images/png/fallbackImage.png';
     this.zoomImage = this.image;
   }
 

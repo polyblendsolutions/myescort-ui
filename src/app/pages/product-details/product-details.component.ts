@@ -80,6 +80,11 @@ export class ProductDetailsComponent implements OnInit {
       (res) => {
         if (res.success) {
           this.product = res.data;
+          if(!this?.product?.images || !this?.product?.images?.length) {
+            this.product.images = [
+              "/assets/images/png/fallbackImage.png"
+            ]
+          }
           console.log('this.product', this.product);
           this.selectedImage = this.product.images[0];
           this.setDefaultImage();
@@ -97,7 +102,7 @@ export class ProductDetailsComponent implements OnInit {
     this.image =
       this.product.images && this.product.images.length > 0
         ? this.product.images[0]
-        : '/assets/images/placeholder/test.png';
+        : '/assets/images/png/fallbackImage.png';
     this.zoomImage = this.image;
   }
 
