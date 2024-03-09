@@ -466,9 +466,9 @@
                 <div class="checkbox-first checkbox-first-second">
                   <div class="checkbox-main">
                     <input
-                      id="active_opening_hours"
-                      type="checkbox"
-                      value="Yes"
+                    id="openingHours"
+                    type="checkbox"
+                    formControlName="openingHours"
                     />
                     <label for="active_opening_hours">Aktiv åbningstider</label>
                   </div>
@@ -476,7 +476,7 @@
                 </div>
               </div>
 
-              <div class="days-complex">
+              <div class="days-complex" *ngIf="dataForm.value.openingHours">
                 <div class="day-item day-item-create">
                   <div class="form-input-select from-input-select-create">
                     <div class="form-check">
