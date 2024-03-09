@@ -95,11 +95,13 @@ header {
         }
         .pre-scroll-img {
           display: block;
+          height: 61px;
         }
 
         &:hover {
           .scroll-img {
             display: block;
+            height: 61px;
           }
           .pre-scroll-img {
             display: none;
