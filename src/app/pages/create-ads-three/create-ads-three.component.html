@@ -122,19 +122,18 @@
                   <select
                     (change)="onChangeRegion($event)"
                     formControlName="division"
-                    required
                   >
-                    <option value="null">Pick a region...</option>
+                    <option value="null" disabled selected>Pick a region...</option>
                     <option [value]="d?._id" *ngFor="let d of divisions">
                       {{ d?.name }}
                     </option>
-                  </select>
+                    </select>
                 </div>
                 <span
                   class="invalid-txt"
                   *ngIf="
-                    dataForm?.get('region')?.touched &&
-                    dataForm.get('region')?.invalid
+                    dataForm?.get('division')?.touched &&
+                    dataForm.get('division')?.invalid
                   "
                   >This field is required</span
                 >
