@@ -154,7 +154,8 @@ header {
               transition: all 0.12s linear;
 
               &:hover {
-                background-image: linear-gradient(to right, #a71d64, #f04a9f);
+                background-image: linear-gradient(to right, #f04a9f, #f04a9f);
+                // background-image: linear-gradient(to right, #a71d64, #f04a9f);
                 color: #fff;
               }
 
