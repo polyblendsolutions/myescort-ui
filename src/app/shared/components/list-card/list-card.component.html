@@ -1,6 +1,6 @@
 <div class="my-list-card">
   <div class="my-list-left">
-    <img [src]="data?.images[0]" alt="gig" />
+    <img [src]="data?.images?.[0]" alt="gig" *ngIf="data?.images?.[0]"/>
 
     <div class="list-card-body1"></div>
 
@@ -53,24 +53,21 @@
       <div class="my-list-btn-bottom">
         <button
           type="button"
-          [routerLink]="['/create-new']"
+          routerLink='/create-new'
           [queryParams]="{ id: data?._id }"
         >
           Manage Posts
         </button>
-
         <!-- <button type="button" (click)="deleteProductByUser(data?._id)">
           Delete
         </button> -->
-
         <button *ngIf="isLoading" type="button">Please wait...</button>
-
         <button
           *ngIf="!isLoading && data.status === 'draft'"
           type="button"
           (click)="openConfirmDialog('publish')"
         >
-          Deactivate
+         Aktiver
         </button>
 
         <button
@@ -78,7 +75,7 @@
           type="button"
           (click)="openConfirmDialog('draft')"
         >
-          Inactive
+         Deaktiver
         </button>
       </div>
     </div>
