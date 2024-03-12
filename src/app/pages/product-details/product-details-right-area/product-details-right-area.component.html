@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="product-details-right-bottom" *ngIf="product?.category || product?.age || product?.height || product?.bodyType?.name || product?.orientation?.name || product?.runningOut || product?.hairColor?.name || product?.intimateHair?.name">
+    <div class="product-details-right-bottom" *ngIf="product?.category || product?.age || product?.height ||product?.weight || product?.bodyType?.name || product?.orientation?.name || product?.runningOut || product?.hairColor?.name || product?.intimateHair?.name ||product?.address || product?.email">
       <div class="pro-right-title-bottom">
         <!-- <h2>{{ product?.title }}</h2> -->
         <h2>Oversigt</h2>
@@ -76,6 +76,13 @@
             <p>
               <span>Height:</span>
               <small>{{ product?.height }}</small>
+            </p>
+          </li>
+
+          <li *ngIf="product?.weight">
+            <p>
+              <span>Vægt:</span>
+              <small>{{ product?.weight }}</small>
             </p>
           </li>
 
@@ -113,6 +120,20 @@
               <span>
                 Intimate hair:</span>
               <small>{{ product?.intimateHair?.name }}</small>
+            </p>
+          </li>
+
+          <li *ngIf="product?.email">
+            <p>
+              <span>Email:</span>
+              <small>{{ product?.email}}</small>
+            </p>
+          </li>
+
+          <li *ngIf="product?.address">
+            <p>
+              <span>Adresse:</span>
+              <small>{{ product?.address}}</small>
             </p>
           </li>
 
