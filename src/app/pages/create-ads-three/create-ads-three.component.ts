@@ -206,7 +206,7 @@ export class CreateAdsThreeComponent implements OnInit {
       fridayHours: this.fb.array([]),
       saturdayHours: this.fb.array([]),
       pricing: this.fb.array([
-        this.createObjectElement()
+        
       ]),
       monday: [null],
       mondaySlot: [null],
@@ -309,7 +309,7 @@ export class CreateAdsThreeComponent implements OnInit {
           timing: [e?.timing, Validators.required],
           priceValue: [e?.priceValue, Validators.required],
         }))) || [
-          this.createObjectElement()
+          
         ]),
         monday: [data?.monday],
         mondaySlot: [data?.mondaySlot],

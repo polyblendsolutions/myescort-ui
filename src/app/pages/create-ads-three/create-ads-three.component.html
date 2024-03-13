@@ -1200,6 +1200,7 @@
                     mat-mini-fab
                     color="warn"
                     (click)="removeFormArrayField('pricing', i)"
+                    style="margin-bottom: 20px;"
                   >
                     <mat-icon>delete</mat-icon>
                   </button>
@@ -1207,18 +1208,14 @@
               </div>
 
               <div class="opening-hours-child">
-                <div class="checkbox-first checkbox-first-second">
-                  <div
-                    class="checkbox-main"
+                <div class="sec-home-sub-btn">
+                  <button
+                    type="button"
+                    
                     (click)="addFormArrayObject('pricing')"
                   >
-                    <input
-                      id="active_opening_hours"
-                      type="checkbox"
-                      value="Yes"
-                    />
-                    <label for="active_opening_hours">New Pricing</label>
-                  </div>
+                  <i class="fas fa-plus"></i> New Pricing
+                </button>
                 </div>
               </div>
             </div>
