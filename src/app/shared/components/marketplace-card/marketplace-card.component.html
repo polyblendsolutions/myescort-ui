@@ -58,7 +58,9 @@
       </h3>
 
       <h3>
-        <span>{{ data?.division?.name }}, {{ data?.age }}y</span>
+        <span *ngIf="!data?.zone?.name">{{data?.division?.name}},</span>
+        <span *ngIf="data?.zone?.name">{{data?.zone?.name}},</span>
+        <span>{{ data?.age }}y</span>
       </h3>
     </div>
   </div>
