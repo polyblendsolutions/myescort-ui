@@ -1,6 +1,6 @@
 <div class="my-list-card">
   <div class="my-list-left">
-    <img [src]="data?.images?.[0]" alt="gig" *ngIf="data?.images?.[0]"/>
+    <img [src]="data?.images?.[0] || '/assets/images/png/fallbackImage.png'" alt="gig" />
 
     <div class="list-card-body1"></div>
 
