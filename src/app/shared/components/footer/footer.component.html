@@ -6,10 +6,10 @@
           <h2>Massage</h2>
           <div class="footer-line"></div>
           <ul>
-            <li><a routerLink="/massage-aalborg">Massage Aalborg </a></li>
-            <li><a routerLink="/massage-odense">Massage Odense </a></li>
-            <li><a routerLink="/massage-copenhagen">Massage København</a></li>
-            <li><a routerLink="/massage-aarhus">Massage Aarhus</a></li>
+            <li><a [routerLink]="'/ads'" [queryParams]="{types: 'massage', divisions: 'Aalborg'}">Massage Aalborg </a></li>
+            <li><a [routerLink]="'/ads'" [queryParams]="{types: 'massage', divisions: 'Odense'}">Massage Odense </a></li>
+            <li><a [routerLink]="'/ads'" [queryParams]="{types: 'massage', divisions: 'Copenhagen'}">Massage København</a></li>
+            <li><a [routerLink]="'/ads'" [queryParams]="{types: 'massage', divisions: 'Aarhus'}">Massage Aarhus</a></li>
           </ul>
         </div>
 
@@ -18,11 +18,11 @@
           <h2>Escort lokalt i</h2>
           <div class="footer-line"></div>
           <ul>
-            <li><a routerLink="/escort-aalborg">Escort Aalborg </a></li>
-            <li><a routerLink="/escort-odense">Escort Odense </a></li>
-            <li><a routerLink="/escort-copenhagen">Escort Copenhagen</a></li>
-            <li><a routerLink="/escort-aarhus">Escort Aarhus</a></li>
-            <li><a routerLink="/escort-valby">Escort Valby</a></li>
+            <li><a [routerLink]="'/ads'" [queryParams]="{types: 'escort', divisions: 'Aalborg'}">Escort Aalborg </a></li>
+            <li><a [routerLink]="'/ads'" [queryParams]="{types: 'escort', divisions: 'Odense'}">Escort Odense </a></li>
+            <li><a [routerLink]="'/ads'" [queryParams]="{types: 'escort', divisions: 'Copenhagen'}">Escort Copenhagen</a></li>
+            <li><a [routerLink]="'/ads'" [queryParams]="{types: 'escort', divisions: 'Aarhus'}">Escort Aarhus</a></li>
+            <li><a [routerLink]="'/ads'" [queryParams]="{types: 'escort', divisions: 'Valby'}">Escort Valby</a></li>
           </ul>
         </div>
 
