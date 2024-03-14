@@ -6,7 +6,7 @@ import {OpenDalogComponent} from "./open-dalog/open-dalog.component";
 import {FilterData} from "../../../interfaces/core/filter-data";
 import {ProductService} from "../../../services/common/product.service";
 import {Product} from "../../../interfaces/common/product.interface";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {UtilsService} from "../../../services/core/utils.service";
 import {UiService} from "../../../services/core/ui.service";
@@ -31,8 +31,10 @@ export class HeaderComponent implements OnInit {
   filter: any = null;
 
   // Subscriptions
-  private subDataOne: Subscription;
+  private subAllProductByUser: Subscription;
   showHideResponsiveNav: boolean = false;
+  private subGetProductDetail:Subscription
+  private subGetProductByID:Subscription
   changeColor: boolean = false;
 
   constructor(
@@ -71,13 +73,12 @@ export class HeaderComponent implements OnInit {
       sort: { createdAt: -1 },
     };
 
-    this.subDataOne = this.productService
+    this.subAllProductByUser = this.productService
       .getAllProductsByUser(filter, null)
       .subscribe({
         next: (res) => {
           if (res.success) {
             this.products = res.data;
-            console.log('erwer',this.products);
           }
         },
         error: (err) => {
@@ -85,7 +86,21 @@ export class HeaderComponent implements OnInit {
         },
       });
   }
-
+  private getProductById(id: string): Observable<Product> {
+    return new Observable<Product>((observer) => {
+      this.subGetProductByID = this.productService.getProductById(id).subscribe(
+        (res) => {
+          if (res.success) {
+            observer.next(res.data);
+            observer.complete();
+          }
+        },
+        (err) => {
+          observer.error(err);
+        }
+      );
+    });
+  }
   /**
    * RESPONSIVE NAV
    * HEADER FIXED
@@ -104,8 +119,21 @@ export class HeaderComponent implements OnInit {
     //   // return;
     // }
 
+    if (this.products?.length) {
+      const productId = this.products[0]._id;
+      this.subGetProductDetail=this.getProductById(productId).subscribe(
+        (res) => {
+          if (res?.status === "publish") {
+            this.router.navigate(['/account/my-list'])
+          } else {
+            this.router.navigate(['/create-new'])
+          }
+        }
+      );
+    } else {
+      this.router.navigate(['/create-new'])
+    }
     // if(!this.products?.length) {
-      this.router.navigate(['/create-new']).then()
     // }
 
   }
@@ -141,6 +169,15 @@ export class HeaderComponent implements OnInit {
     this.isShow = true;
   }
 
-
-
+  ngOnDestroy(): void {
+    if (this.subAllProductByUser) {
+      this.subAllProductByUser.unsubscribe();
+    }
+    if (this.subGetProductByID) {
+      this.subGetProductByID.unsubscribe();
+    }
+    if (this.subGetProductDetail) {
+      this.subGetProductDetail.unsubscribe();
+    }
+  }
 }
