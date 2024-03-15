@@ -188,13 +188,11 @@
       letter-spacing: 1px;
     }
 
-    small {
-      display: flex;
-
-      svg {
-        fill: #1d9bf0;
+    .verify-icon {
         width: 22px;
         height: 22px;
+      img {
+        fill: #1d9bf0;
       }
     }
   }

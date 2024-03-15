@@ -39,16 +39,12 @@
       letter-spacing: 1px;
     }
 
-    small {
-      display: flex;
-
-      svg {
-        fill: #1d9bf0;
-        width: 26px;
-        height: 26px;
-      }
-    }
-  }
+    .verify-icon {
+      fill: #1d9bf0;
+      width: 24px;
+      height: 24px;
+    } 
+   }
 
   p {
     font-family: $font-en-primary;

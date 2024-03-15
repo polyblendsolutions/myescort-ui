@@ -24,14 +24,14 @@
   color: $pink-color;
   font-size: 19px;
   transform: scale(1);
-
+  
   path {
     transition: all 0.12s linear;
   }
 
   &:hover {
-    transform: scale(1.1);
-
+        transform: scale(1.1);
+    
     path {
       fill: #fff;
     }
@@ -146,8 +146,8 @@
       padding-bottom: 3px;
     }
 
-    small {
-      svg {
+    span {
+      img {
         fill: #1d9bf0;
         width: 25px;
         height: 25px;
