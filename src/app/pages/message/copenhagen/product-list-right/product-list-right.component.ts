@@ -4,7 +4,7 @@ import {Product} from "../../../../interfaces/common/product.interface";
 import {Subscription} from "rxjs";
 import {ProductService} from "../../../../services/common/product.service";
 import {FilterData} from "../../../../interfaces/core/filter-data";
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Pagination} from '../../../../interfaces/core/pagination';
 
 @Component({
@@ -13,7 +13,7 @@ import {Pagination} from '../../../../interfaces/core/pagination';
   styleUrls: ['./product-list-right.component.scss']
 })
 export class ProductListRightComponent implements OnInit {
-
+  data: any
   //Store data
   products: Product[] = [];
   tagProducts: Product[] = [];
@@ -52,11 +52,12 @@ export class ProductListRightComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private _productList: ProductListService,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
-
+    this.data = this.router.url;
     // GET PAGE FROM QUERY PARAM
     this.subRouteOne = this.activatedRoute.queryParams.subscribe(qParam => {
 
@@ -276,11 +277,11 @@ export class ProductListRightComponent implements OnInit {
         if (loadMore) {
           this.products = [...this.products, ...this.tagProducts];
         } else {
+          const type = {'/escort-copenhagen':"escort", '/massage-copenhagen':"massage" }[this.data]
           this.products = this.tagProducts.filter(m => {
-            return m.tags?.find(f => f.name === "Copenhagen")
+            // return m.tags?.find(f => f.name === "Aalboarg")
+            return m.division?.name === "Copenhagen" && m.type.slug === type
           });
-
-
         }
 
         this.totalProducts = res.count;
