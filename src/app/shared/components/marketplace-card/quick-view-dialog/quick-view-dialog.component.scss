@@ -2,6 +2,7 @@
 
 /* --- product-details-quick --- */
 .product-details-quick {
+  font-family: $font-en-primary2;
   position: fixed;
   top: 0;
   left: 0;
@@ -35,6 +36,8 @@
 .product-details-quick-child {
   max-width: 860px;
   width: 100%;
+  height: 100%;
+  max-height: 549px;
   background-color: $color-white;
   position: relative;
   opacity: 1;
@@ -84,13 +87,13 @@
 .product-details-quick-child-left {
   .quick-child-left-img {
     width: 100%;
-    height: 100%;
+    height: 549px;
+    max-height: 549px;
     background-color: #e7edee;
 
     img {
-      object-fit: contain;
+      object-fit: cover;
       width: 100%;
-      max-height: 430px;
       height: 100%;
       margin: auto;
     }
@@ -100,7 +103,9 @@
 @media (max-width: 768px) {
   .product-details-quick-child-left {
     .quick-child-left-img {
+      height: 330px;
       img {
+        height: 330px;
         max-height: 330px;
       }
     }
@@ -110,7 +115,9 @@
 @media (max-width: 634px) {
   .product-details-quick-child-left {
     .quick-child-left-img {
+      height: 270px;
       img {
+        height: 270px;
         max-height: 270px;
       }
     }
@@ -120,7 +127,9 @@
 @media (max-width: 400px) {
   .product-details-quick-child-left {
     .quick-child-left-img {
+      height: 240px;
       img {
+        height: 240px;
         max-height: 240px;
       }
     }
@@ -130,7 +139,7 @@
 /* --- product-details-quick-child-right --- */
 .product-details-quick-child-right {
   padding: 14px 14px;
-  max-height: 430px;
+  height: 549px;
   overflow: hidden;
   overflow-y: auto;
 
@@ -152,7 +161,7 @@
 
 @media (max-width: 634px) {
   .product-details-quick-child-right {
-    max-height: initial;
+    max-height: 270px;
   }
 }
 
@@ -191,11 +200,11 @@
   }
 
   p {
-    font-family: $font-en-primary;
+    font-family: $font-en-primary2;
     font-size: 15px;
     letter-spacing: 0.5px;
-    font-weight: 400;
-    color: #a9a4a4;
+    font-weight: 300;
+    color: #403E3E;
     padding-top: 6px;
   }
 }
@@ -250,23 +259,25 @@
 /* --- quick-details-right-bottom --- */
 .quick-details-right-bottom {
   h4 {
-    font-family: $font-en-primary;
+    font-family: $font-en-primary2;
     font-size: 16px;
     font-weight: 600;
     color: #303030;
     letter-spacing: 1px;
     padding-top: 4px;
+    font-weight: 400;
     padding-bottom: 13px;
   }
 
   p {
-    font-family: $font-en-primary;
+    font-family: $font-en-primary2;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 200;
     color: #747474;
     letter-spacing: 1px;
     padding-bottom: 10px;
     line-height: 20px;
+    white-space: break-spaces;
 
     &:last-child {
       padding-bottom: 0;

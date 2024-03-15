@@ -2,7 +2,7 @@
   <!----future-card-img-->
   <div class="product-image" [routerLink]="['/ad-details', data?._id]">
     <img
-      [src]="data?.images && data?.images.length ? data?.images[0] : ''"
+      [src]="data?.images && data?.images.length ? data?.images[0] : '/assets/images/png/fallbackImage.png'"  
       alt="image"
     />
   </div>

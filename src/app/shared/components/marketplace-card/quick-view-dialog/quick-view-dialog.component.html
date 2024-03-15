@@ -19,11 +19,21 @@
           <ng-template swiperSlide *ngFor="let data of product?.images">
             <div class="quick-child-left-img">
               <img
-                [src]="data ? data : './assets/images/temp/products/01.jpg'"
+                [src]="data ? data : '/assets/images/png/fallbackImage.png'"
                 alt="image"
               />
             </div>
           </ng-template>
+          
+          <ng-template swiperSlide *ngIf="!product?.images">
+            <div class="quick-child-left-img">
+              <img
+                [src]="'/assets/images/png/fallbackImage.png'"
+                alt="image"
+              />
+            </div>
+          </ng-template>
+
         </swiper>
       </div>
       <!-- END! product-details-quick-child-left -->
@@ -65,12 +75,12 @@
 
           <div class="quick-right-detail">
             <div class="phone-number">
-              <a href="tel:{{ 'product?.phone' }}">
+              <a href="tel:{{ 'product?.phone' }}" *ngIf="product?.phone">
                 <i class="fa-solid fa-phone"></i>
                 <span>{{ product?.phone }}</span>
               </a>
 
-              <a href="https://www.whatsapp.com/" target="_blank">
+              <a href="https://www.whatsapp.com/" target="_blank" *ngIf="product?.phone">
                 <i class="fa-brands fa-whatsapp"></i>
                 <span>{{ product?.phone }}</span>
               </a>
@@ -83,10 +93,10 @@
             <i>About Me</i>
           </h4>
 
-          <div
+          <p
             class="description"
-            [innerHTML]="product?.description | safeHtml"
-          ></div>
+            [innerHTML]="product?.shortDescription | safeHtml"
+          ></p>
         </div>
       </div>
       <!-- END! product-details-quick-child-right -->
