@@ -1,5 +1,5 @@
-<div class="product-details-quick">
-  <div class="popup-area-main">
+<div class="product-details-quick" mat-dialog-close>
+  <div class="popup-area-main" (click)="$event.stopPropagation()">
     <div class="product-details-quick-child">
       <div class="product-details-quick-child-left">
         <swiper
@@ -50,11 +50,11 @@
 
             <p>{{ product?.division?.name }}, {{ product?.age }}y</p>
 
-            <div class="close-btn">
+            <!-- <div class="close-btn">
               <button type="button" mat-dialog-close>
                 <i class="fa-regular fa-circle-xmark"></i>
               </button>
-            </div>
+            </div> -->
             <!-- END! close-btn -->
           </div>
 
