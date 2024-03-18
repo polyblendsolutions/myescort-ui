@@ -15,21 +15,20 @@
 
 .sec-home-sub-btn {
   button {
-    border: 0;
-    outline: 0;
-    border-radius: 0;
+    background-color: #fff;
+    border: 2px solid $btn-color;
+    color: $btn-color;
+    transition: all 0.12s linear;
     height: 45px;
     font-family: $font-en-primary;
     font-size: 15px;
     font-weight: 500;
-    color: $color-white;
+
     padding: 12px 20px;
-    background-color: $btn-color;
-    transition: all 0.12 linear;
-    border-radius: 4px;
 
     &:hover {
-      background-color: $btn-color-hover;
+      background-color: $btn-color;
+      color: #fff;
     }
   }
 }
@@ -178,6 +177,7 @@ form.select-form {
   }
 
   .input-main {
+
     input,
     textarea {
       width: 100%;
@@ -235,6 +235,7 @@ form.select-form {
       display: flex;
       justify-content: flex-start;
       gap: 16px;
+
       .submit-img {
         img {
           width: 100px;
@@ -361,6 +362,7 @@ form.select-form {
         color: $text-color-two;
         font-weight: 400;
       }
+
       &::after {
         content: ">";
         font-family: $font-en-primary;
@@ -470,6 +472,7 @@ form.select-form {
         align-items: center;
         justify-content: flex-start;
         gap: 12px;
+
         input {
           margin-top: 1px;
         }
@@ -574,6 +577,7 @@ form.select-form {
       }
     }
   }
+
   img {
     width: 115px;
     height: 53px;
@@ -593,6 +597,7 @@ form.select-form {
 
 .example-section1 {
   margin: 12px 0;
+
   ul {
     list-style-type: none;
     margin-top: 4px;
@@ -602,6 +607,7 @@ form.select-form {
     margin-bottom: 3% !important;
   }
 }
+
 /* --- submit-btn --- */
 .submit-btn {
   display: flex;
@@ -870,6 +876,7 @@ p.dp {
 .more-content-pricing {
   .opening-hours-child {
     margin-bottom: 25px;
+
     .checkbox-main {
       label {
         font-weight: 500 !important;
