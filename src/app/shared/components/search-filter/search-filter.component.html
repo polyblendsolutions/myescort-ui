@@ -1,13 +1,13 @@
 <section class="section-one-home">
   <div class="container">
-    <div class="section-one-main">
-      <div class="sec-one-inputs">
-        <form
-          class="search-form"
+    <form
           #formElement="ngForm"
           [formGroup]="dataForm"
           (ngSubmit)="onSubmit()"
         >
+    <div class="section-one-main">
+      <div class="sec-one-inputs" >
+        <div class="search-form">
           <div class="sec-home-input-area">
             <button
               type="button"
@@ -140,26 +140,128 @@
           <div class="sec-home-sub-btn">
             <button type="submit">Søgning</button>
           </div>
-        </form>
-
-        <ul
-          id="auto-suggestion"
-          class="auto-complete-box"
-          [ngClass]="valueInput && isOpen ? 'active' : ''"
-        >
-          <li
-            class="list-view"
-            *ngFor="let data of searchProducts"
-            (click)="onSelectItem(data?._id)"
-          >
-            <div class="search-result-left">
-              <div class="desc">
-                <h3>{{ data?.name }}</h3>
-              </div>
-            </div>
-          </li>
-        </ul>
+      </div>        
       </div>
     </div>
+    <div class="btn-container">
+      <div class="sec-home-sub-btn sec-home-sub-btn-second">
+        <button type="button" (click)="onHideFilter()">
+          {{ "flere filtre" | uppercase }}
+        </button>
+      </div>
+    </div>
+    <div class="filter-area" *ngIf="advanchFilter">
+      <div class="filter-area-three">
+        <div class="filter-area-three-range-slider">
+          <div class="filter-area-three-range-slider-top">
+            <p>Height</p>
+          </div>
+          <mat-slider
+            min="150"
+            max="200"
+            showTickMarks
+            discrete
+            [displayWith]="formatLabel"
+            (input)="updateSliderValue('height')"
+          >
+            <input matSliderStartThumb>
+            <input matSliderEndThumb>
+          </mat-slider>
+        </div>
+        <!-- END! filter-area-three-range-slider -->
+  
+        <div class="filter-area-three-range-slider">
+          <div class="filter-area-three-range-slider-top">
+            <p>Weight</p>
+          </div>
+  
+          <mat-slider
+            min="50"
+            max="300"
+            showTickMarks
+            discrete
+            [displayWith]="formatLabel"
+            (input)="updateSliderValue('weight')"
+          >
+            <input matSliderStartThumb />
+            <input matSliderEndThumb />
+          </mat-slider>
+        </div>
+        <!-- END! filter-area-three-range-slider -->
+  
+        <div class="filter-area-three-range-slider">
+          <div class="filter-area-three-range-slider-top">
+            <p>Age</p>
+          </div>
+  
+          <mat-slider
+            min="18"
+            max="80"
+            showTickMarks
+            discrete
+            [displayWith]="formatLabel"
+            (input)="updateSliderValue('age')"
+
+          >
+            <input  matSliderStartThumb />
+            <input  matSliderEndThumb />
+          </mat-slider>
+        </div>
+        <!-- END! filter-area-three-range-slider -->
+      </div>  
+      <div class="filter-area-child-one">
+        <div class="sec-home-input-area-par">
+          <label for="BodyType">Body Type</label>
+          <div class="sec-home-input-area">
+            <select formControlName="bodytype">
+              <option value="null" selected>All Types</option>
+              <ng-container *ngFor="let data of bodyTypes; let i = index">
+                <option [value]="data.name">{{ data.name }}</option>
+              </ng-container>
+            </select>
+          </div>
+        </div>
+        <!-- END! sec-home-input-area-par -->
+  
+  
+        <div class="sec-home-input-area-par">
+          <label for="BodyType">Hair Color</label>
+          <div class="sec-home-input-area">
+            <select formControlName="hairColor">
+              <option value="null" selected>All Types</option>
+              <ng-container *ngFor="let data of hairColors; let i = index">
+                <option [value]="data.name">{{ data.name }}</option>
+              </ng-container>
+            </select>
+          </div>
+        </div>
+        <!-- END! sec-home-input-area-par -->
+  
+        <div class="sec-home-input-area-par">
+          <label for="BodyType">Pubichair</label>
+          <div class="sec-home-input-area">
+            <select id="BodyType" formControlName="intimateHairs" >
+              <option value="null" selected>All Types</option>
+              <option *ngFor="let data of intimateHairs"  [value]="data.name">{{ data.name }}</option>
+            </select>
+          </div>
+        </div>
+        <!-- END! sec-home-input-area-par -->
+
+      </div>
+      <div class="filter-area-child-two">
+        <div class="filter-area-btn">
+          <button type="button" (click)="resetFilter()">Clear filters</button>
+        </div>
+  
+        <div class="filter-area-btn filter-area-btn-search">
+          <button type="button" (click)="onSubmit()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Search</span>
+          </button>
+        </div>
+      </div>
+    </div>    
+      </form>
   </div>
 </section>

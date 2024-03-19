@@ -6,6 +6,7 @@ import {MaterialModule} from "../../../material/material.module";
 import {NgxTypedJsModule} from "ngx-typed-js";
 import {SwiperModule} from "swiper/angular";
 import {SearchAreaComponent} from "../search-area/search-area.component";
+import { MatSliderModule } from '@angular/material/slider';
 
 
 
@@ -20,6 +21,7 @@ import {SearchAreaComponent} from "../search-area/search-area.component";
     NgxTypedJsModule,
     SwiperModule,
     FormsModule,
+    MatSliderModule
   ],
   exports:[
     SearchFilterComponent

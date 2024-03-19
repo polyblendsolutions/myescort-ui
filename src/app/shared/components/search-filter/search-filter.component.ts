@@ -31,6 +31,14 @@ import { ProductService } from '../../../services/common/product.service';
 import { TypeService } from '../../../services/common/type.service';
 import { ReloadService } from '../../../services/core/reload.service';
 import { UiService } from '../../../services/core/ui.service';
+import { BodyType } from 'src/app/interfaces/common/bodyType.interface';
+import { HairColorService } from 'src/app/services/common/hairColor.service';
+import { IntimateHairService } from 'src/app/services/common/intimateHair.service';
+import { OrientationService } from 'src/app/services/common/orientation.service';
+import { BodyTypeService } from 'src/app/services/common/bodyType.service';
+import { Orientation } from 'src/app/interfaces/common/orientation.interface';
+import { IntimateHair } from 'src/app/interfaces/common/intimateHair.interface';
+import { HairColor } from 'src/app/interfaces/common/hairColor.interface';
 
 @Component({
   selector: 'app-search-filter',
@@ -50,6 +58,10 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   searchQuery: string;
   searchQueryProduct: string;
   divisions: Division[];
+  bodyTypes: BodyType[] = [];
+  hairColors: HairColor[] = [];
+  intimateHairs: IntimateHair[] = [];
+  orientations: Orientation[] = [];
   // Data Form
   @ViewChild('formElement') formElement: NgForm;
   @ViewChild('searchInput') searchInput: ElementRef;
@@ -82,9 +94,16 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   isSelectedValueType: any;
 
   // Subscriptions
-  private subDataOne: Subscription;
+  private subTypeService: Subscription;
   private subDivisionData: Subscription;
-  private subForm: Subscription;
+  private subFilterForm: Subscription;
+  private subHairColor: Subscription;
+  private subIntimateHair: Subscription;
+  private subOrientation: Subscription;
+  private subBodyType: Subscription;
+
+  //Advanch Filter variables
+  public advanchFilter:boolean=false
 
   constructor(
     private fb: FormBuilder,
@@ -95,7 +114,12 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     private divisionService: DivisionService,
     private productService: ProductService,
     private reloadService: ReloadService,
-    private router: Router
+    private router: Router,
+    private hairColorService: HairColorService,
+    private intimateHairService: IntimateHairService,
+    private orientationService: OrientationService,
+    private bodyTypeService: BodyTypeService,
+
   ) {}
 
   ngOnInit(): void {
@@ -104,6 +128,10 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     this.getAllType();
     this.getAllDivision();
     this.getAllBanner();
+    this.getAllHairColor();
+    this.getAllIntimateHair();
+    this.getAllOrientation();
+    this.getAllBodyType();
 
     /*
       'København',
@@ -120,7 +148,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       cursorChar: '',
       loop: true,
     };
-    const typed = new Typed('.typed-element', options);
+    // const typed = new Typed('.typed-element', options);
   }
 
   arrData: string[] = ['København', 'Aalborg', 'Odense', 'Aarhus'];
@@ -130,7 +158,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit() {
     const formValue = this.searchForm?.valueChanges;
-    this.subForm = formValue
+    this.subFilterForm = formValue
       ?.pipe(
         pluck('searchTerm'),
         debounceTime(200),
@@ -196,116 +224,62 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
         }
       );
 
-    // this.searchAnim();
-    // if (this.innerW > 578) {
-    //   let step = 0;
-    //   let translateY = 154;
-    //   let ul = document.getElementById('sliderOne');
-    //
-    //   setInterval(() => {
-    //     if (this.arrData.length > step) {
-    //       step++;
-    //       if (step === 3) {
-    //         translateY -= 56;
-    //       } else {
-    //         translateY -= 49;
-    //       }
-    //       ul.style.transform = `translateY(-${translateY}px)`;
-    //     }
-    //     if (this.arrData.length === step) {
-    //       step = 0;
-    //       translateY = 154;
-    //       ul.style.transform = `translateY(-${translateY}px)`;
-    //     }
-    //   }, 3000);
-    // }
-
-    // if (this.innerW < 578 && this.innerW > 420) {
-    //   let step = 0;
-    //   let translateY = 111;
-    //   let ul = document.getElementById('sliderOne');
-    //   setInterval(() => {
-    //     if (this.arrData.length > step) {
-    //       step++;
-    //       translateY -= 37;
-    //       ul.style.transform = `translateY(-${translateY}px)`;
-    //     }
-    //
-    //     if (this.arrData.length === step) {
-    //       step = 0;
-    //       translateY = 96;
-    //       ul.style.transform = `translateY(-${translateY}px)`;
-    //     }
-    //   }, 3000);
-    // }
-
-    // if (this.innerW < 420) {
-    //   let step = 0;
-    //   let translateY = 69;
-    //   let ul = document.getElementById('sliderOne');
-    //   setInterval(() => {
-    //     if (this.arrData.length > step) {
-    //       step++;
-    //       translateY -= 23;
-    //       ul.style.transform = `translateY(-${translateY}px)`;
-    //     }
-    //
-    //     if (this.arrData.length === step) {
-    //       step = 0;
-    //       translateY = 69;
-    //       ul.style.transform = `translateY(-${translateY}px)`;
-    //     }
-    //   }, 3000);
-    // }
   }
 
   @HostListener('window:resize')
-  resizeMain() {
-    this.innerW = window.innerWidth;
-    if (this.innerW < 578 && this.innerW > 420) {
-      let step = 0;
-      let translateY = 111;
-      let ul = document.getElementById('sliderOne');
-      setInterval(() => {
-        if (this.arrData.length > step) {
-          step++;
-          translateY -= 37;
-          ul.style.transform = `translateY(-${translateY}px)`;
-        }
+  // Comment due to resolve error: slideOne is not defined
+  // resizeMain() {
+  //   this.innerW = window.innerWidth;
+  //   if (this.innerW < 578 && this.innerW > 420) {
+  //     let step = 0;
+  //     let translateY = 111;
+  //     let ul = document.getElementById('sliderOne');
+  //     setInterval(() => {
+  //       if (this.arrData.length > step) {
+  //         step++;
+  //         translateY -= 37;
+  //         ul.style.transform = `translateY(-${translateY}px)`;
+  //       }
 
-        if (this.arrData.length === step) {
-          step = 0;
-          translateY = 96;
-          ul.style.transform = `translateY(-${translateY}px)`;
-        }
-      }, 3000);
-    }
+  //       if (this.arrData.length === step) {
+  //         step = 0;
+  //         translateY = 96;
+  //         ul.style.transform = `translateY(-${translateY}px)`;
+  //       }
+  //     }, 3000);
+  //   }
 
-    if (this.innerW < 420) {
-      let step = 0;
-      let translateY = 69;
-      let ul = document.getElementById('sliderOne');
-      setInterval(() => {
-        if (this.arrData.length > step) {
-          step++;
-          translateY -= 23;
-          ul.style.transform = `translateY(-${translateY}px)`;
-        }
+  //   if (this.innerW < 420) {
+  //     let step = 0;
+  //     let translateY = 69;
+  //     let ul = document.getElementById('sliderOne');
+  //     setInterval(() => {
+  //       if (this.arrData.length > step) {
+  //         step++;
+  //         translateY -= 23;
+  //         ul.style.transform = `translateY(-${translateY}px)`;
+  //       }
 
-        if (this.arrData.length === step) {
-          step = 0;
-          translateY = 69;
-          ul.style.transform = `translateY(-${translateY}px)`;
-        }
-      }, 3000);
-    }
-  }
+  //       if (this.arrData.length === step) {
+  //         step = 0;
+  //         translateY = 69;
+  //         ul.style.transform = `translateY(-${translateY}px)`;
+  //       }
+  //     }, 3000);
+  //   }
+  // }
 
   private initDataForm() {
     this.dataForm = this.fb.group({
       location: [null],
       category: [null],
       type: [null],
+      height:[[null,null]],
+      weight:[[null,null]],
+      age:[[null,null]],
+      bodytype:[null],
+      hairColor:[null],
+      intimateHairs:[null],
     });
   }
 
@@ -317,6 +291,9 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
         categories: this.dataForm.value.category,
         types: this.dataForm.value.type,
         divisions: this.dataForm.value.location,
+        bodyTypes:this.dataForm.value.bodytype,
+        hairColors:this.dataForm.value.hairColor,
+        intimateHairs:this.dataForm.value.intimateHairs,
       },
       queryParamsHandling: 'merge',
     });
@@ -410,17 +387,17 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     this.isFocused = false;
   }
 
-  onSelectItem(data: Product): void {
-    console.log('data', data);
+  // onSelectItem(data: Product): void {
+  //   console.log('data', data);
 
-    this.searchInput.nativeElement.value = '';
-    // this.router.navigate(['/', 'product-details'+ data], {
-    //   // queryParams: { searchQuery: data },
-    //   // queryParamsHandling: 'merge',
-    // });
-    this.handleCloseAndClear();
-    this.router.navigate(['/ad-details', data]);
-  }
+  //   this.searchInput.nativeElement.value = '';
+  //   // this.router.navigate(['/', 'product-details'+ data], {
+  //   //   // queryParams: { searchQuery: data },
+  //   //   // queryParamsHandling: 'merge',
+  //   // });
+  //   this.handleCloseAndClear();
+  //   this.router.navigate(['/ad-details', data]);
+  // }
 
   onSearchNavigate() {
     let inputVal = (this.searchInput.nativeElement as HTMLInputElement).value;
@@ -496,7 +473,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       sort: { createdAt: -1 },
     };
 
-    this.subDataOne = this.typeService.getAllType(filter, null).subscribe({
+    this.subTypeService = this.typeService.getAllType(filter, null).subscribe({
       next: (res) => {
         if (res.success) {
           this.types = res.data;
@@ -522,7 +499,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       sort: { createdAt: -1 },
     };
 
-    this.subDataOne = this.categoryService
+    this.subTypeService = this.categoryService
       .getAllCategory(filter, null)
       .subscribe({
         next: (res) => {
@@ -562,6 +539,113 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
         }
       );
   }
+  private getAllHairColor() {
+    // Select
+    const mSelect = {
+      name: 1,
+      slug: 1,
+    };
+
+    const filter: FilterData = {
+      filter: null,
+      pagination: null,
+      select: mSelect,
+      sort: {name: 1},
+    };
+
+    this.subHairColor = this.hairColorService.getAllHairColor(filter, null).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.hairColors = res.data;
+          // this.checkHairColorFilter();
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  private getAllIntimateHair() {
+    // Select
+    const mSelect = {
+      name: 1,
+      slug: 1,
+    };
+
+    const filter: FilterData = {
+      filter: null,
+      pagination: null,
+      select: mSelect,
+      sort: {name: 1},
+    };
+
+    this.subIntimateHair = this.intimateHairService.getAllIntimateHair(filter, null).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.intimateHairs = res.data;
+          // this.checkintimateHairFilter();
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  private getAllOrientation() {
+    // Select
+    const mSelect = {
+      name: 1,
+      slug: 1,
+    };
+
+    const filter: FilterData = {
+      filter: null,
+      pagination: null,
+      select: mSelect,
+      sort: {name: 1},
+    };
+
+    this.subOrientation = this.orientationService.getAllOrientation(filter, null).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.orientations = res.data;
+          // this.checkOrientationsFilter();
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  private getAllBodyType() {
+    // Select
+    const mSelect = {
+      name: 1,
+      slug: 1,
+    };
+
+    const filter: FilterData = {
+      filter: null,
+      pagination: null,
+      select: mSelect,
+      sort: {name: 1},
+    };
+
+    this.subBodyType = this.bodyTypeService.getAllBodyType(filter, null).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.bodyTypes = res.data;
+          // this.checkBodyTypeFilter();
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 
   /**
    * HTTP REQ HANDLE
@@ -587,7 +671,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       sort: { createdAt: -1 },
     };
 
-    this.subDataOne = this.bannerService.getAllBanner(filter, null).subscribe({
+    this.subTypeService = this.bannerService.getAllBanner(filter, null).subscribe({
       next: (res) => {
         if (res.success) {
           this.banners = res.data;
@@ -635,16 +719,57 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
 
     this.typeMenu.closed.emit();
   }
+    /**
+   * Advance filter method
+   */
+    onHideFilter() {
+      this.advanchFilter = !this.advanchFilter;
+    }
+    formatLabel(value: number): string {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return `${value}`;
+  }
+  updateSliderValue(formControlName:string) {
+    const sliderStart = this.dataForm.get(formControlName).value[0];
+    console.log('sliderStart', sliderStart)
+    const sliderEnd = this.dataForm.get(formControlName).value[1];
+    console.log('sliderEnd', sliderEnd)
+    // Update the form control value based on the current slider values
+    this.dataForm.get(formControlName).setValue([sliderStart, sliderEnd]);
+  }
+
+  resetFilter(){
+    this.dataForm.reset();
+  }
 
   /**
    * ON DESTROY ALL SUBSCRIPTIONS
    */
+
   ngOnDestroy(): void {
-    if (this.subDataOne) {
-      this.subDataOne.unsubscribe();
+    if (this.subTypeService) {
+      this.subTypeService.unsubscribe();
     }
     if (this.subDivisionData) {
       this.subDivisionData.unsubscribe();
+    }
+    if (this.subFilterForm) {
+      this.subFilterForm.unsubscribe();
+    }
+    if (this.subHairColor) {
+      this.subHairColor.unsubscribe();
+    }
+    if (this.subIntimateHair) {
+      this.subIntimateHair.unsubscribe();
+    }
+    if (this.subOrientation) {
+      this.subOrientation.unsubscribe();
+    }
+    if (this.subBodyType) {
+      this.subBodyType.unsubscribe();
     }
   }
 }
