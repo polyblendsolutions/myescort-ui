@@ -74,6 +74,7 @@ export class AppProductAreaComponent implements OnInit, OnDestroy {
       user: 1,
       createdAt: 1,
       division: 1,
+      zone: 1,
     };
 
     const filter: FilterData = {
