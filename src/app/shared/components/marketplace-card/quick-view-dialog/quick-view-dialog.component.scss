@@ -141,7 +141,6 @@
   padding: 14px 14px;
   height: 549px;
   overflow: hidden;
-  overflow-y: auto;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -180,17 +179,20 @@
     align-items: center;
     gap: 8px;
 
-    span {
+    div {
+      
       font-family: $font-en-primary;
-      font-size: 22px;
-      font-weight: 600;
+      font-size: 40px !important;
+      font-weight: 600 !important;
       color: #403e3e;
       letter-spacing: 1px;
+      display: inline flow-root list-item;
+
     }
 
     .verify-icon {
-        width: 22px;
-        height: 22px;
+        width: 40px;
+        height: 40px;
       img {
         fill: #1d9bf0;
       }
@@ -199,7 +201,7 @@
 
   p {
     font-family: $font-en-primary2;
-    font-size: 15px;
+    font-size: 20px;
     letter-spacing: 0.5px;
     font-weight: 300;
     color: #403E3E;
@@ -240,7 +242,7 @@
 
     span {
       font-family: $font-en-primary;
-      font-weight: 400;
+      font-weight: 200;
       color: $heading-color;
       font-size: 15px;
       padding-top: 1px;
@@ -258,7 +260,7 @@
 .quick-details-right-bottom {
   h4 {
     font-family: $font-en-primary2;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: #303030;
     letter-spacing: 1px;
@@ -268,8 +270,11 @@
   }
 
   p {
+    overflow: hidden;
+    overflow-y: auto;
+    height: 246px;
     font-family: $font-en-primary2;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 200;
     color: #747474;
     letter-spacing: 1px;
