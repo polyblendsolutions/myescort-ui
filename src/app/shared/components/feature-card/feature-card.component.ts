@@ -38,13 +38,14 @@ export class FeatureCardComponent implements OnInit{
     private uiService: UiService,
   ) {}
   ngOnInit() {
-    this.tesData = this.data?.name.split(",")[0];
+    this.tesData = this.data?.category.name;
+    // this.tesData = this.data?.name.split(",")[0];
 
     const title = this.data?.name.substring(this.tesData.length).trim();
 
     var result = title.substring(1, title.length);
 
-    this.titleData = result;
+    this.titleData = this.data?.name;
 
     this.subReloadOne = this.reloadService.refreshWishList$.subscribe(() => {
       this.getWishListByUser();
