@@ -274,9 +274,18 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       location: [null],
       category: [null],
       type: [null],
-      height:[[null,null]],
-      weight:[[null,null]],
-      age:[[null,null]],
+      height:this.fb.group({
+        minHeight:[null],
+        maxHeight:[null],
+      }),
+      weight:this.fb.group({
+        minWeight:[null],
+        maxWeight:[null],
+      }),
+      age:this.fb.group({
+        minAge:[null],
+        maxAge:[null],
+      }),
       bodytype:[null],
       hairColor:[null],
       intimateHairs:[null],
@@ -285,19 +294,37 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     console.log(this.dataForm.value);
+    const formData = this.dataForm.value;
+    
+    let queryParams = {
+      categories: formData.category,
+      types: formData.type,
+      divisions: formData.location,
+      bodyTypes: formData.bodytype,
+      hairColors: formData.hairColor,
+      intimateHairs: formData.intimateHairs,
+      height:null,
+      weight:null,
+      age:null
+    };
+
+    if (formData.height && formData.height.minHeight !== null && formData.height.maxHeight !== null) {
+      queryParams.height = `${formData.height.minHeight}-${formData.height.maxHeight}`;
+    }
+
+    if (formData.weight && formData.weight.minWeight !== null && formData.weight.maxWeight !== null) {
+      queryParams.weight = `${formData.weight.minWeight}-${formData.weight.maxWeight}`;
+    }
+
+    if (formData.age && formData.age.minAge !== null && formData.age.maxAge !== null) {
+      queryParams.age = `${formData.age.minAge}-${formData.age.maxAge}`;
+    }
 
     this.router.navigate(['/ads'], {
-      queryParams: {
-        categories: this.dataForm.value.category,
-        types: this.dataForm.value.type,
-        divisions: this.dataForm.value.location,
-        bodyTypes:this.dataForm.value.bodytype,
-        hairColors:this.dataForm.value.hairColor,
-        intimateHairs:this.dataForm.value.intimateHairs,
-      },
+      queryParams,
       queryParamsHandling: 'merge',
     });
-  }
+}
   /**
    * HANDLE SEARCH Area
    * onClickHeader()
@@ -731,14 +758,6 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     }
 
     return `${value}`;
-  }
-  updateSliderValue(formControlName:string) {
-    const sliderStart = this.dataForm.get(formControlName).value[0];
-    console.log('sliderStart', sliderStart)
-    const sliderEnd = this.dataForm.get(formControlName).value[1];
-    console.log('sliderEnd', sliderEnd)
-    // Update the form control value based on the current slider values
-    this.dataForm.get(formControlName).setValue([sliderStart, sliderEnd]);
   }
 
   resetFilter(){

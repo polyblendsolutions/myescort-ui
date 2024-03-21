@@ -52,6 +52,12 @@ export class ProductListRightComponent implements OnInit {
   bodyTypesFilterArray: any[] = [];
   orientationsFilterArray: any[] = [];
   hairColorsFilterArray: any[] = [];
+  selectedHeight: string;
+  heightFilterArray: any[] = [];
+  selectedWeight: string;
+  weightFilterArray: any[] = [];
+  selectedAge: string;
+  ageFilterArray: any[] = [];
   // Subscriptions
   private subRouteOne: Subscription;
   private subDataOne: Subscription;
@@ -206,6 +212,52 @@ export class ProductListRightComponent implements OnInit {
         return {'zone.name': m}
       });
     }
+    if (qParam && qParam['height']) {
+      if (typeof qParam['height'] === 'string') {
+          this.selectedHeight = qParam['height'];
+      } else {
+          this.selectedHeight = qParam['height'];
+      }  
+      const [minHeight, maxHeight] = this.selectedHeight.split('-').map(Number);
+  
+      this.heightFilterArray = [{
+          height: {
+              $lte: maxHeight,
+              $gte: minHeight
+          }
+      }];  
+  } 
+    if (qParam && qParam['weight']) {
+        if (typeof qParam['weight'] === 'string') {
+            this.selectedWeight = qParam['weight'];
+        } else {
+            this.selectedWeight = qParam['weight'];
+        }    
+        const [minWeight, maxWeight] = this.selectedWeight.split('-').map(Number);
+    
+        this.weightFilterArray = [{
+            weight: {
+                $lte: maxWeight,
+                $gte: minWeight
+            }
+        }];  
+    } 
+    if (qParam && qParam['age']) {
+        if (typeof qParam['age'] === 'string') {
+            this.selectedAge = qParam['age'];
+        } else {
+            this.selectedAge = qParam['age'];
+        }    
+        const [minAge, maxAge] = this.selectedAge.split('-').map(Number);
+    
+        this.ageFilterArray = [{
+            age: {
+                $lte: maxAge,
+                $gte: minAge
+            }
+        }];  
+    } 
+  return []; // Default return statement  
   }
 
   private getAllProducts(loadMore?: boolean) {
@@ -296,7 +348,21 @@ export class ProductListRightComponent implements OnInit {
         {$or: this.zoneFilterArray}
       );
     }
-    console.log('comFilter',comFilter)
+    if (this.heightFilterArray.length) {
+      comFilter.push(
+        {$or: this.heightFilterArray}
+      );
+    }
+    if (this.weightFilterArray.length) {
+      comFilter.push(
+        {$or: this.weightFilterArray}
+      );
+    }
+    if (this.ageFilterArray.length) {
+      comFilter.push(
+        {$or: this.ageFilterArray}
+      );
+    }
     let mFilter;
     if (comFilter.length) {
       mFilter = {
@@ -305,10 +371,8 @@ export class ProductListRightComponent implements OnInit {
           $or: comFilter
         }
       }
-      console.log('mFilter',mFilter)
     } else {
       mFilter = this.filter;
-      console.log('mFilter',mFilter)
     }
 
     const filterData: FilterData = {
@@ -322,10 +386,6 @@ export class ProductListRightComponent implements OnInit {
 
     this.subDataOne = this.productService.getAllProducts(filterData, this.searchQuery)
       .subscribe(res => {
-
-        console.log(res)
-
-
         this.isLoading = false;
         this.isLoadMore = false;
         if (loadMore) {
@@ -387,7 +447,6 @@ export class ProductListRightComponent implements OnInit {
     this.subDataOne = this.productService.getAllProducts(filterData, this.searchQuery)
       .subscribe(res => {
           this.productData = res.data;
-          console.log("this.products666",this.products);
 
       }, error => {
         this.isLoading = false;

@@ -157,15 +157,15 @@
             <p>Height</p>
           </div>
           <mat-slider
+          formGroupName="height"
             min="150"
             max="200"
             showTickMarks
             discrete
             [displayWith]="formatLabel"
-            (input)="updateSliderValue('height')"
           >
-            <input matSliderStartThumb>
-            <input matSliderEndThumb>
+            <input formControlName="minHeight" matSliderStartThumb>
+            <input formControlName="maxHeight" matSliderEndThumb>
           </mat-slider>
         </div>
         <!-- END! filter-area-three-range-slider -->
@@ -180,11 +180,11 @@
             max="300"
             showTickMarks
             discrete
+            formGroupName="weight"
             [displayWith]="formatLabel"
-            (input)="updateSliderValue('weight')"
           >
-            <input matSliderStartThumb />
-            <input matSliderEndThumb />
+            <input formControlName="minWeight" matSliderStartThumb />
+            <input formControlName="maxWeight" matSliderEndThumb />
           </mat-slider>
         </div>
         <!-- END! filter-area-three-range-slider -->
@@ -200,11 +200,11 @@
             showTickMarks
             discrete
             [displayWith]="formatLabel"
-            (input)="updateSliderValue('age')"
-
+            formGroupName="age"
+    
           >
-            <input  matSliderStartThumb />
-            <input  matSliderEndThumb />
+            <input formControlName="minAge" matSliderStartThumb />
+            <input formControlName="maxAge" matSliderEndThumb />
           </mat-slider>
         </div>
         <!-- END! filter-area-three-range-slider -->
