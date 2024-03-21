@@ -281,10 +281,11 @@ export class ProductListRightComponent implements OnInit {
           this.products = [...this.products, ...this.tagProducts];
         } else {
           const type = {'/escort-aalborg':"escort", '/massage-aalborg':"massage" }[this.subRouteUrl]
-          this.products = this.tagProducts.filter(m => {
-            // return m.tags?.find(f => f.name === "Aalboarg")
-            return m.division?.name === "Aalborg" && m.type.slug === type
-          });
+          this.products = this.tagProducts;
+          // this.products = this.tagProducts.filter(m => {
+          //   // return m.tags?.find(f => f.name === "Aalboarg")
+          //   return m.division?.name === "Aalborg" && m.type.slug === type
+          // });
 
 
         }
