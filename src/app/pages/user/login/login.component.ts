@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   isLoading: boolean = false;
   private loginSubscription: Subscription;
+  public hide:boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -101,6 +102,10 @@ export class LoginComponent implements OnInit {
 
   get password() {
     return this.dataForm.get('password');
+  }
+
+  togglePasswordVisibility(): void {
+    this.hide = !this.hide;
   }
 
   ngOnDestroy(): void {

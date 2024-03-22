@@ -71,14 +71,18 @@
 
           <div class="form-input">
             <label for="password">Password <span>*</span></label>
-            <input
+            <div class="password-container">
+              <input
               formControlName="password"
               [minlength]="6"
               [class.invalid]="password.touched && password.invalid"
               type="password"
               id="password"
+              [type]="hidePassword ? 'password' : 'text'"
               placeholder="Enter..."
             />
+            <mat-icon mat-icon-button (click)="togglePasswordVisibility('password')">{{ hidePassword ? 'visibility' : 'lock' }}</mat-icon>
+            </div>            
             <p *ngIf="password.touched && password.invalid">
               This field is required.
             </p>
@@ -88,16 +92,20 @@
             <label for="confirm-password"
               >Confirm password <span>*</span></label
             >
+           <div class="password-container">
             <input
-              formControlName="confirmPassword"
-              [minlength]="6"
-              [class.invalid]="
-                confirmPassword.touched && confirmPassword.invalid
-              "
-              type="password"
-              id="confirm-password"
-              placeholder="Enter..."
-            />
+            formControlName="confirmPassword"
+            [minlength]="6"
+            [class.invalid]="
+              confirmPassword.touched && confirmPassword.invalid
+            "
+            type="password"
+            id="confirm-password"
+            [type]="hideConfirmPassword ? 'password' : 'text'"
+            placeholder="Enter..."
+          />
+          <mat-icon mat-icon-button (click)="togglePasswordVisibility('confirmPassword')">{{ hideConfirmPassword  ? 'visibility' : 'lock' }}</mat-icon>
+          </div>
             <p *ngIf="confirmPassword.touched && confirmPassword.invalid">
               This field is required.
             </p>
