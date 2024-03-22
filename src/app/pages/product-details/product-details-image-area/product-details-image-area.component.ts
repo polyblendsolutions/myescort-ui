@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/interfaces/common/product.interface';
 import { WishList } from 'src/app/interfaces/common/wish-list.interface';
-import { CarouselCntrlService } from 'src/app/services/common/carousel-cntrl.service';
 import { UserService } from 'src/app/services/common/user.service';
 import { WishListService } from 'src/app/services/common/wish-list.service';
 import { ReloadService } from 'src/app/services/core/reload.service';
@@ -17,7 +16,7 @@ import {NgxWatermarkOptions} from "ngx-watermark";
   templateUrl: './product-details-image-area.component.html',
   styleUrls: ['./product-details-image-area.component.scss']
 })
-export class ProductDetailsImaaeAreaComponent implements OnInit {
+export class ProductDetailsImageAreaComponent implements OnInit {
   //Store Data
   @Input() product: Product;
   @Input() selectedImage: string;
@@ -25,18 +24,17 @@ export class ProductDetailsImaaeAreaComponent implements OnInit {
   wishlists: WishList[];
   wishlist: WishList = null;
   image: string;
-  zoomImage: string;
+  public showFullImage:boolean=false
 
   // Image Zoom & View Area
   @ViewChild('zoomViewer', {static: true}) zoomViewer;
   //Subscription
-  private subReloadOne: Subscription;
-  private subDataOne: Subscription;
-  private subDataTwo: Subscription;
-  private subDataThree: Subscription;
+  private subRefreshWishList: Subscription;
+  private subGetWishList: Subscription;
+  private subAddWishList: Subscription;
+  private subDeleteWishList: Subscription;
 
   constructor(
-    private _carouselCtrl: CarouselCntrlService,
     private reloadService: ReloadService,
     private wishListService: WishListService,
     private uiService: UiService,
@@ -46,13 +44,15 @@ export class ProductDetailsImaaeAreaComponent implements OnInit {
 
   ngOnInit(): void {
     // WiSHLIST FUNCTION STORED
-    this.subReloadOne = this.reloadService.refreshWishList$.subscribe(() => {
+    this.subRefreshWishList = this.reloadService.refreshWishList$.subscribe(() => {
       this.getWishListByUser();
     });
     this.getWishListByUser();
   }
 
-
+  toggleModal() {
+    this.showFullImage = !this.showFullImage;
+  }
 
   options: NgxWatermarkOptions = {
     text: 'This is NGX-WATERMARK',
@@ -92,7 +92,7 @@ export class ProductDetailsImaaeAreaComponent implements OnInit {
 */
 
   private getWishListByUser() {
-    this.subDataOne = this.wishListService.getWishListByUser()
+    this.subGetWishList = this.wishListService.getWishListByUser()
       .subscribe(res => {
         this.wishlists = res.data;
         this.checkWishList();
@@ -103,7 +103,7 @@ export class ProductDetailsImaaeAreaComponent implements OnInit {
   }
 
   addToWishListDB(data: WishList) {
-    this.subDataTwo = this.wishListService.addToWishList(data)
+    this.subAddWishList = this.wishListService.addToWishList(data)
       .subscribe(res => {
         // console.log(res);
         this.uiService.success(res.message);
@@ -115,7 +115,7 @@ export class ProductDetailsImaaeAreaComponent implements OnInit {
 
 
   public removeWishlistById(wishlistId: string) {
-    this.subDataThree = this.wishListService.deleteWishListById(wishlistId)
+    this.subDeleteWishList = this.wishListService.deleteWishListById(wishlistId)
       .subscribe(res => {
         this.reloadService.needRefreshWishList$();
         this.uiService.success(res.message);
@@ -140,14 +140,16 @@ export class ProductDetailsImaaeAreaComponent implements OnInit {
 
   private setDefaultImage() {
     this.image = this.product.images && this.product.images.length > 0 ? this.product.images[0] : '/assets/images/png/fallbackImage.png';
-    this.zoomImage = this.image;
   }
 
   onSelectImage(imageUrl: string) {
     this.selectedImage = imageUrl;
-    this.zoomImage = imageUrl;
   }
-
+   
+   showImages(imageUrl: string) {
+    this.selectedImage = imageUrl;
+    this.showFullImage = !this.showFullImage;
+  }
 
   public onMouseMove(e) {
     if (window.innerWidth >= 1099) {
@@ -176,17 +178,17 @@ export class ProductDetailsImaaeAreaComponent implements OnInit {
  */
 
   ngOnDestroy(): void {
-    if (this.subReloadOne) {
-      this.subReloadOne.unsubscribe();
+    if (this.subRefreshWishList) {
+      this.subRefreshWishList.unsubscribe();
     }
-    if (this.subDataOne) {
-      this.subDataOne.unsubscribe();
+    if (this.subGetWishList) {
+      this.subGetWishList.unsubscribe();
     }
-    if (this.subDataTwo) {
-      this.subDataTwo.unsubscribe();
+    if (this.subAddWishList) {
+      this.subAddWishList.unsubscribe();
     }
-    if (this.subDataThree) {
-      this.subDataThree.unsubscribe();
+    if (this.subDeleteWishList) {
+      this.subDeleteWishList.unsubscribe();
     }
 
   }
