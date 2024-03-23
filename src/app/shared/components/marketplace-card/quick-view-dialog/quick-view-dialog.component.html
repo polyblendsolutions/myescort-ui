@@ -40,9 +40,9 @@
 
       <div class="product-details-quick-child-right">
         <div class="quick-details-right-top">
-          <div class="quick-right-title">
+          <div class="quick-right-title" >
             <h2>
-              <div>{{ product?.name }}</div>
+              <div (click)="selectTitle()">{{ product?.name }}</div>
               <span *ngIf="product?.user?.isVerfied" class="verify-icon">
                 <img  src="./assets/images/svg/verified.svg" alt="verified">
               </span>
