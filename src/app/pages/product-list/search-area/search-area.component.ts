@@ -47,7 +47,7 @@ export class SearchAreaComponent implements OnInit, OnDestroy {
 
   divisions: Division[];
   @ViewChild('searchForm') searchForm: NgForm;
-  advanchFilter = false;
+  // advanchFilter = false;
   @ViewChild('matMenuBtn') matMenuBtn!: MatMenuTrigger;
   // Data Form
   @ViewChild('formElement') formElement: NgForm;
@@ -419,9 +419,9 @@ export class SearchAreaComponent implements OnInit, OnDestroy {
       );
   }
 
-  onHideFilter() {
-    this.advanchFilter = !this.advanchFilter;
-  }
+  // onHideFilter() {
+  //   this.advanchFilter = !this.advanchFilter;
+  // }
 
   onSelectBtnDis(value: any, event: MouseEvent) {
     event.stopImmediatePropagation();
