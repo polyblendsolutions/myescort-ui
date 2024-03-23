@@ -1,0 +1,79 @@
+<div class="product-details-left">
+  <div class="product-image-top">
+    <swiper
+      [slidesPerView]="1"
+      [spaceBetween]="0"
+      [autoplay]="false"
+      [loop]="true"
+      [grabCursor]="true"
+      [navigation]="true"
+      [breakpoints]="{
+        '0': {
+          slidesPerView: 1
+        }
+      }"
+      class="mySwiper mySwiperTwo"
+    >    
+      <ng-template swiperSlide *ngFor="let imgPath of product?.images">
+        <img (click)="showImages(imgPath)" [src]="imgPath" class="product-image" alt="Product Image">
+      </ng-template>
+    </swiper>
+
+    <!-- <span
+      (click)="onAddToWishList($event)"
+      [ngClass]="{ active: product?._id === wishlist?.product?._id }"
+      ><i class="fa fa-heart"></i
+    ></span> -->
+    <!-- <span class="search-pro-detail">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </span> -->
+  </div>
+  <div class="modal" [ngClass]="{'active': showFullImage}" *ngIf="showFullImage">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <img [src]="selectedImage" alt="" alt="Image">
+      <span class="close-btn" (click)="toggleModal()">&times;</span>
+    </div>
+  </div>
+  <div class="product-image-slider">
+    <swiper
+      [slidesPerView]="3"
+      [spaceBetween]="13"
+      [autoplay]="true"
+      
+      [grabCursor]="true"
+      [navigation]="false"
+      [breakpoints]="{
+        '520': {
+          slidesPerView: 3
+        },
+        '768': {
+          slidesPerView: 3
+        },
+        '900': {
+          slidesPerView: 4
+        },
+        '1000': {
+          slidesPerView: 4
+        }
+      }"
+      class="mySwiper"
+    >
+      <ng-template swiperSlide *ngFor="let imgPath of product?.images">
+        <div class="slide-img">
+          <img
+            (click)="onSelectImage(imgPath)"
+            [src]="imgPath ? imgPath : './assets/images/temp/products/01.jpg'"
+            alt="Image"
+          />
+        </div>
+      </ng-template>
+    </swiper>
+  </div>
+
+  <div class="product-details-about">
+    <h3>About me</h3>
+    <p>
+      {{ product?.shortDescription }}
+    </p>
+  </div>
+</div>

@@ -43,27 +43,25 @@
           </div>
           <div class="form-input">
             <label for="password">Password</label>
-            <input
+            <div class="password-container">
+              <input
               id="password"
               [class.active]="
                 dataForm.get('password')?.touched &&
                 dataForm.get('password')?.invalid
               "
               formControlName="password"
-              type="password"
+              [type]="hide ? 'password' : 'text'"
               placeholder="Enter..."
             />
-            <p
-              *ngIf="
-                dataForm.get('password')?.touched &&
-                dataForm.get('password')?.invalid
-              "
-            >
+              <mat-icon mat-icon-button (click)="togglePasswordVisibility()">{{ hide ? 'visibility' : 'lock' }}</mat-icon>
+            </div>
+            <p *ngIf="dataForm.get('password')?.touched && dataForm.get('password')?.invalid">
               This field is required.
             </p>
-
+          
             <a class="forgot-pass">Forgot Password</a>
-          </div>
+          </div>          
 
           <div class="submit-and-agree">
             <div class="form-checkbox">

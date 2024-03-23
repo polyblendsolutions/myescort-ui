@@ -486,22 +486,24 @@
   border: none;
   background-color: white;
   width: 100%;
-
-  .area {
-    display: flex;
-    flex-direction: column;
-    border: none;
-    background-color: white;
-    width: 100%;
-
-    .zone {
-      display: flex;
-      flex-direction: column;
-      border: none;
-      background-color: white;
-      width: 100%;
-    }
-  }
+  align-items: flex-start;
+}
+.area {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background-color: white;
+  width: 100%;
+  align-items: flex-start;
+  
+}
+.zone {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background-color: white;
+  width: 100%;
+  align-items: flex-start;
 }
 
 .tttttt {
@@ -590,25 +592,38 @@
     line-height: 22px !important;
     color: #333;
     transition: all 0.12s linear;
-
-    .area {
-      font-family: $font-en-primary;
-      font-size: 13px;
-      letter-spacing: 0.5px;
-      color: #333;
-      padding-left: 15px !important;
-      line-height: 22px !important;
-      transition: all 0.12s linear;
-
-      .zone {
-        font-family: $font-en-primary;
-        padding-left: 15px !important;
-        font-size: 13px;
-        letter-spacing: 0.5px;
-        color: #333;
-        line-height: 22px !important;
-        transition: all 0.12s linear;
-      }
-    }
+    align-items: flex-start;
   }
+  .area {
+    font-family: $font-en-primary;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: #333;
+    padding-left: 30px !important;
+    line-height: 22px !important;
+    transition: all 0.12s linear;
+    align-items: flex-start;
+    
+  }
+  .zone {
+    font-family: $font-en-primary;
+    padding-left: 45px !important;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: #333;
+    line-height: 22px !important;
+    transition: all 0.12s linear;
+    align-items: flex-start;
+  }
+}
+
+.mat-menu .divisions,
+.mat-menu .area,
+.mat-menu .zone {
+  margin-left: 15px !important;
+}
+::ng-deep .mat-menu .divisions:hover,
+::ng-deep .mat-menu .area:hover,
+::ng-deep .mat-menu .zone:hover {
+  background-color: #f54da3 !important;
 }

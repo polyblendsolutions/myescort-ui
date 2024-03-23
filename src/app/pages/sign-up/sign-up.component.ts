@@ -16,7 +16,8 @@ export class SignUpComponent implements OnInit {
   dataForm?: FormGroup;
 
   navigateFrom: string = null;
-
+  public hidePassword = true;
+  public hideConfirmPassword = true;
 
   constructor(
     private fb: FormBuilder,
@@ -43,6 +44,7 @@ export class SignUpComponent implements OnInit {
    * FORM FUNCTIONS
    * initDataForm()
    * onSubmit()
+   * togglePasswordVisibility()
    */
   private initDataForm() {
     this.dataForm = this.fb.group({
@@ -115,7 +117,13 @@ export class SignUpComponent implements OnInit {
       });
   }
 
-
+  togglePasswordVisibility(inputType: string): void {
+    if (inputType === 'password') {
+      this.hidePassword = !this.hidePassword;
+    } else if (inputType === 'confirmPassword') {
+      this.hideConfirmPassword = !this.hideConfirmPassword;
+    }
+  }
   /**
    * Form Validations
    */

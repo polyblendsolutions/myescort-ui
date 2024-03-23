@@ -6,6 +6,7 @@ import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SignUpComponent } from './sign-up.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {DirectivesModule} from '../../shared/directives/directives.module';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {DirectivesModule} from '../../shared/directives/directives.module';
     SignUpRoutingModule,
     PageTopSectionModule,
     ReactiveFormsModule,
-    DirectivesModule
+    DirectivesModule,
+    MatIconModule
   ]
 })
 export class SignUpModule { }

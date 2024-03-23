@@ -45,32 +45,49 @@
 
             <mat-menu #menu="matMenu" class="mat-menu sec-one-mat">
               <p>Pick a region</p>
-
-              <button
-                (click)="onSelectBtnDis(disData?.name, $event)"
-                class="divisions"
-                type="button"
-                *ngFor="let disData of divisions"
-              >
-                {{ disData?.name }}
+            
+              <ng-container *ngFor="let disData of divisions">
                 <button
-                  (click)="onSelectBtnDis(area?.name, $event)"
-                  class="area"
+                  (click)="onSelectBtnDis(disData?.name, $event)"
+                  class="divisions parent-btn"
                   type="button"
-                  *ngFor="let area of disData?.area"
                 >
-                  {{ area.name }}
-
-                  <button
-                    (click)="onSelectBtnDis(zone?.name, $event)"
-                    class="zone"
-                    type="button"
-                    *ngFor="let zone of area?.zone"
-                  >
-                    {{ zone?.name }}
-                  </button>
+                
+          
+                  {{ disData?.name }}
+                  <span *ngIf="isSelectedValue === disData?.name">
+                    <i class="fas fa-check"></i>
+                  </span>
                 </button>
-              </button>
+            
+                <ng-container *ngFor="let area of disData?.area">
+                  <div class="child-container">
+                    <button
+                      (click)="onSelectBtnDis(area?.name, $event)"
+                      class="area child-btn"
+                      type="button"
+                    >
+                      {{ area.name }}
+                      <span *ngIf="isSelectedValue === area?.name">
+                        <i class="fas fa-check"></i>
+                      </span>
+                    </button>
+            
+                    <ng-container *ngFor="let zone of area?.zone">
+                      <button
+                        (click)="onSelectBtnDis(zone?.name, $event)"
+                        class="zone child-btn"
+                        type="button"
+                      >
+                        {{ zone?.name }}
+                        <span *ngIf="isSelectedValue === zone?.name">
+                          <i class="fas fa-check"></i>
+                        </span>
+                      </button>
+                    </ng-container>
+                  </div>
+                </ng-container>
+              </ng-container>
             </mat-menu>
           </div>
           <!-- END! sec-home-input-area (location) -->
@@ -102,6 +119,9 @@
                 *ngFor="let data of categorys"
               >
                 {{ data?.name }}
+                <span *ngIf="isSelectedValueCategory === data?.slug">
+                  <i class="fas fa-check"></i>
+                </span>
               </button>
             </mat-menu>
           </div>
@@ -134,6 +154,9 @@
                 *ngFor="let data of types"
               >
                 {{ data?.name }}
+                <span *ngIf="isSelectedValueType === data?.slug">
+                  <i class="fas fa-check"></i>
+                </span>
               </button>
             </mat-menu>
           </div>
