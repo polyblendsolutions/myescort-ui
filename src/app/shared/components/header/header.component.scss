@@ -298,7 +298,7 @@ header.fixed-header {
       a {
         font-family: $font-en-primary2;
         font-weight: 500;
-        font-size: 15px;
+        font-size: 19px;
         color: #636262;
         transition: all 0.12s linear;
         position: relative;
@@ -443,7 +443,7 @@ header.fixed-header {
       margin-bottom: 28px;
 
       img {
-        max-width: 100px;
+        max-width: 130px;
         width: 100%;
       }
 
@@ -479,6 +479,13 @@ header.fixed-header {
           }
         }
       }
+    }
+  }
+  @media (max-width: 400px) {
+    .nav-right {
+      background-color:$color-white;
+      color: $black-color;
+      width: 250px;
     }
   }
 

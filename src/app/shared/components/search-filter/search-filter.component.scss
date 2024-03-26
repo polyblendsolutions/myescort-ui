@@ -639,6 +639,14 @@
   overflow-y: scroll;
 }
 
+      .zone {
+        font-family: $font-en-primary;
+        // padding-left: 15px !important;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        color: #333;
+        line-height: 22px !important;
+        transition: all 0.12s linear;
 .filter-title {
   display: block;
   border-bottom: 1px solid $color-border;
@@ -1454,4 +1462,5 @@
 ::ng-deep .mat-menu .area:hover,
 ::ng-deep .mat-menu .zone:hover {
   background-color: #f54da3 !important;
+}
 }
