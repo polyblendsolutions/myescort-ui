@@ -373,8 +373,7 @@ export class ProductListRightComponent implements OnInit {
     } else {
       mFilter = this.filter;
     }
-
-    debugger;
+    
     const filterData: FilterData = {
       pagination: pagination,
       filter: mFilter,

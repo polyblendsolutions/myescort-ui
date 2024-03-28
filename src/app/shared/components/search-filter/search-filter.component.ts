@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { MatMenu } from '@angular/material/menu';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   EMPTY,
   Subscription,
@@ -101,6 +101,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   private subIntimateHair: Subscription;
   private subOrientation: Subscription;
   private subBodyType: Subscription;
+  private subRouteOne: Subscription;
 
   //Advanch Filter variables
   public advanchFilter:boolean=false
@@ -119,19 +120,36 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     private intimateHairService: IntimateHairService,
     private orientationService: OrientationService,
     private bodyTypeService: BodyTypeService,
+    private activatedRoute: ActivatedRoute,
 
   ) {}
 
   ngOnInit(): void {
-    this.initDataForm();
-    this.getAllCategory();
-    this.getAllType();
-    this.getAllDivision();
-    this.getAllBanner();
-    this.getAllHairColor();
-    this.getAllIntimateHair();
-    this.getAllOrientation();
-    this.getAllBodyType();
+    this.subRouteOne = this.activatedRoute.queryParams.subscribe((qParam) => {
+      if(Object.keys(qParam).length > 0 ) {
+        this.initDataForm(qParam);
+      } else {
+        this.initDataForm();
+      }
+        this.getAllCategory();
+        this.getAllType();
+        this.getAllDivision();
+        this.getAllBanner();
+        this.getAllHairColor();
+        this.getAllIntimateHair();
+        this.getAllOrientation();
+        this.getAllBodyType();
+      
+      const options = {
+        strings: ['København', 'Aalborg', 'Odense', 'Aarhus'],
+        typeSpeed: 100,
+        backSpeed: 60,
+        showCursor: true,
+        cursorChar: '',
+        loop: true,
+      };
+    });
+    
 
     /*
       'København',
@@ -140,14 +158,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       'Aarhus'
     */
 
-    const options = {
-      strings: ['København', 'Aalborg', 'Odense', 'Aarhus'],
-      typeSpeed: 100,
-      backSpeed: 60,
-      showCursor: true,
-      cursorChar: '',
-      loop: true,
-    };
+    
     // const typed = new Typed('.typed-element', options);
   }
 
@@ -269,7 +280,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   //   }
   // }
 
-  private initDataForm() {
+  private initDataForm(params?) {
     this.dataForm = this.fb.group({
       location: [null],
       category: [null],
@@ -290,6 +301,24 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       hairColor:[null],
       intimateHairs:[null],
     });
+    if(params && Object.keys(params).length > 0) {
+      if(params["divisions"]) {
+        this.onSelectBtnDis(params["divisions"]);
+      };
+      if(params["categories"]) {
+        this.onSelectBtnCategory(params["categories"]);
+      };
+      if(params["types"]) {
+        this.onSelectBtnType(params["types"]);
+      };
+      if(params["age"]) {
+        const minmaxArr = params["age"].split("-");
+        this.dataForm.controls["age"].setValue({
+          minAge: minmaxArr[0],
+          maxAge: minmaxArr[1]
+        })
+      }
+    }
   }
 
   onSubmit() {
@@ -306,7 +335,6 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       weight:null,
       age:null
     };
-    debugger;
     if (formData.height && formData.height.minHeight !== 150 && formData.height.maxHeight !== 200) {
       queryParams.height = `${formData.height.minHeight}-${formData.height.maxHeight}`;
     }
@@ -710,8 +738,8 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSelectBtnDis(value: any, event: MouseEvent) {
-    event.stopImmediatePropagation();
+  onSelectBtnDis(value: any, event?: MouseEvent) {
+    if(event) event.stopImmediatePropagation();
     this.isSelectedValue = value;
     this.isSelectedDis = true;
     this.isSelectedAll = false;
@@ -722,8 +750,8 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     this.menu?.closed.emit();
   }
 
-  onSelectBtnCategory(value: any, event: MouseEvent) {
-    event.stopImmediatePropagation();
+  onSelectBtnCategory(value: any, event?: MouseEvent) {
+    if(event) event.stopImmediatePropagation();
     this.isSelectedValueCategory = value;
     this.isSelectedCategory = true;
     this.isSelectedAllCategory = false;
@@ -731,11 +759,11 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       category: this.isSelectedValueCategory,
     });
 
-    this.categoryMenu.closed.emit();
+    this.categoryMenu?.closed.emit();
   }
 
-  onSelectBtnType(value: any, event: MouseEvent) {
-    event.stopImmediatePropagation();
+  onSelectBtnType(value: any, event?: MouseEvent) {
+    if(event) event.stopImmediatePropagation();
     this.isSelectedValueType = value;
     this.isSelectedType = true;
     this.isSelectedAllType = false;
@@ -743,7 +771,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       type: this.isSelectedValueType,
     });
 
-    this.typeMenu.closed.emit();
+    this.typeMenu?.closed.emit();
   }
     /**
    * Advance filter method
