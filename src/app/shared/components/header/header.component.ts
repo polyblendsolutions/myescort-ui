@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
   /* HEADER FIXED */
   headerFixed: boolean = false;
-  isShow: boolean = true;
+  isCookieBannerVisible: boolean = true;
   /**
    * Show and hide responsive nav.
    * Get subject data.
@@ -55,6 +55,9 @@ export class HeaderComponent implements OnInit {
     )
 // this.openComponentDialog()
     this.getAllProduct();
+    const MILLISECONDS_IN_MONTH = 30 * 24 * 60 * 60 * 1000; 
+    const lastDialogShown = localStorage.getItem('lastDialogShown');
+    this.isCookieBannerVisible = !lastDialogShown || (Date.now() - parseInt(lastDialogShown, 10)) > MILLISECONDS_IN_MONTH;
 
   }
 
@@ -161,12 +164,15 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  isHideCooki(){
-    this.isShow = false;
+  isHideCookie(){
+    this.isCookieBannerVisible = false;
+    localStorage.setItem('lastDialogShown', Date.now().toString());
   }
 
-  isShowCooki(){
-    this.isShow = true;
+  isShowCookie(){
+    const MILLISECONDS_IN_MONTH = 30 * 24 * 60 * 60 * 1000; 
+    const lastDialogShown = localStorage.getItem('lastDialogShown');
+    this.isCookieBannerVisible = !lastDialogShown || (Date.now() - parseInt(lastDialogShown, 10)) > MILLISECONDS_IN_MONTH;
   }
 
   ngOnDestroy(): void {

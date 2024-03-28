@@ -172,7 +172,7 @@
 
 .quick-right-title {
   position: relative;
-
+  
   h2 {
     display: flex;
     justify-content: flex-start;
@@ -180,7 +180,7 @@
     gap: 8px;
 
     div {
-      
+      cursor: pointer;
       font-family: $font-en-primary;
       font-size: 36px !important;
       font-weight: 400 !important;

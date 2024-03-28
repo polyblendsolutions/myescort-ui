@@ -275,16 +275,16 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       category: [null],
       type: [null],
       height:this.fb.group({
-        minHeight:[null],
-        maxHeight:[null],
+        minHeight:[150],
+        maxHeight:[200],
       }),
       weight:this.fb.group({
-        minWeight:[null],
-        maxWeight:[null],
+        minWeight:[50],
+        maxWeight:[300],
       }),
       age:this.fb.group({
-        minAge:[null],
-        maxAge:[null],
+        minAge:[18],
+        maxAge:[80],
       }),
       bodytype:[null],
       hairColor:[null],
@@ -761,7 +761,43 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   }
 
   resetFilter(){
-    this.dataForm.reset();
+    // this.dataForm.reset();
+    this.dataForm = this.fb.group({
+      location: [null],
+      category: [null],
+      type: [null],
+      height:this.fb.group({
+        minHeight:[150],
+        maxHeight:[200],
+      }),
+      weight:this.fb.group({
+        minWeight:[50],
+        maxWeight:[300],
+      }),
+      age:this.fb.group({
+        minAge:[18],
+        maxAge:[80],
+      }),
+      bodytype:[null],
+      hairColor:[null],
+      intimateHairs:[null],
+    });
+    const formData = this.dataForm.value;    
+    let queryParams = {
+      categories: formData.category,
+      types: formData.type,
+      divisions: formData.location,
+      bodyTypes: formData.bodytype,
+      hairColors: formData.hairColor,
+      intimateHairs: formData.intimateHairs,
+      height:null,
+      weight:null,
+      age:null
+    };
+    this.router.navigate(['/ads'], {
+      queryParams,
+      queryParamsHandling: 'merge',
+    });
   }
 
   /**
