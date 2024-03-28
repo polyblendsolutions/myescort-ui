@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ProductDetailsImaaeAreaComponent } from './product-details-imaae-area/product-details-image-area.component';
-
 import { MarketplaceCardModule } from 'src/app/shared/components/marketplace-card/marketplace-card.module';
 import { PageTopSectionModule } from 'src/app/shared/components/page-top-section/page-top-section.module';
 import { SwiperModule } from 'swiper/angular';
@@ -20,11 +18,12 @@ import { RatingAndReviewComponent } from './rating-and-review/rating-and-review.
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductReportComponent } from './product-report/product-report.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { ProductDetailsImageAreaComponent } from './product-details-image-area/product-details-image-area.component';
 
 @NgModule({
   declarations: [
     ProductDetailsComponent,
-    ProductDetailsImaaeAreaComponent,
+    ProductDetailsImageAreaComponent,
     ProductDetailsRightAreaComponent,
     ProductDetailsInfoComponent,
     SelectDaysComponent,

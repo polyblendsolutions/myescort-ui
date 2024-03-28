@@ -1,11 +1,12 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, pluck } from 'rxjs';
 import { Product } from 'src/app/interfaces/common/product.interface';
 import { FilterData } from 'src/app/interfaces/core/filter-data';
 import { CarouselCntrlService } from 'src/app/services/common/carousel-cntrl.service';
 import { ProductService } from 'src/app/services/common/product.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-quick-view-dialog',
@@ -31,7 +32,9 @@ export class QuickViewDialogComponent {
     private _carouselCtrl: CarouselCntrlService,
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
-    @Inject(MAT_DIALOG_DATA) public data: string
+    @Inject(MAT_DIALOG_DATA) public data: string,
+    private router: Router,
+    private dialogRef: MatDialogRef<any>
   ) {}
   ngOnInit(): void {
     if (this.data) {
@@ -68,6 +71,10 @@ export class QuickViewDialogComponent {
   public selectImage(image: any) {
     this.image = image;
     this.zoomImage = image;
+  }
+  public selectTitle(){
+    this.dialogRef.close();
+    this.router.navigate(['/ad-details', this.product._id]);
   }
   private setDefaultImage() {
     this.image =

@@ -5,6 +5,7 @@ import { PageTopSectionModule } from './../../../shared/components/page-top-sect
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { LoginComponent } from './login.component';
     CommonModule,
     LoginRoutingModule,
     PageTopSectionModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ]
 })
 export class LoginModule { }

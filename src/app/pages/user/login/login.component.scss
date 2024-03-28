@@ -409,3 +409,13 @@ form.select-form {
     }
   }
 }
+.password-container{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  .mat-icon{
+      margin-left: auto;
+      position: absolute;
+      margin-right: 10px;
+  }
+}
