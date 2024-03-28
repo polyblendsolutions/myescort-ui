@@ -316,7 +316,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     }
 
     if (formData.age && formData.age.minAge !== 18 && formData.age.maxAge !== 80) {
-      queryParams.age = `${formData.age.minAge.toString()}-${formData.age.maxAge.toString()}`;
+      queryParams.age = `${formData.age.minAge}-${formData.age.maxAge}`;
     }
 
     this.router.navigate(['/ads'], {
