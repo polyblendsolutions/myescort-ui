@@ -788,7 +788,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   }
 
   resetFilter(){
-    // this.dataForm.reset();
+    debugger
     this.dataForm = this.fb.group({
       location: [null],
       category: [null],
@@ -809,6 +809,9 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       hairColor:[null],
       intimateHairs:[null],
     });
+    this.onSelectBtnDis(null);
+    this.onSelectBtnCategory(null);
+    this.onSelectBtnType(null);
     const formData = this.dataForm.value;    
     let queryParams = {
       categories: formData.category,
