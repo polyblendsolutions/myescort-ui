@@ -293,7 +293,6 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.dataForm.value);
     const formData = this.dataForm.value;
     
     let queryParams = {
