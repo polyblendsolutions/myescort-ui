@@ -306,17 +306,17 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       weight:null,
       age:null
     };
-
-    if (formData.height && formData.height.minHeight !== null && formData.height.maxHeight !== null) {
+    debugger;
+    if (formData.height && formData.height.minHeight !== 150 && formData.height.maxHeight !== 200) {
       queryParams.height = `${formData.height.minHeight}-${formData.height.maxHeight}`;
     }
 
-    if (formData.weight && formData.weight.minWeight !== null && formData.weight.maxWeight !== null) {
+    if (formData.weight && formData.weight.minWeight !== 50 && formData.weight.maxWeight !== 300) {
       queryParams.weight = `${formData.weight.minWeight}-${formData.weight.maxWeight}`;
     }
 
-    if (formData.age && formData.age.minAge !== null && formData.age.maxAge !== null) {
-      queryParams.age = `${formData.age.minAge}-${formData.age.maxAge}`;
+    if (formData.age && formData.age.minAge !== 18 && formData.age.maxAge !== 80) {
+      queryParams.age = `${formData.age.minAge.toString()}-${formData.age.maxAge.toString()}`;
     }
 
     this.router.navigate(['/ads'], {

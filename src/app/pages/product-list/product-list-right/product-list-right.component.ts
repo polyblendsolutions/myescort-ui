@@ -251,8 +251,8 @@ export class ProductListRightComponent implements OnInit {
       this.ageFilterArray = [
         {
           age: {
-            $lte: maxAge,
-            $gte: minAge,
+            $lte: maxAge.toString(),
+            $gte: minAge.toString(),
           },
         },
       ];
@@ -294,66 +294,90 @@ export class ProductListRightComponent implements OnInit {
     };
 
     // Compleax Filter Array Based on Selections
-    const comFilter: any[] = [];
+    const comFilter = { status: 'publish' };
     if (this.categoryFilterArray.length) {
-      comFilter.push({ $or: this.categoryFilterArray });
+      // comFilter.push({ $or: this.categoryFilterArray });
+      // comFilter.push(this.categoryFilterArray);
+
+      comFilter[Object.keys(this.divisionFilterArray[0])[0]] = Object.values(this.divisionFilterArray[0])[0];
     }
 
     if (this.typeFilterArray.length) {
-      comFilter.push({ $or: this.typeFilterArray });
+      // comFilter.push({ $or: this.typeFilterArray });
+      // comFilter.push(this.typeFilterArray);
+      comFilter[Object.keys(this.typeFilterArray[0])[0]] = Object.values(this.typeFilterArray[0])[0];
     }
 
     if (this.intimateHairsFilterArray.length) {
-      comFilter.push({ $or: this.intimateHairsFilterArray });
+      // comFilter.push({ $or: this.intimateHairsFilterArray });
+      // comFilter.push(this.intimateHairsFilterArray);
+      comFilter[Object.keys(this.intimateHairsFilterArray[0])[0]] = Object.values(this.intimateHairsFilterArray[0])[0];
     }
 
     if (this.bodyTypesFilterArray.length) {
-      comFilter.push({ $or: this.bodyTypesFilterArray });
+      // comFilter.push({ $or: this.bodyTypesFilterArray });
+      // comFilter.push(this.bodyTypesFilterArray);
+      comFilter[Object.keys(this.bodyTypesFilterArray[0])[0]] = Object.values(this.bodyTypesFilterArray[0])[0];
     }
 
     if (this.hairColorsFilterArray.length) {
-      comFilter.push({ $or: this.hairColorsFilterArray });
+      // comFilter.push({ $or: this.hairColorsFilterArray });
+      // comFilter.push(this.hairColorsFilterArray);
+      comFilter[Object.keys(this.hairColorsFilterArray[0])[0]] = Object.values(this.hairColorsFilterArray[0])[0];
     }
 
     if (this.orientationsFilterArray.length) {
-      comFilter.push({ $or: this.orientationsFilterArray });
+      // comFilter.push({ $or: this.orientationsFilterArray });
+      // comFilter.push(this.orientationsFilterArray);
+      comFilter[Object.keys(this.orientationsFilterArray[0])[0]] = Object.values(this.orientationsFilterArray[0])[0];
     }
 
     if (this.divisionFilterArray.length) {
-      comFilter.push({ $or: this.divisionFilterArray });
+      // comFilter.push({ $or: this.divisionFilterArray });
+      // comFilter.push(this.divisionFilterArray[0]);
+      comFilter[Object.keys(this.divisionFilterArray[0])[0]] = Object.values(this.divisionFilterArray[0])[0];
     }
 
     if (this.areaFilterArray.length) {
-      comFilter.push({ $or: this.areaFilterArray });
+      // comFilter.push({ $or: this.areaFilterArray });
+      // comFilter.push(this.areaFilterArray);
+      comFilter[Object.keys(this.areaFilterArray[0])[0]] = Object.values(this.areaFilterArray[0])[0];
     }
 
     if (this.zoneFilterArray.length) {
-      comFilter.push({ $or: this.zoneFilterArray });
+      // comFilter.push({ $or: this.zoneFilterArray });
+      // comFilter.push(this.zoneFilterArray);
+      comFilter[Object.keys(this.zoneFilterArray[0])[0]] = Object.values(this.zoneFilterArray[0])[0];
     }
     if (this.heightFilterArray.length) {
-      comFilter.push({ $or: this.heightFilterArray });
+      // comFilter.push({ $or: this.heightFilterArray });
+      // comFilter.push(this.heightFilterArray);
+      comFilter[Object.keys(this.heightFilterArray[0])[0]] = Object.values(this.heightFilterArray[0])[0];
     }
     if (this.weightFilterArray.length) {
-      comFilter.push({ $or: this.weightFilterArray });
+      // comFilter.push({ $or: this.weightFilterArray });
+      // comFilter.push(this.weightFilterArray);
+      comFilter[Object.keys(this.weightFilterArray[0])[0]] = Object.values(this.weightFilterArray[0])[0];
     }
     if (this.ageFilterArray.length) {
-      comFilter.push({ $or: this.ageFilterArray });
+      // comFilter.push({ $or: this.ageFilterArray });
+      // comFilter.push(this.ageFilterArray);
+      comFilter[Object.keys(this.ageFilterArray[0])[0]] = Object.values(this.ageFilterArray[0])[0];
     }
     let mFilter;
-    if (comFilter.length) {
+    if (Object.keys(comFilter).length && Object.keys(comFilter).length > 0) {
       mFilter = {
         ...this.filter,
-        ...{
-          $or: comFilter,
-        },
+        ...comFilter,
       };
     } else {
       mFilter = this.filter;
     }
 
+    debugger;
     const filterData: FilterData = {
       pagination: pagination,
-      filter: { ...mFilter, status: 'publish' },
+      filter: mFilter,
       filterGroup: null,
       select: mSelect,
       sort: { createdAt: -1 },
