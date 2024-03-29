@@ -4,7 +4,7 @@ import { Product } from 'src/app/interfaces/common/product.interface';
 import { FilterData } from 'src/app/interfaces/core/filter-data';
 import { ProductService } from 'src/app/services/common/product.service';
 import { ReloadService } from 'src/app/services/core/reload.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-my-list',
   templateUrl: './my-list.component.html',
@@ -75,6 +75,11 @@ export class MyListComponent {
         next: (res) => {
           if (res.success) {
             this.products = res.data;
+            this.products.forEach((obj:any)=>{
+              if(obj.createdAt){
+                obj.activeUntill = moment(obj.createdAt).add(1, 'M')?.['_d'];
+              }
+            })
             console.log(this.products);
           }
         },
