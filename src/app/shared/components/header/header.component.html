@@ -42,8 +42,7 @@
               routerLink="ads"
               routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: true }"
-              ><i class="fa-regular fa-heart"></i>
-              Alle annoncer</a
+              >Alle annoncer</a
             >
           </li>
           <li>
@@ -51,8 +50,7 @@
               (click)="onShowHideResponsiveNav()"
               routerLink="/blogs"
               routerLinkActive="active"
-              ><i class="fa-regular fa-credit-card"></i
-                > Good to know</a
+              >Good to know</a
             >
           </li>
           <li>
@@ -60,8 +58,7 @@
               (click)="onShowHideResponsiveNav()"
               routerLink="pages/support"
               routerLinkActive="active"
-              ><i class="fa-regular fa-user"></i
-                > Support</a
+              >Support</a
             >
           </li>
           <li>
@@ -71,7 +68,7 @@
               routerLink="/account/profile"
               routerLinkActive="active"
               ><i class="fa-regular fa-user"></i
-            > Login Account</a>
+            ></a>
           </li>
           <li>
             <a
@@ -201,16 +198,16 @@
 </header>
 <!-- END! header -->
 
-<button
+<!-- <button
   class="footer-marquee"
-  (click)="isShowCooki()"
+  (click)="isShowCookie()"
   #menuTrigger
-  *ngIf="!isShow"
+  *ngIf="!isCookieBannerVisible"
 >
   Cookie Info
-</button>
+</button> -->
 
-<div class="dialog footer-marquee-details" *ngIf="isShow">
+<div class="dialog footer-marquee-details" *ngIf="isCookieBannerVisible">
   <div mat-dialog-content>
     <p>
       This website uses cookies to ensure you get the best esperience on our
@@ -221,6 +218,6 @@
     </p>
   </div>
   <div class="dialog-btn" mat-dialog-actions>
-    <button class="dialog-button" (click)="isHideCooki()">Got it</button>
+    <button class="dialog-button" (click)="isHideCookie()">Got it</button>
   </div>
 </div>
