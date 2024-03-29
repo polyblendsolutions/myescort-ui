@@ -173,11 +173,7 @@
     z-index: -10;
   }
 }
-@media (max-width: 400px) {
-  .section-one-home {
-   background: none !important;
-  }
-}
+
 /* --- section-one-main --- */
 .section-one-main {
   width: 100%;
@@ -273,12 +269,7 @@
     }
   }
 }
-@media (max-width: 400px) {
-  .sec-one-home-title {
-      display: none;
-    
-  }
-}
+
 @media (max-width: 578px) {
   .sec-one-home-title {
     h1 {
@@ -628,11 +619,6 @@
     align-items: flex-start;
   }
 }
-@media (max-width: 400px) {
-  .mobile-img-bgColor {
-   background-image: linear-gradient(to bottom, #f9d5e7, #fbe6e9);
-  
-  }
 
 .mat-menu .divisions,
 .mat-menu .area,
@@ -643,4 +629,4 @@
 ::ng-deep .mat-menu .area:hover,
 ::ng-deep .mat-menu .zone:hover {
   background-color: #f54da3 !important;
-}}
+}
