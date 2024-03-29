@@ -18,6 +18,9 @@ import { ProfileVarificationComponent } from './profile-varification/profile-var
 import { ProfileComponent } from './profile/profile.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     SubscriptionComponent,
     ProfileVarificationComponent,
     AccountTopSectionComponent,
+    AccountSettingsComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +45,9 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     NgxDropzoneModule,
     MarketplaceCardModule,
     AppMarketplaceCardTwoModule,
+    ReactiveFormsModule,
+    MatIconModule
+
   ],
 })
 export class AccountModule {}
