@@ -30,8 +30,25 @@
   </div>
   <div class="modal" [ngClass]="{'active': showFullImage}" *ngIf="showFullImage">
     <div class="modal-content" (click)="$event.stopPropagation()">
-      <img [src]="selectedImage" alt="" alt="Image">
-      <span class="close-btn" (click)="toggleModal()">&times;</span>
+      <swiper
+      [slidesPerView]="1"
+      [spaceBetween]="0"
+      [autoplay]="false"
+      [loop]="true"
+      [grabCursor]="true"
+      [navigation]="true"
+      [breakpoints]="{
+        '0': {
+          slidesPerView: 1
+        }
+      }"
+      class="mySwiper mySwiperTwo"
+    >    
+      <ng-template swiperSlide *ngFor="let imgPath of product?.images">
+        <img [src]="imgPath" alt="Product Image">
+      </ng-template>
+    </swiper>
+          <span class="close-btn" (click)="toggleModal()">&times;</span>
     </div>
   </div>
   <div class="product-image-slider">

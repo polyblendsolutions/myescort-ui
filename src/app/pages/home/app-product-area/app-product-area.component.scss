@@ -1,7 +1,6 @@
 @import "/src/theme/variables";
 @import "/src/theme/exports/title";
 
-
 /* --- product-category-area --- */
 .product-category-area {
     background-color: $bg-two;
@@ -33,10 +32,5 @@
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 16px;
         padding-top: 34px;
-    }
-}
-@media (max-width: 376px) {
-    .product-category-area-cards {
-        grid: none;
     }
 }
