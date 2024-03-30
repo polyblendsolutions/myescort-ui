@@ -282,8 +282,6 @@ export class SearchAreaComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.dataForm.value);
-
     this.router.navigate(['/ads'], {
       queryParams: {
         categories: this.dataForm.value.category,

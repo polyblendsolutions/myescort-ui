@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductListService } from 'src/app/services/common/product-list.service';
-import { Product } from "../../../interfaces/common/product.interface";
-import { Subscription } from "rxjs";
-import { ProductService } from "../../../services/common/product.service";
-import { FilterData } from "../../../interfaces/core/filter-data";
-import {ActivatedRoute} from '@angular/router';
-import {Pagination} from '../../../interfaces/core/pagination';
+import { Product } from '../../../interfaces/common/product.interface';
+import { Subscription } from 'rxjs';
+import { ProductService } from '../../../services/common/product.service';
+import { FilterData } from '../../../interfaces/core/filter-data';
+import { ActivatedRoute } from '@angular/router';
+import { Pagination } from '../../../interfaces/core/pagination';
 
 @Component({
   selector: 'app-product-list-right',
   templateUrl: './product-list-right.component.html',
-  styleUrls: ['./product-list-right.component.scss']
+  styleUrls: ['./product-list-right.component.scss'],
 })
 export class ProductListRightComponent implements OnInit {
-
   //Store data
   products: Product[] = [];
   productData: Product[] = [];
@@ -22,13 +21,12 @@ export class ProductListRightComponent implements OnInit {
   areaData: any;
   divisionData: any;
   zoneData: any;
-  filterValue:any;
+  filterValue: any;
 
   currentPage = 1;
   totalProducts = 0;
   productsPerPage = 12;
   totalProductsStore = 0;
-
 
   isLoading = false;
   isLoadMore = false;
@@ -65,14 +63,12 @@ export class ProductListRightComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
-    private _productList: ProductListService,
-  ) {
-  }
+    private _productList: ProductListService
+  ) {}
 
   ngOnInit(): void {
-
     // GET PAGE FROM QUERY PARAM
-    this.subRouteOne = this.activatedRoute.queryParams.subscribe(qParam => {
+    this.subRouteOne = this.activatedRoute.queryParams.subscribe((qParam) => {
       // this.location = qParam['category'];
       this.divisionData = qParam['divisions'];
       this.areaData = qParam['area'];
@@ -81,19 +77,22 @@ export class ProductListRightComponent implements OnInit {
       // this.filterValue = this.areaData;
       // this.filterValue = this.zoneData;
       // console.log('this.location',this.location)
-      // Search Query
-      this.searchQueryFromQueryParam(qParam);
 
-      // Filter Query
-      this.filterQueryFromQueryParam(qParam);
+      
+
+      if (Object.values(qParam).length !== 0) {
+        // Search Query
+        this.searchQueryFromQueryParam(qParam);
+
+        // Filter Query
+        this.filterQueryFromQueryParam(qParam);
+      }
 
       // Fetch data
       this.getAllProducts();
       this.getAllProduct();
-
     });
   }
-
 
   /**
    * QUERY BUILDER
@@ -115,8 +114,8 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedCategories = qParam['categories'];
       }
-      this.categoryFilterArray = this.selectedCategories.map(m => {
-        return {'category.slug': m}
+      this.categoryFilterArray = this.selectedCategories.map((m) => {
+        return { 'category.slug': m };
       });
     }
 
@@ -126,10 +125,9 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedTypes = qParam['types'];
       }
-      this.typeFilterArray = this.selectedTypes.map(m => {
-        return {'type.slug': m}
+      this.typeFilterArray = this.selectedTypes.map((m) => {
+        return { 'type.slug': m };
       });
-
     }
 
     if (qParam && qParam['intimateHairs']) {
@@ -138,8 +136,8 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedintimateHairs = qParam['intimateHairs'];
       }
-      this.intimateHairsFilterArray = this.selectedintimateHairs.map(m => {
-        return {'intimateHair.slug': m}
+      this.intimateHairsFilterArray = this.selectedintimateHairs.map((m) => {
+        return { 'intimateHair.slug': m };
       });
     }
 
@@ -149,11 +147,10 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedBodyTypes = qParam['bodyTypes'];
       }
-      this.bodyTypesFilterArray = this.selectedBodyTypes.map(m => {
-        return {'bodyType.slug': m}
+      this.bodyTypesFilterArray = this.selectedBodyTypes.map((m) => {
+        return { 'bodyType.slug': m };
       });
     }
-
 
     if (qParam && qParam['orientations']) {
       if (typeof qParam['orientations'] === 'string') {
@@ -161,8 +158,8 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedOrientations = qParam['orientations'];
       }
-      this.orientationsFilterArray = this.selectedOrientations.map(m => {
-        return {'orientation.slug': m}
+      this.orientationsFilterArray = this.selectedOrientations.map((m) => {
+        return { 'orientation.slug': m };
       });
     }
 
@@ -172,8 +169,8 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedHairColors = qParam['hairColors'];
       }
-      this.orientationsFilterArray = this.selectedHairColors.map(m => {
-        return {'hairColor.slug': m}
+      this.orientationsFilterArray = this.selectedHairColors.map((m) => {
+        return { 'hairColor.slug': m };
       });
     }
 
@@ -183,12 +180,10 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedDivision = qParam['divisions'];
       }
-      this.divisionFilterArray = this.selectedDivision.map(m => {
-        return {'division.name': m}
+      this.divisionFilterArray = this.selectedDivision.map((m) => {
+        return { 'division.name': m };
       });
-
     }
-
 
     if (qParam && qParam['area']) {
       if (typeof qParam['area'] === 'string') {
@@ -196,10 +191,9 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedArea = qParam['area'];
       }
-      this.areaFilterArray = this.selectedArea.map(m => {
-        return {'area.name': m}
+      this.areaFilterArray = this.selectedArea.map((m) => {
+        return { 'area.name': m };
       });
-
     }
 
     if (qParam && qParam['zone']) {
@@ -208,62 +202,68 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedZone = qParam['zone'];
       }
-      this.zoneFilterArray = this.selectedZone.map(m => {
-        return {'zone.name': m}
+      this.zoneFilterArray = this.selectedZone.map((m) => {
+        return { 'zone.name': m };
       });
     }
     if (qParam && qParam['height']) {
       if (typeof qParam['height'] === 'string') {
-          this.selectedHeight = qParam['height'];
+        this.selectedHeight = qParam['height'];
       } else {
-          this.selectedHeight = qParam['height'];
-      }  
+        this.selectedHeight = qParam['height'];
+      }
       const [minHeight, maxHeight] = this.selectedHeight.split('-').map(Number);
-  
-      this.heightFilterArray = [{
+
+      this.heightFilterArray = [
+        {
           height: {
-              $lte: maxHeight,
-              $gte: minHeight
-          }
-      }];  
-  } 
+            $lte: maxHeight,
+            $gte: minHeight,
+          },
+        },
+      ];
+    }
     if (qParam && qParam['weight']) {
-        if (typeof qParam['weight'] === 'string') {
-            this.selectedWeight = qParam['weight'];
-        } else {
-            this.selectedWeight = qParam['weight'];
-        }    
-        const [minWeight, maxWeight] = this.selectedWeight.split('-').map(Number);
-    
-        this.weightFilterArray = [{
-            weight: {
-                $lte: maxWeight,
-                $gte: minWeight
-            }
-        }];  
-    } 
+      if (typeof qParam['weight'] === 'string') {
+        this.selectedWeight = qParam['weight'];
+      } else {
+        this.selectedWeight = qParam['weight'];
+      }
+      const [minWeight, maxWeight] = this.selectedWeight.split('-').map(Number);
+
+      this.weightFilterArray = [
+        {
+          weight: {
+            $lte: maxWeight,
+            $gte: minWeight,
+          },
+        },
+      ];
+    }
     if (qParam && qParam['age']) {
-        if (typeof qParam['age'] === 'string') {
-            this.selectedAge = qParam['age'];
-        } else {
-            this.selectedAge = qParam['age'];
-        }    
-        const [minAge, maxAge] = this.selectedAge.split('-').map(Number);
-    
-        this.ageFilterArray = [{
-            age: {
-                $lte: maxAge,
-                $gte: minAge
-            }
-        }];  
-    } 
-  return []; // Default return statement  
+      if (typeof qParam['age'] === 'string') {
+        this.selectedAge = qParam['age'];
+      } else {
+        this.selectedAge = qParam['age'];
+      }
+      const [minAge, maxAge] = this.selectedAge.split('-').map(Number);
+
+      this.ageFilterArray = [
+        {
+          age: {
+            $lte: maxAge.toString(),
+            $gte: minAge.toString(),
+          },
+        },
+      ];
+    }
+    return []; // Default return statement
   }
 
   private getAllProducts(loadMore?: boolean) {
     const pagination: Pagination = {
       pageSize: Number(this.productsPerPage),
-      currentPage: Number(this.currentPage) - 1
+      currentPage: Number(this.currentPage) - 1,
     };
 
     // Select
@@ -286,127 +286,139 @@ export class ProductListRightComponent implements OnInit {
       ratingCount: 1,
       type: 1,
       title: 1,
-      age:1,
+      age: 1,
       isVerfied: 1,
       division: 1,
       area: 1,
       zone: 1,
-    }
+    };
 
     // Compleax Filter Array Based on Selections
-    const comFilter: any[] = [];
+    const comFilter = { status: 'publish' };
     if (this.categoryFilterArray.length) {
-      comFilter.push(
-        {$or: this.categoryFilterArray}
-      );
+      // comFilter.push({ $or: this.categoryFilterArray });
+      // comFilter.push(this.categoryFilterArray);
+
+      comFilter[Object.keys(this.divisionFilterArray[0])[0]] = Object.values(this.divisionFilterArray[0])[0];
     }
 
     if (this.typeFilterArray.length) {
-      comFilter.push(
-        {$or: this.typeFilterArray}
-      );
+      // comFilter.push({ $or: this.typeFilterArray });
+      // comFilter.push(this.typeFilterArray);
+      comFilter[Object.keys(this.typeFilterArray[0])[0]] = Object.values(this.typeFilterArray[0])[0];
     }
 
     if (this.intimateHairsFilterArray.length) {
-      comFilter.push(
-        {$or: this.intimateHairsFilterArray}
-      );
+      // comFilter.push({ $or: this.intimateHairsFilterArray });
+      // comFilter.push(this.intimateHairsFilterArray);
+      comFilter[Object.keys(this.intimateHairsFilterArray[0])[0]] = Object.values(this.intimateHairsFilterArray[0])[0];
     }
 
     if (this.bodyTypesFilterArray.length) {
-      comFilter.push(
-        {$or: this.bodyTypesFilterArray}
-      );
+      // comFilter.push({ $or: this.bodyTypesFilterArray });
+      // comFilter.push(this.bodyTypesFilterArray);
+      comFilter[Object.keys(this.bodyTypesFilterArray[0])[0]] = Object.values(this.bodyTypesFilterArray[0])[0];
     }
 
     if (this.hairColorsFilterArray.length) {
-      comFilter.push(
-        {$or: this.hairColorsFilterArray}
-      );
+      // comFilter.push({ $or: this.hairColorsFilterArray });
+      // comFilter.push(this.hairColorsFilterArray);
+      comFilter[Object.keys(this.hairColorsFilterArray[0])[0]] = Object.values(this.hairColorsFilterArray[0])[0];
     }
 
     if (this.orientationsFilterArray.length) {
-      comFilter.push(
-        {$or: this.orientationsFilterArray}
-      );
+      // comFilter.push({ $or: this.orientationsFilterArray });
+      // comFilter.push(this.orientationsFilterArray);
+      comFilter[Object.keys(this.orientationsFilterArray[0])[0]] = Object.values(this.orientationsFilterArray[0])[0];
     }
 
     if (this.divisionFilterArray.length) {
-      comFilter.push(
-        {$or: this.divisionFilterArray}
-      );
+      // comFilter.push({ $or: this.divisionFilterArray });
+      // comFilter.push(this.divisionFilterArray[0]);
+      comFilter[Object.keys(this.divisionFilterArray[0])[0]] = Object.values(this.divisionFilterArray[0])[0];
     }
 
     if (this.areaFilterArray.length) {
-      comFilter.push(
-        {$or: this.areaFilterArray}
-      );
+      // comFilter.push({ $or: this.areaFilterArray });
+      // comFilter.push(this.areaFilterArray);
+      comFilter[Object.keys(this.areaFilterArray[0])[0]] = Object.values(this.areaFilterArray[0])[0];
     }
 
     if (this.zoneFilterArray.length) {
-      comFilter.push(
-        {$or: this.zoneFilterArray}
-      );
+      // comFilter.push({ $or: this.zoneFilterArray });
+      // comFilter.push(this.zoneFilterArray);
+      comFilter[Object.keys(this.zoneFilterArray[0])[0]] = Object.values(this.zoneFilterArray[0])[0];
     }
     if (this.heightFilterArray.length) {
-      comFilter.push(
-        {$or: this.heightFilterArray}
-      );
+      // comFilter.push({ $or: this.heightFilterArray });
+      // comFilter.push(this.heightFilterArray);
+      comFilter[Object.keys(this.heightFilterArray[0])[0]] = Object.values(this.heightFilterArray[0])[0];
     }
     if (this.weightFilterArray.length) {
-      comFilter.push(
-        {$or: this.weightFilterArray}
-      );
+      // comFilter.push({ $or: this.weightFilterArray });
+      // comFilter.push(this.weightFilterArray);
+      comFilter[Object.keys(this.weightFilterArray[0])[0]] = Object.values(this.weightFilterArray[0])[0];
     }
     if (this.ageFilterArray.length) {
-      comFilter.push(
-        {$or: this.ageFilterArray}
-      );
+      // comFilter.push({ $or: this.ageFilterArray });
+      // comFilter.push(this.ageFilterArray);
+      comFilter[Object.keys(this.ageFilterArray[0])[0]] = Object.values(this.ageFilterArray[0])[0];
     }
     let mFilter;
-    if (comFilter.length) {
+    if (Object.keys(comFilter).length && Object.keys(comFilter).length > 0) {
       mFilter = {
         ...this.filter,
-        ...{
-          $or: comFilter
-        }
-      }
+        ...comFilter,
+      };
     } else {
       mFilter = this.filter;
     }
-
+    
     const filterData: FilterData = {
       pagination: pagination,
-      filter: {...mFilter, status: 'publish'},
+      filter: mFilter,
       filterGroup: null,
       select: mSelect,
-      sort: {createdAt: -1}
-    }
+      sort: { createdAt: -1 },
+    };
 
+    this.subDataOne = this.productService
+      .getAllProducts(filterData, this.searchQuery)
+      .subscribe(
+        (res) => {
+          this.isLoading = false;
+          this.isLoadMore = false;
+          this.categoryFilterArray = [];
+          this.typeFilterArray = [];
+          this.divisionFilterArray = [];
+          this.areaFilterArray = [];
+          this.zoneFilterArray = [];
+          this.intimateHairsFilterArray = [];
+          this.bodyTypesFilterArray = [];
+          this.orientationsFilterArray = [];
+          this.hairColorsFilterArray = [];
+          this.heightFilterArray = [];
+          this.weightFilterArray = [];
+          this.ageFilterArray = [];
+          if (loadMore) {
+            this.products = [...this.products, ...res.data];
+          } else {
+            this.products = res.data;
+          }
 
-    this.subDataOne = this.productService.getAllProducts(filterData, this.searchQuery)
-      .subscribe(res => {
-        this.isLoading = false;
-        this.isLoadMore = false;
-        if (loadMore) {
-          this.products = [...this.products, ...res.data];
-        } else {
-          this.products = res.data;
+          this.totalProducts = res.count;
+        },
+        (error) => {
+          this.isLoading = false;
+          console.log(error);
         }
-
-        this.totalProducts = res.count;
-
-
-      }, error => {
-        this.isLoading = false;
-        console.log(error);
-      });
+      );
   }
 
   private getAllProduct() {
     const pagination: Pagination = {
       pageSize: Number(this.productsPerPage),
-      currentPage: Number(this.currentPage) - 1
+      currentPage: Number(this.currentPage) - 1,
     };
 
     // Select
@@ -431,33 +443,34 @@ export class ProductListRightComponent implements OnInit {
       isVerfied: 1,
       user: 1,
       title: 1,
-      age:1,
+      age: 1,
       division: 1,
-    }
+    };
 
     const filterData: FilterData = {
       pagination: pagination,
-      filter: {'isRegion': true, status: 'publish'},
+      filter: { isRegion: true, status: 'publish' },
       filterGroup: null,
       select: mSelect,
-      sort: {createdAt: -1}
-    }
+      sort: { createdAt: -1 },
+    };
 
-
-    this.subDataOne = this.productService.getAllProducts(filterData, this.searchQuery)
-      .subscribe(res => {
+    this.subDataOne = this.productService
+      .getAllProducts(filterData, this.searchQuery)
+      .subscribe(
+        (res) => {
           this.productData = res.data;
-
-      }, error => {
-        this.isLoading = false;
-        console.log(error);
-      });
+        },
+        (error) => {
+          this.isLoading = false;
+          console.log(error);
+        }
+      );
   }
 
-
   /**
- * LOAD MORE
- */
+   * LOAD MORE
+   */
   onLoadMore() {
     if (this.totalProducts > this.products.length) {
       this.isLoadMore = true;
@@ -466,15 +479,11 @@ export class ProductListRightComponent implements OnInit {
     }
   }
 
-
   /**
-  * PRODUCT LIST LEFT MENU RESPONSIVE
-  * onHideFilterArea();
- */
+   * PRODUCT LIST LEFT MENU RESPONSIVE
+   * onHideFilterArea();
+   */
   onHideFilterArea() {
     this._productList.onFilterAreaShown();
   }
-
-
-
 }
