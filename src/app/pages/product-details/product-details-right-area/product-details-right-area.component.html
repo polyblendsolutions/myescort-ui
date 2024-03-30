@@ -8,7 +8,7 @@
             <img  src="./assets/images/svg/verified.svg" alt="verified" class="verify-icon">
           </ng-container>
         </h2>
-        <p class="product-detail-location-text">
+        <p>
           {{ product?.division?.name}}<span *ngIf="product?.division?.name && product?.area?.name">,</span>
           {{ product?.area?.name}}<span *ngIf="product?.area?.name && product?.zone?.name">,</span>
           {{product?.zone?.name}} 
