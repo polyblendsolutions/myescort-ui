@@ -630,3 +630,19 @@
 ::ng-deep .mat-menu .zone:hover {
   background-color: #f54da3 !important;
 }
+
+.search-form-container{
+  .clear-search{
+    margin: 18px -20px;
+    position: absolute;
+    cursor: pointer;
+  }
+  ::ng-deep .mat-icon {
+    height: 15px;
+    width: 18px;
+  }
+  ::ng-deep .material-icons{
+    font-size: 14px;
+    color: rgba(47, 47, 47, 0.6117647059);
+  }
+}

@@ -58,7 +58,8 @@ export class ProductListRightComponent implements OnInit {
   ageFilterArray: any[] = [];
   // Subscriptions
   private subRouteOne: Subscription;
-  private subDataOne: Subscription;
+  private subFilterProduct: Subscription;
+  private subSearchProduct: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -382,7 +383,7 @@ export class ProductListRightComponent implements OnInit {
       sort: { createdAt: -1 },
     };
 
-    this.subDataOne = this.productService
+    this.subFilterProduct = this.productService
       .getAllProducts(filterData, this.searchQuery)
       .subscribe(
         (res) => {
@@ -455,11 +456,12 @@ export class ProductListRightComponent implements OnInit {
       sort: { createdAt: -1 },
     };
 
-    this.subDataOne = this.productService
+    this.subSearchProduct = this.productService
       .getAllProducts(filterData, this.searchQuery)
       .subscribe(
         (res) => {
           this.productData = res.data;
+          this.searchQuery=null;
         },
         (error) => {
           this.isLoading = false;
@@ -485,5 +487,17 @@ export class ProductListRightComponent implements OnInit {
    */
   onHideFilterArea() {
     this._productList.onFilterAreaShown();
+  }
+  /**
+   * Destry Subscription
+   * onHideFilterArea();
+   */
+  ngOnDestroy(): void {
+    if (this.subFilterProduct) {
+      this.subFilterProduct.unsubscribe();
+    }
+    if (this.subSearchProduct) {
+      this.subSearchProduct.unsubscribe();
+    }
   }
 }

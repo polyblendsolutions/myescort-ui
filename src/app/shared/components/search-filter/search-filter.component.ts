@@ -128,6 +128,10 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     this.subRouteOne = this.activatedRoute.queryParams.subscribe((qParam) => {
       if(Object.keys(qParam).length > 0 ) {
         this.initDataForm(qParam);
+         // Check if searchQuery exists in queryParams
+      if (qParam.hasOwnProperty('searchQuery')) {
+        this.searchQuery = qParam['searchQuery'];
+      }
       } else {
         this.initDataForm();
       }
@@ -322,9 +326,14 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    const formData = this.dataForm.value;
-    
+    let inputVal = (this.searchInput.nativeElement as HTMLInputElement).value;
+    if(inputVal){
+      this.onSearchNavigate();
+      return
+    }
+    const formData = this.dataForm.value;    
     let queryParams = {
+      searchQuery:null,
       categories: formData.category,
       types: formData.type,
       divisions: formData.location,
@@ -333,7 +342,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       intimateHairs: formData.intimateHairs,
       height:null,
       weight:null,
-      age:null
+      age:null,
     };
     if (formData.height && formData.height.minHeight !== 150 && formData.height.maxHeight !== 200) {
       queryParams.height = `${formData.height.minHeight}-${formData.height.maxHeight}`;
@@ -460,7 +469,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
         queryParams: { searchQuery: inputVal },
         queryParamsHandling: '',
       });
-      this.searchInput.nativeElement.value = '';
+      // this.searchInput.nativeElement.value = '';
       this.isOpen = false;
       this.reloadService.needRefreshSearch$(true);
     }
@@ -775,6 +784,8 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   }
     /**
    * Advance filter method
+   * resetFilter()
+   * resetSearch()
    */
     onHideFilter() {
       this.advanchFilter = !this.advanchFilter;
@@ -788,7 +799,6 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   }
 
   resetFilter(){
-    debugger
     this.dataForm = this.fb.group({
       location: [null],
       category: [null],
@@ -814,6 +824,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     this.onSelectBtnType(null);
     const formData = this.dataForm.value;    
     let queryParams = {
+      searchQuery:null,
       categories: formData.category,
       types: formData.type,
       divisions: formData.location,
@@ -822,7 +833,18 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       intimateHairs: formData.intimateHairs,
       height:null,
       weight:null,
-      age:null
+      age:null,
+    };
+    this.router.navigate(['/ads'], {
+      queryParams,
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  resetSearch(){
+    this.searchQuery=null
+    const queryParams = {
+      searchQuery:null,
     };
     this.router.navigate(['/ads'], {
       queryParams,

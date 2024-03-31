@@ -1213,7 +1213,7 @@
     border: 1px solid #f54da3;
     border-radius: 4px;
     overflow: hidden;
-
+    
     select {
       width: 100%;
       outline: 0;
@@ -1454,4 +1454,19 @@
 ::ng-deep .mat-menu .area:hover,
 ::ng-deep .mat-menu .zone:hover {
   background-color: #f54da3 !important;
+}
+.search-form-container{
+  .clear-search{
+    margin: 17px -20px;
+    position: absolute;
+    cursor: pointer;
+  }
+  ::ng-deep .mat-icon {
+    height: 15px;
+    width: 18px;
+  }
+  ::ng-deep .material-icons{
+    font-size: 16px;
+    color: rgba(47, 47, 47, 0.6117647059);
+  }
 }

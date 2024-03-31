@@ -311,7 +311,10 @@ export class SectionOneComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     console.log(this.dataForm.value);
-
+    const inputVal = (this.searchInput.nativeElement as HTMLInputElement).value;
+    if(inputVal){
+      return this.onSearchNavigate();
+    }
     this.router.navigate(['/ads'], {
       queryParams: {
         categories: this.dataForm.value.category,
@@ -425,7 +428,7 @@ export class SectionOneComponent implements OnInit, OnDestroy {
   onSearchNavigate() {
     let inputVal = (this.searchInput.nativeElement as HTMLInputElement).value;
     if (inputVal) {
-      this.router.navigate(['/', 'home'], {
+      this.router.navigate(['/ads'], {
         queryParams: { searchQuery: inputVal },
         queryParamsHandling: '',
       });
@@ -433,6 +436,17 @@ export class SectionOneComponent implements OnInit, OnDestroy {
       this.isOpen = false;
       this.reloadService.needRefreshSearch$(true);
     }
+  }
+
+  resetSearch(){
+    this.searchQuery=null
+    const queryParams = {
+      searchQuery:null,
+    };
+    this.router.navigate(['/', 'home'], {
+      queryParams,
+      queryParamsHandling: 'merge',
+    });
   }
 
   onNavigate() {
@@ -446,6 +460,8 @@ export class SectionOneComponent implements OnInit, OnDestroy {
   onReload() {
     window.location.reload();
   }
+
+
 
   /**
    * SEARCH PLACEHOLDER ANIMATION

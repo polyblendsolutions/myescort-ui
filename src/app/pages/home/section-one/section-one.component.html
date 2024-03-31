@@ -163,7 +163,7 @@
           <!-- END! sec-home-input-area (type) -->
 
           <div class="sec-home-input-area">
-            <form #searchForm="ngForm" (click)="onClickSearchArea($event)">
+            <form class="search-form-container" #searchForm="ngForm" (click)="onClickSearchArea($event)">
               <input
                 #searchInput
                 id="searchInput"
@@ -174,12 +174,14 @@
                 (focus)="handleFocus($event)"
                 (ngModelChangeDebounced)="searchQuery = $event"
                 (blur)="handleBlur()"
+                [(ngModel)]="searchQuery"
                 name="searchTerm"
                 autocomplete="off"
                 ngModel
                 required
                 (keydown.enter)="onSearchNavigate()"
               />
+              <mat-icon class="clear-search" *ngIf="searchQuery" (click)="resetSearch()" aria-label="Clear search input">clear</mat-icon>
             </form>
           </div>
 
