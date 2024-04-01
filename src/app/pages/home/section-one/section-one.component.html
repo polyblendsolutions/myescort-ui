@@ -163,7 +163,7 @@
           <!-- END! sec-home-input-area (type) -->
 
           <div class="sec-home-input-area">
-            <form #searchForm="ngForm" (click)="onClickSearchArea($event)">
+            <form class="search-form-container" #searchForm="ngForm" (click)="onClickSearchArea($event)">
               <input
                 #searchInput
                 id="searchInput"
@@ -174,12 +174,14 @@
                 (focus)="handleFocus($event)"
                 (ngModelChangeDebounced)="searchQuery = $event"
                 (blur)="handleBlur()"
+                [(ngModel)]="searchQuery"
                 name="searchTerm"
                 autocomplete="off"
                 ngModel
                 required
                 (keydown.enter)="onSearchNavigate()"
               />
+              <mat-icon class="clear-search" *ngIf="searchQuery" (click)="resetSearch()" aria-label="Clear search input">clear</mat-icon>
             </form>
           </div>
 
@@ -187,24 +189,6 @@
             <button type="submit">Søgning</button>
           </div>
         </form>
-
-        <ul
-          id="auto-suggestion"
-          class="auto-complete-box"
-          [ngClass]="valueInput && isOpen ? 'active' : ''"
-        >
-          <li
-            class="list-view"
-            *ngFor="let data of searchProducts"
-            (click)="onSelectItem(data?._id)"
-          >
-            <div class="search-result-left">
-              <div class="desc">
-                <h3>{{ data?.name }}</h3>
-              </div>
-            </div>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
