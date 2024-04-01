@@ -1509,4 +1509,8 @@
     margin-top: 10px !important ;
   }
 }
-
+::ng-deep{
+  .mat-mdc-menu-content, .mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text{
+    width: 220px !important;
+  }
+}

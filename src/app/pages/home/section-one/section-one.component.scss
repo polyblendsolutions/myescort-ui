@@ -630,3 +630,15 @@
 ::ng-deep .mat-menu .zone:hover {
   background-color: #f54da3 !important;
 }
+::ng-deep{
+  .mat-mdc-menu-content, .mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text{
+    width: 194px !important;
+  }
+}
+@media (max-width:400px) {
+  ::ng-deep{
+    .mat-mdc-menu-content, .mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text{
+      width: 200px !important;
+    }
+  }
+}

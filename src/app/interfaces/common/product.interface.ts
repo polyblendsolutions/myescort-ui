@@ -88,6 +88,7 @@ export interface Product {
   addContent?: string;
   createdAt?: Date;
   updatedAt?: Date;
+  activeUntill?: Date;
   select?: boolean;
   selectedQty?: number;
   orderVariation?: string;

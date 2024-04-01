@@ -48,7 +48,9 @@
               </span>
             </h2>
 
-            <p>{{ product?.division?.name }}, {{ product?.age }}y</p>
+            <p>{{ product?.division?.name }}<span *ngIf="product?.division?.name && product?.area?.name">,</span>
+              {{ product?.area?.name}}<span *ngIf="product?.area?.name && product?.zone?.name">,</span>
+              {{product?.zone?.name}}, {{ product?.age }}y</p>
 
             <!-- <div class="close-btn">
               <button type="button" mat-dialog-close>
