@@ -11,7 +11,7 @@
         <p>
           {{ product?.division?.name}}<span *ngIf="product?.division?.name && product?.area?.name">,</span>
           {{ product?.area?.name}}<span *ngIf="product?.area?.name && product?.zone?.name">,</span>
-          {{product?.zone?.name}}
+          {{product?.zone?.name}} 
         </p>
       </div>
       <div class="pro-right-detail" *ngIf="product?.phone || product?.whatsApp">
