@@ -66,9 +66,11 @@ export class SectionOneComponent implements OnInit, OnDestroy {
   txt = 'Indtast dit nøgleord her...';
   
   // Subscriptions
-  private subDataOne: Subscription;
   private subDivisionData: Subscription;
-  private subForm: Subscription;
+  private subAllType: Subscription;
+  private subAllCategory: Subscription;
+  private subAllBanner: Subscription;
+  private subSearchQueryResult: Subscription;
 
   // select location
   isSelectedDis: boolean = false;
@@ -127,72 +129,72 @@ export class SectionOneComponent implements OnInit, OnDestroy {
   innerW = window.innerWidth;
 
   ngAfterViewInit() {
-    const formValue = this.searchForm?.valueChanges;
-    this.subForm = formValue
-      ?.pipe(
-        pluck('searchTerm'),
-        debounceTime(200),
-        distinctUntilChanged(),
-        switchMap((data) => {
-          this.searchQuery = data?.trim();
-          if (this.searchQuery === '' || this.searchQuery === null) {
-            this.overlay = false;
-            this.searchProducts = [];
-            this.searchQuery = null;
-            return EMPTY;
-          }
-          this.isLoading = true;
-          const pagination: any = {
-            pageSize: 12,
-            currentPage: 0,
-          };
-          const mSelect = {
-            name: 1,
-            slug: 1,
-            title: 1,
-            images: 1,
-            category: 1,
-            subCategory: 1,
-            brand: 1,
-            prices: 1,
-            salePrice: 1,
-            variationsOptions: 1,
-            status: 1,
-            discountType: 1,
-            variationList: 1,
-            discountAmount: 1,
-          };
+    // const formValue = this.searchForm?.valueChanges;
+    // this.subSearchQueryResult = formValue
+    //   ?.pipe(
+    //     pluck('searchTerm'),
+    //     debounceTime(1000),
+    //     distinctUntilChanged(),
+    //     switchMap((data) => {
+    //       this.searchQuery = data?.trim();
+    //       if (this.searchQuery === '' || this.searchQuery === null) {
+    //         this.overlay = false;
+    //         this.searchProducts = [];
+    //         this.searchQuery = null;
+    //         return EMPTY;
+    //       }
+    //       this.isLoading = true;
+    //       const pagination: any = {
+    //         pageSize: 12,
+    //         currentPage: 0,
+    //       };
+    //       const mSelect = {
+    //         name: 1,
+    //         slug: 1,
+    //         title: 1,
+    //         images: 1,
+    //         category: 1,
+    //         subCategory: 1,
+    //         brand: 1,
+    //         prices: 1,
+    //         salePrice: 1,
+    //         variationsOptions: 1,
+    //         status: 1,
+    //         discountType: 1,
+    //         variationList: 1,
+    //         discountAmount: 1,
+    //       };
 
-          const filterData: FilterData = {
-            pagination: pagination,
-            filter: { status: 'publish' },
-            select: mSelect,
-            sort: { name: 1 },
-          };
-          return this.productService.getAllProducts(
-            filterData,
-            this.searchQuery
-          );
-        })
-      )
-      .subscribe(
-        (res) => {
-          this.isLoading = false;
-          this.searchProducts = res.data.sort(
-            (a, b) =>
-              a.name?.toLowerCase().indexOf(this.searchQuery?.toLowerCase()) -
-              b.name?.toLowerCase().indexOf(this.searchQuery?.toLowerCase())
-          );
-          if (this.searchProducts?.length > 0) {
-            this.isOpen = true;
-            this.overlay = true;
-          }
-        },
-        (error) => {
-          this.isLoading = false;
-          console.log(error);
-        }
-      );
+    //       const filterData: FilterData = {
+    //         pagination: pagination,
+    //         filter: { status: 'publish' },
+    //         select: mSelect,
+    //         sort: { name: 1 },
+    //       };
+    //       return this.productService.getAllProducts(
+    //         filterData,
+    //         this.searchQuery
+    //       );
+    //     })
+    //   )
+    //   .subscribe(
+    //     (res) => {
+    //       this.isLoading = false;
+    //       this.searchProducts = res.data.sort(
+    //         (a, b) =>
+    //           a.name?.toLowerCase().indexOf(this.searchQuery?.toLowerCase()) -
+    //           b.name?.toLowerCase().indexOf(this.searchQuery?.toLowerCase())
+    //       );
+    //       if (this.searchProducts?.length > 0) {
+    //         this.isOpen = true;
+    //         this.overlay = true;
+    //       }
+    //     },
+    //     (error) => {
+    //       this.isLoading = false;
+    //       console.log(error);
+    //     }
+    //   );
 
     // this.searchAnim();
     if (this.innerW > 578) {
@@ -309,7 +311,10 @@ export class SectionOneComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     console.log(this.dataForm.value);
-
+    const inputVal = (this.searchInput.nativeElement as HTMLInputElement).value;
+    if(inputVal){
+      return this.onSearchNavigate();
+    }
     this.router.navigate(['/ads'], {
       queryParams: {
         categories: this.dataForm.value.category,
@@ -408,22 +413,22 @@ export class SectionOneComponent implements OnInit, OnDestroy {
     this.isFocused = false;
   }
 
-  onSelectItem(data: Product): void {
-    console.log('data', data);
+  // onSelectItem(data: Product): void {
+  //   console.log('data', data);
 
-    this.searchInput.nativeElement.value = '';
-    // this.router.navigate(['/', 'product-details'+ data], {
-    //   // queryParams: { searchQuery: data },
-    //   // queryParamsHandling: 'merge',
-    // });
-    this.handleCloseAndClear();
-    this.router.navigate(['/ad-details', data]);
-  }
+  //   this.searchInput.nativeElement.value = '';
+  //   // this.router.navigate(['/', 'product-details'+ data], {
+  //   //   // queryParams: { searchQuery: data },
+  //   //   // queryParamsHandling: 'merge',
+  //   // });
+  //   this.handleCloseAndClear();
+  //   this.router.navigate(['/ad-details', data]);
+  // }
 
   onSearchNavigate() {
     let inputVal = (this.searchInput.nativeElement as HTMLInputElement).value;
     if (inputVal) {
-      this.router.navigate(['/', 'home'], {
+      this.router.navigate(['/ads'], {
         queryParams: { searchQuery: inputVal },
         queryParamsHandling: '',
       });
@@ -431,6 +436,17 @@ export class SectionOneComponent implements OnInit, OnDestroy {
       this.isOpen = false;
       this.reloadService.needRefreshSearch$(true);
     }
+  }
+
+  resetSearch(){
+    this.searchQuery=null
+    const queryParams = {
+      searchQuery:null,
+    };
+    this.router.navigate(['/', 'home'], {
+      queryParams,
+      queryParamsHandling: 'merge',
+    });
   }
 
   onNavigate() {
@@ -444,6 +460,8 @@ export class SectionOneComponent implements OnInit, OnDestroy {
   onReload() {
     window.location.reload();
   }
+
+
 
   /**
    * SEARCH PLACEHOLDER ANIMATION
@@ -494,7 +512,7 @@ export class SectionOneComponent implements OnInit, OnDestroy {
       sort: { createdAt: -1 },
     };
 
-    this.subDataOne = this.typeService.getAllType(filter, null).subscribe({
+    this.subAllType = this.typeService.getAllType(filter, null).subscribe({
       next: (res) => {
         if (res.success) {
           this.types = res.data;
@@ -520,7 +538,7 @@ export class SectionOneComponent implements OnInit, OnDestroy {
       sort: { createdAt: -1 },
     };
 
-    this.subDataOne = this.categoryService
+    this.subAllCategory = this.categoryService
       .getAllCategory(filter, null)
       .subscribe({
         next: (res) => {
@@ -585,7 +603,7 @@ export class SectionOneComponent implements OnInit, OnDestroy {
       sort: { createdAt: -1 },
     };
 
-    this.subDataOne = this.bannerService.getAllBanner(filter, null).subscribe({
+    this.subAllBanner = this.bannerService.getAllBanner(filter, null).subscribe({
       next: (res) => {
         if (res.success) {
           this.banners = res.data;
@@ -638,8 +656,17 @@ export class SectionOneComponent implements OnInit, OnDestroy {
    * ON DESTROY ALL SUBSCRIPTIONS
    */
   ngOnDestroy(): void {
-    if (this.subDataOne) {
-      this.subDataOne.unsubscribe();
+    if (this.subSearchQueryResult) {
+      this.subSearchQueryResult.unsubscribe();
+    }
+    if (this.subAllCategory) {
+      this.subAllCategory.unsubscribe();
+    }
+    if (this.subAllType) {
+      this.subAllType.unsubscribe();
+    }
+    if (this.subAllBanner) {
+      this.subAllBanner.unsubscribe();
     }
     if (this.subDivisionData) {
       this.subDivisionData.unsubscribe();

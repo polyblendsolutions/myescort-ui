@@ -1225,7 +1225,7 @@
     border: 1px solid #f54da3;
     border-radius: 4px;
     overflow: hidden;
-
+    
     select {
       width: 100%;
       outline: 0;
@@ -1519,5 +1519,20 @@
     .mat-mdc-menu-content, .mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text{
       width: 220px !important;
     }
+  }
+}
+.search-form-container{
+  .clear-search{
+    margin: 17px -20px;
+    position: absolute;
+    cursor: pointer;
+  }
+  ::ng-deep .mat-icon {
+    height: 15px;
+    width: 18px;
+  }
+  ::ng-deep .material-icons{
+    font-size: 16px;
+    color: rgba(47, 47, 47, 0.6117647059);
   }
 }
