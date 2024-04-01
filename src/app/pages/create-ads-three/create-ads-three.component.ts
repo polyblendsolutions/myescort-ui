@@ -991,7 +991,7 @@ export class CreateAdsThreeComponent implements OnInit {
     };
 
     const filter: FilterData = {
-      filter: { ...this.filter, ...{ status: 'publish' } },
+      filter: { ...this.filter, ...{ status: 'draft' } },
       pagination: this.pagination,
       select: mSelect,
       sort: { createdAt: -1 },
