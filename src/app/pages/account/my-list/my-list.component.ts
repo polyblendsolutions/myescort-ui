@@ -17,7 +17,7 @@ export class MyListComponent {
   filter: any = null;
 
   // Subscriptions
-  private subDataOne: Subscription;
+  private subProductData: Subscription;
 
   constructor(
     private productService: ProductService,
@@ -69,15 +69,15 @@ export class MyListComponent {
       sort: { createdAt: -1 },
     };
 
-    this.subDataOne = this.productService
+    this.subProductData = this.productService
       .getAllProductsByUser(filter, null)
       .subscribe({
         next: (res) => {
           if (res.success) {
             this.products = res.data;
-            this.products.forEach((obj:any)=>{
-              if(obj.createdAt){
-                obj.activeUntill = moment(obj.createdAt).add(1, 'M')?.['_d'];
+            this.products.forEach((productItem:any)=>{
+              if(productItem.publishDate){
+                productItem.activeUntill = moment(productItem.publishDate).add(1, 'M')?.['_d'];
               }
             })
             console.log(this.products);
