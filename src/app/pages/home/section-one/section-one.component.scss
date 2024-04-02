@@ -567,7 +567,7 @@
   }
 
   ::ng-deep .mat-mdc-menu-panel.mat-mdc-menu-panel {
-    width: 70.3vw !important;
+    width: 83vw !important;
     max-height: 150px;
   }
 }
@@ -657,4 +657,11 @@
     font-size: 14px;
     color: rgba(47, 47, 47, 0.6117647059);
   }
+}
+@media (max-width:400px) {
+  ::ng-deep{
+    .mat-mdc-menu-panel.mat-mdc-menu-panel {
+      max-width: 83vw !important;
+    }
+  } 
 }

@@ -1520,6 +1520,9 @@
       width: 220px !important;
     }
   }
+  ::ng-deep .mat-mdc-menu-panel.mat-mdc-menu-panel {
+    width: 66vw !important;
+  }
 }
 .search-form-container{
   .clear-search{
