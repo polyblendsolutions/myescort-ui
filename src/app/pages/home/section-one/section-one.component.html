@@ -48,7 +48,7 @@
             
               <ng-container *ngFor="let disData of divisions">
                 <button
-                  (click)="onSelectBtnDis(disData?.name, $event)"
+                (click)="onSelectBtnDis(disData?.name, $event,'divisions')"
                   class="divisions parent-btn"
                   type="button"
                 >
@@ -63,7 +63,7 @@
                 <ng-container *ngFor="let area of disData?.area">
                   <div class="child-container">
                     <button
-                      (click)="onSelectBtnDis(area?.name, $event)"
+                    (click)="onSelectBtnDis(area?.name, $event, 'area')"
                       class="area child-btn"
                       type="button"
                     >
@@ -75,7 +75,7 @@
             
                     <ng-container *ngFor="let zone of area?.zone">
                       <button
-                        (click)="onSelectBtnDis(zone?.name, $event)"
+                      (click)="onSelectBtnDis(zone?.name, $event, 'zone')"
                         class="zone child-btn"
                         type="button"
                       >

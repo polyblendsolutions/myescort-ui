@@ -289,6 +289,8 @@ export class SearchFilterComponent implements OnInit {
   private initDataForm(params?) {
     this.dataForm = this.fb.group({
       location: [null],
+      area: [null],
+      zone: [null],
       category: [null],
       type: [null],
       height:this.fb.group({
@@ -365,6 +367,8 @@ export class SearchFilterComponent implements OnInit {
       categories: formData.category,
       types: formData.type,
       divisions: formData.location,
+      area:formData.area,
+      zone:formData.zone,
       bodyTypes: formData.bodytype,
       hairColors: formData.hairColor,
       intimateHairs: formData.intimateHairs,
@@ -775,14 +779,32 @@ export class SearchFilterComponent implements OnInit {
     });
   }
 
-  onSelectBtnDis(value: any, event?: MouseEvent) {
+  onSelectBtnDis(value: any, event?: MouseEvent,locationType?:string) {
     if(event) event.stopImmediatePropagation();
     this.isSelectedValue = value;
     this.isSelectedDis = true;
     this.isSelectedAll = false;
-    this.dataForm.patchValue({
-      location: this.isSelectedValue,
-    });
+    if(locationType==='divisions'){
+      this.dataForm.patchValue({
+        location: this.isSelectedValue,
+        area: null,
+        zone: null,
+      });
+    }
+    else if(locationType==='area'){
+      this.dataForm.patchValue({
+        location: null,
+        area: this.isSelectedValue,
+        zone: null,
+      });
+    }
+    else if(locationType==='zone'){
+      this.dataForm.patchValue({
+        location: null,
+        area: null,
+        zone: this.isSelectedValue,
+      });
+    }
 
     this.menu?.closed.emit();
   }
@@ -829,6 +851,8 @@ export class SearchFilterComponent implements OnInit {
   resetFilter(){
     this.dataForm = this.fb.group({
       location: [null],
+      area: [null],
+      zone: [null],
       category: [null],
       type: [null],
       height:this.fb.group({
@@ -856,6 +880,8 @@ export class SearchFilterComponent implements OnInit {
       categories: formData.category,
       types: formData.type,
       divisions: formData.location,
+      area: formData.area,
+      zone: formData.zone,
       bodyTypes: formData.bodytype,
       hairColors: formData.hairColor,
       intimateHairs: formData.intimateHairs,
