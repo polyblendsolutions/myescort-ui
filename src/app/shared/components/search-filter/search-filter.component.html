@@ -237,7 +237,7 @@
           <label for="BodyType">Body Type</label>
           <div class="sec-home-input-area">
             <select formControlName="bodytype">
-              <option value="null" selected>All Types</option>
+              <option value="null" hidden>All Types</option>
               <ng-container *ngFor="let data of bodyTypes; let i = index">
                 <option [value]="data.name">{{ data.name }}</option>
               </ng-container>
@@ -251,7 +251,7 @@
           <label for="BodyType">Hair Color</label>
           <div class="sec-home-input-area">
             <select formControlName="hairColor">
-              <option value="null" selected>All Types</option>
+              <option value="null" hidden>All Types</option>
               <ng-container *ngFor="let data of hairColors; let i = index">
                 <option [value]="data.name">{{ data.name }}</option>
               </ng-container>
@@ -264,7 +264,7 @@
           <label for="BodyType">Pubichair</label>
           <div class="sec-home-input-area">
             <select id="BodyType" formControlName="intimateHairs" >
-              <option value="null" selected>All Types</option>
+              <option value="null" hidden>All Types</option>
               <option *ngFor="let data of intimateHairs"  [value]="data.name">{{ data.name }}</option>
             </select>
           </div>

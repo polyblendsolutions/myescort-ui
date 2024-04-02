@@ -45,7 +45,7 @@ import { HairColor } from 'src/app/interfaces/common/hairColor.interface';
   templateUrl: './search-filter.component.html',
   styleUrls: ['./search-filter.component.scss'],
 })
-export class SearchFilterComponent implements OnInit, OnDestroy {
+export class SearchFilterComponent implements OnInit {
   @ViewChild('menu') menu: MatMenu;
   @ViewChild('categoryMenu') categoryMenu: MatMenu;
   @ViewChild('typeMenu') typeMenu: MatMenu;
@@ -127,22 +127,24 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subRouteOne = this.activatedRoute.queryParams.subscribe((qParam) => {
       if(Object.keys(qParam).length > 0 ) {
+        // Check if searchQuery exists in queryParams
+        if (qParam.hasOwnProperty('searchQuery')) {
+          this.searchQuery = qParam['searchQuery'];
+        } else {
+          this.advanchFilter = true;
+        }
         this.initDataForm(qParam);
-         // Check if searchQuery exists in queryParams
-      if (qParam.hasOwnProperty('searchQuery')) {
-        this.searchQuery = qParam['searchQuery'];
-      }
       } else {
         this.initDataForm();
       }
-        this.getAllCategory();
-        this.getAllType();
-        this.getAllDivision();
-        this.getAllBanner();
-        this.getAllHairColor();
-        this.getAllIntimateHair();
-        this.getAllOrientation();
-        this.getAllBodyType();
+      this.getAllCategory();
+      this.getAllType();
+      this.getAllDivision();
+      this.getAllBanner();
+      this.getAllHairColor();
+      this.getAllIntimateHair();
+      this.getAllOrientation();
+      this.getAllBodyType();
       
       const options = {
         strings: ['København', 'Aalborg', 'Odense', 'Aarhus'],
@@ -305,24 +307,50 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       hairColor:[null],
       intimateHairs:[null],
     });
-    if(params && Object.keys(params).length > 0) {
-      if(params["divisions"]) {
-        this.onSelectBtnDis(params["divisions"]);
-      };
-      if(params["categories"]) {
-        this.onSelectBtnCategory(params["categories"]);
-      };
-      if(params["types"]) {
-        this.onSelectBtnType(params["types"]);
-      };
-      if(params["age"]) {
-        const minmaxArr = params["age"].split("-");
-        this.dataForm.controls["age"].setValue({
-          minAge: minmaxArr[0],
-          maxAge: minmaxArr[1]
-        })
+
+    setTimeout(() => {
+      if(params && Object.keys(params).length > 0) {
+        if(params["bodyTypes"]) {
+          this.dataForm.controls["bodytype"].setValue(params["bodyTypes"]);
+        };
+        if(params["hairColors"]) {
+          this.dataForm.controls["hairColor"].setValue(params["hairColors"]);
+        };
+        if(params["intimateHairs"]) {
+          this.dataForm.controls["intimateHairs"].setValue(params["intimateHairs"]);
+        };
+        if(params["divisions"]) {
+          this.onSelectBtnDis(params["divisions"]);
+        };
+        if(params["categories"]) {
+          this.onSelectBtnCategory(params["categories"]);
+        };
+        if(params["types"]) {
+          this.onSelectBtnType(params["types"]);
+        };
+        if(params["age"]) {
+          const minmaxArr = params["age"].split("-");
+          this.dataForm.controls["age"].setValue({
+            minAge: minmaxArr[0],
+            maxAge: minmaxArr[1]
+          })
+        };
+        if(params["weight"]) {
+          const minmaxArr = params["weight"].split("-");
+          this.dataForm.controls["weight"].setValue({
+            minWeight: minmaxArr[0],
+            maxWeight: minmaxArr[1]
+          })
+        };
+        if(params["height"]) {
+          const minmaxArr = params["height"].split("-");
+          this.dataForm.controls["height"].setValue({
+            minHeight: minmaxArr[0],
+            maxHeight: minmaxArr[1]
+          })
+        };
       }
-    }
+    }, 1000);
   }
 
   onSubmit() {
@@ -344,15 +372,15 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       weight:null,
       age:null,
     };
-    if (formData.height && formData.height.minHeight !== 150 && formData.height.maxHeight !== 200) {
+    if (formData.height && (formData.height.minHeight !== 150 || formData.height.maxHeight !== 200)) {
       queryParams.height = `${formData.height.minHeight}-${formData.height.maxHeight}`;
     }
 
-    if (formData.weight && formData.weight.minWeight !== 50 && formData.weight.maxWeight !== 300) {
+    if (formData.weight && (formData.weight.minWeight !== 50 || formData.weight.maxWeight !== 300)) {
       queryParams.weight = `${formData.weight.minWeight}-${formData.weight.maxWeight}`;
     }
 
-    if (formData.age && formData.age.minAge !== 18 && formData.age.maxAge !== 80) {
+    if (formData.age && (formData.age.minAge !== 18 || formData.age.maxAge !== 80)) {
       queryParams.age = `${formData.age.minAge}-${formData.age.maxAge}`;
     }
 
@@ -856,27 +884,27 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
    * ON DESTROY ALL SUBSCRIPTIONS
    */
 
-  ngOnDestroy(): void {
-    if (this.subTypeService) {
-      this.subTypeService.unsubscribe();
-    }
-    if (this.subDivisionData) {
-      this.subDivisionData.unsubscribe();
-    }
-    if (this.subFilterForm) {
-      this.subFilterForm.unsubscribe();
-    }
-    if (this.subHairColor) {
-      this.subHairColor.unsubscribe();
-    }
-    if (this.subIntimateHair) {
-      this.subIntimateHair.unsubscribe();
-    }
-    if (this.subOrientation) {
-      this.subOrientation.unsubscribe();
-    }
-    if (this.subBodyType) {
-      this.subBodyType.unsubscribe();
-    }
-  }
+  // ngOnDestroy(): void {
+  //   if (this.subTypeService) {
+  //     this.subTypeService.unsubscribe();
+  //   }
+  //   if (this.subDivisionData) {
+  //     this.subDivisionData.unsubscribe();
+  //   }
+  //   if (this.subFilterForm) {
+  //     this.subFilterForm.unsubscribe();
+  //   }
+  //   if (this.subHairColor) {
+  //     this.subHairColor.unsubscribe();
+  //   }
+  //   if (this.subIntimateHair) {
+  //     this.subIntimateHair.unsubscribe();
+  //   }
+  //   if (this.subOrientation) {
+  //     this.subOrientation.unsubscribe();
+  //   }
+  //   if (this.subBodyType) {
+  //     this.subBodyType.unsubscribe();
+  //   }
+  // }
 }

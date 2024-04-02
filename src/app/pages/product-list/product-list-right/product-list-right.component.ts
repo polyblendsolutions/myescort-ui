@@ -218,8 +218,8 @@ export class ProductListRightComponent implements OnInit {
       this.heightFilterArray = [
         {
           height: {
-            $lte: maxHeight,
-            $gte: minHeight,
+            $lte: maxHeight.toString(),
+            $gte: minHeight.toString(),
           },
         },
       ];
@@ -235,8 +235,8 @@ export class ProductListRightComponent implements OnInit {
       this.weightFilterArray = [
         {
           weight: {
-            $lte: maxWeight,
-            $gte: minWeight,
+            $lte: maxWeight.toString(),
+            $gte: minWeight.toString(),
           },
         },
       ];
@@ -471,12 +471,12 @@ export class ProductListRightComponent implements OnInit {
    * Destry Subscription
    * onHideFilterArea();
    */
-  ngOnDestroy(): void {
-    if (this.subFilterProduct) {
-      this.subFilterProduct.unsubscribe();
-    }
-    if (this.subSearchProduct) {
-      this.subSearchProduct.unsubscribe();
-    }
-  }
+  // ngOnDestroy(): void {
+  //   if (this.subFilterProduct) {
+  //     this.subFilterProduct.unsubscribe();
+  //   }
+  //   if (this.subSearchProduct) {
+  //     this.subSearchProduct.unsubscribe();
+  //   }
+  // }
 }
