@@ -299,8 +299,7 @@ export class ProductListRightComponent implements OnInit {
     if (this.categoryFilterArray.length) {
       // comFilter.push({ $or: this.categoryFilterArray });
       // comFilter.push(this.categoryFilterArray);
-
-      comFilter[Object.keys(this.divisionFilterArray[0])[0]] = Object.values(this.divisionFilterArray[0])[0];
+      comFilter[Object.keys(this.categoryFilterArray[0])[0]] = Object.values(this.categoryFilterArray[0])[0];
     }
 
     if (this.typeFilterArray.length) {
