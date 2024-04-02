@@ -477,7 +477,7 @@
 
 ::ng-deep .mat-mdc-menu-content.mdc-list.ng-tns-c3216136785-0 {
   width: 16.3vw !important;
-  // max-height: 250px;
+  max-height: 250px;
 }
 
 .divisions {
@@ -639,14 +639,6 @@
   overflow-y: scroll;
 }
 
-      .zone {
-        font-family: $font-en-primary;
-        // padding-left: 15px !important;
-        font-size: 13px;
-        letter-spacing: 0.5px;
-        color: #333;
-        line-height: 22px !important;
-        transition: all 0.12s linear;
 .filter-title {
   display: block;
   border-bottom: 1px solid $color-border;
@@ -1221,7 +1213,7 @@
     border: 1px solid #f54da3;
     border-radius: 4px;
     overflow: hidden;
-
+    
     select {
       width: 100%;
       outline: 0;
@@ -1463,4 +1455,18 @@
 ::ng-deep .mat-menu .zone:hover {
   background-color: #f54da3 !important;
 }
+.search-form-container{
+  .clear-search{
+    margin: 17px -20px;
+    position: absolute;
+    cursor: pointer;
+  }
+  ::ng-deep .mat-icon {
+    height: 15px;
+    width: 18px;
+  }
+  ::ng-deep .material-icons{
+    font-size: 16px;
+    color: rgba(47, 47, 47, 0.6117647059);
+  }
 }
