@@ -184,7 +184,7 @@
   justify-content: center;
   gap: 30px;
   flex-direction: column;
-  max-width: 994px;
+  max-width: 1200px !important;
   margin: auto;
   padding-bottom: 68px;
 }
@@ -413,7 +413,11 @@
     }
   }
 }
-
+@media (max-width: 400px) {
+  .sec-one-inputs {
+   padding: 10px 45px;
+  }
+}
 .sec-home-input-area {
   select {
     width: 100%;
@@ -567,15 +571,15 @@
   }
 
   ::ng-deep .mat-mdc-menu-panel.mat-mdc-menu-panel {
-    width: 83vw !important;
+    width: 63vw !important;
     max-height: 150px;
   }
 }
 
 ::ng-deep.sec-one-mat {
   .mat-mdc-menu-content.mdc-list {
-    max-width: 201px;
-    min-width: 201px;
+    max-width: 220px !important;
+    min-width: 220px !important;
   }
 
   p {
