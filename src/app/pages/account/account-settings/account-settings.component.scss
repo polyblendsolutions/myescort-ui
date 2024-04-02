@@ -15,7 +15,6 @@
   }
 }
 
-
 /* --- account-setting-main --- */
 .account-setting-main {
   width: 100%;
@@ -158,11 +157,13 @@
   }
 }
 
-.password-container {
+.input-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
+  .verifyicon{
+   color:green
+  }
   .mat-icon {
     margin-left: auto;
     position: absolute;

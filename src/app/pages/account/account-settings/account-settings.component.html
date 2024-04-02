@@ -10,46 +10,69 @@
           <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
             <div class="form-input">
               <label for="email">E-mail </label>
-              <input formControlName="email"
+              <div class="input-container">
+                <input formControlName="email"
                 [class.invalid]="dataForm.get('email').touched && dataForm.get('email').invalid" type="email" id="email"
                 placeholder="Enter your new email..." />
+                <mat-icon [ngClass]="{'verifyicon' : user?.email===this.dataForm.get('email')?.value }" mat-icon-button >
+                  {{ user?.email===this.dataForm.get('email')?.value ? 'verified_use' : '' }}
+                </mat-icon>
+              </div>
               <p *ngIf="dataForm.get('email').touched && dataForm.get('email').invalid">
-                This field is required and must be a valid email.
+                Enter valid email.
               </p>
             </div>
             <div class="form-input">
               <label for="oldPassword">Old Password </label>
-              <input formControlName="oldPassword" type="password" id="oldPassword" />
+              <div class="input-container">
+                <input formControlName="oldPassword" type="password" id="oldPassword" [type]="hideOldpassword ? 'password' : 'text'" 
+                placeholder="Enter your old password..." />
+                <mat-icon mat-icon-button (click)="togglePasswordVisibility()">
+                  {{ hideOldpassword ? 'visibility' : 'lock' }}
+                </mat-icon>
+              </div>
+              <p *ngIf="dataForm.get('oldPassword').touched && dataForm.get('oldPassword').errors?.['required']">
+                Please enter old Password.
+              </p>
+              <p *ngIf="dataForm.get('oldPassword').touched && dataForm.get('oldPassword').errors?.['minlength']">
+                Password should be at least 6 characters long.
+              </p>
             </div>
             
             <div class="form-input">
               <label for="password">New Password </label>
-              <div class="password-container">
+              <div class="input-container">
                 <input formControlName="password"
                   [class.invalid]="dataForm.get('password').touched && dataForm.get('password').invalid" type="password"
-                  id="password" [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your new password..." />
-                <mat-icon mat-icon-button (click)="togglePasswordVisibility()">
-                  {{ hidePassword ? 'visibility' : 'lock' }}
+                  id="password" [type]="hideNewPassword ? 'password' : 'text'" placeholder="Enter your new password..." />
+                <mat-icon mat-icon-button (click)="toggleNewPasswordVisibility()">
+                  {{ hideNewPassword ? 'visibility' : 'lock' }}
                 </mat-icon>
               </div>
-              <p *ngIf="dataForm.get('password').touched && dataForm.get('password').invalid">
-                Password is required and must be at least 6 characters long.
+              <p *ngIf="dataForm.get('password').touched && dataForm.get('password').errors?.['required']">
+                Please enter new Password.
+              </p>
+              <p *ngIf="dataForm.get('password').touched && dataForm.get('password').errors?.['minlength']">
+                Password should be at least 6 characters long.
               </p>
             </div>
 
             <div class="form-input">
               <label for="confirm-password">Confirm New Password </label>
-              <div class="password-container">
+              <div class="input-container">
                 <input formControlName="confirmPassword"
                   [class.invalid]="dataForm.get('confirmPassword').touched && dataForm.get('confirmPassword').invalid"
                   type="password" id="confirm-password" [type]="hideConfirmPassword ? 'password' : 'text'"
                   placeholder="Confirm your new password..." />
-                <mat-icon mat-icon-button (click)="togglePasswordVisibility()">
+                <mat-icon mat-icon-button (click)="toggleConfirmPasswordVisibility()">
                   {{ hideConfirmPassword ? 'visibility' : 'lock' }}
                 </mat-icon>
               </div>
               <p *ngIf="dataForm.get('confirmPassword').touched && dataForm.get('confirmPassword').invalid">
                 Password confirmation is required and must match the new password.
+              </p>
+              <p *ngIf="dataForm.get('confirmPassword').touched && dataForm.get('confirmPassword').errors?.['minlength']">
+                Password should be at least 6 characters long.
               </p>
             </div>
 
@@ -57,7 +80,6 @@
               <button type="submit">Update Account</button>
             </div>
           </form>
-
         </div>
       </div>
     </div>

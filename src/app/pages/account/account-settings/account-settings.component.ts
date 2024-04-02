@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription, take } from 'rxjs';
 import { User } from 'src/app/interfaces/common/user.interface';
 import { UserDataService } from 'src/app/services/common/user-data.service';
 import { StorageService } from 'src/app/services/core/storage.service';
@@ -15,10 +16,12 @@ export class AccountSettingsComponent {
   dataForm: FormGroup;
   user: User = null;
   isFormChanged: boolean = false;
-
-  public hidePassword = true;
+  passwordChanged: boolean = false;
   public hideConfirmPassword = true;
-  public password = true;
+  public hideNewPassword = true;
+  public hideOldpassword = true;
+  isVerify: boolean = false;
+  subUserInfo: Subscription
 
   constructor(
     private fb: FormBuilder,
@@ -27,13 +30,12 @@ export class AccountSettingsComponent {
     public activatedRoute: ActivatedRoute,
     public router: Router,
     public storageService: StorageService,
-  ) {}
+  ) { }
   ngOnInit(): void {
     // Initialize Data Form
     this.initDataForm();
     this.getLoggedInUserData();
     this.subscribeToFormChanges();
-  
   }
 
   /**
@@ -53,33 +55,36 @@ export class AccountSettingsComponent {
     // Add dynamic validation for confirm password field
     this.dataForm.get('password').valueChanges.subscribe(value => {
       if (value) {
-        this.dataForm.get('confirmPassword').setValidators([Validators.required]);
+        this.dataForm.get('oldPassword').setValidators([Validators.required, Validators.minLength(6)]);
+        this.dataForm.get('confirmPassword').setValidators([Validators.required, Validators.minLength(6)]);
       } else {
+        this.dataForm.get('oldPassword').clearValidators();
         this.dataForm.get('confirmPassword').clearValidators();
       }
+      this.dataForm.get('oldPassword').updateValueAndValidity();
       this.dataForm.get('confirmPassword').updateValueAndValidity();
     });
   }
 
   getLoggedInUserData() {
-    this.userDataService.getLoggedInUserData().subscribe(
-        (res) => {
-          if (res) {
-            this.user = res.data;
-          //  if(this.user.isVerfied === true){
-          //    this.isVerify = false
-          //  }
+    this.subUserInfo=this.userDataService.getLoggedInUserData().subscribe(
+      (res) => {
+        if (res) {
+          this.user = res.data;
+          if (this.user.isVerfied === true) {
+            this.isVerify = true
+          }
           this.patchUserDataToForm();
-          }
-        },
-        (err) => {
-          if (err) {
-            console.log(err);
-          }
         }
-      )
-    }
-  
+      },
+      (err) => {
+        if (err) {
+          console.log(err);
+        }
+      }
+    )
+  }
+
   onSubmit(): void {
     if (!this.isFormChanged) {
       this.uiService.warn('No changes detected. Please make changes before updating.');
@@ -90,63 +95,62 @@ export class AccountSettingsComponent {
       this.uiService.warn('Please fill in all the required fields correctly.');
       return;
     }
-    const email = this.dataForm.get('email').value;
-    const password = this.dataForm.get('password').value;
-    const oldPassword = this.dataForm.get('oldPassword').value;
-
-    // const payload = {};
-    // // Iterate over form controls
-    // for (const key of Object.keys(this.dataForm.controls)) {
-    //   const control = this.dataForm.get(key);
-    //   const value = control.value;
-
-    //   // Check if value is not null and assign it to payload
-    //   if (value !== null && value?.length) {
-    //     payload[key] = value;
-    //   }
-    // }
-
-    // // Use payload object for further processing
-    // console.log('Payload:', payload);
-    if (password) {
-      // Only password changed
-      if (this.dataForm.value.password !== this.dataForm.value.confirmPassword) {
+    const { email, password, oldPassword, confirmPassword } = this.dataForm.value;
+    if (this.user.email !== email) {
+      this.updateEmail(email);
+    }
+    if (this.passwordChanged) {
+      if (password !== confirmPassword) {
         this.uiService.warn('Password and confirm password is not matched');
-        this.dataForm.value.password.markAsTouched({onlySelf: true});
-        this.dataForm.value.confirmPassword.markAsTouched({onlySelf: true});
         return;
       }
-      this.userDataService.changeLoggedInUserPassword({ password, oldPassword }).subscribe(
-        (res) => {
-          // Handle success
-          if(res?.success){
-            this.uiService.success(res.message);
-          }
-          else if(!res?.success){
-            this.uiService.wrong(res.message);
-          }
-        },
-        (error) => {
-          // Handle error
-        }
-      );
-    }
-    else if (email) {
-      // Only email changed
-      if (this.user.email===email)
-      {
-        this.uiService.warn('Please make changes before updating.');
-        return
+      if (password === oldPassword) {
+        this.uiService.warn('Old Password and new password should be different');
+        return;
       }
-      this.userDataService.updateLoggedInUserInfo({ email }).subscribe(
-        (res) => {
-          this.uiService.success(res.message);
-        },
-        (error) => {
-          // Handle error
+      this.updatePassword(password, oldPassword)
+    }
+  }
+
+  updateEmail(email: string) {
+    return this.userDataService.updateLoggedInUserInfo({ email }).pipe(
+      take(1)
+    ).subscribe(
+      (res) => {
+        if (res?.success) {
+          this.uiService.success('Email is successfully changed');
+          this.getLoggedInUserData();
         }
-      );
-    } 
+        else if (!res?.success) {
+          this.uiService.wrong(res.message);
+        }
+      },
+      (error) => {
+        // Handle error
+        this.uiService.wrong(error?.error?.message);
+      }
+    );
+    
+  }
+  updatePassword(password: string, oldPassword: string) {
+    return this.userDataService.changeLoggedInUserPassword({ password, oldPassword }).pipe(
+      take(1)
+    ).subscribe(
+      (res) => {
+        // Handle success
+        if (res?.success) {
+          this.uiService.success(res.message);
+          this.dataForm.reset(); // Reset the form
+        }
+        else if (!res?.success) {
+          this.uiService.wrong(res.message);
+        }
+      },
+      (error) => {
+        // Handle error
+        this.uiService.wrong(error?.error?.message);
+      }
+    );
   }
 
   patchUserDataToForm() {
@@ -160,14 +164,26 @@ export class AccountSettingsComponent {
 
   subscribeToFormChanges(): void {
     this.dataForm.valueChanges.subscribe(() => {
+      this.passwordChanged = this.dataForm.get('password').dirty;
       this.isFormChanged = this.dataForm.dirty;
     });
   }
 
 
   togglePasswordVisibility(): void {
-    this.hidePassword = !this.hidePassword;
-    this.hideConfirmPassword = !this.hideConfirmPassword;
-    this.password = !this.password;
+    this.hideOldpassword = !this.hideOldpassword;
   }
+  toggleNewPasswordVisibility(): void {
+    this.hideNewPassword = !this.hideNewPassword;
+
+  }
+  toggleConfirmPasswordVisibility(): void {
+    this.hideConfirmPassword = !this.hideConfirmPassword;
+  }
+  
+  ngOnDestroy(): void {
+    if(this.subUserInfo){
+      this.subUserInfo.unsubscribe();
+    }
+ }
 }
