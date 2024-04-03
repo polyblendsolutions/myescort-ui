@@ -94,7 +94,14 @@
   </div>
 
   <div class="product-details-about">
+    <div class="product-details-about-title">
     <h3>About me</h3>
+    <div>
+    <span>Last created: {{product?.createdAt | date: 'dd-MM-yyyy' }}</span> &nbsp;
+    <span>Last refreshed: {{product?.updatedAt | date: 'dd-MM-yyyy' }}</span>
+  </div>
+  </div>
+    
     <p>
       {{ product?.shortDescription }}
     </p>

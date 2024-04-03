@@ -78,7 +78,7 @@
   .watermarked {
     position: absolute;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     top: 50%;
     left: 50%;
     color: rgb(245, 77, 163);
@@ -91,7 +91,7 @@
   .watermarked2 {
     position: absolute;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     top: 10%;
     width: 100%;
     color: rgb(245, 77, 163);
@@ -117,7 +117,7 @@
   .watermarked4 {
     position: absolute;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     top: 90%;
     width: 100%;
     color: rgb(245, 77, 163);
@@ -225,6 +225,17 @@
 
 /* --- product-details-about --- */
 .product-details-about {
+  .product-details-about-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: $font-en-primary;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #403e3e;
+    padding: 22px 0 15px;
+  }
   h3 {
     font-family: $font-en-primary;
     font-size: 16px;
