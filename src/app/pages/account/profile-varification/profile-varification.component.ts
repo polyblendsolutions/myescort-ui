@@ -70,7 +70,7 @@ export class ProfileVarificationComponent implements OnInit{
    */
   onSelect(event: { addedFiles: any }) {
     this.files.push(...event.addedFiles);
-  }
+      }
 
   onRemove(event: File) {
     this.files.splice(this.files.indexOf(event), 1);
@@ -82,7 +82,9 @@ export class ProfileVarificationComponent implements OnInit{
       .subscribe((res) => {
         const images = res.map((m) => m.url);
         const mData = {
-          ...{ images: [...this.oldImages, ...images] },
+          ...{ images: [...this.oldImages, ...images],
+            isVerfied:'Pending'
+          },
         };
         this.onVerified(mData);
       });
@@ -144,6 +146,9 @@ export class ProfileVarificationComponent implements OnInit{
         next: (res) => {
           if (res.success) {
             this.uiService.success(res.message);
+            this.getLoggedInUserData();
+            this.files.pop();
+            console.log('this.files', this.files)
           } else {
             this.uiService.warn(res.message);
           }
@@ -156,7 +161,12 @@ export class ProfileVarificationComponent implements OnInit{
   }
 
   public submit(){
-    this.addProductWithImage();
+    if(this.files?.length){
+      this.addProductWithImage();
+    }
+    else{
+      this.uiService.wrong('Der er ikke valgt noget billede.git')
+    }
   }
 
 }

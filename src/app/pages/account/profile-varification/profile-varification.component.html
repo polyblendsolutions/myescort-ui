@@ -9,17 +9,22 @@
     </div>
     <div class="verificer-child">
       <div class="verificer-child-main">
-        <ng-container *ngIf="!user?.isVerfied && user?.images?.length">
+        <ng-container *ngIf="user?.isVerfied==='Pending'">
           <div class="verification-message-container" >
             <p class="verification-message">Billedverifikationen er i øjeblikket afventende. Venligst vent.</p>
           </div>
         </ng-container>
+        <ng-container *ngIf="user?.isVerfied==='Rejected'">
+          <div class="verification-message-container" >
+            <p class="verification-message">Vi beklager at kunne meddele dig, at den billedbekræftelse, du har angivet, er blevet afvist. Upload venligst et nyt billede til godkendelse.</p>
+          </div>
+        </ng-container>
         <div class="verificer-child-main-top">
           <h2>Verificer Profil</h2>
-          <p *ngIf="user?.isVerfied">
+          <p *ngIf="user?.isVerfied==='Approved'">
             Din profil er blevet verificeret med succes!
           </p>
-          <p *ngIf="!user?.isVerfied">
+          <p *ngIf="!(user?.isVerfied==='Approved')">
             For at verificere din profil, send os et billede af dig med en
             aktuel avis eller et skilt, der indeholder den aktuelle dato og
             navnet på vores side myescort.dk, hvor både dit ansigt og de nævnte
@@ -29,8 +34,7 @@
           </p>
         </div>
         <!-- END! subscription-child-main-top -->
-
-        <div class="img-upload" *ngIf="!user?.isVerfied">
+        <div class="img-upload" *ngIf="!user?.isVerfied ||user?.isVerfied==='Unverified'||user?.isVerfied==='Rejected'">
           <div class="select-type-drop">
             <div
               class="custom-dropzone"
