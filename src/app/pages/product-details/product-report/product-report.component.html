@@ -17,9 +17,9 @@
           <mat-error>This field is required</mat-error>
         </mat-form-field> -->
   
-        <p>Your Reports *</p>
+        <p>Dine Rapporter *</p>
         <mat-form-field class="rating-form-field" appearance="outline">
-          <mat-label>Please write your honest opinion and give a rating</mat-label>
+          <mat-label>Venligst skriv din ærlige mening og giv en vurdering.</mat-label>
           <textarea formControlName="report" name="text" matInput rows="5" required></textarea>
         </mat-form-field>
   
@@ -57,19 +57,17 @@
         </mat-card> -->
   
         <div class="action">
-          <button mat-raised-button type="submit" color="primary">Submit</button>
-          <button mat-button mat-dialog-close>Cancel</button>
-        </div>
+          <button mat-raised-button type="submit" color="primary">Indsend</button>
+          <button mat-button mat-dialog-close>Annuller</button>
+        </div>        
       </form>
     </div>
   
-    <div class="login-card" *ngIf="userService.getUserStatus() === false">
+    <div class="login-card" >
       <button mat-button mat-dialog-close color="warn" type="button" [routerLink]="['/login']"
         [queryParams]="{redirectFrom: pageUrl }" mat-raised-button color="accent">
-        Login
+        Log ind
       </button>
-      <p>For submit your report, you need to login first.</p>
-    </div>
-  
-  
+      <p>For at indsende din rapport skal du først logge ind.</p>
+    </div>  
   </div>
