@@ -124,7 +124,9 @@ export class ProfileVarificationComponent implements OnInit{
       .uploadMultiImageOriginal(this.files)
       .subscribe((res) => {
         const images = res.map((m) => m.url);
-        const mData = { ...{ images: images } };
+        const mData = { ...{ images: images,
+            isVerfied:'Pending' },      
+      };
         // this.addProductByUser(mData);
         this.onVerified(mData)
       },
@@ -148,7 +150,6 @@ export class ProfileVarificationComponent implements OnInit{
             this.uiService.success(res.message);
             this.getLoggedInUserData();
             this.files.pop();
-            console.log('this.files', this.files)
           } else {
             this.uiService.warn(res.message);
           }
