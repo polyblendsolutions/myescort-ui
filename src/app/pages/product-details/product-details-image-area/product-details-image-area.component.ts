@@ -8,6 +8,7 @@ import { WishListService } from 'src/app/services/common/wish-list.service';
 import { ReloadService } from 'src/app/services/core/reload.service';
 import { UiService } from 'src/app/services/core/ui.service';
 import {NgxWatermarkOptions} from "ngx-watermark";
+import { SwiperComponent } from 'swiper/angular';
 
 
 
@@ -28,6 +29,7 @@ export class ProductDetailsImageAreaComponent implements OnInit {
 
   // Image Zoom & View Area
   @ViewChild('zoomViewer', {static: true}) zoomViewer;
+  @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
   //Subscription
   private subRefreshWishList: Subscription;
   private subGetWishList: Subscription;
@@ -142,8 +144,11 @@ export class ProductDetailsImageAreaComponent implements OnInit {
     this.image = this.product.images && this.product.images.length > 0 ? this.product.images[0] : '/assets/images/png/fallbackImage.png';
   }
 
-  onSelectImage(imageUrl: string) {
+  onSelectImage(imageUrl: string, index:number) {
     this.selectedImage = imageUrl;
+    if (this.swiper && this.swiper.swiperRef) {
+      this.swiper.swiperRef.slideTo(index + 1);
+    }
   }
    
    showImages(imageUrl: string) {

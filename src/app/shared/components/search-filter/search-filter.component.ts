@@ -45,7 +45,7 @@ import { HairColor } from 'src/app/interfaces/common/hairColor.interface';
   templateUrl: './search-filter.component.html',
   styleUrls: ['./search-filter.component.scss'],
 })
-export class SearchFilterComponent implements OnInit, OnDestroy {
+export class SearchFilterComponent implements OnInit {
   @ViewChild('menu') menu: MatMenu;
   @ViewChild('categoryMenu') categoryMenu: MatMenu;
   @ViewChild('typeMenu') typeMenu: MatMenu;
@@ -104,7 +104,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   private subRouteOne: Subscription;
 
   //Advanch Filter variables
-  public advanchFilter:boolean=false
+  public advanchFilter: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -120,30 +120,31 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     private intimateHairService: IntimateHairService,
     private orientationService: OrientationService,
     private bodyTypeService: BodyTypeService,
-    private activatedRoute: ActivatedRoute,
-
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.subRouteOne = this.activatedRoute.queryParams.subscribe((qParam) => {
-      if(Object.keys(qParam).length > 0 ) {
+      if (Object.keys(qParam).length > 0) {
+        // Check if searchQuery exists in queryParams
+        if (qParam.hasOwnProperty('searchQuery')) {
+          this.searchQuery = qParam['searchQuery'];
+        } else {
+          this.advanchFilter = true;
+        }
         this.initDataForm(qParam);
-         // Check if searchQuery exists in queryParams
-      if (qParam.hasOwnProperty('searchQuery')) {
-        this.searchQuery = qParam['searchQuery'];
-      }
       } else {
         this.initDataForm();
       }
-        this.getAllCategory();
-        this.getAllType();
-        this.getAllDivision();
-        this.getAllBanner();
-        this.getAllHairColor();
-        this.getAllIntimateHair();
-        this.getAllOrientation();
-        this.getAllBodyType();
-      
+      this.getAllCategory();
+      this.getAllType();
+      this.getAllDivision();
+      this.getAllBanner();
+      this.getAllHairColor();
+      this.getAllIntimateHair();
+      this.getAllOrientation();
+      this.getAllBodyType();
+
       const options = {
         strings: ['København', 'Aalborg', 'Odense', 'Aarhus'],
         typeSpeed: 100,
@@ -153,7 +154,6 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
         loop: true,
       };
     });
-    
 
     /*
       'København',
@@ -162,7 +162,6 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       'Aarhus'
     */
 
-    
     // const typed = new Typed('.typed-element', options);
   }
 
@@ -238,7 +237,6 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
           console.log(error);
         }
       );
-
   }
 
   @HostListener('window:resize')
@@ -283,76 +281,116 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   //     }, 3000);
   //   }
   // }
-
   private initDataForm(params?) {
     this.dataForm = this.fb.group({
       location: [null],
+      area: [null],
+      zone: [null],
       category: [null],
       type: [null],
-      height:this.fb.group({
-        minHeight:[150],
-        maxHeight:[200],
+      height: this.fb.group({
+        minHeight: [150],
+        maxHeight: [200],
       }),
-      weight:this.fb.group({
-        minWeight:[50],
-        maxWeight:[300],
+      weight: this.fb.group({
+        minWeight: [50],
+        maxWeight: [300],
       }),
-      age:this.fb.group({
-        minAge:[18],
-        maxAge:[80],
+      age: this.fb.group({
+        minAge: [18],
+        maxAge: [80],
       }),
-      bodytype:[null],
-      hairColor:[null],
-      intimateHairs:[null],
+      bodytype: [null],
+      hairColor: [null],
+      intimateHairs: [null],
     });
-    if(params && Object.keys(params).length > 0) {
-      if(params["divisions"]) {
-        this.onSelectBtnDis(params["divisions"]);
-      };
-      if(params["categories"]) {
-        this.onSelectBtnCategory(params["categories"]);
-      };
-      if(params["types"]) {
-        this.onSelectBtnType(params["types"]);
-      };
-      if(params["age"]) {
-        const minmaxArr = params["age"].split("-");
-        this.dataForm.controls["age"].setValue({
-          minAge: minmaxArr[0],
-          maxAge: minmaxArr[1]
-        })
+
+    setTimeout(() => {
+      if (params && Object.keys(params).length > 0) {
+        if (params['bodyTypes']) {
+          this.dataForm.controls['bodytype'].setValue(params['bodyTypes']);
+        }
+        if (params['hairColors']) {
+          this.dataForm.controls['hairColor'].setValue(params['hairColors']);
+        }
+        if (params['intimateHairs']) {
+          this.dataForm.controls['intimateHairs'].setValue(
+            params['intimateHairs']
+          );
+        }
+        if (params['divisions']) {
+          this.onSelectBtnDis(params['divisions']);
+        }
+        if (params['categories']) {
+          this.onSelectBtnCategory(params['categories']);
+        }
+        if (params['types']) {
+          this.onSelectBtnType(params['types']);
+        }
+        if (params['age']) {
+          const minmaxArr = params['age'].split('-');
+          this.dataForm.controls['age'].setValue({
+            minAge: minmaxArr[0],
+            maxAge: minmaxArr[1],
+          });
+        }
+        if (params['weight']) {
+          const minmaxArr = params['weight'].split('-');
+          this.dataForm.controls['weight'].setValue({
+            minWeight: minmaxArr[0],
+            maxWeight: minmaxArr[1],
+          });
+        }
+        if (params['height']) {
+          const minmaxArr = params['height'].split('-');
+          this.dataForm.controls['height'].setValue({
+            minHeight: minmaxArr[0],
+            maxHeight: minmaxArr[1],
+          });
+        }
       }
-    }
+    }, 1000);
   }
 
   onSubmit() {
     let inputVal = (this.searchInput.nativeElement as HTMLInputElement).value;
-    if(inputVal){
+    if (inputVal) {
       this.onSearchNavigate();
-      return
+      return;
     }
-    const formData = this.dataForm.value;    
+    const formData = this.dataForm.value;
     let queryParams = {
-      searchQuery:null,
+      searchQuery: null,
       categories: formData.category,
       types: formData.type,
       divisions: formData.location,
+      area: formData.area,
+      zone: formData.zone,
       bodyTypes: formData.bodytype,
       hairColors: formData.hairColor,
       intimateHairs: formData.intimateHairs,
-      height:null,
-      weight:null,
-      age:null,
+      height: null,
+      weight: null,
+      age: null,
     };
-    if (formData.height && formData.height.minHeight !== 150 && formData.height.maxHeight !== 200) {
+    if (
+      formData.height &&
+      (formData.height.minHeight !== 150 || formData.height.maxHeight !== 200)
+    ) {
       queryParams.height = `${formData.height.minHeight}-${formData.height.maxHeight}`;
     }
 
-    if (formData.weight && formData.weight.minWeight !== 50 && formData.weight.maxWeight !== 300) {
+    if (
+      formData.weight &&
+      (formData.weight.minWeight !== 50 || formData.weight.maxWeight !== 300)
+    ) {
       queryParams.weight = `${formData.weight.minWeight}-${formData.weight.maxWeight}`;
     }
 
-    if (formData.age && formData.age.minAge !== 18 && formData.age.maxAge !== 80) {
+    if (
+      formData.age &&
+      (formData.age.minAge !== 18 || formData.age.maxAge !== 80)
+    ) {
       queryParams.age = `${formData.age.minAge}-${formData.age.maxAge}`;
     }
 
@@ -360,7 +398,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       queryParams,
       queryParamsHandling: 'merge',
     });
-}
+  }
   /**
    * HANDLE SEARCH Area
    * onClickHeader()
@@ -613,20 +651,22 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       filter: null,
       pagination: null,
       select: mSelect,
-      sort: {name: 1},
+      sort: { name: 1 },
     };
 
-    this.subHairColor = this.hairColorService.getAllHairColor(filter, null).subscribe({
-      next: (res) => {
-        if (res.success) {
-          this.hairColors = res.data;
-          // this.checkHairColorFilter();
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.subHairColor = this.hairColorService
+      .getAllHairColor(filter, null)
+      .subscribe({
+        next: (res) => {
+          if (res.success) {
+            this.hairColors = res.data;
+            // this.checkHairColorFilter();
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   private getAllIntimateHair() {
@@ -640,20 +680,22 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       filter: null,
       pagination: null,
       select: mSelect,
-      sort: {name: 1},
+      sort: { name: 1 },
     };
 
-    this.subIntimateHair = this.intimateHairService.getAllIntimateHair(filter, null).subscribe({
-      next: (res) => {
-        if (res.success) {
-          this.intimateHairs = res.data;
-          // this.checkintimateHairFilter();
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.subIntimateHair = this.intimateHairService
+      .getAllIntimateHair(filter, null)
+      .subscribe({
+        next: (res) => {
+          if (res.success) {
+            this.intimateHairs = res.data;
+            // this.checkintimateHairFilter();
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   private getAllOrientation() {
@@ -667,20 +709,22 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       filter: null,
       pagination: null,
       select: mSelect,
-      sort: {name: 1},
+      sort: { name: 1 },
     };
 
-    this.subOrientation = this.orientationService.getAllOrientation(filter, null).subscribe({
-      next: (res) => {
-        if (res.success) {
-          this.orientations = res.data;
-          // this.checkOrientationsFilter();
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.subOrientation = this.orientationService
+      .getAllOrientation(filter, null)
+      .subscribe({
+        next: (res) => {
+          if (res.success) {
+            this.orientations = res.data;
+            // this.checkOrientationsFilter();
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   private getAllBodyType() {
@@ -694,20 +738,22 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       filter: null,
       pagination: null,
       select: mSelect,
-      sort: {name: 1},
+      sort: { name: 1 },
     };
 
-    this.subBodyType = this.bodyTypeService.getAllBodyType(filter, null).subscribe({
-      next: (res) => {
-        if (res.success) {
-          this.bodyTypes = res.data;
-          // this.checkBodyTypeFilter();
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.subBodyType = this.bodyTypeService
+      .getAllBodyType(filter, null)
+      .subscribe({
+        next: (res) => {
+          if (res.success) {
+            this.bodyTypes = res.data;
+            // this.checkBodyTypeFilter();
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   /**
@@ -734,33 +780,57 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
       sort: { createdAt: -1 },
     };
 
-    this.subTypeService = this.bannerService.getAllBanner(filter, null).subscribe({
-      next: (res) => {
-        if (res.success) {
-          this.banners = res.data;
-          console.log('this.banners', this.banners);
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.subTypeService = this.bannerService
+      .getAllBanner(filter, null)
+      .subscribe({
+        next: (res) => {
+          if (res.success) {
+            this.banners = res.data;
+            console.log('this.banners', this.banners);
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
-  onSelectBtnDis(value: any, event?: MouseEvent) {
-    if(event) event.stopImmediatePropagation();
+  onSelectBtnDis(value: any, event?: MouseEvent, locationType?: string) {
+    if (event) event.stopImmediatePropagation();
     this.isSelectedValue = value;
     this.isSelectedDis = true;
     this.isSelectedAll = false;
-    this.dataForm.patchValue({
-      location: this.isSelectedValue,
-    });
+    switch (locationType) {
+      case 'divisions':
+        this.dataForm.patchValue({
+          location: this.isSelectedValue,
+          area: null,
+          zone: null,
+        });
+        break;
+      case 'area':
+        this.dataForm.patchValue({
+          location: null,
+          area: this.isSelectedValue,
+          zone: null,
+        });
+        break;
+      case 'zone':
+        this.dataForm.patchValue({
+          location: null,
+          area: null,
+          zone: this.isSelectedValue,
+        });
+        break;
+      default:
+        break;
+    }
 
     this.menu?.closed.emit();
   }
 
   onSelectBtnCategory(value: any, event?: MouseEvent) {
-    if(event) event.stopImmediatePropagation();
+    if (event) event.stopImmediatePropagation();
     this.isSelectedValueCategory = value;
     this.isSelectedCategory = true;
     this.isSelectedAllCategory = false;
@@ -772,7 +842,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   }
 
   onSelectBtnType(value: any, event?: MouseEvent) {
-    if(event) event.stopImmediatePropagation();
+    if (event) event.stopImmediatePropagation();
     this.isSelectedValueType = value;
     this.isSelectedType = true;
     this.isSelectedAllType = false;
@@ -782,15 +852,15 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
 
     this.typeMenu?.closed.emit();
   }
-    /**
+  /**
    * Advance filter method
    * resetFilter()
    * resetSearch()
    */
-    onHideFilter() {
-      this.advanchFilter = !this.advanchFilter;
-    }
-    formatLabel(value: number): string {
+  onHideFilter() {
+    this.advanchFilter = !this.advanchFilter;
+  }
+  formatLabel(value: number): string {
     if (value >= 1000) {
       return Math.round(value / 1000) + 'k';
     }
@@ -798,42 +868,46 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     return `${value}`;
   }
 
-  resetFilter(){
+  resetFilter() {
     this.dataForm = this.fb.group({
       location: [null],
+      area: [null],
+      zone: [null],
       category: [null],
       type: [null],
-      height:this.fb.group({
-        minHeight:[150],
-        maxHeight:[200],
+      height: this.fb.group({
+        minHeight: [150],
+        maxHeight: [200],
       }),
-      weight:this.fb.group({
-        minWeight:[50],
-        maxWeight:[300],
+      weight: this.fb.group({
+        minWeight: [50],
+        maxWeight: [300],
       }),
-      age:this.fb.group({
-        minAge:[18],
-        maxAge:[80],
+      age: this.fb.group({
+        minAge: [18],
+        maxAge: [80],
       }),
-      bodytype:[null],
-      hairColor:[null],
-      intimateHairs:[null],
+      bodytype: [null],
+      hairColor: [null],
+      intimateHairs: [null],
     });
     this.onSelectBtnDis(null);
     this.onSelectBtnCategory(null);
     this.onSelectBtnType(null);
-    const formData = this.dataForm.value;    
+    const formData = this.dataForm.value;
     let queryParams = {
-      searchQuery:null,
+      searchQuery: null,
       categories: formData.category,
       types: formData.type,
       divisions: formData.location,
+      area: formData.area,
+      zone: formData.zone,
       bodyTypes: formData.bodytype,
       hairColors: formData.hairColor,
       intimateHairs: formData.intimateHairs,
-      height:null,
-      weight:null,
-      age:null,
+      height: null,
+      weight: null,
+      age: null,
     };
     this.router.navigate(['/ads'], {
       queryParams,
@@ -841,10 +915,10 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
     });
   }
 
-  resetSearch(){
-    this.searchQuery=null
+  resetSearch() {
+    this.searchQuery = null;
     const queryParams = {
-      searchQuery:null,
+      searchQuery: null,
     };
     this.router.navigate(['/ads'], {
       queryParams,

@@ -276,6 +276,8 @@ export class SearchAreaComponent implements OnInit, OnDestroy {
   private initDataForm() {
     this.dataForm = this.fb.group({
       location: [null],
+      area: [null],
+      zone: [null],
       category: [null],
       type: [null],
     });
@@ -287,6 +289,8 @@ export class SearchAreaComponent implements OnInit, OnDestroy {
         categories: this.dataForm.value.category,
         types: this.dataForm.value.type,
         divisions: this.dataForm.value.location,
+        area:this.dataForm.value.area,
+        zone:this.dataForm.value.zone,
       },
       queryParamsHandling: 'merge',
     });
@@ -570,14 +574,32 @@ export class SearchAreaComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSelectBtnDis(value: any, event: MouseEvent) {
+  onSelectBtnDis(value: any, event: MouseEvent, locationType:string) {
     event.stopImmediatePropagation();
     this.isSelectedValue = value;
     this.isSelectedDis = true;
     this.isSelectedAll = false;
-    this.dataForm.patchValue({
-      location: this.isSelectedValue,
-    });
+    if(locationType==='divisions'){
+      this.dataForm.patchValue({
+        location: this.isSelectedValue,
+        area: null,
+        zone: null,
+      });
+    }
+    else if(locationType==='area'){
+      this.dataForm.patchValue({
+        location: null,
+        area: this.isSelectedValue,
+        zone: null,
+      });
+    }
+    else if(locationType==='zone'){
+      this.dataForm.patchValue({
+        location: null,
+        area: null,
+        zone: this.isSelectedValue,
+      });
+    }
 
     // this.menu?.closeMenu()
 
