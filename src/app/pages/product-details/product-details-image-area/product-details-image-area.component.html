@@ -1,6 +1,6 @@
 <div class="product-details-left">
   <div class="product-image-top">
-    <swiper
+    <swiper #swiper
       [slidesPerView]="1"
       [spaceBetween]="0"
       [autoplay]="false"
@@ -87,10 +87,10 @@
       }"
       class="mySwiper"
     >
-      <ng-template swiperSlide *ngFor="let imgPath of product?.images">
+      <ng-template swiperSlide *ngFor="let imgPath of product?.images;let i=index">
         <div class="slide-img">
           <img
-            (click)="onSelectImage(imgPath)"
+            (click)="onSelectImage(imgPath, i)"
             [src]="imgPath ? imgPath : './assets/images/temp/products/01.jpg'"
             alt="Image"
           />
