@@ -419,7 +419,13 @@ header.fixed-header {
       max-width: 138px;
     }
   }
-
+@media (max-width:400px) {
+  .left-img {
+    img {
+      max-width: 190px;
+    }
+  }
+}
   .nav-right {
     padding: 20px 18px;
     position: fixed;
