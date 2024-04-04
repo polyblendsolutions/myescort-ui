@@ -19,29 +19,37 @@
     padding-left: 10px;
   }
 
-
   .form {
     margin-top: 20px;
-    p{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    p {
       color: #333;
       font-family: $font-en-primary;
       font-style: normal;
       font-weight: 500;
       font-size: 17px;
       display: block;
-      margin-bottom: 10px!important;
+      margin-bottom: 10px !important;
     }
 
     .rating-form-field {
-      margin-left: 10px;
+      margin: 10px 0px 0px 10px;
       width: 100%;
       max-width: 520px;
     }
   }
 
   .action {
-    padding-left: 10px;
-    margin-top: 25px;
+    margin: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;    
+    @media only screen and (max-width: 400px){
+     flex-direction: column;
+    }
   }
 }
 .login-card {
@@ -56,8 +64,6 @@
   flex-direction: column;
   gap: 10px;
   font-family: $font-en-primary;
-
-
 }
 
 .reviews {
@@ -110,23 +116,19 @@
           margin-left: -10px;
         }
       }
-
     }
   }
-
 }
 
-
-.content-main{
+.content-main {
   display: block;
   background-color: #fff;
   padding: 20px;
   box-sizing: border-box;
-  .title{
+  .title {
     margin-bottom: 10px;
   }
 }
-
 
 @media only screen and (max-width: 599px) {
   .input-area {
@@ -140,5 +142,29 @@
         width: 100% !important;
       }
     }
+  }
+}
+.btn-submit {
+  cursor: pointer;
+  min-width: 120px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 22px;
+  transition: all 0.2s ease;
+  color: #fff !important;
+}
+
+.sub-btn {
+  background: #f54da3 !important;
+
+  &:hover {
+    background: rgb(244, 44, 147) !important;
+  }
+}
+.clear-btn {
+  background: #637381 !important;
+
+  &:hover {
+    background: #424b52 !important;
   }
 }

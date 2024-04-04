@@ -8,7 +8,7 @@
       </div>
    -->
   
-      <form class="form" #formElement="ngForm" [formGroup]="dataForm" (ngSubmit)="onSubmit()" style="display: flex;align-items: center; flex-direction: column;">
+      <form class="form" #formElement="ngForm" [formGroup]="dataForm" (ngSubmit)="onSubmit()" >
   
         <!-- <p>Your Name *</p>
         <mat-form-field appearance="outline" class="rating-form-field">
@@ -17,10 +17,11 @@
           <mat-error>This field is required</mat-error>
         </mat-form-field> -->
   
-        <p>Dine Rapporter *</p>
+        <p>Rapportér annonce*</p>
         <mat-form-field class="rating-form-field" appearance="outline">
-          <mat-label>Venligst skriv din ærlige mening og giv en vurdering.</mat-label>
-          <textarea formControlName="report" name="text" matInput rows="5" required></textarea>
+          <textarea formControlName="report" 
+          placeholder="Din feedback er vigtig for os! Del din mening."
+          name="text" matInput rows="5" required></textarea>
         </mat-form-field>
   
 <!--   
@@ -57,17 +58,17 @@
         </mat-card> -->
   
         <div class="action">
-          <button mat-raised-button type="submit" color="primary">Indsend</button>
-          <button mat-button mat-dialog-close>Annuller</button>
+          <button mat-button class="btn-submit sub-btn" type="submit">Indsend</button>
+          <button mat-button class="btn-submit clear-btn" mat-dialog-close>Annuller</button>
         </div>        
       </form>
     </div>
   
-    <div class="login-card" >
-      <button mat-button mat-dialog-close color="warn" type="button" [routerLink]="['/login']"
-        [queryParams]="{redirectFrom: pageUrl }" mat-raised-button color="accent">
+    <div class="login-card" *ngIf="userService.getUserStatus() === false">
+      <button mat-button mat-dialog-close class="btn-submit sub-btn" type="button" [routerLink]="['/login']"
+        [queryParams]="{redirectFrom: pageUrl }">
         Log ind
       </button>
-      <p>For at indsende din rapport skal du først logge ind.</p>
+      <p>Du skal være logget ind for at indsende din rapport.</p>
     </div>  
   </div>
