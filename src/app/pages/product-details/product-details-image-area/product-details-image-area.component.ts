@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/interfaces/common/product.interface';
@@ -26,6 +26,7 @@ export class ProductDetailsImageAreaComponent implements OnInit {
   wishlist: WishList = null;
   image: string;
   public showFullImage:boolean=false
+  public enableClickListener: boolean = false;
 
   // Image Zoom & View Area
   @ViewChild('zoomViewer', {static: true}) zoomViewer;
@@ -41,7 +42,8 @@ export class ProductDetailsImageAreaComponent implements OnInit {
     private wishListService: WishListService,
     private uiService: UiService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private elRef: ElementRef
   ) { }
 
   ngOnInit(): void {
@@ -54,6 +56,7 @@ export class ProductDetailsImageAreaComponent implements OnInit {
 
   toggleModal() {
     this.showFullImage = !this.showFullImage;
+    this.enableClickListener = false;
   }
 
   options: NgxWatermarkOptions = {
@@ -154,6 +157,9 @@ export class ProductDetailsImageAreaComponent implements OnInit {
    showImages(imageUrl: string) {
     this.selectedImage = imageUrl;
     this.showFullImage = !this.showFullImage;
+    setTimeout(()=>{
+      this.enableClickListener = true;
+    }, 100)
   }
 
   public onMouseMove(e) {
@@ -198,4 +204,24 @@ export class ProductDetailsImageAreaComponent implements OnInit {
 
   }
 
+  @HostListener('document:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      if(this.showFullImage) {
+        this.showFullImage = false;
+        this.enableClickListener = false;
+      }
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: Event) {
+    const targetDiv = this.elRef.nativeElement.querySelector('#targetDiv');
+    if (!targetDiv?.contains(event.target)) {
+      if(this.enableClickListener && this.showFullImage) {
+        this.showFullImage = false;
+        this.enableClickListener = false;
+      }
+    }
+  }
 }

@@ -35,7 +35,7 @@
     </span> -->
   </div>
   <div class="modal" [ngClass]="{'active': showFullImage}" *ngIf="showFullImage">
-    <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-content" #modalContentDiv (click)="$event.stopPropagation()">
       <swiper
       [slidesPerView]="1"
       [spaceBetween]="0"
