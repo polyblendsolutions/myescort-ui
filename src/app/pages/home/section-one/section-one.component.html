@@ -1,6 +1,6 @@
 <section
   class="section-one-home"
-  [style.background]="'url(../../../../assets/images/png/homepage-banner.png)'"
+  [ngClass]="isMobile ? 'mobile-only' : 'desktop-only'"
 >
 <!-- TODO: import the background assest from banner service from backend -->
 <!-- <section
@@ -17,7 +17,7 @@
         <div class="ul-main">
           <ul class="slider" id="sliderOne">
             <ng-container *ngFor="let data of arrData; index as i">
-              <li>{{ data }}</li>
+              <li class="slider-remove-mobile">{{ data }}</li>
             </ng-container>
           </ul>
         </div>
