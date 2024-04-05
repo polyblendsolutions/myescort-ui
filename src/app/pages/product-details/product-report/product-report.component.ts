@@ -157,7 +157,7 @@ export class ProductReportComponent implements OnInit, OnDestroy {
     this.subAddReport = this.reportService.addReport(mData)
       .subscribe({
         next: (res => {
-          this.uiService.success('Anmodningen behandles.');
+          this.uiService.success('Din anmeldelse behandles.');
           this.reloadService.needRefreshData$();
           this.reset();
           this.files=[];
