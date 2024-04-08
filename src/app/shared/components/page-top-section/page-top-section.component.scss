@@ -29,3 +29,9 @@
     color: $color-white;
   }
 }
+@media (max-width:400px) {
+  .title-second{
+   display: none;
+  
+  }
+}

@@ -555,3 +555,10 @@ header.fixed-header {
     }
   }
 }
+@media (max-width:400px) {
+  .container-header{
+    .nav{
+      padding: 0;
+    }
+  }
+}
