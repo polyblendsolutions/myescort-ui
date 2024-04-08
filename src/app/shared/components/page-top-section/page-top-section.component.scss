@@ -12,26 +12,29 @@
   padding: 44px 0 52px;
   display: flex;
   //align-items: center;
-  justify-content: flex-start!important;
+  justify-content: flex-start !important;
   flex-direction: column;
   width: 100%;
+
   h1 {
     font-family: $font-en-primary;
     font-size: 50px;
     font-weight: 500;
     color: $color-white;
   }
-  h4{
+
+  h4 {
     padding-top: 15px;
     font-family: $font-en-primary;
-    font-size:20px;
+    font-size: 20px;
     font-weight: 500;
     color: $color-white;
   }
 }
+
 @media (max-width:400px) {
-  .title-second{
-   display: none;
-  
+  .title-second {
+    display: none;
+
   }
 }
