@@ -216,7 +216,8 @@ export class ProductDetailsImageAreaComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   clickOutside(event: Event) {
-    if (!event.target?.['classList'].contains('swiper-product-image') && !event.target?.['classList'].contains('swiper-button-next') && !event.target?.['classList'].contains('swiper-button-prev')) {
+    const classList = event.target?.['classList'];
+    if (!classList.contains('swiper-product-image') && !classList.contains('swiper-button-next') && !classList.contains('swiper-button-prev')) {
       if (this.enableClickListener && this.showFullImage) {
         this.showFullImage = false;
         this.enableClickListener = false;
