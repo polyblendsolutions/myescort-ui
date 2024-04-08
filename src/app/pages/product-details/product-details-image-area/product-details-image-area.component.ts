@@ -216,11 +216,9 @@ export class ProductDetailsImageAreaComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   clickOutside(event: Event) {
-    // Access the classList property of the event target
     const classList = event.target?.['classList'];
-    // Check if the clicked element does not have certain classes
     if (!classList.contains('swiper-product-image') && !classList.contains('swiper-button-next') && !classList.contains('swiper-button-prev')) {
-      // If conditions are met and modal get closed
+      // Check inside class list if certain classes related to swiper exist, if not, it will close the pop up.
       if (this.enableClickListener && this.showFullImage) {
         this.showFullImage = false;
         this.enableClickListener = false;
