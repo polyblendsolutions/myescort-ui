@@ -5,8 +5,19 @@
   .container {
     padding: 0 14px;
   }
-}
 
+}
+@media (max-width:400px) {
+  .section-one-home {
+    .container {
+      background-image: linear-gradient(to bottom, #f9d5e7, #fbe6e9);
+    }
+  
+  }
+}
+.desktop-only{
+  background-image: url(../../../../assets/images/png/homepage-banner.png);
+}
 .auto-complete-box {
   display: block;
   position: absolute;
@@ -155,7 +166,7 @@
 
 .section-one-home {
   width: 100%;
-  background: $primary-color;
+  //background: $primary-color;
   background-repeat: no-repeat !important;
   background-position: center center !important;
   background-size: cover !important;
@@ -203,9 +214,11 @@
   }
 }
 
-@media (max-width: 456px) {
+@media (max-width: 400px) {
   .section-one-main {
-    padding-bottom: 0px;
+padding-bottom: 47px;
+min-height: 300px;
+
   }
 }
 
@@ -666,6 +679,13 @@
   ::ng-deep{
     .mat-mdc-menu-panel.mat-mdc-menu-panel {
       max-width: 83vw !important;
+      max-height: 300px;
     }
   } 
+  .static-txt{
+    display: none;
+  }
+  .slider-remove-mobile{
+    display: none;
+  }
 }
