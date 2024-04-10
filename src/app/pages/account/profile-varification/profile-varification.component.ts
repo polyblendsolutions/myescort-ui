@@ -23,11 +23,12 @@ export class ProfileVarificationComponent implements OnInit{
   removeImages: string[] = [];
   user: User = null;
  //Form Variables
- dataForm!: FormGroup;
+  dataForm!: FormGroup;
   // Subscriptions
-  private subDataFour: Subscription;
-  private subDataFive: Subscription;
-  private subDataSix: Subscription;
+  private subUploadMultiImage: Subscription;
+  private subUpdateImage: Subscription;
+  private subUpdateUser: Subscription;
+  private subLoggedInUserData: Subscription;
 
   // Boolean for button Logic
   private isButtonDisabled: boolean = false;
@@ -77,7 +78,7 @@ export class ProfileVarificationComponent implements OnInit{
   }
 
   private updateProductWithImage() {
-    this.subDataSix = this.fileUploadService
+    this.subUpdateImage = this.fileUploadService
       .uploadMultiImageOriginal(this.files)
       .subscribe((res) => {
         const images = res.map((m) => m.url);
@@ -102,7 +103,7 @@ export class ProfileVarificationComponent implements OnInit{
   }
 
   getLoggedInUserData() {
-    this.userDataService.getLoggedInUserData().subscribe(
+    this.subLoggedInUserData= this.userDataService.getLoggedInUserData().subscribe(
         (res) => {
           if (res) {
             this.user = res.data;
@@ -120,7 +121,7 @@ export class ProfileVarificationComponent implements OnInit{
 
   private addProductWithImage() {
     this.isButtonDisabled = true;
-    this.subDataFive = this.fileUploadService
+    this.subUploadMultiImage = this.fileUploadService
       .uploadMultiImageOriginal(this.files)
       .subscribe((res) => {
         const images = res.map((m) => m.url);
@@ -138,7 +139,7 @@ export class ProfileVarificationComponent implements OnInit{
   }
 
   onVerified(mData) {
-     this.userService
+     this.subUpdateUser=this.userService
       .updateUsersById(this.user._id,mData )
       .pipe(
         finalize(() => {         
@@ -170,5 +171,21 @@ export class ProfileVarificationComponent implements OnInit{
       this.uiService.wrong('Der er ikke valgt noget billede.git')
     }
   }
+  ngOnDestroy() {
+    if (this.subUploadMultiImage) {
+      this.subUploadMultiImage.unsubscribe();
+    }
 
+    if (this.subUpdateImage) {
+      this.subUpdateImage.unsubscribe();
+    }
+    
+    if (this.subUpdateUser) {
+      this.subUpdateUser.unsubscribe();
+    }
+
+    if (this.subLoggedInUserData) {
+      this.subLoggedInUserData.unsubscribe();
+    }
+  }
 }
