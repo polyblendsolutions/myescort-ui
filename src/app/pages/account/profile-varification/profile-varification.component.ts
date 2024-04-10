@@ -83,7 +83,7 @@ export class ProfileVarificationComponent implements OnInit{
         const images = res.map((m) => m.url);
         const mData = {
           ...{ images: [...this.oldImages, ...images],
-            isVerfied:'Pending'
+            verifiedStatus:1
           },
         };
         this.onVerified(mData);
@@ -125,7 +125,8 @@ export class ProfileVarificationComponent implements OnInit{
       .subscribe((res) => {
         const images = res.map((m) => m.url);
         const mData = { ...{ images: images,
-            isVerfied:'Pending' },      
+          verifiedStatus:1 
+        },      
       };
         // this.addProductByUser(mData);
         this.onVerified(mData)
