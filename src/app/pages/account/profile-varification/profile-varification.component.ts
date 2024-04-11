@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, finalize } from 'rxjs';
+import { VerifiedStatus } from 'src/app/enum/verification-status.enum';
 import { User } from 'src/app/interfaces/common/user.interface';
 import { UserDataService } from 'src/app/services/common/user-data.service';
 import { UserService } from 'src/app/services/common/user.service';
@@ -84,7 +85,7 @@ export class ProfileVarificationComponent implements OnInit{
         const images = res.map((m) => m.url);
         const mData = {
           ...{ images: [...this.oldImages, ...images],
-            verifiedStatus:1
+            verifiedStatus:VerifiedStatus.Pending
           },
         };
         this.onVerified(mData);
@@ -126,7 +127,7 @@ export class ProfileVarificationComponent implements OnInit{
       .subscribe((res) => {
         const images = res.map((m) => m.url);
         const mData = { ...{ images: images,
-          verifiedStatus:1 
+          verifiedStatus:VerifiedStatus.Pending
         },      
       };
         // this.addProductByUser(mData);
