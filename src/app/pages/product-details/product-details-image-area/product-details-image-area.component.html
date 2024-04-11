@@ -1,6 +1,7 @@
 <div class="product-details-left">
   <div class="product-image-top">
     <swiper
+      #swiper
       [slidesPerView]="1"
       [spaceBetween]="0"
       [autoplay]="false"
@@ -13,15 +14,22 @@
         }
       }"
       class="mySwiper mySwiperTwo"
-    >    
+    >
       <ng-template swiperSlide *ngFor="let imgPath of product?.images">
-        <img (click)="showImages(imgPath)" [src]="imgPath" class="product-image" alt="Product Image">
-        <div class="watermarked"><img
-          class="pre-scroll-img"
-          routerLink="/"
-          src="./assets/images/logo/logo_white.svg"
-          alt="marketplace"
-        /></div>
+        <img
+          (click)="showImages(imgPath)"
+          [src]="imgPath"
+          class="product-image"
+          alt="Product Image"
+        />
+        <div class="watermarked">
+          <img
+            class="pre-scroll-img"
+            routerLink="/"
+            src="./assets/images/logo/logo_white.svg"
+            alt="marketplace"
+          />
+        </div>
       </ng-template>
     </swiper>
 
@@ -34,27 +42,43 @@
       <i class="fa-solid fa-magnifying-glass"></i>
     </span> -->
   </div>
-  <div class="modal" [ngClass]="{'active': showFullImage}" *ngIf="showFullImage">
-    <div class="modal-content" (click)="$event.stopPropagation()">
+  <div
+    class="modal"
+    [ngClass]="{ active: showFullImage }"
+    *ngIf="showFullImage"
+  >
+    <div class="modal-content" #modalContentDiv>
       <swiper
-      [slidesPerView]="1"
-      [spaceBetween]="0"
-      [autoplay]="false"
-      [loop]="true"
-      [grabCursor]="true"
-      [navigation]="true"
-      [breakpoints]="{
-        '0': {
-          slidesPerView: 1
-        }
-      }"
-      class="mySwiper mySwiperTwo"
-    >    
-      <ng-template swiperSlide *ngFor="let imgPath of product?.images">
-        <img [src]="imgPath" alt="Product Image">
-      </ng-template>
-    </swiper>
-          <span class="close-btn" (click)="toggleModal()">&times;</span>
+        [slidesPerView]="1"
+        [spaceBetween]="0"
+        [autoplay]="false"
+        [loop]="true"
+        [grabCursor]="true"
+        [navigation]="true"
+        [breakpoints]="{
+          '0': {
+            slidesPerView: 1
+          }
+        }"
+        class="mySwiper mySwiperTwo"
+      >
+        <ng-template swiperSlide *ngFor="let imgPath of product?.images">
+          <img
+            [src]="imgPath"
+            class="swiper-product-image"
+            alt="Product Image"
+          />
+          <div class="watermarked-slider">
+            <img
+              class="pre-scroll-img"
+              routerLink="/"
+              src="./assets/images/logo/logo_white.svg"
+              alt="marketplace"
+            />
+          </div>
+        </ng-template>
+      </swiper>
+      <span class="close-btn" (click)="toggleModal()">&times;</span>
     </div>
   </div>
   <div class="product-image-slider">
@@ -62,7 +86,6 @@
       [slidesPerView]="3"
       [spaceBetween]="13"
       [autoplay]="true"
-      
       [grabCursor]="true"
       [navigation]="false"
       [breakpoints]="{
@@ -81,10 +104,13 @@
       }"
       class="mySwiper"
     >
-      <ng-template swiperSlide *ngFor="let imgPath of product?.images">
+      <ng-template
+        swiperSlide
+        *ngFor="let imgPath of product?.images; let i = index"
+      >
         <div class="slide-img">
           <img
-            (click)="onSelectImage(imgPath)"
+            (click)="onSelectImage(imgPath, i)"
             [src]="imgPath ? imgPath : './assets/images/temp/products/01.jpg'"
             alt="Image"
           />
@@ -94,7 +120,20 @@
   </div>
 
   <div class="product-details-about">
-    <h3>About me</h3>
+    <div class="product-details-about-title">
+      <h3>About me</h3>
+      <div>
+        <span
+          >Listing created: {{ product?.createdAt | date : "dd-MM-yyyy" }}</span
+        >
+        &nbsp;
+        <span
+          >Listing refreshed:
+          {{ product?.updatedAt | date : "dd-MM-yyyy" }}</span
+        >
+      </div>
+    </div>
+
     <p>
       {{ product?.shortDescription }}
     </p>

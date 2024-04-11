@@ -1,19 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {ProductListService} from 'src/app/services/common/product-list.service';
-import {Product} from "../../../../interfaces/common/product.interface";
-import {Subscription} from "rxjs";
-import {ProductService} from "../../../../services/common/product.service";
-import {FilterData} from "../../../../interfaces/core/filter-data";
-import {ActivatedRoute, Router} from '@angular/router';
-import {Pagination} from '../../../../interfaces/core/pagination';
+import { Component, OnInit } from '@angular/core';
+import { ProductListService } from 'src/app/services/common/product-list.service';
+import { Product } from '../../../../interfaces/common/product.interface';
+import { Subscription } from 'rxjs';
+import { ProductService } from '../../../../services/common/product.service';
+import { FilterData } from '../../../../interfaces/core/filter-data';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Pagination } from '../../../../interfaces/core/pagination';
 
 @Component({
   selector: 'app-product-list-right',
   templateUrl: './product-list-right.component.html',
-  styleUrls: ['./product-list-right.component.scss']
+  styleUrls: ['./product-list-right.component.scss'],
 })
 export class ProductListRightComponent implements OnInit {
-
   data: any;
   //Store data
   products: Product[] = [];
@@ -25,7 +24,6 @@ export class ProductListRightComponent implements OnInit {
   totalProducts = 0;
   productsPerPage = 12;
   totalProductsStore = 0;
-
 
   isLoading = false;
   isLoadMore = false;
@@ -53,15 +51,13 @@ export class ProductListRightComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private _productList: ProductListService,
-    private router: Router,
-  ) {
-  }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.data = this.router.url;
     // GET PAGE FROM QUERY PARAM
-    this.subRouteOne = this.activatedRoute.queryParams.subscribe(qParam => {
-
+    this.subRouteOne = this.activatedRoute.queryParams.subscribe((qParam) => {
       // Search Query
       this.searchQueryFromQueryParam(qParam);
 
@@ -70,10 +66,8 @@ export class ProductListRightComponent implements OnInit {
 
       // Fetch data
       this.getAllProducts();
-
     });
   }
-
 
   /**
    * QUERY BUILDER
@@ -95,8 +89,8 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedCategories = qParam['categories'];
       }
-      this.categoryFilterArray = this.selectedCategories.map(m => {
-        return {'category.slug': m}
+      this.categoryFilterArray = this.selectedCategories.map((m) => {
+        return { 'category.slug': m };
       });
     }
 
@@ -106,10 +100,9 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedTypes = qParam['types'];
       }
-      this.typeFilterArray = this.selectedTypes.map(m => {
-        return {'type.slug': m}
+      this.typeFilterArray = this.selectedTypes.map((m) => {
+        return { 'type.slug': m };
       });
-
     }
 
     if (qParam && qParam['intimateHairs']) {
@@ -118,8 +111,8 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedintimateHairs = qParam['intimateHairs'];
       }
-      this.intimateHairsFilterArray = this.selectedintimateHairs.map(m => {
-        return {'intimateHair.slug': m}
+      this.intimateHairsFilterArray = this.selectedintimateHairs.map((m) => {
+        return { 'intimateHair.slug': m };
       });
     }
 
@@ -129,11 +122,10 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedBodyTypes = qParam['bodyTypes'];
       }
-      this.bodyTypesFilterArray = this.selectedBodyTypes.map(m => {
-        return {'bodyType.slug': m}
+      this.bodyTypesFilterArray = this.selectedBodyTypes.map((m) => {
+        return { 'bodyType.slug': m };
       });
     }
-
 
     if (qParam && qParam['orientations']) {
       if (typeof qParam['orientations'] === 'string') {
@@ -141,8 +133,8 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedOrientations = qParam['orientations'];
       }
-      this.orientationsFilterArray = this.selectedOrientations.map(m => {
-        return {'orientation.slug': m}
+      this.orientationsFilterArray = this.selectedOrientations.map((m) => {
+        return { 'orientation.slug': m };
       });
     }
 
@@ -152,8 +144,8 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedHairColors = qParam['hairColors'];
       }
-      this.orientationsFilterArray = this.selectedHairColors.map(m => {
-        return {'hairColor.slug': m}
+      this.orientationsFilterArray = this.selectedHairColors.map((m) => {
+        return { 'hairColor.slug': m };
       });
     }
 
@@ -163,17 +155,16 @@ export class ProductListRightComponent implements OnInit {
       } else {
         this.selectedDivision = qParam['divisions'];
       }
-      this.divisionFilterArray = this.selectedDivision.map(m => {
-        return {'division.name': m}
+      this.divisionFilterArray = this.selectedDivision.map((m) => {
+        return { 'division.name': m };
       });
-
     }
   }
 
   private getAllProducts(loadMore?: boolean) {
     const pagination: Pagination = {
       pageSize: Number(this.productsPerPage),
-      currentPage: Number(this.currentPage) - 1
+      currentPage: Number(this.currentPage) - 1,
     };
 
     // Select
@@ -199,50 +190,36 @@ export class ProductListRightComponent implements OnInit {
       tags: 1,
       description: 1,
       shortDescription: 1,
-    }
+    };
 
     // Compleax Filter Array Based on Selections
     const comFilter: any[] = [];
     if (this.categoryFilterArray.length) {
-      comFilter.push(
-        {$or: this.categoryFilterArray}
-      );
+      comFilter.push({ $or: this.categoryFilterArray });
     }
 
     if (this.typeFilterArray.length) {
-      comFilter.push(
-        {$or: this.typeFilterArray}
-      );
+      comFilter.push({ $or: this.typeFilterArray });
     }
 
     if (this.intimateHairsFilterArray.length) {
-      comFilter.push(
-        {$or: this.intimateHairsFilterArray}
-      );
+      comFilter.push({ $or: this.intimateHairsFilterArray });
     }
 
     if (this.bodyTypesFilterArray.length) {
-      comFilter.push(
-        {$or: this.bodyTypesFilterArray}
-      );
+      comFilter.push({ $or: this.bodyTypesFilterArray });
     }
 
     if (this.hairColorsFilterArray.length) {
-      comFilter.push(
-        {$or: this.hairColorsFilterArray}
-      );
+      comFilter.push({ $or: this.hairColorsFilterArray });
     }
 
     if (this.orientationsFilterArray.length) {
-      comFilter.push(
-        {$or: this.orientationsFilterArray}
-      );
+      comFilter.push({ $or: this.orientationsFilterArray });
     }
 
     if (this.divisionFilterArray.length) {
-      comFilter.push(
-        {$or: this.divisionFilterArray}
-      );
+      comFilter.push({ $or: this.divisionFilterArray });
     }
 
     let mFilter;
@@ -250,51 +227,50 @@ export class ProductListRightComponent implements OnInit {
       mFilter = {
         ...this.filter,
         ...{
-          $or: comFilter
-        }
-      }
+          $or: comFilter,
+        },
+      };
     } else {
       mFilter = this.filter;
     }
+    const type = { '/escort-valby': 'escort' }[this.data];
 
     const filterData: FilterData = {
       pagination: pagination,
-      filter: {...mFilter, status: 'publish'},
+      filter: {
+        ...mFilter,
+        'zone.name': 'Valby',
+        'type.slug': type,
+        status: 'publish',
+      },
       filterGroup: null,
       select: mSelect,
-      sort: {createdAt: -1}
-    }
+      sort: { createdAt: -1 },
+    };
 
+    this.subDataOne = this.productService
+      .getAllProducts(filterData, this.searchQuery)
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.tagProducts = res.data;
 
-    this.subDataOne = this.productService.getAllProducts(filterData, this.searchQuery)
-      .subscribe(res => {
+          this.isLoading = false;
+          this.isLoadMore = false;
+          if (loadMore) {
+            this.products = [...this.products, ...this.tagProducts];
+          } else {
+            this.products = this.tagProducts;
+          }
 
-        console.log(res)
-        this.tagProducts = res.data
-
-
-        this.isLoading = false;
-        this.isLoadMore = false;
-        if (loadMore) {
-          this.products = [...this.products, ...this.tagProducts];
-        } else {
-          const type = {'/escort-valby':"escort"}[this.data]
-          this.products = this.tagProducts.filter(m => {
-            return m.division?.name === "Valby" && m.type.slug === type
-          });
-
-
+          this.totalProducts = res.count;
+        },
+        (error) => {
+          this.isLoading = false;
+          console.log(error);
         }
-
-        this.totalProducts = res.count;
-
-
-      }, error => {
-        this.isLoading = false;
-        console.log(error);
-      });
+      );
   }
-
 
   /**
    * LOAD MORE
@@ -307,7 +283,6 @@ export class ProductListRightComponent implements OnInit {
     }
   }
 
-
   /**
    * PRODUCT LIST LEFT MENU RESPONSIVE
    * onHideFilterArea();
@@ -315,6 +290,4 @@ export class ProductListRightComponent implements OnInit {
   onHideFilterArea() {
     this._productList.onFilterAreaShown();
   }
-
-
 }
