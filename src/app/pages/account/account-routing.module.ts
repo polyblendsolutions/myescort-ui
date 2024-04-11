@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { ProfileVarificationComponent } from './profile-varification/profile-varification.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
       {
         path: 'verificer-profil',
         component: ProfileVarificationComponent,
+      },
+      {
+        path: 'account-settings',
+        component: AccountSettingsComponent,
       },
     ],
   },
