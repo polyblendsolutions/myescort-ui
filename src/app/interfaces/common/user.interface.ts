@@ -22,6 +22,7 @@ export interface User {
   addresses?: string[];
   hasAccess?: boolean;
   isVerfied?: boolean;
+  verifiedStatus?: number;
   verify?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
