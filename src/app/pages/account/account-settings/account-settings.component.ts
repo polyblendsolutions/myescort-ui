@@ -6,6 +6,9 @@ import { User } from 'src/app/interfaces/common/user.interface';
 import { UserDataService } from 'src/app/services/common/user-data.service';
 import { StorageService } from 'src/app/services/core/storage.service';
 import { UiService } from 'src/app/services/core/ui.service';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { OtpVerificationComponent } from 'src/app/shared/lazy/otp-verification/otp-verification.component'; 
+import { OtpService } from 'src/app/services/common/otp.service';
 
 @Component({
   selector: 'app-account-settings',
@@ -22,6 +25,7 @@ export class AccountSettingsComponent {
   public hideOldpassword = true;
   isVerify: boolean = false;
   subUserInfo: Subscription
+  dialogRef: MatDialogRef<OtpVerificationComponent>;
 
   constructor(
     private fb: FormBuilder,
@@ -30,6 +34,8 @@ export class AccountSettingsComponent {
     public activatedRoute: ActivatedRoute,
     public router: Router,
     public storageService: StorageService,
+    private dialog: MatDialog,
+    private otpService: OtpService,
   ) { }
   ngOnInit(): void {
     // Initialize Data Form
@@ -97,7 +103,8 @@ export class AccountSettingsComponent {
     }
     const { email, password, oldPassword, confirmPassword } = this.dataForm.value;
     if (this.user.email !== email) {
-      this.updateEmail(email);
+        this.checkEmailAndSentOtp(this.user.email, email)
+        this.openOtpDialog(this.user.email, email)
     }
     if (this.passwordChanged) {
       if (password !== confirmPassword) {
@@ -141,6 +148,7 @@ export class AccountSettingsComponent {
         if (res?.success) {
           this.uiService.success(res.message);
           this.dataForm.reset(); // Reset the form
+          this.getLoggedInUserData();
         }
         else if (!res?.success) {
           this.uiService.wrong(res.message);
@@ -149,6 +157,80 @@ export class AccountSettingsComponent {
       (error) => {
         // Handle error
         this.uiService.wrong(error?.error?.message);
+      }
+    );
+  }
+
+  openOtpDialog(email: string, newEmail: string): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '400px';
+    dialogConfig.disableClose = true; // Prevent closing the dialog by clicking outside
+    dialogConfig.panelClass = 'center-dialog'; // Add custom CSS class to center the dialog
+
+    this.dialogRef = this.dialog.open(OtpVerificationComponent, dialogConfig);
+
+    // // Subscribe to OTP verification result
+    // dialogRef.afterClosed().subscribe((otp: string) => {
+    //   if (otp) {
+    //     // this.updateEmailWithOtp(otp);
+    //   } else {
+    //     // Handle case when OTP verification failed or dialog closed
+    //     console.log('OTP verification failed or dialog closed.');
+    //   }
+    // });
+
+    // Listen to user input from OtpVerificationComponent
+    this.dialogRef.componentInstance.onEnterOtp.subscribe((otp: string) => {
+      if (otp) {
+        this.validateOtp(newEmail, otp)
+      }
+    });         
+
+     // Listen to OTP resend request from OtpVerificationComponent
+     this.dialogRef.componentInstance.onResentOtp.subscribe((resend: boolean) => {
+      if (resend) {
+        this.checkEmailAndSentOtp(email, newEmail)
+      }
+    });
+}
+//Send OTP
+  checkEmailAndSentOtp(email: string, newEmail: string) {
+    this.userDataService.checkEmailAndSentOtp({email: email, newEmail: newEmail})
+      .subscribe({
+        next: ((res) => {
+          if (res.success) {
+            this.uiService.success(res.message);
+          } else {
+            this.uiService.warn(res.message);
+          }
+        }),
+        error: ((error) => {
+          console.log(error);
+        })
+      });
+  }
+
+  //Validate OTP 
+  validateOtp(email: string, code: string){
+    const data={
+      email: email,
+      code: code,
+    }
+    return this.otpService.validateOtpWithEmail(data).subscribe(
+      {
+        next: ((res) => {
+          if (res.success) {
+            this.dialogRef.close();
+            this.updateEmail(email)
+            // this.uiService.success(res.message);
+
+          } else {
+            this.uiService.warn(res.message);
+          }
+        }),
+        error: ((error) => {
+          console.log(error);
+        })
       }
     );
   }
@@ -180,7 +262,7 @@ export class AccountSettingsComponent {
   toggleConfirmPasswordVisibility(): void {
     this.hideConfirmPassword = !this.hideConfirmPassword;
   }
-  
+
   ngOnDestroy(): void {
     if(this.subUserInfo){
       this.subUserInfo.unsubscribe();
