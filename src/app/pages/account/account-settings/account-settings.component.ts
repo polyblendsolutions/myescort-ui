@@ -32,10 +32,10 @@ export class AccountSettingsComponent {
 
   //Subscription
   subUserInfo: Subscription;
-  subcheckEmailAndSentOtp: Subscription;
-  subdialogUserInput: Subscription;
-  subdialogResendOtp: Subscription;
-  subvalidateOtpWithEmail: Subscription;
+  subCheckEmailAndSentOtp: Subscription;
+  subDialogUserInput: Subscription;
+  subDialogResendOtp: Subscription;
+  subValidateOtpWithEmail: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -186,7 +186,7 @@ export class AccountSettingsComponent {
     this.dialogRef = this.dialog.open(OtpVerificationComponent, dialogConfig);
 
     // Listen to user input from OtpVerificationComponent
-    this.subdialogUserInput =
+    this.subDialogUserInput =
       this.dialogRef.componentInstance.onEnterOtp.subscribe((otp: string) => {
         if (otp) {
           this.validateOtp(newEmail, otp);
@@ -194,7 +194,7 @@ export class AccountSettingsComponent {
       });
 
     // Listen to OTP resend request from OtpVerificationComponent
-    this.subdialogResendOtp =
+    this.subDialogResendOtp =
       this.dialogRef.componentInstance.onResentOtp.subscribe(
         (resend: boolean) => {
           if (resend) {
@@ -255,7 +255,7 @@ export class AccountSettingsComponent {
   }
 
   checkEmailAndSentOtp(email: string, newEmail: string) {
-    this.subcheckEmailAndSentOtp = this.userDataService
+    this.subCheckEmailAndSentOtp = this.userDataService
       .checkEmailAndSentOtp({ email: email, newEmail: newEmail })
       .subscribe({
         next: (res) => {
@@ -276,7 +276,7 @@ export class AccountSettingsComponent {
       email: email,
       code: code,
     };
-    return (this.subvalidateOtpWithEmail = this.otpService
+    return (this.subValidateOtpWithEmail = this.otpService
       .validateOtpWithEmail(data)
       .subscribe({
         next: (res) => {
@@ -302,17 +302,17 @@ export class AccountSettingsComponent {
     if (this.subUserInfo) {
       this.subUserInfo.unsubscribe();
     }
-    if (this.subcheckEmailAndSentOtp) {
-      this.subcheckEmailAndSentOtp.unsubscribe();
+    if (this.subCheckEmailAndSentOtp) {
+      this.subCheckEmailAndSentOtp.unsubscribe();
     }
-    if (this.subdialogUserInput) {
-      this.subdialogUserInput.unsubscribe();
+    if (this.subDialogUserInput) {
+      this.subDialogUserInput.unsubscribe();
     }
-    if (this.subdialogResendOtp) {
-      this.subdialogResendOtp.unsubscribe();
+    if (this.subDialogResendOtp) {
+      this.subDialogResendOtp.unsubscribe();
     }
-    if (this.subvalidateOtpWithEmail) {
-      this.subvalidateOtpWithEmail.unsubscribe();
+    if (this.subValidateOtpWithEmail) {
+      this.subValidateOtpWithEmail.unsubscribe();
     }
   }
 }
