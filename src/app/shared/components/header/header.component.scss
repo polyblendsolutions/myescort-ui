@@ -545,6 +545,7 @@ header.fixed-header {
   }
   .nav-right{
     ul.head-nav{
+      gap: 15px;
       li{
         a{
           display: flex !important;
@@ -552,8 +553,17 @@ header.fixed-header {
           padding: 0px 5px;
         }
       }
+      .hori-line-mobile{
+        // border: 1px solid #000;
+        height: 1px;
+        width: 100%;
+        opacity: 0.7;
+      }
     }
   }
+}
+.hori-line-mobile{
+  display: none;
 }
 @media (max-width:400px) {
   .container-header{
