@@ -50,9 +50,10 @@
               id="email"
               placeholder="Enter..."
             />
-            <p *ngIf="email.touched && email.invalid">
-              This field is required.
-            </p>
+            <ng-container *ngIf="email.touched && email.invalid">
+              <p *ngIf="dataForm.get('email').errors?.required">This field is required</p>
+              <p *ngIf="dataForm.get('email').errors?.email">Please enter correct email</p>
+            </ng-container>
           </div>
 
           <div class="form-input">
@@ -64,9 +65,11 @@
               id="Phone"
               placeholder="Enter..."
             />
-            <p *ngIf="phone.touched && phone.invalid">
-              This field is required.
-            </p>
+            <ng-container *ngIf="phone.touched && phone.invalid">
+              <p *ngIf="dataForm.get('phone').errors?.pattern">Phone number must be numeric</p>
+              <p *ngIf="dataForm.get('phone').errors?.minlength">Phone number must have a minimum of 7 digits</p>
+              <p *ngIf="dataForm.get('phone').errors?.required">Phone number is required</p>              
+            </ng-container>
           </div>
 
           <div class="form-input">
@@ -83,9 +86,10 @@
             />
             <mat-icon mat-icon-button (click)="togglePasswordVisibility('password')">{{ hidePassword ? 'visibility' : 'lock' }}</mat-icon>
             </div>            
-            <p *ngIf="password.touched && password.invalid">
-              This field is required.
-            </p>
+            <ng-container *ngIf="password.touched && password.invalid">
+              <p *ngIf="dataForm.get('password').errors?.minlength">password must have a minimum of 6 digits</p>
+              <p *ngIf="dataForm.get('password').errors?.required">password is required</p>
+            </ng-container>
           </div>
 
           <div class="form-input">
@@ -106,9 +110,10 @@
           />
           <mat-icon mat-icon-button (click)="togglePasswordVisibility('confirmPassword')">{{ hideConfirmPassword  ? 'visibility' : 'lock' }}</mat-icon>
           </div>
-            <p *ngIf="confirmPassword.touched && confirmPassword.invalid">
-              This field is required.
-            </p>
+            <ng-container *ngIf="confirmPassword.touched && confirmPassword.invalid">
+              <p *ngIf="dataForm.get('confirmPassword').errors?.minlength">confirm password must have a minimum of 6 digits</p>
+              <p *ngIf="dataForm.get('confirmPassword').errors?.required">confirm password is required</p>
+            </ng-container>
           </div>
 
           <div class="form-checkbox">

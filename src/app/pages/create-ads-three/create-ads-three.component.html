@@ -207,7 +207,11 @@
                     
                       />
                     </div>
-                  
+                    <div class="invalid-txt" *ngIf="dataForm.get('height').invalid && (dataForm.get('height').dirty || dataForm.get('height').touched)">
+                      <div *ngIf="dataForm.get('height').errors?.min">Height must be at least 150 cm</div>
+                      <div *ngIf="dataForm.get('height').errors?.max">Height cannot exceed 200 cm</div>
+                      <div *ngIf="dataForm.get('height').errors?.pattern">Height must be in a numeric value</div>
+                    </div>
                   </div>
 
                   <div class="form-input-select">
@@ -234,6 +238,11 @@
                         placeholder="Indast kg"
                         formControlName="weight"
                       />
+                    </div>
+                    <div class="invalid-txt" *ngIf="dataForm.get('weight').invalid && (dataForm.get('weight').dirty || dataForm.get('weight').touched)">
+                      <div *ngIf="dataForm.get('weight').errors?.min">Weight must be at least 50 cm</div>
+                      <div *ngIf="dataForm.get('weight').errors?.max">Weight cannot exceed 300 cm</div>
+                      <div *ngIf="dataForm.get('weight').errors?.pattern">Weight must be in a numeric value</div>
                     </div>
                   </div>
 
@@ -331,24 +340,19 @@
                     <label for="Age">Alder(will be shown in preview)</label>
                     <div class="input-main">
                       <input
-                        type="number"
+                        type="text"
                         id="Age"
-                        min="18"
                         placeholder="18-100"
                         formControlName="age"
-                        required
                       />
                     </div>
-                    <span
-                      class="invalid-txt"
-                      *ngIf="
-                        dataForm?.get('age')?.touched &&
-                        dataForm.get('age')?.invalid
-                      "
-                      >This field is required</span
-                    >
-                  </div>
-                  
+                    <div class="invalid-txt" *ngIf="dataForm.get('age').invalid && (dataForm.get('age').dirty || dataForm.get('age').touched)">
+                      <div *ngIf="dataForm.get('age').errors?.required">This field is required</div>
+                      <div *ngIf="dataForm.get('age').errors?.min">Age must be at least 18</div>
+                      <div *ngIf="dataForm.get('age').errors?.max">Age cannot exceed 80</div>
+                      <div *ngIf="dataForm.get('age').errors?.pattern">Age must be in a numeric value</div>
+                    </div>  
+                  </div>               
                 </div>
               </div>
 
