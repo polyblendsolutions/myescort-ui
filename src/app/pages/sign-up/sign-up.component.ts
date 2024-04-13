@@ -52,9 +52,9 @@ export class SignUpComponent implements OnInit {
       firstName: [null],
       lastName: [null],
       email: [null, [Validators.required, Validators.email]],
-      phone: [null, Validators.required],
-      password: [null, Validators.required],
-      confirmPassword: [null, Validators.required],
+      phone: [null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(7)]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
+      confirmPassword: [null, [Validators.required, Validators.minLength(6)]],
       isAccept: [null, Validators.required],
       hasAccess: [true]
     });
