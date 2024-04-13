@@ -17,6 +17,7 @@ export class MarketplaceCardComponent implements OnInit {
   @Output() onClickCard = new EventEmitter<any>();
   tesData: any;
   isQaHover: boolean = false;
+  vipStatus: boolean = true;
 
   /***
    * Subscription
