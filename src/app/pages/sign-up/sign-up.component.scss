@@ -11,6 +11,11 @@
     padding: 52px 0;
   }
 }
+@media (max-width: 400px) {
+  .sign-up-main {
+    padding: 14px 0;
+  }
+}
 
 /* --- sign-up-main-parent --- */
 .sign-up-main-parent {
@@ -131,8 +136,8 @@
     .login-form-title {
       h1 {
         font-size: 32px;
-        padding-bottom: 7px;
-      }
+        padding: 15px 0px 10px 0px;
+        }
 
       p.login-here {
         font-size: 10px;
