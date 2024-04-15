@@ -78,12 +78,11 @@
   .watermarked {
     position: absolute;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     top: 50%;
     left: 50%;
     color: rgb(245, 77, 163);
-    opacity: 0.8;
-    opacity: 0.8;
+    opacity: 0.5;
     transform: translate(-50%, -50%) ; /* Rotate the watermark */
     color: rgba(0, 0, 0, 0.5); /* Set color and opacity of the watermark */
     pointer-events: none; 
@@ -92,7 +91,7 @@
   .watermarked2 {
     position: absolute;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     top: 10%;
     width: 100%;
     color: rgb(245, 77, 163);
@@ -118,7 +117,7 @@
   .watermarked4 {
     position: absolute;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     top: 90%;
     width: 100%;
     color: rgb(245, 77, 163);
@@ -226,6 +225,17 @@
 
 /* --- product-details-about --- */
 .product-details-about {
+  .product-details-about-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: $font-en-primary;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #403e3e;
+    padding: 22px 0 15px;
+  }
   h3 {
     font-family: $font-en-primary;
     font-size: 16px;
@@ -299,3 +309,17 @@
 .active {
   display: flex;
 }    
+
+.watermarked-slider {
+  position: absolute;
+  display: flex;
+  justify-content: start;
+  top: 50%;
+  left: 50%;
+  color: rgb(245, 77, 163);
+  opacity: 0.5;
+  transform: translate(-50%, -50%) ; /* Rotate the watermark */
+  color: rgba(0, 0, 0, 0.5); /* Set color and opacity of the watermark */
+  pointer-events: none; 
+  width: calc(100% - 50%);
+}

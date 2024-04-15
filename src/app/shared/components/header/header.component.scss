@@ -510,3 +510,42 @@ header.fixed-header {
     }
   }
 }
+.icon-logo{
+  display: none;
+}
+.profile-icon{
+  display: none;
+}
+.helpIcon{
+  display: none;
+}
+@media (max-width:400px) {
+  .profile-mobile-logo{
+    display: none;
+  }
+  .helpIcon{
+    display: block;
+    width: 22px;
+    height: 22px;
+    opacity: 0.7;
+    margin-right: 5px;
+  }
+  .icon-logo{
+    display: block;
+    padding: 0px 5px;
+  }
+  .profile-icon{
+    display: block;
+  }
+  .nav-right{
+    ul.head-nav{
+      li{
+        a{
+          display: flex !important;
+          align-items: center;
+          padding: 0px 5px;
+        }
+      }
+    }
+  }
+}
