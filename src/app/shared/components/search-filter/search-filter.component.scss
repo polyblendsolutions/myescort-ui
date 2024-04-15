@@ -366,6 +366,9 @@
   background: #fff;
   padding: 6px;
   border-radius: 4px;
+  @media screen and (max-width: 600px) {
+    padding: 0px;
+  }
 
   .search-form {
     display: grid;
@@ -1206,13 +1209,24 @@
   grid-gap: 24px 30px;
   align-items: center;
   padding: 0 18px;
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @media screen and (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+
+  }  
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 @media (max-width:400px) {
-  .filter-area-child-one {
-    display: block;
-    padding: 0 !important;
-  }
+  // .filter-area-child-one {
+  //   display: block;
+  //   padding: 0 !important;
+  // }
 
   .sec-home-input-area-par {
 
@@ -1260,6 +1274,24 @@
   }
 }
 
+/* --- filter-area-child-filter --- */
+.filter-area-child-filter {
+  margin-top: 40px;
+  margin-left: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  @media screen and (max-width: 600px) {
+    justify-content: center;
+    margin-left: 0px;
+  }  
+
+}
+
+
 .filter-area-check {
   display: flex;
   align-items: center;
@@ -1289,12 +1321,15 @@
   align-items: flex-end;
   justify-content: flex-end;
   gap: 20px;
+  flex-wrap: wrap;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 @media (max-width:400px) {
-  .filter-area-child-two {
-    display: block !important;
-  }
 
   .filter-area-btn {
     margin-bottom: 10px !important;
@@ -1369,7 +1404,14 @@
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 30px 30px;
   align-items: flex-start;
-  padding: 0 18px;
+  padding: 0 18px;    
+  @media screen and (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+
+  }  
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 @media (max-width:400px) {
@@ -1386,6 +1428,9 @@
 ::ng-deep.filter-area-three-range-slider {
   min-width: 324px;
   padding-right: 18px;
+  @media screen and (max-width: 992px) {
+    min-width: 100%;
+  }
 
   &:last-child {
     padding-right: 15px;
@@ -1464,13 +1509,9 @@
   width: 224px;
   margin-left: auto;
   margin-right: 8px;
-}
-
-@media (max-width: 400px) {
-  .btn-container {
+  @media (max-width:600px){
     width: 100%;
-    max-width: 268px;
-    margin-left: 5px;
+    padding-top: 20px;
   }
 }
 
