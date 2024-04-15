@@ -289,11 +289,11 @@ export class SearchFilterComponent implements OnInit {
       category: [null],
       type: [null],
       height: this.fb.group({
-        minHeight: [150],
-        maxHeight: [200],
+        minHeight: [140],
+        maxHeight: [220],
       }),
       weight: this.fb.group({
-        minWeight: [50],
+        minWeight: [40],
         maxWeight: [300],
       }),
       age: this.fb.group({
@@ -375,14 +375,14 @@ export class SearchFilterComponent implements OnInit {
     };
     if (
       formData.height &&
-      (formData.height.minHeight !== 150 || formData.height.maxHeight !== 200)
+      (formData.height.minHeight !== 140 || formData.height.maxHeight !== 220)
     ) {
       queryParams.height = `${formData.height.minHeight}-${formData.height.maxHeight}`;
     }
 
     if (
       formData.weight &&
-      (formData.weight.minWeight !== 50 || formData.weight.maxWeight !== 300)
+      (formData.weight.minWeight !== 40 || formData.weight.maxWeight !== 300)
     ) {
       queryParams.weight = `${formData.weight.minWeight}-${formData.weight.maxWeight}`;
     }
@@ -876,11 +876,11 @@ export class SearchFilterComponent implements OnInit {
       category: [null],
       type: [null],
       height: this.fb.group({
-        minHeight: [150],
-        maxHeight: [200],
+        minHeight: [140],
+        maxHeight: [220],
       }),
       weight: this.fb.group({
-        minWeight: [50],
+        minWeight: [40],
         maxWeight: [300],
       }),
       age: this.fb.group({

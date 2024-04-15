@@ -208,8 +208,8 @@
                       />
                     </div>
                     <div class="invalid-txt" *ngIf="dataForm.get('height').invalid && (dataForm.get('height').dirty || dataForm.get('height').touched)">
-                      <div *ngIf="dataForm.get('height').errors?.min">Height must be at least 150 cm</div>
-                      <div *ngIf="dataForm.get('height').errors?.max">Height cannot exceed 200 cm</div>
+                      <div *ngIf="dataForm.get('height').errors?.min">Height must be at least 140 cm</div>
+                      <div *ngIf="dataForm.get('height').errors?.max">Height cannot exceed 220 cm</div>
                       <div *ngIf="dataForm.get('height').errors?.pattern">Height must be in a numeric value</div>
                     </div>
                   </div>
@@ -240,8 +240,8 @@
                       />
                     </div>
                     <div class="invalid-txt" *ngIf="dataForm.get('weight').invalid && (dataForm.get('weight').dirty || dataForm.get('weight').touched)">
-                      <div *ngIf="dataForm.get('weight').errors?.min">Weight must be at least 50 cm</div>
-                      <div *ngIf="dataForm.get('weight').errors?.max">Weight cannot exceed 300 cm</div>
+                      <div *ngIf="dataForm.get('weight').errors?.min">Weight must be at least 40 Kg</div>
+                      <div *ngIf="dataForm.get('weight').errors?.max">Weight cannot exceed 300 Kg</div>
                       <div *ngIf="dataForm.get('weight').errors?.pattern">Weight must be in a numeric value</div>
                     </div>
                   </div>
