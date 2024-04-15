@@ -1194,6 +1194,13 @@
   grid-gap: 24px 30px;
   align-items: center;
   padding: 0 18px;
+  .d-flex{
+    display: flex;
+    align-items: baseline;
+    label{
+      padding: 0 5px;
+    }
+  }
 }
 @media (max-width:400px) {
   .filter-area-child-one{

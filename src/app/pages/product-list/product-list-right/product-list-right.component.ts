@@ -471,12 +471,12 @@ export class ProductListRightComponent implements OnInit {
    * Destry Subscription
    * onHideFilterArea();
    */
-  // ngOnDestroy(): void {
-  //   if (this.subFilterProduct) {
-  //     this.subFilterProduct.unsubscribe();
-  //   }
-  //   if (this.subSearchProduct) {
-  //     this.subSearchProduct.unsubscribe();
-  //   }
-  // }
+  ngOnDestroy(): void {
+    if (this.subFilterProduct) {
+      this.subFilterProduct.unsubscribe();
+    }
+    if (this.subSearchProduct) {
+      this.subSearchProduct.unsubscribe();
+    }
+  }
 }
