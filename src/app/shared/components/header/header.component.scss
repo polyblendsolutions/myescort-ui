@@ -76,12 +76,18 @@
   }
 }
 
+.show-header {
+  display: flex;
+  align-items: center;
+}
+
 /* --- header --- */
 header {
   background-color: $color-white;
   position: relative;
   transition: all 0.18s linear;
   z-index: 300;
+  height: 110px;
 
   &.active {
     transition: all 0s linear;
@@ -177,13 +183,19 @@ header {
     }
   }
 
+  .user-logo {
+    i {
+      font-size: 20px !important;
+    }
+  }
+
   .create-btn {
     border-radius: 31px !important;
     padding: 10px 32px !important;
     font-size: 15px !important;
     line-height: 26px !important;
     font-weight: 400 !important;
-
+    min-height: 52px;
     i {
       font-size: 18px !important;
       line-height: 1 !important;
@@ -216,6 +228,7 @@ header.fixed-header {
 
             .scroll-img {
               display: block;
+              height: 61px;
             }
           }
         }
@@ -225,6 +238,9 @@ header.fixed-header {
             li {
               .user-logo {
                 color: $btn-color;
+                i {
+                  font-size: 20px !important;
+                }
               }
 
               a {
@@ -238,6 +254,7 @@ header.fixed-header {
                 color: #ffffff;
                 border-radius: 31px !important;
                 padding: 10px 32px !important;
+                min-height: 52px;
                 i {
                   font-size: 18px !important;
                   line-height: 1 !important;
@@ -265,6 +282,7 @@ header.fixed-header {
 .left-img {
   .scroll-img {
     display: block;
+    height: 61px;
   }
 
   .pre-scroll-img {
@@ -272,7 +290,7 @@ header.fixed-header {
   }
 
   img {
-    max-width: 180px;
+    max-width: 192px;
     width: 100%;
   }
 }
