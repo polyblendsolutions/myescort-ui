@@ -80,7 +80,6 @@ export class ProductDetailsComponent implements OnInit {
       (res) => {
         if (res.success) {
           this.product = res.data;
-          console.log(this.product,'this.product')
           if(!this?.product?.images || !this?.product?.images?.length) {
             this.product.images = [
               "/assets/images/png/fallbackImage.png"
