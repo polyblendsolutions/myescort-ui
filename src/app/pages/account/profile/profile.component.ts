@@ -8,6 +8,7 @@ import {FilterData} from "../../../interfaces/core/filter-data";
 import {ProductService} from "../../../services/common/product.service";
 import {Product} from "../../../interfaces/common/product.interface";
 import * as moment from 'moment'
+import { ProductStatus } from 'src/app/enum/product-status.enum';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -29,12 +30,13 @@ export class ProfileComponent implements OnInit,OnDestroy {
   //Subscription
   private subUserData: Subscription;
   private subRealod:Subscription;
+  productStatus: any;
   constructor(
     private userDataService: UserDataService,
     private reloadService:ReloadService,
     private productService: ProductService,
   ) {
-
+    this.productStatus = ProductStatus;
   }
   ngOnInit(): void {
       //Reload Data
