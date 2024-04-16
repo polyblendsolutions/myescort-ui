@@ -270,8 +270,24 @@
           </div>
         </div>
         <!-- END! sec-home-input-area-par -->
-
       </div>
+     <div class="filter-area-child-filter">
+     <div class="filter-area-check">
+        <input id="drivingEscort" type="checkbox" formControlName="drivingEscort"/>
+        <label for="drivingEscort">kører escort</label>
+      </div>
+      
+      <div class="filter-area-check">
+        <input id="drivingEscort" type="checkbox" formControlName="ownPlace"/>
+        <label for="drivingEscort">har eget sted</label>
+      </div>
+    
+      <div class="filter-area-check">
+        <input id="drivingEscort" type="checkbox" formControlName="acceptsHandicapped"/>
+        <label for="drivingEscort">Modtager handicappede</label>
+      </div>
+      
+    </div>  
       <div class="filter-area-child-two">
         <div class="filter-area-btn">
           <button type="button" (click)="resetFilter()">Clear filters</button>
