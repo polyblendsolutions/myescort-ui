@@ -5,7 +5,7 @@ import { Product } from 'src/app/interfaces/common/product.interface';
 import { FilterData } from 'src/app/interfaces/core/filter-data';
 import { CarouselCntrlService } from 'src/app/services/common/carousel-cntrl.service';
 import { ProductService } from 'src/app/services/common/product.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -80,6 +80,7 @@ export class ProductDetailsComponent implements OnInit {
       (res) => {
         if (res.success) {
           this.product = res.data;
+          console.log(this.product,'this.product')
           if(!this?.product?.images || !this?.product?.images?.length) {
             this.product.images = [
               "/assets/images/png/fallbackImage.png"
@@ -168,4 +169,8 @@ export class ProductDetailsComponent implements OnInit {
       this.subParam.unsubscribe();
     }
   }
+
+  checkIsActive(){
+    return moment().diff(this.product?.['publishDate'], 'days') < 30
+   }
 }

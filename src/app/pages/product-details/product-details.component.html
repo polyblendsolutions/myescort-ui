@@ -1,5 +1,12 @@
 <div class="product-details">
   <div class="container">
+    <div class="row" *ngIf="product.status !== 'publish' || !checkIsActive()">
+      <div class="col-12">
+        <div class="expired-warning">
+          <div class="warning-text">Denne tilbud er ikke længere aktuelt. Vi inviterer dig til at se andre forslag på vores hjemmeside.</div>
+        </div>
+      </div>
+    </div>
     <div class="product-details-child">
       <app-product-details-image-area
         [product]="product"
