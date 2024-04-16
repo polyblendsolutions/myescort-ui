@@ -7,7 +7,7 @@ import { AccountSidebarComponent } from '../account-sidebar/account-sidebar.comp
 import {FilterData} from "../../../interfaces/core/filter-data";
 import {ProductService} from "../../../services/common/product.service";
 import {Product} from "../../../interfaces/common/product.interface";
-
+import * as moment from 'moment'
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
   products: Product[] = [];
 
   // FilterData
-  filter: any = null;
+  filter: any = {showExpired: true};
 
   // Subscriptions
   private subDataOne: Subscription;
@@ -132,6 +132,10 @@ export class ProfileComponent implements OnInit,OnDestroy {
       this.subUserData.unsubscribe();
     }
 
+ }
+
+ checkIsActive(){
+  return moment().diff(this.products[0]?.publishDate, 'days') < 30
  }
 
 }
