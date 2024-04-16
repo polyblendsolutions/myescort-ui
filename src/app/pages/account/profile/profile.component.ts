@@ -30,13 +30,12 @@ export class ProfileComponent implements OnInit,OnDestroy {
   //Subscription
   private subUserData: Subscription;
   private subRealod:Subscription;
-  productStatus: any;
+  public productStatus = ProductStatus;
   constructor(
     private userDataService: UserDataService,
     private reloadService:ReloadService,
     private productService: ProductService,
   ) {
-    this.productStatus = ProductStatus;
   }
   ngOnInit(): void {
       //Reload Data
