@@ -142,7 +142,6 @@ export class SearchFilterComponent implements OnInit {
       this.getAllIntimateHair();
       this.getAllOrientation();
       this.getAllBodyType();
-
       const options = {
         strings: ['København', 'Aalborg', 'Odense', 'Aarhus'],
         typeSpeed: 100,
