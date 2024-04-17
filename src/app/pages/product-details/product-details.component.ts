@@ -6,6 +6,7 @@ import { FilterData } from 'src/app/interfaces/core/filter-data';
 import { CarouselCntrlService } from 'src/app/services/common/carousel-cntrl.service';
 import { ProductService } from 'src/app/services/common/product.service';
 import * as moment from 'moment';
+import { ProductStatus } from 'src/app/enum/product-status.enum';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -25,7 +26,7 @@ export class ProductDetailsComponent implements OnInit {
   //Subscriptions
   private subDataOne: Subscription;
   private subParam: Subscription;
-
+  public productStatus = ProductStatus;
   constructor(
     private _carouselCtrl: CarouselCntrlService,
     private productService: ProductService,
