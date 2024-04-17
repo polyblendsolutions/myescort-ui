@@ -18,8 +18,16 @@
             e-mail: <span>{{ user?.email }}</span>
           </h4>
 
-          <h5 *ngIf="products[0]?.status === 'publish'" class="active-ad">Du har en aktiv annonce!</h5>
-          <h5 *ngIf="products[0]?.status !== 'publish'" class="active-ad" style="color: red;">You have an Deactive ad!</h5>
+          <h5 *ngIf="products[0]?.status === 'publish'" class="active-ad">
+            Du har en aktiv annonce!
+          </h5>
+          <h5
+            *ngIf="products[0]?.status !== 'publish'"
+            class="active-ad"
+            style="color: red"
+          >
+            You have an Deactive ad!
+          </h5>
         </div>
       </div>
 
@@ -29,8 +37,16 @@
         <ul>
           <li>
             <h4>Status:</h4>
-            <h5 *ngIf="products[0]?.status === 'publish'" class="inactive" style="color: #48eb6c;">Active</h5>
-            <h5 *ngIf="products[0]?.status !== 'publish'" class="inactive">Deactive</h5>
+            <h5
+              *ngIf="products[0]?.status === 'publish'"
+              class="inactive"
+              style="color: #48eb6c"
+            >
+              Active
+            </h5>
+            <h5 *ngIf="products[0]?.status !== 'publish'" class="inactive">
+              Deactive
+            </h5>
           </li>
           <li>
             <h4>Validity:</h4>
