@@ -390,7 +390,7 @@ export class SearchFilterComponent implements OnInit {
     ) {
       queryParams.age = `${formData.age.minAge}-${formData.age.maxAge}`;
     }
-
+    this.advanchFilter = false;
     this.router.navigate(['/ads'], {
       queryParams,
       queryParamsHandling: 'merge',

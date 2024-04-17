@@ -7,10 +7,10 @@ export const environment = {
   name: 'Ogmedia',
   domain: 'ogmedia.dk',
 
-  apiBaseLink: 'http://localhost:4401',
-  ftpBaseLink: 'http://localhost:4401',
-  // apiBaseLink: 'https://api.ogmedia.dk',
-  // ftpBaseLink: 'https://api.ogmedia.dk',
+  // apiBaseLink: 'http://localhost:4401',
+  // ftpBaseLink: 'http://localhost:4401',
+  apiBaseLink: 'https://api.ogmedia.dk',
+  ftpBaseLink: 'https://api.ogmedia.dk',
 
   // appBaseUrl: '/',
   userBaseUrl: '/account/profile',
