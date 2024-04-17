@@ -108,6 +108,7 @@ export interface Product {
   thursdayHours?: {startHour?: string, endHour?: string}[];
   fridayHours?: {startHour?: string, endHour?: string}[];
   saturdayHours?: {startHour?: string, endHour?: string}[];
+  publishDate?: Date;
 }
 
 export interface pricingData {
