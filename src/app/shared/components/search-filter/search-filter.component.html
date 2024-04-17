@@ -181,8 +181,8 @@
           </div>
           <mat-slider
           formGroupName="height"
-            min="150"
-            max="200"
+            min="140"
+            max="220"
             showTickMarks
             discrete
             [displayWith]="formatLabel"
@@ -199,7 +199,7 @@
           </div>
   
           <mat-slider
-            min="50"
+            min="40"
             max="300"
             showTickMarks
             discrete
@@ -270,33 +270,24 @@
           </div>
         </div>
         <!-- END! sec-home-input-area-par -->
-
-        <!-- END! sec-home-input-area-par -->
       </div>
-      <div class="filter-area-child-one">
-        <div class="sec-home-input-area-par d-flex">
-          <input type="checkbox" id="Checkbox1">
-         <label for="Checkbox1">Checkbox</label>
-       </div>
-       <!-- END! sec-home-input-area-par -->
-
-       <!-- END! sec-home-input-area-par -->
- 
-       <div class="sec-home-input-area-par d-flex align-items-baseline">
-          <input type="checkbox"  id="Checkbox2">
-         <label for="Checkbox2">Checkbox2</label>
-       </div>
-       <!-- END! sec-home-input-area-par -->
-
-       <!-- END! sec-home-input-area-par -->
- 
-       <div class="sec-home-input-area-par d-flex align-items-baseline">
-          <input type="checkbox"  id="Checkbox3">
-         <label for="Checkbox3">Checkbox3</label>
-       </div>
-       <!-- END! sec-home-input-area-par -->
-
+     <div class="filter-area-child-filter">
+     <div class="filter-area-check">
+        <input id="drivingEscort" type="checkbox" formControlName="drivingEscort"/>
+        <label for="drivingEscort">kører escort</label>
       </div>
+      
+      <div class="filter-area-check">
+        <input id="drivingEscort" type="checkbox" formControlName="ownPlace"/>
+        <label for="drivingEscort">har eget sted</label>
+      </div>
+    
+      <div class="filter-area-check">
+        <input id="drivingEscort" type="checkbox" formControlName="acceptsHandicapped"/>
+        <label for="drivingEscort">Modtager handicappede</label>
+      </div>
+      
+    </div>  
       <div class="filter-area-child-two">
         <div class="filter-area-btn">
           <button type="button" (click)="resetFilter()">Clear filters</button>

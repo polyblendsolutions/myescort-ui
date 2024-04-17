@@ -40,14 +40,9 @@ export class ProductReportComponent implements OnInit, OnDestroy {
   removeImage: string;
 
   // Subscriptions
-  private subDataOne: Subscription;
-  private subDataTwo: Subscription;
-  private subDataThree: Subscription;
-  private subDataFour: Subscription;
-  private subDataFive: Subscription;
-  private subDataSix: Subscription;
-  private subRouteOne: Subscription;
-  private subAutoSlug: Subscription;
+  private subAddReport: Subscription;
+  private subRemoveSingleFile: Subscription;
+  private subUploadMultiImage: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -67,10 +62,7 @@ export class ProductReportComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Init Form
     this.initDataForm();
-
     this.id = this.data?._id
-    console.log("this.data4",this.data)
-
   }
 
   /**
@@ -109,7 +101,7 @@ export class ProductReportComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.dataForm.invalid) {
 
-      this.uiService.warn('Please filed all the required field');
+      this.uiService.warn('Udfyld venligst det påkrævede felt.');
       return;
     }
     // if (!this.rating && this.rating <= 0) {
@@ -162,11 +154,10 @@ export class ProductReportComponent implements OnInit, OnDestroy {
       }
     }
 
-    console.log("mData",mData)
-    this.subDataOne = this.reportService.addReport(mData)
+    this.subAddReport = this.reportService.addReport(mData)
       .subscribe({
         next: (res => {
-          this.uiService.success('Your report is under process');
+          this.uiService.success('Din anmeldelse behandles.');
           this.reloadService.needRefreshData$();
           this.reset();
           this.files=[];
@@ -183,9 +174,8 @@ export class ProductReportComponent implements OnInit, OnDestroy {
 
 
   private removeSingleFile(data: string) {
-    this.subDataFour = this.fileUploadService.removeSingleFile(data).subscribe({
+    this.subRemoveSingleFile = this.fileUploadService.removeSingleFile(data).subscribe({
       next: (res) => {
-        // console.log(res);
       },
       error: (error) => {
         console.log(error);
@@ -212,7 +202,7 @@ export class ProductReportComponent implements OnInit, OnDestroy {
   }
 
   private addReportWithImage() {
-    this.subDataFive = this.fileUploadService
+    this.subUploadMultiImage = this.fileUploadService
       .uploadMultiImageOriginal(this.files)
       .subscribe((res) => {
         const images = res.map((m) => m.url);
@@ -248,29 +238,14 @@ export class ProductReportComponent implements OnInit, OnDestroy {
    */
 
   ngOnDestroy() {
-    if (this.subDataOne) {
-      this.subDataOne.unsubscribe();
+    if (this.subAddReport) {
+      this.subAddReport.unsubscribe();
     }
-    if (this.subDataTwo) {
-      this.subDataTwo.unsubscribe();
+    if (this.subRemoveSingleFile) {
+      this.subRemoveSingleFile.unsubscribe();
     }
-    if (this.subDataThree) {
-      this.subDataThree.unsubscribe();
-    }
-    if (this.subDataFour) {
-      this.subDataFour.unsubscribe();
-    }
-    if (this.subDataFive) {
-      this.subDataFive.unsubscribe();
-    }
-    if (this.subDataSix) {
-      this.subDataSix.unsubscribe();
-    }
-    if (this.subRouteOne) {
-      this.subRouteOne.unsubscribe();
-    }
-    if (this.subAutoSlug) {
-      this.subAutoSlug.unsubscribe();
+    if (this.subUploadMultiImage) {
+      this.subUploadMultiImage.unsubscribe();
     }
   }
 

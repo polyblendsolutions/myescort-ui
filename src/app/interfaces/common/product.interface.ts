@@ -22,7 +22,8 @@ export interface Product {
   title?: string;
   age?: string;
   height?: string;
-  isVerfied?: string;
+  isVerfied?: boolean;
+  verifiedStatus?: number;
   monday?:boolean;
   saturday?:boolean;
   friday?:boolean;

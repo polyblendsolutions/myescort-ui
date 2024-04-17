@@ -143,6 +143,7 @@
 }
 
 @keyframes typing {
+
   40%,
   60% {
     left: calc(100% + 30px);
@@ -488,6 +489,7 @@
   width: 100%;
   align-items: flex-start;
 }
+
 .area {
   display: flex;
   flex-direction: column;
@@ -495,8 +497,9 @@
   background-color: white;
   width: 100%;
   align-items: flex-start;
-  
+
 }
+
 .zone {
   display: flex;
   flex-direction: column;
@@ -594,6 +597,7 @@
     transition: all 0.12s linear;
     align-items: flex-start;
   }
+
   .area {
     font-family: $font-en-primary;
     font-size: 13px;
@@ -603,8 +607,9 @@
     line-height: 22px !important;
     transition: all 0.12s linear;
     align-items: flex-start;
-    
+
   }
+
   .zone {
     font-family: $font-en-primary;
     padding-left: 45px !important;
@@ -622,6 +627,7 @@
 .mat-menu .zone {
   margin-left: 15px !important;
 }
+
 ::ng-deep .mat-menu .divisions:hover,
 ::ng-deep .mat-menu .area:hover,
 ::ng-deep .mat-menu .zone:hover {

@@ -86,6 +86,7 @@ export class SectionOneComponent implements OnInit, OnDestroy {
   isSelectedType: boolean = false;
   isSelectedAllType: boolean = true;
   isSelectedValueType: any;
+  isMobile: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -105,6 +106,7 @@ export class SectionOneComponent implements OnInit, OnDestroy {
     this.getAllType();
     this.getAllDivision();
     this.getAllBanner();
+    this.isMobile = this.checkIfMobile();
 
     /*
       'København',
@@ -121,6 +123,10 @@ export class SectionOneComponent implements OnInit, OnDestroy {
       loop: true,
     };
     // const typed = new Typed('.typed-element', options);
+  }
+  
+   checkIfMobile(): boolean {
+    return window.innerWidth < 400;
   }
 
   arrData: string[] = ['København', 'Aalborg', 'Odense', 'Aarhus'];
@@ -261,6 +267,8 @@ export class SectionOneComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize')
   resizeMain() {
+    this.isMobile = this.checkIfMobile();
+    console.log('hi');
     this.innerW = window.innerWidth;
     if (this.innerW < 578 && this.innerW > 420) {
       let step = 0;

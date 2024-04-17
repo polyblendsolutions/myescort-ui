@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/interfaces/common/product.interface';
@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/common/user.service';
 import { WishListService } from 'src/app/services/common/wish-list.service';
 import { ReloadService } from 'src/app/services/core/reload.service';
 import { UiService } from 'src/app/services/core/ui.service';
-import {NgxWatermarkOptions} from "ngx-watermark";
+import { NgxWatermarkOptions } from "ngx-watermark";
 import { SwiperComponent } from 'swiper/angular';
 
 
@@ -25,10 +25,11 @@ export class ProductDetailsImageAreaComponent implements OnInit {
   wishlists: WishList[];
   wishlist: WishList = null;
   image: string;
-  public showFullImage:boolean=false
+  public showFullImage: boolean = false
+  public enableClickListener: boolean = false;
 
   // Image Zoom & View Area
-  @ViewChild('zoomViewer', {static: true}) zoomViewer;
+  @ViewChild('zoomViewer', { static: true }) zoomViewer;
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
   //Subscription
   private subRefreshWishList: Subscription;
@@ -41,7 +42,8 @@ export class ProductDetailsImageAreaComponent implements OnInit {
     private wishListService: WishListService,
     private uiService: UiService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private elRef: ElementRef
   ) { }
 
   ngOnInit(): void {
@@ -54,6 +56,7 @@ export class ProductDetailsImageAreaComponent implements OnInit {
 
   toggleModal() {
     this.showFullImage = !this.showFullImage;
+    this.enableClickListener = false;
   }
 
   options: NgxWatermarkOptions = {
@@ -144,16 +147,19 @@ export class ProductDetailsImageAreaComponent implements OnInit {
     this.image = this.product.images && this.product.images.length > 0 ? this.product.images[0] : '/assets/images/png/fallbackImage.png';
   }
 
-  onSelectImage(imageUrl: string, index:number) {
+  onSelectImage(imageUrl: string, index: number) {
     this.selectedImage = imageUrl;
     if (this.swiper && this.swiper.swiperRef) {
       this.swiper.swiperRef.slideTo(index + 1);
     }
   }
-   
-   showImages(imageUrl: string) {
+
+  showImages(imageUrl: string) {
     this.selectedImage = imageUrl;
     this.showFullImage = !this.showFullImage;
+    setTimeout(() => {
+      this.enableClickListener = true;
+    }, 100)
   }
 
   public onMouseMove(e) {
@@ -198,4 +204,25 @@ export class ProductDetailsImageAreaComponent implements OnInit {
 
   }
 
+  @HostListener('document:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      if (this.showFullImage) {
+        this.showFullImage = false;
+        this.enableClickListener = false;
+      }
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: Event) {
+    const classList = event.target?.['classList'];
+    if (!classList.contains('swiper-product-image') && !classList.contains('swiper-button-next') && !classList.contains('swiper-button-prev')) {
+      // Check inside class list if certain classes related to swiper exist, if not, it will close the pop up.
+      if (this.enableClickListener && this.showFullImage) {
+        this.showFullImage = false;
+        this.enableClickListener = false;
+      }
+    }
+  }
 }

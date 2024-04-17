@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, finalize } from 'rxjs';
+import { VerifiedStatus } from 'src/app/enum/verification-status.enum';
 import { User } from 'src/app/interfaces/common/user.interface';
 import { UserDataService } from 'src/app/services/common/user-data.service';
 import { UserService } from 'src/app/services/common/user.service';
@@ -23,11 +24,12 @@ export class ProfileVarificationComponent implements OnInit{
   removeImages: string[] = [];
   user: User = null;
  //Form Variables
- dataForm!: FormGroup;
+  dataForm!: FormGroup;
   // Subscriptions
-  private subDataFour: Subscription;
-  private subDataFive: Subscription;
-  private subDataSix: Subscription;
+  private subUploadMultiImage: Subscription;
+  private subUpdateImage: Subscription;
+  private subUpdateUser: Subscription;
+  private subLoggedInUserData: Subscription;
 
   // Boolean for button Logic
   private isButtonDisabled: boolean = false;
@@ -70,19 +72,21 @@ export class ProfileVarificationComponent implements OnInit{
    */
   onSelect(event: { addedFiles: any }) {
     this.files.push(...event.addedFiles);
-  }
+      }
 
   onRemove(event: File) {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
   private updateProductWithImage() {
-    this.subDataSix = this.fileUploadService
+    this.subUpdateImage = this.fileUploadService
       .uploadMultiImageOriginal(this.files)
       .subscribe((res) => {
         const images = res.map((m) => m.url);
         const mData = {
-          ...{ images: [...this.oldImages, ...images] },
+          ...{ images: [...this.oldImages, ...images],
+            verifiedStatus:VerifiedStatus.Pending
+          },
         };
         this.onVerified(mData);
       });
@@ -100,7 +104,7 @@ export class ProfileVarificationComponent implements OnInit{
   }
 
   getLoggedInUserData() {
-    this.userDataService.getLoggedInUserData().subscribe(
+    this.subLoggedInUserData= this.userDataService.getLoggedInUserData().subscribe(
         (res) => {
           if (res) {
             this.user = res.data;
@@ -118,11 +122,14 @@ export class ProfileVarificationComponent implements OnInit{
 
   private addProductWithImage() {
     this.isButtonDisabled = true;
-    this.subDataFive = this.fileUploadService
+    this.subUploadMultiImage = this.fileUploadService
       .uploadMultiImageOriginal(this.files)
       .subscribe((res) => {
         const images = res.map((m) => m.url);
-        const mData = { ...{ images: images } };
+        const mData = { ...{ images: images,
+          verifiedStatus:VerifiedStatus.Pending
+        },      
+      };
         // this.addProductByUser(mData);
         this.onVerified(mData)
       },
@@ -133,7 +140,7 @@ export class ProfileVarificationComponent implements OnInit{
   }
 
   onVerified(mData) {
-     this.userService
+     this.subUpdateUser=this.userService
       .updateUsersById(this.user._id,mData )
       .pipe(
         finalize(() => {         
@@ -144,6 +151,8 @@ export class ProfileVarificationComponent implements OnInit{
         next: (res) => {
           if (res.success) {
             this.uiService.success(res.message);
+            this.getLoggedInUserData();
+            this.files.pop();
           } else {
             this.uiService.warn(res.message);
           }
@@ -156,7 +165,28 @@ export class ProfileVarificationComponent implements OnInit{
   }
 
   public submit(){
-    this.addProductWithImage();
+    if(this.files?.length){
+      this.addProductWithImage();
+    }
+    else{
+      this.uiService.wrong('Der er ikke valgt noget billede.git')
+    }
   }
+  ngOnDestroy() {
+    if (this.subUploadMultiImage) {
+      this.subUploadMultiImage.unsubscribe();
+    }
 
+    if (this.subUpdateImage) {
+      this.subUpdateImage.unsubscribe();
+    }
+    
+    if (this.subUpdateUser) {
+      this.subUpdateUser.unsubscribe();
+    }
+
+    if (this.subLoggedInUserData) {
+      this.subLoggedInUserData.unsubscribe();
+    }
+  }
 }

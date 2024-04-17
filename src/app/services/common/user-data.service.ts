@@ -44,4 +44,7 @@ export class UserDataService {
     return this.httpClient.post<ResponsePayload>(API_USER + 'check-user-and-sent-otp', data);
   }
 
+  checkEmailAndSentOtp(data: { email: string, newEmail: string}) {
+    return this.httpClient.post<ResponsePayload>(API_USER + 'check-new-email-and-sent-otp', data);
+  }
 }
