@@ -323,3 +323,19 @@
   pointer-events: none; 
   width: calc(100% - 50%);
 }
+@media (max-width:400px) {
+.product-details-about {
+  .product-details-about-title{
+    font-size: 14px;
+    color: #403e3e;
+  }
+  h3 {
+    font-family: $font-en-primary;
+    font-size: 15px;
+    color: #5c5c5c;
+    padding:0px 0 10px;
+
+  }
+}
+
+}
