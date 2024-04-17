@@ -303,6 +303,9 @@ export class SearchFilterComponent implements OnInit {
       bodytype: [null],
       hairColor: [null],
       intimateHairs: [null],
+      drivingEscort: [false],
+      ownPlace: [false],
+      acceptsHandicapped: [false]
     });
 
     setTimeout(() => {
@@ -348,6 +351,15 @@ export class SearchFilterComponent implements OnInit {
             maxHeight: minmaxArr[1],
           });
         }
+        if (params['drivingEscort']) {
+          this.dataForm.controls['drivingEscort'].setValue(true);
+        }
+        if (params['ownPlace']) {
+          this.dataForm.controls['ownPlace'].setValue(true);
+        }
+        if (params['acceptsHandicapped']) {
+          this.dataForm.controls['acceptsHandicapped'].setValue(true);
+        }
       }
     }, 1000);
   }
@@ -372,6 +384,9 @@ export class SearchFilterComponent implements OnInit {
       height: null,
       weight: null,
       age: null,
+      drivingEscort: null,
+      ownPlace: null,
+      acceptsHandicapped: null
     };
     if (
       formData.height &&
@@ -393,7 +408,17 @@ export class SearchFilterComponent implements OnInit {
     ) {
       queryParams.age = `${formData.age.minAge}-${formData.age.maxAge}`;
     }
+    if (formData.drivingEscort) {
+      queryParams['drivingEscort'] = true;
+    }
 
+    if (formData.ownPlace) {
+      queryParams['ownPlace'] = true;
+    }
+
+    if (formData.acceptsHandicapped) {
+      queryParams['acceptsHandicapped'] = true;
+    }
     this.router.navigate(['/ads'], {
       queryParams,
       queryParamsHandling: 'merge',
@@ -890,6 +915,9 @@ export class SearchFilterComponent implements OnInit {
       bodytype: [null],
       hairColor: [null],
       intimateHairs: [null],
+      drivingEscort: [null],
+      ownPlace: [null],
+      acceptsHandicapped: [null]
     });
     this.onSelectBtnDis(null);
     this.onSelectBtnCategory(null);
@@ -908,6 +936,9 @@ export class SearchFilterComponent implements OnInit {
       height: null,
       weight: null,
       age: null,
+      drivingEscort: null,
+      ownPlace: null,
+      acceptsHandicapped: null
     };
     this.router.navigate(['/ads'], {
       queryParams,

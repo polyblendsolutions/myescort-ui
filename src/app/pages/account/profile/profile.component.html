@@ -17,8 +17,17 @@
           <h4>
             e-mail: <span>{{ user?.email }}</span>
           </h4>
-          <h5 *ngIf="products[0]?.status === productStatus.Publish && checkIsActive()" class="active-ad">Du har en aktiv annonce!</h5>
-          <h5 *ngIf="products[0]?.status !== productStatus.Publish || !checkIsActive()" class="active-ad" style="color: red;">You have an Deactive ad!</h5>
+
+          <h5 *ngIf="products[0]?.status === productStatus.Publish && checkIsActive()" class="active-ad">
+            Du har en aktiv annonce!
+          </h5>
+          <h5
+            *ngIf="products[0]?.status !== productStatus.Publish || !checkIsActive()"
+            class="active-ad"
+            style="color: red"
+          >
+            You have an Deactive ad!
+          </h5>
         </div>
       </div>
 
@@ -28,18 +37,26 @@
         <ul>
           <li>
             <h4>Status:</h4>
-            <h5 *ngIf="products[0]?.status === productStatus.Publish && checkIsActive()" class="inactive" style="color: #48eb6c;">Active</h5>
-            <h5 *ngIf="products[0]?.status !== productStatus.Publish || !checkIsActive()" class="inactive">Deactive</h5>
+            <h5
+              *ngIf="products[0]?.status === productStatus.Publish && checkIsActive()"
+              class="inactive"
+              style="color: #48eb6c"
+            >
+              Active
+            </h5>
+            <h5 *ngIf="products[0]?.status !== productStatus.Publish || !checkIsActive()" class="inactive">
+              Deactive
+            </h5>
           </li>
           <li>
-            <h4>Validity:</h4>
-            <h5><span>Udløbet den: </span> {{products[0]?.publishDate | date: 'dd/MM/yyyy'}} @ 00:00</h5>
+            <h4>Gyldighed:</h4>
+            <h5><span>Udløbet den: </span> 02/08/2023 @ 00:00</h5>
           </li>
         </ul>
 
         <div class="subscription-renew-btn">
           <button type="button" routerLink="/account/subscription">
-            forny abonnement
+            forny VIP konto
           </button>
         </div>
       </div>

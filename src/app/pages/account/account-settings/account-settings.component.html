@@ -1,58 +1,105 @@
 <section>
-  <app-account-top-section [title]="'Kontoinstllinger'"></app-account-top-section>
+  <app-account-top-section
+    [title]="'Kontoindstillinger'"
+  ></app-account-top-section>
   <div class="account-setting-container">
     <!-- Sidebar -->
     <app-account-sidebar></app-account-sidebar>
     <div class="account-setting-main">
       <div class="account-setting-main-top">
-        <h2>Kontoinstllinger</h2>
+        <h2>Kontoindstillinger</h2>
         <div class="sign-up-child">
           <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
             <div class="form-input">
               <label for="email">E-mail </label>
               <div class="input-container">
-                <input formControlName="email"
-                [class.invalid]="dataForm.get('email').touched && dataForm.get('email').invalid" type="email" id="email"
-                placeholder="Enter your new email..." />
-                <mat-icon [ngClass]="{'verifyicon' : user?.email===this.dataForm.get('email')?.value }" mat-icon-button >
-                  {{ user?.email===this.dataForm.get('email')?.value ? 'verified_use' : '' }}
+                <input
+                  formControlName="email"
+                  [class.invalid]="
+                    dataForm.get('email').touched &&
+                    dataForm.get('email').invalid
+                  "
+                  type="email"
+                  id="email"
+                  placeholder="Enter your new email..."
+                />
+                <mat-icon
+                  [ngClass]="{
+                    verifyicon:
+                      user?.email === this.dataForm.get('email')?.value
+                  }"
+                  mat-icon-button
+                >
+                  {{
+                    user?.email === this.dataForm.get("email")?.value
+                      ? "verified_use"
+                      : ""
+                  }}
                 </mat-icon>
               </div>
-              <p *ngIf="dataForm.get('email').touched && dataForm.get('email').invalid">
+              <p
+                *ngIf="
+                  dataForm.get('email').touched && dataForm.get('email').invalid
+                "
+              >
                 Enter valid email.
               </p>
             </div>
             <div class="form-input">
               <label for="oldPassword">Old Password </label>
               <div class="input-container">
-                <input formControlName="oldPassword" type="password" id="oldPassword" [type]="hideOldpassword ? 'password' : 'text'" 
-                placeholder="Enter your old password..." />
+                <input
+                  formControlName="oldPassword"
+                  type="password"
+                  id="oldPassword"
+                  [type]="hideOldpassword ? 'password' : 'text'"
+                  placeholder="Enter your old password..."
+                />
                 <mat-icon mat-icon-button (click)="togglePasswordVisibility()">
-                  {{ hideOldpassword ? 'visibility' : 'lock' }}
+                  {{ hideOldpassword ? "visibility" : "lock" }}
                 </mat-icon>
               </div>
-              <p *ngIf="dataForm.get('oldPassword').touched && dataForm.get('oldPassword').errors?.['required']">
+              <p
+                *ngIf="dataForm.get('oldPassword').touched && dataForm.get('oldPassword').errors?.['required']"
+              >
                 Please enter old Password.
               </p>
-              <p *ngIf="dataForm.get('oldPassword').touched && dataForm.get('oldPassword').errors?.['minlength']">
+              <p
+                *ngIf="dataForm.get('oldPassword').touched && dataForm.get('oldPassword').errors?.['minlength']"
+              >
                 Password should be at least 6 characters long.
               </p>
             </div>
-            
+
             <div class="form-input">
               <label for="password">New Password </label>
               <div class="input-container">
-                <input formControlName="password"
-                  [class.invalid]="dataForm.get('password').touched && dataForm.get('password').invalid" type="password"
-                  id="password" [type]="hideNewPassword ? 'password' : 'text'" placeholder="Enter your new password..." />
-                <mat-icon mat-icon-button (click)="toggleNewPasswordVisibility()">
-                  {{ hideNewPassword ? 'visibility' : 'lock' }}
+                <input
+                  formControlName="password"
+                  [class.invalid]="
+                    dataForm.get('password').touched &&
+                    dataForm.get('password').invalid
+                  "
+                  type="password"
+                  id="password"
+                  [type]="hideNewPassword ? 'password' : 'text'"
+                  placeholder="Enter your new password..."
+                />
+                <mat-icon
+                  mat-icon-button
+                  (click)="toggleNewPasswordVisibility()"
+                >
+                  {{ hideNewPassword ? "visibility" : "lock" }}
                 </mat-icon>
               </div>
-              <p *ngIf="dataForm.get('password').touched && dataForm.get('password').errors?.['required']">
+              <p
+                *ngIf="dataForm.get('password').touched && dataForm.get('password').errors?.['required']"
+              >
                 Please enter new Password.
               </p>
-              <p *ngIf="dataForm.get('password').touched && dataForm.get('password').errors?.['minlength']">
+              <p
+                *ngIf="dataForm.get('password').touched && dataForm.get('password').errors?.['minlength']"
+              >
                 Password should be at least 6 characters long.
               </p>
             </div>
@@ -60,18 +107,36 @@
             <div class="form-input">
               <label for="confirm-password">Confirm New Password </label>
               <div class="input-container">
-                <input formControlName="confirmPassword"
-                  [class.invalid]="dataForm.get('confirmPassword').touched && dataForm.get('confirmPassword').invalid"
-                  type="password" id="confirm-password" [type]="hideConfirmPassword ? 'password' : 'text'"
-                  placeholder="Confirm your new password..." />
-                <mat-icon mat-icon-button (click)="toggleConfirmPasswordVisibility()">
-                  {{ hideConfirmPassword ? 'visibility' : 'lock' }}
+                <input
+                  formControlName="confirmPassword"
+                  [class.invalid]="
+                    dataForm.get('confirmPassword').touched &&
+                    dataForm.get('confirmPassword').invalid
+                  "
+                  type="password"
+                  id="confirm-password"
+                  [type]="hideConfirmPassword ? 'password' : 'text'"
+                  placeholder="Confirm your new password..."
+                />
+                <mat-icon
+                  mat-icon-button
+                  (click)="toggleConfirmPasswordVisibility()"
+                >
+                  {{ hideConfirmPassword ? "visibility" : "lock" }}
                 </mat-icon>
               </div>
-              <p *ngIf="dataForm.get('confirmPassword').touched && dataForm.get('confirmPassword').invalid">
-                Password confirmation is required and must match the new password.
+              <p
+                *ngIf="
+                  dataForm.get('confirmPassword').touched &&
+                  dataForm.get('confirmPassword').invalid
+                "
+              >
+                Password confirmation is required and must match the new
+                password.
               </p>
-              <p *ngIf="dataForm.get('confirmPassword').touched && dataForm.get('confirmPassword').errors?.['minlength']">
+              <p
+                *ngIf="dataForm.get('confirmPassword').touched && dataForm.get('confirmPassword').errors?.['minlength']"
+              >
                 Password should be at least 6 characters long.
               </p>
             </div>
