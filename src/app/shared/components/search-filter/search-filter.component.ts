@@ -129,8 +129,6 @@ export class SearchFilterComponent implements OnInit {
         // Check if searchQuery exists in queryParams
         if (qParam.hasOwnProperty('searchQuery')) {
           this.searchQuery = qParam['searchQuery'];
-        } else {
-          this.advanchFilter = true;
         }
         this.initDataForm(qParam);
       } else {
