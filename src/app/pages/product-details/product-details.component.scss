@@ -21,9 +21,9 @@
   border-radius: 11px;
   align-items: center;
   display: flex;
-  justify-content: center;
 }
 
+/* Denne tilbud er ikke længere aktuelt. Vi inviterer dig til at se andre forslag på vores hjemmeside. */
 .warning-text {
   font-family: 'Roboto';
   font-style: normal;
@@ -31,6 +31,7 @@
   font-size: 20px;
   line-height: 16px;
   color: #454545;
+  margin-left: 27px;
 }
 
 @media (max-width: 1000px) {
@@ -82,5 +83,11 @@
         border-right: 0 solid $border-color-two;
       }
     }
+  }
+}
+
+@media (max-width: 320px) {
+  .expired-warning {
+    height: 80px;
   }
 }
