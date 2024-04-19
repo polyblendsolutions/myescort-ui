@@ -128,9 +128,7 @@ export class SearchFilterComponent implements OnInit {
       if (Object.keys(qParam).length > 0) {
         // Check if searchQuery exists in queryParams
         if (qParam.hasOwnProperty('searchQuery')) {
-          this.searchQuery = qParam['searchQuery'];
-        } else {
-          this.advanchFilter = true;
+          this.searchQuery = qParam['searchQuery'].trim();
         }
         this.initDataForm(qParam);
       } else {
@@ -144,7 +142,6 @@ export class SearchFilterComponent implements OnInit {
       this.getAllIntimateHair();
       this.getAllOrientation();
       this.getAllBodyType();
-
       const options = {
         strings: ['København', 'Aalborg', 'Odense', 'Aarhus'],
         typeSpeed: 100,
@@ -418,7 +415,8 @@ export class SearchFilterComponent implements OnInit {
 
     if (formData.acceptsHandicapped) {
       queryParams['acceptsHandicapped'] = true;
-    }
+    }    
+    this.advanchFilter = false;
     this.router.navigate(['/ads'], {
       queryParams,
       queryParamsHandling: 'merge',
@@ -529,7 +527,7 @@ export class SearchFilterComponent implements OnInit {
     let inputVal = (this.searchInput.nativeElement as HTMLInputElement).value;
     if (inputVal) {
       this.router.navigate(['/', 'ads'], {
-        queryParams: { searchQuery: inputVal },
+        queryParams: { searchQuery: inputVal.trim() },
         queryParamsHandling: '',
       });
       // this.searchInput.nativeElement.value = '';
