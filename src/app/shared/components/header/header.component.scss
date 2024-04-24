@@ -599,16 +599,11 @@ header.fixed-header {
     }
   }
 }
-.logout-btn{
-  display: none;
-}
+
 .logbtn{
   display: none;
 }
 @media (max-width:400px) {
-  .logout-btn{
-    display: block;
-  }
   .logbtn{
     display: block;
   }
