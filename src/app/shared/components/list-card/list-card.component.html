@@ -1,13 +1,16 @@
 <div class="my-list-card">
   <div class="my-list-left">
-    <img [src]="data?.images?.[0] || '/assets/images/png/fallbackImage.png'" alt="gig" />
+    <img
+      [src]="data?.images?.[0] || '/assets/images/png/fallbackImage.png'"
+      alt="gig"
+    />
 
     <div class="list-card-body1"></div>
 
     <div class="list-card-body">
-<!--      <h3>-->
-<!--        <span>{{ data?.name.split(",")[0] }}</span>-->
-<!--      </h3>-->
+      <!--      <h3>-->
+      <!--        <span>{{ data?.name.split(",")[0] }}</span>-->
+      <!--      </h3>-->
 
       <h3>
         <span>{{ data?.name?.split(",")[0] }}</span>
@@ -39,7 +42,9 @@
 
   <div class="my-list-right">
     <div class="my-list-right-title">
-      <h1>Search active indtil {{data?.activeUntill | date: 'dd/MM/yyyy'}}</h1>
+      <h1>
+        Search active indtil {{ data?.activeUntill | date : "dd/MM/yyyy" }}
+      </h1>
     </div>
 
     <div class="my-list-btn">
@@ -53,7 +58,7 @@
       <div class="my-list-btn-bottom">
         <button
           type="button"
-          routerLink='/create-new'
+          routerLink="/create-new"
           [queryParams]="{ id: data?._id }"
         >
           Manage Posts
@@ -67,7 +72,7 @@
           type="button"
           (click)="openConfirmDialog('publish')"
         >
-         Aktiver
+          Aktiver
         </button>
 
         <button
@@ -75,7 +80,7 @@
           type="button"
           (click)="openConfirmDialog('draft')"
         >
-         Deaktiver
+          Deaktiver
         </button>
       </div>
     </div>

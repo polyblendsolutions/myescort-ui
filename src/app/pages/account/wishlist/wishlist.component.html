@@ -15,9 +15,7 @@
 
         <div class="wishlist-child-main-cards">
           <ng-container *ngFor="let data of wishlists">
-            <app-marketplace-card
-              [data]="data?.product"
-            ></app-marketplace-card>
+            <app-marketplace-card [data]="data?.product"></app-marketplace-card>
           </ng-container>
         </div>
         <!-- END! wishlist-child-main-cards -->
@@ -26,4 +24,3 @@
   </div>
 </section>
 <!-- END! wishlist -->
-
