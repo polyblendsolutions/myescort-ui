@@ -37,12 +37,11 @@
         </div>
         <!-- END! subscription-child-main-top -->
 
-        <div class="subscription-child-main-cards">
-          <app-subscription-card></app-subscription-card>
-          <app-subscription-card></app-subscription-card>
-          <app-subscription-card></app-subscription-card>
-        </div>
-
+          <div class="subscription-child-main-cards" >
+            <ng-container *ngFor="let subscriptionDetail of subscriptionDetails">
+              <app-subscription-card (buyVIPEvent)="buyVip($event)" [subscriptionData]="subscriptionDetail"></app-subscription-card>
+            </ng-container>
+          </div> 
         <div class="subscription-child-main-bottom">
           <p>
             Ved køb af enhver plan accepterer du vores vilkår og betingelser
