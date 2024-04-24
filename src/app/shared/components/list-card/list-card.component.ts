@@ -112,8 +112,8 @@ export class ListCardComponent implements OnInit, OnDestroy {
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
           maxWidth: '400px',
           data: {
-            title: 'Confirm Active',
-            message: 'Are you sure you want Active this data?',
+            title: 'Aktivering af annonce',
+            message: 'Er du sikker, at du vil activere din annonce?',
           },
         });
         dialogRef.afterClosed().subscribe((dialogResult) => {
@@ -126,10 +126,10 @@ export class ListCardComponent implements OnInit, OnDestroy {
 
       case 'draft': {
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-          maxWidth: '400px',
+          maxWidth: '420px',
           data: {
-            title: 'Confirm Deactive',
-            message: 'Are you sure you want Deactive this data?',
+            title: 'Deaktivering af annonce',
+            message: 'Er du sikker, at du vil deaktivere din annonce?',
           },
         });
         dialogRef.afterClosed().subscribe((dialogResult) => {
