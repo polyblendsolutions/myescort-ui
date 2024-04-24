@@ -400,7 +400,7 @@ export class SearchAreaComponent implements OnInit, OnDestroy {
     let inputVal = (this.searchInput.nativeElement as HTMLInputElement).value;
     if (inputVal) {
       this.router.navigate(['/', 'products'], {
-        queryParams: { searchQuery: inputVal },
+        queryParams: { searchQuery: inputVal.trim() },
         queryParamsHandling: '',
       });
       this.searchInput.nativeElement.value = '';

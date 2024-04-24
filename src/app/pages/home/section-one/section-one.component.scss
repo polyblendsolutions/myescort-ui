@@ -221,7 +221,8 @@
 @media (max-width: 400px) {
   .section-one-main {
     padding-bottom: 47px;
-    min-height: 310px;
+    min-height: 310px !important;
+    height: calc(78vh + 0px - 360px);
 
   }
 }
@@ -433,7 +434,7 @@
 
 @media (max-width: 400px) {
   .sec-one-inputs {
-    padding: 10px 48px;
+    padding: 17px 48px;
   }
 }
 

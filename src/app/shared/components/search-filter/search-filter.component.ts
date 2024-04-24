@@ -128,9 +128,7 @@ export class SearchFilterComponent implements OnInit {
       if (Object.keys(qParam).length > 0) {
         // Check if searchQuery exists in queryParams
         if (qParam.hasOwnProperty('searchQuery')) {
-          this.searchQuery = qParam['searchQuery'];
-        } else {
-          this.advanchFilter = true;
+          this.searchQuery = qParam['searchQuery'].trim();
         }
         this.initDataForm(qParam);
       } else {
@@ -144,7 +142,6 @@ export class SearchFilterComponent implements OnInit {
       this.getAllIntimateHair();
       this.getAllOrientation();
       this.getAllBodyType();
-
       const options = {
         strings: ['København', 'Aalborg', 'Odense', 'Aarhus'],
         typeSpeed: 100,
@@ -289,11 +286,11 @@ export class SearchFilterComponent implements OnInit {
       category: [null],
       type: [null],
       height: this.fb.group({
-        minHeight: [150],
-        maxHeight: [200],
+        minHeight: [140],
+        maxHeight: [220],
       }),
       weight: this.fb.group({
-        minWeight: [50],
+        minWeight: [40],
         maxWeight: [300],
       }),
       age: this.fb.group({
@@ -303,6 +300,9 @@ export class SearchFilterComponent implements OnInit {
       bodytype: [null],
       hairColor: [null],
       intimateHairs: [null],
+      drivingEscort: [false],
+      ownPlace: [false],
+      acceptsHandicapped: [false]
     });
 
     setTimeout(() => {
@@ -348,6 +348,15 @@ export class SearchFilterComponent implements OnInit {
             maxHeight: minmaxArr[1],
           });
         }
+        if (params['drivingEscort']) {
+          this.dataForm.controls['drivingEscort'].setValue(true);
+        }
+        if (params['ownPlace']) {
+          this.dataForm.controls['ownPlace'].setValue(true);
+        }
+        if (params['acceptsHandicapped']) {
+          this.dataForm.controls['acceptsHandicapped'].setValue(true);
+        }
       }
     }, 1000);
   }
@@ -372,17 +381,20 @@ export class SearchFilterComponent implements OnInit {
       height: null,
       weight: null,
       age: null,
+      drivingEscort: null,
+      ownPlace: null,
+      acceptsHandicapped: null
     };
     if (
       formData.height &&
-      (formData.height.minHeight !== 150 || formData.height.maxHeight !== 200)
+      (formData.height.minHeight !== 140 || formData.height.maxHeight !== 220)
     ) {
       queryParams.height = `${formData.height.minHeight}-${formData.height.maxHeight}`;
     }
 
     if (
       formData.weight &&
-      (formData.weight.minWeight !== 50 || formData.weight.maxWeight !== 300)
+      (formData.weight.minWeight !== 40 || formData.weight.maxWeight !== 300)
     ) {
       queryParams.weight = `${formData.weight.minWeight}-${formData.weight.maxWeight}`;
     }
@@ -393,7 +405,18 @@ export class SearchFilterComponent implements OnInit {
     ) {
       queryParams.age = `${formData.age.minAge}-${formData.age.maxAge}`;
     }
+    if (formData.drivingEscort) {
+      queryParams['drivingEscort'] = true;
+    }
 
+    if (formData.ownPlace) {
+      queryParams['ownPlace'] = true;
+    }
+
+    if (formData.acceptsHandicapped) {
+      queryParams['acceptsHandicapped'] = true;
+    }    
+    this.advanchFilter = false;
     this.router.navigate(['/ads'], {
       queryParams,
       queryParamsHandling: 'merge',
@@ -504,7 +527,7 @@ export class SearchFilterComponent implements OnInit {
     let inputVal = (this.searchInput.nativeElement as HTMLInputElement).value;
     if (inputVal) {
       this.router.navigate(['/', 'ads'], {
-        queryParams: { searchQuery: inputVal },
+        queryParams: { searchQuery: inputVal.trim() },
         queryParamsHandling: '',
       });
       // this.searchInput.nativeElement.value = '';
@@ -876,11 +899,11 @@ export class SearchFilterComponent implements OnInit {
       category: [null],
       type: [null],
       height: this.fb.group({
-        minHeight: [150],
-        maxHeight: [200],
+        minHeight: [140],
+        maxHeight: [220],
       }),
       weight: this.fb.group({
-        minWeight: [50],
+        minWeight: [40],
         maxWeight: [300],
       }),
       age: this.fb.group({
@@ -890,6 +913,9 @@ export class SearchFilterComponent implements OnInit {
       bodytype: [null],
       hairColor: [null],
       intimateHairs: [null],
+      drivingEscort: [null],
+      ownPlace: [null],
+      acceptsHandicapped: [null]
     });
     this.onSelectBtnDis(null);
     this.onSelectBtnCategory(null);
@@ -908,6 +934,9 @@ export class SearchFilterComponent implements OnInit {
       height: null,
       weight: null,
       age: null,
+      drivingEscort: null,
+      ownPlace: null,
+      acceptsHandicapped: null
     };
     this.router.navigate(['/ads'], {
       queryParams,
