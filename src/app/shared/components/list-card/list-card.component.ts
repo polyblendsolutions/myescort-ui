@@ -58,7 +58,7 @@ export class ListCardComponent implements OnInit, OnDestroy {
       },
       (err) => {
         if (err) {
-          console.log(err);
+          // console.log(err);
         }
       }
     );
@@ -81,7 +81,7 @@ export class ListCardComponent implements OnInit, OnDestroy {
         },
         (err) => {
           this.isLoading = false;
-          console.log(err);
+          // console.log(err);
         }
       );
   }
@@ -95,7 +95,7 @@ export class ListCardComponent implements OnInit, OnDestroy {
       },
       (err) => {
         if (err) {
-          console.log(err);
+          // console.log(err);
         }
       }
     );
