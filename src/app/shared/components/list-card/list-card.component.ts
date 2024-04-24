@@ -40,7 +40,6 @@ export class ListCardComponent implements OnInit, OnDestroy {
     });
     //Base Data
     this.getLoggedInUserData();
-    console.log('list-left: ', this.data);
   }
 
   /***
