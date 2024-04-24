@@ -171,19 +171,41 @@ export class CreateAdsThreeComponent implements OnInit {
       category: [null, Validators.required],
       type: [null, Validators.required],
       bodyType: [null],
-      name: [null,Validators.required],
+      name: [null, Validators.required],
       hairColor: [null],
       intimateHair: [null],
       orientation: [null],
-      division: [null,Validators.required],
+      division: [null, Validators.required],
       area: [null],
       brand: [null],
       tags: [null],
       openingHours: [null],
       // title: [null, Validators.required],
-      age: [null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(18), Validators.max(80)]],
-      height: [null, [ Validators.pattern('^[0-9]*$'), Validators.min(140), Validators.max(220)]],
-      weight: [null, [ Validators.pattern('^[0-9]*$'), Validators.min(40), Validators.max(300)]],
+      age: [
+        null,
+        [
+          Validators.required,
+          Validators.pattern('^[0-9]*$'),
+          Validators.min(18),
+          Validators.max(80),
+        ],
+      ],
+      height: [
+        null,
+        [
+          Validators.pattern('^[0-9]*$'),
+          Validators.min(140),
+          Validators.max(220),
+        ],
+      ],
+      weight: [
+        null,
+        [
+          Validators.pattern('^[0-9]*$'),
+          Validators.min(40),
+          Validators.max(300),
+        ],
+      ],
       runningOut: [null],
       acceptsPeople: [null],
       size: [null],
@@ -205,9 +227,7 @@ export class CreateAdsThreeComponent implements OnInit {
       thursdayHours: this.fb.array([]),
       fridayHours: this.fb.array([]),
       saturdayHours: this.fb.array([]),
-      pricing: this.fb.array([
-        
-      ]),
+      pricing: this.fb.array([]),
       monday: [null],
       mondaySlot: [null],
       tuesday: [null],
@@ -239,112 +259,159 @@ export class CreateAdsThreeComponent implements OnInit {
     // this.addFormArrayObject('pricing');
   }
 
-    /***
+  /***
    * FORM HANDLE
    * initUpdateForm()
    * onPrepopulateForm
    */
 
-    initUpdateForm(data:any) {
-      this.dataForm = this.fb.group({
-        description: [data?.description],
-        // pricing: [null],
-        category: [data?.category?._id, Validators.required],
-        type: [data?.type?._id, Validators.required],
-        bodyType: [data?.bodyType?._id],
-        name: [data?.name,Validators.required],
-        hairColor: [data?.hairColor?._id],
-        intimateHair: [data?.intimateHair?._id],
-        orientation: [data?.orientation?._id],
-        division: [data?.division?._id,Validators.required],
-        area: [data?.area?._id],
-        brand: [data?.brand],
-        tags: [data?.tags],
-        openingHours: [data?.openingHours],
-        // title: [null, Validators.required],
-        age: [data?.age, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(18), Validators.max(80)]],
-        height: [data?.height, [ Validators.pattern('^[0-9]*$'), Validators.min(140), Validators.max(220)]],
-        weight: [data?.weight, [ Validators.pattern('^[0-9]*$'), Validators.min(40), Validators.max(300)]],
-        runningOut: [data?.runningOut],
-        acceptsPeople: [data?.acceptsPeople],
-        size: [data?.size],
-        specialHours: [data?.specialHours],
-        zipCode: [data?.zipCode],
-        address: [data?.address],
-        phone: [data?.phone],
-        whatsApp: [data?.whatsApp],
-        email: [data?.email],
-        homePage: [data?.homePage],
-        images: [data?.images],
-        zone: [data?.zone?._id],
-        videoUrl: [data?.videoUrl],
-        status: [data?.status],
-        // Complex Day
-        mondayHours: this.fb.array(data?.mondayHours?.map(e => (this.fb.group({
-          startHour: [e?.startHour],
-          endHour: [e?.endHour],
-        })))||[]),
-        tuesdayHours: this.fb.array(data?.tuesdayHours?.map(e => (this.fb.group({
-          startHour: [e?.startHour],
-          endHour: [e?.endHour],
-        })))||[]),
-        wednesdayHours: this.fb.array(data?.wednesdayHours?.map(e => (this.fb.group({
-          startHour: [e?.startHour],
-          endHour: [e?.endHour],
-        })))||[]),
-        thursdayHours: this.fb.array(data?.thursdayHours?.map(e => (this.fb.group({
-          startHour: [e?.startHour],
-          endHour: [e?.endHour],
-        })))||[]),
-        fridayHours: this.fb.array(data?.fridayHours?.map(e => (this.fb.group({
-          startHour: [e?.startHour],
-          endHour: [e?.endHour],
-        })))||[]),
-        saturdayHours: this.fb.array(data?.saturdayHours?.map(e => (this.fb.group({
-          startHour: [e?.startHour],
-          endHour: [e?.endHour],
-        })))||[]),
-        pricing: this.fb.array(data?.pricing?.map(e => (this.fb.group({
-          serviceDescription: [e?.serviceDescription, Validators.required],
-          timing: [e?.timing, Validators.required],
-          priceValue: [e?.priceValue, Validators.required],
-        }))) || [
-          
-        ]),
-        monday: [data?.monday],
-        mondaySlot: [data?.mondaySlot],
-        tuesday: [data?.tuesday],
-        tuesdaySlot: [data?.tuesdaySlot],
-        wednesday: [data?.wednesday],
-        wednesdaySlot: [data?.wednesdaySlot],
-        thursday: [data?.thursday],
-        thursdaySlot: [data?.thursdaySlot],
-        shortDescription: [data?.shortDescription],
-        friday: [data?.friday],
-        fridaySlot: [data?.fridaySlot],
-        saturday: [data?.saturday],
-        saturdaySlot: [data?.saturdaySlot],
-      });
-  
-      this.mondayHoursArray = this.dataForm.get('mondayHours') as FormArray;
-      this.tuesdayHoursArray = this.dataForm.get('tuesdayHours') as FormArray;
-      this.wednesdayHoursArray = this.dataForm.get('wednesdayHours') as FormArray;
-      this.thursdayHoursArray = this.dataForm.get('thursdayHours') as FormArray;
-      this.fridayHoursArray = this.dataForm.get('fridayHours') as FormArray;
-      this.saturdayHoursArray = this.dataForm.get('saturdayHours') as FormArray;
-      this.pricingDataArray = this.dataForm.get('pricing') as FormArray;
-      this.onAddNewFormArrayObject('mondayHours');
-      this.onAddNewFormArrayObject('tuesdayHours');
-      this.onAddNewFormArrayObject('wednesdayHours');
-      this.onAddNewFormArrayObject('thursdayHours');
-      this.onAddNewFormArrayObject('fridayHours');
-      this.onAddNewFormArrayObject('saturdayHours');
-      // this.addFormArrayObject('pricing');
-  
-      this.onChangeRegion(true);
-      this.onChangeArea(true)
-    }
+  initUpdateForm(data: any) {
+    this.dataForm = this.fb.group({
+      description: [data?.description],
+      // pricing: [null],
+      category: [data?.category?._id, Validators.required],
+      type: [data?.type?._id, Validators.required],
+      bodyType: [data?.bodyType?._id],
+      name: [data?.name, Validators.required],
+      hairColor: [data?.hairColor?._id],
+      intimateHair: [data?.intimateHair?._id],
+      orientation: [data?.orientation?._id],
+      division: [data?.division?._id, Validators.required],
+      area: [data?.area?._id],
+      brand: [data?.brand],
+      tags: [data?.tags],
+      openingHours: [data?.openingHours],
+      // title: [null, Validators.required],
+      age: [
+        data?.age,
+        [
+          Validators.required,
+          Validators.pattern('^[0-9]*$'),
+          Validators.min(18),
+          Validators.max(80),
+        ],
+      ],
+      height: [
+        data?.height,
+        [
+          Validators.pattern('^[0-9]*$'),
+          Validators.min(140),
+          Validators.max(220),
+        ],
+      ],
+      weight: [
+        data?.weight,
+        [
+          Validators.pattern('^[0-9]*$'),
+          Validators.min(40),
+          Validators.max(300),
+        ],
+      ],
+      runningOut: [data?.runningOut],
+      acceptsPeople: [data?.acceptsPeople],
+      size: [data?.size],
+      specialHours: [data?.specialHours],
+      zipCode: [data?.zipCode],
+      address: [data?.address],
+      phone: [data?.phone],
+      whatsApp: [data?.whatsApp],
+      email: [data?.email],
+      homePage: [data?.homePage],
+      images: [data?.images],
+      zone: [data?.zone?._id],
+      videoUrl: [data?.videoUrl],
+      status: [data?.status],
+      // Complex Day
+      mondayHours: this.fb.array(
+        data?.mondayHours?.map((e) =>
+          this.fb.group({
+            startHour: [e?.startHour],
+            endHour: [e?.endHour],
+          })
+        ) || []
+      ),
+      tuesdayHours: this.fb.array(
+        data?.tuesdayHours?.map((e) =>
+          this.fb.group({
+            startHour: [e?.startHour],
+            endHour: [e?.endHour],
+          })
+        ) || []
+      ),
+      wednesdayHours: this.fb.array(
+        data?.wednesdayHours?.map((e) =>
+          this.fb.group({
+            startHour: [e?.startHour],
+            endHour: [e?.endHour],
+          })
+        ) || []
+      ),
+      thursdayHours: this.fb.array(
+        data?.thursdayHours?.map((e) =>
+          this.fb.group({
+            startHour: [e?.startHour],
+            endHour: [e?.endHour],
+          })
+        ) || []
+      ),
+      fridayHours: this.fb.array(
+        data?.fridayHours?.map((e) =>
+          this.fb.group({
+            startHour: [e?.startHour],
+            endHour: [e?.endHour],
+          })
+        ) || []
+      ),
+      saturdayHours: this.fb.array(
+        data?.saturdayHours?.map((e) =>
+          this.fb.group({
+            startHour: [e?.startHour],
+            endHour: [e?.endHour],
+          })
+        ) || []
+      ),
+      pricing: this.fb.array(
+        data?.pricing?.map((e) =>
+          this.fb.group({
+            serviceDescription: [e?.serviceDescription, Validators.required],
+            timing: [e?.timing, Validators.required],
+            priceValue: [e?.priceValue, Validators.required],
+          })
+        ) || []
+      ),
+      monday: [data?.monday],
+      mondaySlot: [data?.mondaySlot],
+      tuesday: [data?.tuesday],
+      tuesdaySlot: [data?.tuesdaySlot],
+      wednesday: [data?.wednesday],
+      wednesdaySlot: [data?.wednesdaySlot],
+      thursday: [data?.thursday],
+      thursdaySlot: [data?.thursdaySlot],
+      shortDescription: [data?.shortDescription],
+      friday: [data?.friday],
+      fridaySlot: [data?.fridaySlot],
+      saturday: [data?.saturday],
+      saturdaySlot: [data?.saturdaySlot],
+    });
 
+    this.mondayHoursArray = this.dataForm.get('mondayHours') as FormArray;
+    this.tuesdayHoursArray = this.dataForm.get('tuesdayHours') as FormArray;
+    this.wednesdayHoursArray = this.dataForm.get('wednesdayHours') as FormArray;
+    this.thursdayHoursArray = this.dataForm.get('thursdayHours') as FormArray;
+    this.fridayHoursArray = this.dataForm.get('fridayHours') as FormArray;
+    this.saturdayHoursArray = this.dataForm.get('saturdayHours') as FormArray;
+    this.pricingDataArray = this.dataForm.get('pricing') as FormArray;
+    this.onAddNewFormArrayObject('mondayHours');
+    this.onAddNewFormArrayObject('tuesdayHours');
+    this.onAddNewFormArrayObject('wednesdayHours');
+    this.onAddNewFormArrayObject('thursdayHours');
+    this.onAddNewFormArrayObject('fridayHours');
+    this.onAddNewFormArrayObject('saturdayHours');
+    // this.addFormArrayObject('pricing');
+
+    this.onChangeRegion(true);
+    this.onChangeArea(true);
+  }
 
   createObjectElement() {
     return this.fb.group({
@@ -353,7 +420,6 @@ export class CreateAdsThreeComponent implements OnInit {
       priceValue: [null, Validators.required],
     });
   }
-
 
   addFormArrayObject(formControl: string) {
     const f = this.fb.group({
@@ -426,7 +492,7 @@ export class CreateAdsThreeComponent implements OnInit {
       return;
     }
     if (this.dataForm.invalid) {
-      this.uiService.warn('Invali form');
+      this.uiService.warn('Du har en aktiv annonce i forvejen');
       this.dataForm.markAllAsTouched();
     } else {
       let selectCategory = this.categorys.find(
@@ -537,8 +603,6 @@ export class CreateAdsThreeComponent implements OnInit {
     this.oldImages.splice(index, 1);
     this.dataForm.patchValue({ images: this.oldImages });
   }
-
-
 
   /**
    * ON IMAGE UPLOAD
@@ -855,7 +919,7 @@ export class CreateAdsThreeComponent implements OnInit {
             this.getAllArea(this.dataForm.get('division')?.value);
             this.getAllZone(this.dataForm.get('area')?.value);
             // Form Array
-            this.removeFormArrayField('mondayHours', 0)
+            this.removeFormArrayField('mondayHours', 0);
             this.product.mondayHours.map((m) => {
               const f = this.fb.group({
                 startHour: [m.startHour],
@@ -864,18 +928,18 @@ export class CreateAdsThreeComponent implements OnInit {
               (this.dataForm?.get('mondayHours') as FormArray).push(f);
             });
 
-            this.removeFormArrayField('pricing', 0)
-    this.product.pricing.map(m => {
-      const f = this.fb.group({
-        serviceDescription: [m.serviceDescription],
-        timing: [m.timing],
-        priceValue: [m.priceValue],
-      });
-      (this.dataForm?.get('pricing') as FormArray).push(f);
-    });
+            this.removeFormArrayField('pricing', 0);
+            this.product.pricing.map((m) => {
+              const f = this.fb.group({
+                serviceDescription: [m.serviceDescription],
+                timing: [m.timing],
+                priceValue: [m.priceValue],
+              });
+              (this.dataForm?.get('pricing') as FormArray).push(f);
+            });
 
             // Form Array
-            this.removeFormArrayField('tuesdayHours', 0)
+            this.removeFormArrayField('tuesdayHours', 0);
             this.product.tuesdayHours.map((m) => {
               const f = this.fb.group({
                 startHour: [m.startHour],
@@ -885,7 +949,7 @@ export class CreateAdsThreeComponent implements OnInit {
             });
 
             // Form Array
-            this.removeFormArrayField('wednesdayHours', 0)
+            this.removeFormArrayField('wednesdayHours', 0);
             this.product.wednesdayHours.map((m) => {
               const f = this.fb.group({
                 startHour: [m.startHour],
@@ -895,7 +959,7 @@ export class CreateAdsThreeComponent implements OnInit {
             });
 
             // Form Array
-            this.removeFormArrayField('thursdayHours', 0)
+            this.removeFormArrayField('thursdayHours', 0);
             this.product.thursdayHours.map((m) => {
               const f = this.fb.group({
                 startHour: [m.startHour],
@@ -905,7 +969,7 @@ export class CreateAdsThreeComponent implements OnInit {
             });
 
             // Form Array
-            this.removeFormArrayField('fridayHours', 0)
+            this.removeFormArrayField('fridayHours', 0);
             this.product.fridayHours.map((m) => {
               const f = this.fb.group({
                 startHour: [m.startHour],
@@ -915,7 +979,7 @@ export class CreateAdsThreeComponent implements OnInit {
             });
 
             // Form Array
-            this.removeFormArrayField('saturdayHours', 0)
+            this.removeFormArrayField('saturdayHours', 0);
             this.product.saturdayHours.map((m) => {
               const f = this.fb.group({
                 startHour: [m.startHour],
@@ -946,8 +1010,7 @@ export class CreateAdsThreeComponent implements OnInit {
           this.formElement.resetForm();
           this.isLoading = false;
           this.router.navigate(['/account/my-list']);
-        }
-        else{
+        } else {
           this.uiService.wrong(res.message);
         }
       },
@@ -966,8 +1029,7 @@ export class CreateAdsThreeComponent implements OnInit {
             this.uiService.success(res.message);
             this.isLoading = false;
             this.router.navigate(['/account/my-list']);
-          }
-          else{
+          } else {
             this.uiService.wrong(res.message);
           }
         },
@@ -986,7 +1048,7 @@ export class CreateAdsThreeComponent implements OnInit {
       images: 1,
       createdAt: 1,
       user: 1,
-      age:1,
+      age: 1,
       division: 1,
     };
 
@@ -1051,9 +1113,6 @@ export class CreateAdsThreeComponent implements OnInit {
   onCheckTerms() {
     this.acceptTerms = !this.acceptTerms;
   }
-
-
-
 
   /**
    * ON DESTROY
