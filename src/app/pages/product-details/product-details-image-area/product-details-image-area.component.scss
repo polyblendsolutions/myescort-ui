@@ -245,6 +245,11 @@
     padding: 22px 0 15px;
   }
 
+  div {
+    display: flex;
+    flex-direction: row;
+  }
+
   p {
     font-family: $font-en-primary;
     font-size: 14px;
@@ -326,6 +331,12 @@
     .product-details-about-title {
       font-size: 14px;
       color: #403e3e;
+      align-items: flex-start;
+      flex-direction: column;
+      div {
+        display: flex;
+        flex-direction: column;
+      }
     }
     h3 {
       font-family: $font-en-primary;

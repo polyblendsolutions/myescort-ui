@@ -43,7 +43,7 @@
   <div class="my-list-right">
     <div class="my-list-right-title">
       <h1>
-        Search active indtil {{ data?.activeUntill | date : "dd/MM/yyyy" }}
+        Opslag aktivt indtil {{ data?.activeUntill | date : "dd/MM/yyyy" }}
       </h1>
     </div>
 
@@ -51,7 +51,7 @@
       <div class="my-list-btn-top">
         <button type="button">
           <h4>Bump Opslag</h4>
-          <p>To Get To The Top Of The Posts!</p>
+          <p>For At Komme Øverst I Opslagene!</p>
         </button>
       </div>
 
@@ -61,7 +61,7 @@
           routerLink="/create-new"
           [queryParams]="{ id: data?._id }"
         >
-          Manage Posts
+          Administrer Opslag
         </button>
         <!-- <button type="button" (click)="deleteProductByUser(data?._id)">
           Delete
