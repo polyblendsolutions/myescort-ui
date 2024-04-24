@@ -1,12 +1,11 @@
-
 .dialog-container {
   width: 400px;
   padding: 30px 20px;
 }
 
-.info{
+.info {
   text-align: center;
-  h1{
+  h1 {
     color: #f65eac;
   }
 }
@@ -20,7 +19,6 @@
   border: 1px solid #f65eac;
   color: #f65eac;
 }
-
 
 .actions-around {
   width: 100%;
@@ -38,7 +36,6 @@
 }
 
 @media only screen and (max-device-width: 599px) {
-
   .dialog-container {
     width: 95%;
     margin: 0 auto;
@@ -55,7 +52,4 @@
       margin-right: 10px;
     }
   }
-
-
-
 }
