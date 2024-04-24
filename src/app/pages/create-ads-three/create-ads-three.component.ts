@@ -492,7 +492,7 @@ export class CreateAdsThreeComponent implements OnInit {
       return;
     }
     if (this.dataForm.invalid) {
-      this.uiService.warn('Invali form');
+      this.uiService.warn('Du har en aktiv annonce i forvejen');
       this.dataForm.markAllAsTouched();
     } else {
       let selectCategory = this.categorys.find(
