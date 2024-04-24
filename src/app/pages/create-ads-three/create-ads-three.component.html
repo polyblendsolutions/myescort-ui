@@ -24,7 +24,8 @@
                   <select
                     #adType
                     (change)="onTypeChange(adType.value)"
-                    formControlName="type" required
+                    formControlName="type"
+                    required
                   >
                     <option value="null">Select from the list...</option>
                     <option *ngFor="let data of types" [value]="data?._id">
@@ -123,11 +124,13 @@
                     (change)="onChangeRegion($event)"
                     formControlName="division"
                   >
-                    <option value="null" disabled selected>Pick a region...</option>
+                    <option value="null" disabled selected>
+                      Pick a region...
+                    </option>
                     <option [value]="d?._id" *ngFor="let d of divisions">
                       {{ d?.name }}
                     </option>
-                    </select>
+                  </select>
                 </div>
                 <span
                   class="invalid-txt"
@@ -147,7 +150,9 @@
                     formControlName="area"
                   >
                     <option value="null">Pick a area...</option>
-                    <option [value]="a?._id" *ngFor="let a of area">{{a?.name}}</option>
+                    <option [value]="a?._id" *ngFor="let a of area">
+                      {{ a?.name }}
+                    </option>
                   </select>
                 </div>
                 <span
@@ -156,17 +161,18 @@
                     dataForm?.get('area')?.touched &&
                     dataForm.get('area')?.invalid
                   "
-                >This field is required</span>
+                  >This field is required</span
+                >
               </div>
 
               <div class="form-input-select" *ngIf="zone.length > 0">
                 <label for="">City</label>
                 <div class="select-main">
-                  <select
-                    formControlName="zone"
-                  >
+                  <select formControlName="zone">
                     <option value="null">Pick a city...</option>
-                    <option [value]="z?._id" *ngFor="let z of zone">{{z?.name}}</option>
+                    <option [value]="z?._id" *ngFor="let z of zone">
+                      {{ z?.name }}
+                    </option>
                   </select>
                 </div>
                 <span
@@ -175,7 +181,8 @@
                     dataForm?.get('zone')?.touched &&
                     dataForm.get('zone')?.invalid
                   "
-                >This field is required</span>
+                  >This field is required</span
+                >
               </div>
 
               <div class="form-input-select">
@@ -204,13 +211,25 @@
                         id="Height"
                         placeholder="Indast din højde i cm"
                         formControlName="height"
-                    
                       />
                     </div>
-                    <div class="invalid-txt" *ngIf="dataForm.get('height').invalid && (dataForm.get('height').dirty || dataForm.get('height').touched)">
-                      <div *ngIf="dataForm.get('height').errors?.min">Height must be at least 140 cm</div>
-                      <div *ngIf="dataForm.get('height').errors?.max">Height cannot exceed 220 cm</div>
-                      <div *ngIf="dataForm.get('height').errors?.pattern">Height must be in a numeric value</div>
+                    <div
+                      class="invalid-txt"
+                      *ngIf="
+                        dataForm.get('height').invalid &&
+                        (dataForm.get('height').dirty ||
+                          dataForm.get('height').touched)
+                      "
+                    >
+                      <div *ngIf="dataForm.get('height').errors?.min">
+                        Height must be at least 140 cm
+                      </div>
+                      <div *ngIf="dataForm.get('height').errors?.max">
+                        Height cannot exceed 220 cm
+                      </div>
+                      <div *ngIf="dataForm.get('height').errors?.pattern">
+                        Height must be in a numeric value
+                      </div>
                     </div>
                   </div>
 
@@ -239,10 +258,23 @@
                         formControlName="weight"
                       />
                     </div>
-                    <div class="invalid-txt" *ngIf="dataForm.get('weight').invalid && (dataForm.get('weight').dirty || dataForm.get('weight').touched)">
-                      <div *ngIf="dataForm.get('weight').errors?.min">Weight must be at least 40 Kg</div>
-                      <div *ngIf="dataForm.get('weight').errors?.max">Weight cannot exceed 300 Kg</div>
-                      <div *ngIf="dataForm.get('weight').errors?.pattern">Weight must be in a numeric value</div>
+                    <div
+                      class="invalid-txt"
+                      *ngIf="
+                        dataForm.get('weight').invalid &&
+                        (dataForm.get('weight').dirty ||
+                          dataForm.get('weight').touched)
+                      "
+                    >
+                      <div *ngIf="dataForm.get('weight').errors?.min">
+                        Weight must be at least 40 Kg
+                      </div>
+                      <div *ngIf="dataForm.get('weight').errors?.max">
+                        Weight cannot exceed 300 Kg
+                      </div>
+                      <div *ngIf="dataForm.get('weight').errors?.pattern">
+                        Weight must be in a numeric value
+                      </div>
                     </div>
                   </div>
 
@@ -346,13 +378,28 @@
                         formControlName="age"
                       />
                     </div>
-                    <div class="invalid-txt" *ngIf="dataForm.get('age').invalid && (dataForm.get('age').dirty || dataForm.get('age').touched)">
-                      <div *ngIf="dataForm.get('age').errors?.required">This field is required</div>
-                      <div *ngIf="dataForm.get('age').errors?.min">Age must be at least 18</div>
-                      <div *ngIf="dataForm.get('age').errors?.max">Age cannot exceed 80</div>
-                      <div *ngIf="dataForm.get('age').errors?.pattern">Age must be in a numeric value</div>
-                    </div>  
-                  </div>               
+                    <div
+                      class="invalid-txt"
+                      *ngIf="
+                        dataForm.get('age').invalid &&
+                        (dataForm.get('age').dirty ||
+                          dataForm.get('age').touched)
+                      "
+                    >
+                      <div *ngIf="dataForm.get('age').errors?.required">
+                        This field is required
+                      </div>
+                      <div *ngIf="dataForm.get('age').errors?.min">
+                        Age must be at least 18
+                      </div>
+                      <div *ngIf="dataForm.get('age').errors?.max">
+                        Age cannot exceed 80
+                      </div>
+                      <div *ngIf="dataForm.get('age').errors?.pattern">
+                        Age must be in a numeric value
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -409,8 +456,6 @@
                       />
                     </div>
                   </div>
-
-                  
                 </div>
               </div>
 
@@ -470,9 +515,9 @@
                 <div class="checkbox-first checkbox-first-second">
                   <div class="checkbox-main">
                     <input
-                    id="openingHours"
-                    type="checkbox"
-                    formControlName="openingHours"
+                      id="openingHours"
+                      type="checkbox"
+                      formControlName="openingHours"
                     />
                     <label for="active_opening_hours">Aktiv åbningstider</label>
                   </div>
@@ -1148,12 +1193,13 @@
                           />
                         </div>
                         <span
-                        class="invalid-txt"
-                        *ngIf="
-                          data.get('priceValue')?.touched &&
-                          data.get('priceValue')?.invalid
-                        "
-                      >This field is required</span>
+                          class="invalid-txt"
+                          *ngIf="
+                            data.get('priceValue')?.touched &&
+                            data.get('priceValue')?.invalid
+                          "
+                          >This field is required</span
+                        >
                       </div>
                       <div class="form-input-select">
                         <label>Timing</label>
@@ -1167,12 +1213,13 @@
                           </select>
                         </div>
                         <span
-                        class="invalid-txt"
-                        *ngIf="
-                          data.get('timing')?.touched &&
-                          data.get('timing')?.invalid
-                        "
-                      >This field is required</span>
+                          class="invalid-txt"
+                          *ngIf="
+                            data.get('timing')?.touched &&
+                            data.get('timing')?.invalid
+                          "
+                          >This field is required</span
+                        >
                       </div>
                     </div>
 
@@ -1190,12 +1237,13 @@
                           />
                         </div>
                         <span
-                        class="invalid-txt"
-                        *ngIf="
-                          data.get('serviceDescription')?.touched &&
-                          data.get('serviceDescription')?.invalid
-                        "
-                      >This field is required</span>
+                          class="invalid-txt"
+                          *ngIf="
+                            data.get('serviceDescription')?.touched &&
+                            data.get('serviceDescription')?.invalid
+                          "
+                          >This field is required</span
+                        >
                       </div>
                     </div>
                   </div>
@@ -1204,7 +1252,7 @@
                     mat-mini-fab
                     color="warn"
                     (click)="removeFormArrayField('pricing', i)"
-                    style="margin-bottom: 20px;"
+                    style="margin-bottom: 20px"
                   >
                     <mat-icon>delete</mat-icon>
                   </button>
@@ -1213,13 +1261,9 @@
 
               <div class="opening-hours-child">
                 <div class="sec-home-sub-btn">
-                  <button
-                    type="button"
-                    
-                    (click)="addFormArrayObject('pricing')"
-                  >
-                  <i class="fas fa-plus"></i> New Pricing
-                </button>
+                  <button type="button" (click)="addFormArrayObject('pricing')">
+                    <i class="fas fa-plus"></i> New Pricing
+                  </button>
                 </div>
               </div>
             </div>
