@@ -16,8 +16,7 @@ export class SubscriptionService {
     return this.httpClient.get<{ data: subscriptionDetail }>(`${API_SUBSCRIPTION}/subscription`, {});
   }
 
-  buyVipSubscription(id:string) {
-    return this.httpClient.post<ResponsePayload>(`${API_SUBSCRIPTION}/activate-vip/:id`, {subscriptionId: id});
+  buyVipSubscription(userId:string, subscriptionId:string) {
+    return this.httpClient.post<ResponsePayload>(`${API_SUBSCRIPTION}/user/activate-vip/${userId}`, {subscriptionId: subscriptionId});
   }
-
 }

@@ -36,7 +36,13 @@
           </p>
         </div>
         <!-- END! subscription-child-main-top -->
-
+        <ng-container *ngIf="user?.subscriptionId">
+          <div class="subscription-child-main-bottom">
+            <p>
+             {{activeSubscription |json}}
+            </p>
+          </div>
+        </ng-container>
           <div class="subscription-child-main-cards" >
             <ng-container *ngFor="let subscriptionDetail of subscriptionDetails">
               <app-subscription-card (buyVIPEvent)="buyVip($event)" [subscriptionData]="subscriptionDetail"></app-subscription-card>
