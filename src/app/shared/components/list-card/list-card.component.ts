@@ -1,50 +1,45 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {Product} from 'src/app/interfaces/common/product.interface';
-import {ProductService} from 'src/app/services/common/product.service';
-import {ReloadService} from 'src/app/services/core/reload.service';
-import {UiService} from '../../../services/core/ui.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Product } from 'src/app/interfaces/common/product.interface';
+import { ProductService } from 'src/app/services/common/product.service';
+import { ReloadService } from 'src/app/services/core/reload.service';
+import { UiService } from '../../../services/core/ui.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../dialog-view/confirm-dialog/confirm-dialog.component';
-import {User} from "../../../interfaces/common/user.interface";
-import {UserDataService} from "../../../services/common/user-data.service";
+import { User } from '../../../interfaces/common/user.interface';
+import { UserDataService } from '../../../services/common/user-data.service';
 
 @Component({
   selector: 'app-list-card',
   templateUrl: './list-card.component.html',
-  styleUrls: ['./list-card.component.scss']
+  styleUrls: ['./list-card.component.scss'],
 })
 export class ListCardComponent implements OnInit, OnDestroy {
-
   /* GET LIST CARD DATA */
   @Input() data?: Product;
   user: User;
   isLoading: boolean = false;
 
-
   //Subscriptions
   private subDataOne: Subscription;
   //Subscription
   private subUserData: Subscription;
-  private subRealod:Subscription;
+  private subRealod: Subscription;
   constructor(
     private productService: ProductService,
     private uiService: UiService,
     private dialog: MatDialog,
     private userDataService: UserDataService,
-    private reloadService:ReloadService,
-  ) {
-
-  }
+    private reloadService: ReloadService
+  ) {}
 
   ngOnInit(): void {
     //Reload Data
     this.subRealod = this.reloadService.refreshData$.subscribe(() => {
       this.getLoggedInUserData();
-    })
+    });
     //Base Data
     this.getLoggedInUserData();
-    console.log("list-left: ",this.data);
   }
 
   /***
@@ -63,63 +58,66 @@ export class ListCardComponent implements OnInit, OnDestroy {
       },
       (err) => {
         if (err) {
-          console.log(err);
+          // console.log(err);
         }
       }
-    )
+    );
   }
   /**
    * HTTP REQUEST HANDLE
    * deleteProductByUser()
-  */
+   */
   private updateUserProductById(id: string, data: any) {
     this.isLoading = true;
-    this.subDataOne = this.productService.updateUserProductById(id, data).subscribe(
-      (res) => {
-        if (res.success) {
-          this.uiService.success(res.message);
-          this.reloadService.needRefreshData$();
+    this.subDataOne = this.productService
+      .updateUserProductById(id, data)
+      .subscribe(
+        (res) => {
+          if (res.success) {
+            this.uiService.success(res.message);
+            this.reloadService.needRefreshData$();
+            this.isLoading = false;
+          }
+        },
+        (err) => {
           this.isLoading = false;
+          // console.log(err);
         }
-      },
-      (err) => {
-        this.isLoading = false;
-        console.log(err);
-      }
-    )
+      );
   }
 
   deleteProductByUser(id: string) {
-    this.subDataOne = this.productService.deleteProductByUserId(id).subscribe((res) => {
+    this.subDataOne = this.productService.deleteProductByUserId(id).subscribe(
+      (res) => {
         if (res.success) {
           this.reloadService.needRefreshData$();
         }
       },
       (err) => {
         if (err) {
-          console.log(err);
+          // console.log(err);
         }
       }
-    )
+    );
   }
 
-   /**
+  /**
    * COMPONENT DIALOG VIEW
    * openConfirmDialog()
    */
-   public openConfirmDialog(type: 'publish' | 'draft') {
+  public openConfirmDialog(type: 'publish' | 'draft') {
     switch (type) {
       case 'publish': {
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
           maxWidth: '400px',
           data: {
-            title: 'Confirm Active',
-            message: 'Are you sure you want Active this data?',
+            title: 'Aktivering af annonce',
+            message: 'Er du sikker, at du vil activere din annonce?',
           },
         });
         dialogRef.afterClosed().subscribe((dialogResult) => {
           if (dialogResult) {
-           this.onToggle('publish');
+            this.onToggle('publish');
           }
         });
         break;
@@ -127,10 +125,10 @@ export class ListCardComponent implements OnInit, OnDestroy {
 
       case 'draft': {
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-          maxWidth: '400px',
+          maxWidth: '420px',
           data: {
-            title: 'Confirm Deactive',
-            message: 'Are you sure you want Deactive this data?',
+            title: 'Deaktivering af annonce',
+            message: 'Er du sikker, at du vil deaktivere din annonce?',
           },
         });
         dialogRef.afterClosed().subscribe((dialogResult) => {
@@ -152,7 +150,7 @@ export class ListCardComponent implements OnInit, OnDestroy {
    */
 
   onToggle(type: 'draft' | 'publish') {
-    this.updateUserProductById(this.data?._id, {status: type})
+    this.updateUserProductById(this.data?._id, { status: type });
   }
 
   ngOnDestroy() {
@@ -160,5 +158,4 @@ export class ListCardComponent implements OnInit, OnDestroy {
       this.subDataOne.unsubscribe();
     }
   }
-
 }
