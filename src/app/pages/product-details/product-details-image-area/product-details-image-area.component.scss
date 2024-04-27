@@ -83,9 +83,9 @@
     left: 50%;
     color: rgb(245, 77, 163);
     opacity: 0.5;
-    transform: translate(-50%, -50%) ; /* Rotate the watermark */
+    transform: translate(-50%, -50%); /* Rotate the watermark */
     color: rgba(0, 0, 0, 0.5); /* Set color and opacity of the watermark */
-    pointer-events: none; 
+    pointer-events: none;
   }
 
   .watermarked2 {
@@ -225,7 +225,7 @@
 
 /* --- product-details-about --- */
 .product-details-about {
-  .product-details-about-title{
+  .product-details-about-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -243,6 +243,11 @@
     letter-spacing: 0.5px;
     color: #5c5c5c;
     padding: 22px 0 15px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
   }
 
   p {
@@ -279,9 +284,9 @@
     overflow: hidden;
     justify-content: center;
     align-items: center;
-    display: flex;  
-    @media (max-width: 600px){
-     max-width: 100%;
+    display: flex;
+    @media (max-width: 600px) {
+      max-width: 100%;
     }
     img {
       width: 100%;
@@ -289,26 +294,24 @@
       height: 100%;
       object-fit: contain;
     }
-
-
   }
   .close-btn {
-  position: fixed;
-  top: 10px;
-  right:25px;
-  cursor: pointer;
-  color: #fff;
-  font-size: 50px;
-  z-index: 1100;
-  @media (max-width: 600px){
-    top: 5px;
-    right:15px;
-  }
+    position: fixed;
+    top: 10px;
+    right: 25px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 50px;
+    z-index: 1100;
+    @media (max-width: 600px) {
+      top: 5px;
+      right: 15px;
+    }
   }
 }
 .active {
   display: flex;
-}    
+}
 
 .watermarked-slider {
   position: absolute;
@@ -318,24 +321,28 @@
   left: 50%;
   color: rgb(245, 77, 163);
   opacity: 0.5;
-  transform: translate(-50%, -50%) ; /* Rotate the watermark */
+  transform: translate(-50%, -50%); /* Rotate the watermark */
   color: rgba(0, 0, 0, 0.5); /* Set color and opacity of the watermark */
-  pointer-events: none; 
+  pointer-events: none;
   width: calc(100% - 50%);
 }
-@media (max-width:400px) {
-.product-details-about {
-  .product-details-about-title{
-    font-size: 14px;
-    color: #403e3e;
+@media (max-width: 400px) {
+  .product-details-about {
+    .product-details-about-title {
+      font-size: 14px;
+      color: #403e3e;
+      align-items: flex-start;
+      flex-direction: column;
+      div {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    h3 {
+      font-family: $font-en-primary;
+      font-size: 15px;
+      color: #5c5c5c;
+      padding: 0px 0 10px;
+    }
   }
-  h3 {
-    font-family: $font-en-primary;
-    font-size: 15px;
-    color: #5c5c5c;
-    padding:0px 0 10px;
-
-  }
-}
-
 }
