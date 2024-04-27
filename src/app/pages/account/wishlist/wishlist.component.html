@@ -1,5 +1,5 @@
 <section class="wishlist-main">
-  <app-account-top-section [title]="'Favoritaktive'"></app-account-top-section>
+  <app-account-top-section [title]="'Favoritter'"></app-account-top-section>
 
   <div class="wishlist-main-parent">
     <div class="wishlist-main-sidebar">
@@ -15,9 +15,7 @@
 
         <div class="wishlist-child-main-cards">
           <ng-container *ngFor="let data of wishlists">
-            <app-marketplace-card
-              [data]="data?.product"
-            ></app-marketplace-card>
+            <app-marketplace-card [data]="data?.product"></app-marketplace-card>
           </ng-container>
         </div>
         <!-- END! wishlist-child-main-cards -->
@@ -26,4 +24,3 @@
   </div>
 </section>
 <!-- END! wishlist -->
-
