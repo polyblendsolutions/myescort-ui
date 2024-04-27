@@ -155,6 +155,33 @@
     grid-template-columns: repeat(1, 1fr);
   }
 }
+/* ---subscription-child-active --- */
+.subscription-child-active {
+  p {
+    font-family: $font-en-primary;
+    font-size: 22px;
+    font-weight: 600;
+    color: white;
+    background: #f54da3;
+    letter-spacing: 0.5px;
+    padding-top: 14px;
+    padding-bottom:14px;
+    line-height: 26px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 556px) {
+  .subscription-child-active {
+    p {
+      font-size: 18px;
+      background: #f54da3;
+      padding-top: 10px;
+      padding-bottom:10px;
+      line-height: 23px;
+    }
+  }
+}
 
 /* --- subscription-child-main-bottom --- */
 .subscription-child-main-bottom {

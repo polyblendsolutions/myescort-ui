@@ -36,18 +36,22 @@
           </p>
         </div>
         <!-- END! subscription-child-main-top -->
-        <ng-container *ngIf="user?.subscriptionId">
-          <div class="subscription-child-main-bottom">
+        <ng-container *ngIf="user?.subscriptionId && activeSubscription">
+          <div class="subscription-child-active">
             <p>
-             {{activeSubscription |json}}
+              Du har aktiveret en {{activeSubscription?.[0]?.days}}-dages plan
+              til {{activeSubscription?.[0]?.price}} DKK!
             </p>
           </div>
         </ng-container>
-          <div class="subscription-child-main-cards" >
-            <ng-container *ngFor="let subscriptionDetail of subscriptionDetails">
-              <app-subscription-card (buyVIPEvent)="buyVip($event)" [subscriptionData]="subscriptionDetail"></app-subscription-card>
-            </ng-container>
-          </div> 
+        <div class="subscription-child-main-cards">
+          <ng-container *ngFor="let subscriptionDetail of subscriptionDetails">
+            <app-subscription-card
+              (buyVIPEvent)="buyVip($event)"
+              [subscriptionData]="subscriptionDetail"
+            ></app-subscription-card>
+          </ng-container>
+        </div>
         <div class="subscription-child-main-bottom">
           <p>
             Ved køb af enhver plan accepterer du vores vilkår og betingelser

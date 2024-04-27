@@ -13,7 +13,7 @@ export class SubscriptionService {
   }
 
   getAllSubscription() {
-    return this.httpClient.get<{ data: subscriptionDetail }>(`${API_SUBSCRIPTION}/subscription`, {});
+    return this.httpClient.get<{ data: subscriptionDetail[] }>(`${API_SUBSCRIPTION}/subscription`, {});
   }
 
   buyVipSubscription(userId:string, subscriptionId:string) {

@@ -206,9 +206,9 @@
   position: absolute;
   top: 5px;
   left: 5px;
-  z-index: 100; /* Ensure it appears above other elements */
+  z-index: 100; 
   border-radius: 5px;
-  overflow: hidden; /* Ensure the background doesn't overflow */
+  overflow: hidden; 
   background: linear-gradient(45deg, #f54da3, #a71d64); /* Gradient background */
 
 }
@@ -216,10 +216,10 @@
 /* Tilted text styles */
 .tilted-text {
   display: inline-block;
-  color: #ffffff; /* Text color */
+  color: #ffffff; 
   font-weight: bold;
   padding: 5px 10px;
-  font-size: 20px; /* Adjust the font size */
-  position: relative; /* Ensure text appears on top of the background */
-  z-index: 1; /* Ensure text appears above the background */
+  font-size: 20px; 
+  position: relative; 
+  z-index: 1; 
 }
