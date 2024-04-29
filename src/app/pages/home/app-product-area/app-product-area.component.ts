@@ -90,6 +90,9 @@ export class AppProductAreaComponent implements OnInit, OnDestroy {
         next: (res) => {
           if (res.success) {
             this.products = res.data;
+            this.products.forEach(productObj=>{
+              productObj.images = productObj.images.map(path => path.replace('images', 'preview'))
+            })
             console.log("this.products4222",this.products);
           }
         },

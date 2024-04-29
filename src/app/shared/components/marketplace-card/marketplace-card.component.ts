@@ -76,4 +76,7 @@ export class MarketplaceCardComponent implements OnInit {
     }
   }
 
+  onImageError(event: any, path) {
+    event.target.src = path.replace('preview', 'images')
+  }
 }
