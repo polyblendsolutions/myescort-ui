@@ -27,6 +27,7 @@ export interface User {
   createdAt?: Date;
   updatedAt?: Date;
   success?: boolean;
+  subscriptionId?:string;
 }
 
 export interface UserAuthResponse {

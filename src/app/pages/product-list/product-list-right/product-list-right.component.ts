@@ -292,6 +292,8 @@ export class ProductListRightComponent implements OnInit {
       division: 1,
       area: 1,
       zone: 1,
+      isVipStatusActive:1,
+      vipStatusActivatedOn:1
     };
 
     // Compleax Filter Array Based on Selections

@@ -75,6 +75,8 @@ export class AppProductAreaComponent implements OnInit, OnDestroy {
       createdAt: 1,
       division: 1,
       zone: 1,
+      isVipStatusActive:1,
+      vipStatusActivatedOn:1
     };
 
     const filter: FilterData = {

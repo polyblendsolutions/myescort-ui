@@ -1,4 +1,7 @@
 <div class="app-marketplace-card-main" >
+  <div *ngIf="data?.isVipStatusActive" class="vip-badge">
+    <span class="tilted-text">VIP</span>
+  </div>
   <div 
   *ngIf="data"
   class="mk-qv"

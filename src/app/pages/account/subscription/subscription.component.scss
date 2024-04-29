@@ -58,6 +58,16 @@
     letter-spacing: 0.6px;
   }
 
+  .subscription-list-info{
+    padding-left: 20px;
+    padding-bottom: 30px;
+    li {
+      font-size: 16px;
+      font-weight: 500;
+      color: #0c0c0c;
+      line-height: 2;
+    }
+  }
   p {
     font-family: $font-en-primary;
     font-size: 16px;
@@ -74,7 +84,14 @@
     }
   }
 }
-
+.flest-info{
+  text-align: center;
+    color: #f54da3;
+    padding-top: 60px;
+    @media (max-width: 556px) {
+     padding-top: 20px; 
+    }
+}
 @media (max-width: 556px) {
   .subscription-child-main-top {
     h2 {
@@ -155,10 +172,45 @@
     grid-template-columns: repeat(1, 1fr);
   }
 }
+/* ---subscription-child-active --- */
+.subscription-child-active {
+  p {
+    font-family: $font-en-primary;
+    font-size: 22px;
+    font-weight: 600;
+    color: white;
+    background: #f54da3;
+    letter-spacing: 0.5px;
+    padding-top: 14px;
+    padding-bottom:14px;
+    line-height: 26px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 556px) {
+  .subscription-child-active {
+    p {
+      font-size: 18px;
+      background: #f54da3;
+      padding-top: 10px;
+      padding-bottom:10px;
+      line-height: 23px;
+    }
+  }
+}
 
 /* --- subscription-child-main-bottom --- */
 .subscription-child-main-bottom {
-  p {
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 556px){
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .tax-condition {
     font-family: $font-en-primary;
     font-size: 17px;
     font-weight: 500;
@@ -169,7 +221,17 @@
     line-height: 26px;
     text-align: center;
   }
+
+  .stripe{
+    border: 2px solid blue;
+    padding: 10px;
+    color: blue;
+  }
+  .stripe-bold{
+    font-weight: 600;
+  }
 }
+
 
 @media (max-width: 556px) {
   .subscription-child-main-bottom {

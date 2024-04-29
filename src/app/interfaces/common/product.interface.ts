@@ -109,6 +109,8 @@ export interface Product {
   fridayHours?: {startHour?: string, endHour?: string}[];
   saturdayHours?: {startHour?: string, endHour?: string}[];
   publishDate?: Date;
+  isVipStatusActive?: boolean;
+  vipStatusActivatedOn?: Date;
 }
 
 export interface pricingData {
