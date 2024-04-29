@@ -18,7 +18,7 @@
     <div class="marketplace-card-img">
       <img
         [src]="data?.images && data?.images?.length ? data?.images[0] : imgPlaceHolder"
-        alt="image"
+        alt="image" (error)="onImageError($event,  data?.images[0])"
       />
     </div>
 
