@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, take } from 'rxjs';
-import { subscriptionDetail } from 'src/app/interfaces/common/subscription.interface';
+import { SubscriptionDetails } from 'src/app/interfaces/common/subscription.interface';
 import { User } from 'src/app/interfaces/common/user.interface';
 import { SubscriptionService } from 'src/app/services/common/subscription.service';
 import { UserDataService } from 'src/app/services/common/user-data.service';
@@ -20,9 +20,9 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
   
   public subSubscriptionDetails: Subscription;
   public subLoggedInUserData: Subscription;
-  public subscriptionDetails: subscriptionDetail[];
+  public subscriptionDetails: SubscriptionDetails[];
   public user: User;
-  public activeSubscription: subscriptionDetail[];
+  public activeSubscription: SubscriptionDetails[];
 
   ngOnInit(): void {
     this.getLoggedInUserData();
@@ -46,7 +46,7 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
       );
   }
 
-  checkExistingSubscription(data: subscriptionDetail[]) {
+  checkExistingSubscription(data: SubscriptionDetails[]) {
     this.activeSubscription = data.filter((subscription) => {
       return subscription._id === this.user.subscriptionId;
     });

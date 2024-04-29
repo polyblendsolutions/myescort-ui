@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { subscriptionDetail } from 'src/app/interfaces/common/subscription.interface';
+import { SubscriptionDetails } from 'src/app/interfaces/common/subscription.interface';
 import { ResponsePayload } from 'src/app/interfaces/core/response-payload.interface';
 import { environment } from 'src/environments/environment';
 const API_SUBSCRIPTION = `${environment.apiBaseLink}/api`;
@@ -13,7 +13,7 @@ export class SubscriptionService {
   }
 
   getAllSubscription() {
-    return this.httpClient.get<{ data: subscriptionDetail[] }>(`${API_SUBSCRIPTION}/subscription`, {});
+    return this.httpClient.get<{ data: SubscriptionDetails[] }>(`${API_SUBSCRIPTION}/subscription`, {});
   }
 
   buyVipSubscription(userId:string, subscriptionId:string) {

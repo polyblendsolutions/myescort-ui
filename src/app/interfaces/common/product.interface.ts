@@ -110,7 +110,7 @@ export interface Product {
   saturdayHours?: {startHour?: string, endHour?: string}[];
   publishDate?: Date;
   isVipStatusActive?: boolean;
-  vipStatusActivatedOn?: number;
+  vipStatusActivatedOn?: Date;
 }
 
 export interface pricingData {

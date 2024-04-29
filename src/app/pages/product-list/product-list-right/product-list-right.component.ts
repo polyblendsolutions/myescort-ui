@@ -361,7 +361,7 @@ export class ProductListRightComponent implements OnInit {
       filter: mFilter,
       filterGroup: null,
       select: mSelect,
-      sort: { vipStatusActivatedOn: -1 },
+      sort: { createdAt: -1 },
     };
 
     this.subFilterProduct = this.productService

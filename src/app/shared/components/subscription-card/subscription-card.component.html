@@ -6,13 +6,12 @@
   </div>
   <div class="subscription-plan">
     <p>
-      {{ subscriptionData?.days }}-Dages Plan: {{ subscriptionData?.price }} DKK
+      {{ subscriptionData?.days }}-Dages Plan:
     </p>
-    <p>Pr. Dag</p>
-
+    <p> {{calculatePricePerDay()}}</p>
     <div class="subscription-subscribe">
       <button type="button" (click)="buyVip(subscriptionData._id)">
-        Vælg Denne Plan
+        Køb VIP
       </button>
     </div>
   </div>

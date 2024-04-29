@@ -1,4 +1,4 @@
-export interface subscriptionDetail{
+export interface SubscriptionDetails{
     _id: string;
     name: string;
     days:string;

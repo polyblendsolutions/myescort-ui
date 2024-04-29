@@ -83,7 +83,7 @@ export class AppProductAreaComponent implements OnInit, OnDestroy {
       filter: { ...this.filter, ...{ status: 'publish' } },
       pagination: this.pagination,
       select: mSelect,
-      sort: { vipStatusActivatedOn: -1 },
+      sort: { createdAt: -1 },
     };
 
     this.loadFilteredProductsSubscription = this.productService
