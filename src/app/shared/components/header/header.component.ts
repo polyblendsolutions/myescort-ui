@@ -1,30 +1,29 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { HeaderService } from 'src/app/services/common/header.service';
 
-import {MatDialog} from "@angular/material/dialog";
-import {OpenDalogComponent} from "./open-dalog/open-dalog.component";
-import {FilterData} from "../../../interfaces/core/filter-data";
-import {ProductService} from "../../../services/common/product.service";
-import {Product} from "../../../interfaces/common/product.interface";
-import {Observable, Subscription} from "rxjs";
-import {Router} from "@angular/router";
-import {UtilsService} from "../../../services/core/utils.service";
-import {UiService} from "../../../services/core/ui.service";
+import { MatDialog } from '@angular/material/dialog';
+import { OpenDalogComponent } from './open-dalog/open-dalog.component';
+import { FilterData } from '../../../interfaces/core/filter-data';
+import { ProductService } from '../../../services/common/product.service';
+import { Product } from '../../../interfaces/common/product.interface';
+import { Observable, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { UtilsService } from '../../../services/core/utils.service';
+import { UiService } from '../../../services/core/ui.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
   /* HEADER FIXED */
   headerFixed: boolean = false;
   isCookieBannerVisible: boolean = true;
   /**
    * Show and hide responsive nav.
    * Get subject data.
-  */
+   */
   products: Product[] = [];
 
   // FilterData
@@ -33,8 +32,8 @@ export class HeaderComponent implements OnInit {
   // Subscriptions
   private subAllProductByUser: Subscription;
   showHideResponsiveNav: boolean = false;
-  private subGetProductDetail:Subscription
-  private subGetProductByID:Subscription
+  private subGetProductDetail: Subscription;
+  private subGetProductByID: Subscription;
   changeColor: boolean = false;
 
   constructor(
@@ -43,22 +42,20 @@ export class HeaderComponent implements OnInit {
     public router: Router,
     public utilsService: UtilsService,
     public uiService: UiService,
-    private productService: ProductService,
-  ) { }
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
-    this._headerService.headerColorChange.subscribe(
-      res => {
-        this.changeColor = res;
-
-      }
-    )
-// this.openComponentDialog()
+    this._headerService.headerColorChange.subscribe((res) => {
+      this.changeColor = res;
+    });
+    // this.openComponentDialog()
     this.getAllProduct();
-    const MILLISECONDS_IN_MONTH = 30 * 24 * 60 * 60 * 1000; 
+    const MILLISECONDS_IN_MONTH = 30 * 24 * 60 * 60 * 1000;
     const lastDialogShown = localStorage.getItem('lastDialogShown');
-    this.isCookieBannerVisible = !lastDialogShown || (Date.now() - parseInt(lastDialogShown, 10)) > MILLISECONDS_IN_MONTH;
-
+    this.isCookieBannerVisible =
+      !lastDialogShown ||
+      Date.now() - parseInt(lastDialogShown, 10) > MILLISECONDS_IN_MONTH;
   }
 
   private getAllProduct() {
@@ -107,7 +104,7 @@ export class HeaderComponent implements OnInit {
   /**
    * RESPONSIVE NAV
    * HEADER FIXED
-  */
+   */
   onShowHideResponsiveNav() {
     this.showHideResponsiveNav = !this.showHideResponsiveNav;
   }
@@ -124,21 +121,20 @@ export class HeaderComponent implements OnInit {
 
     if (this.products?.length) {
       const productId = this.products[0]._id;
-      this.subGetProductDetail=this.getProductById(productId).subscribe(
+      this.subGetProductDetail = this.getProductById(productId).subscribe(
         (res) => {
-          if (res?.status === "publish") {
-            this.router.navigate(['/account/my-list'])
+          if (res?.status === 'publish') {
+            this.router.navigate(['/account/my-list']);
           } else {
-            this.router.navigate(['/create-new'])
+            this.router.navigate(['/create-new']);
           }
         }
       );
     } else {
-      this.router.navigate(['/create-new'])
+      this.router.navigate(['/create-new']);
     }
     // if(!this.products?.length) {
     // }
-
   }
 
   @HostListener('window:scroll')
@@ -160,19 +156,21 @@ export class HeaderComponent implements OnInit {
       disableClose: true,
       height: 'auto',
       width: '350px',
-      position: { left: '10px', bottom: '10px' }
+      position: { left: '10px', bottom: '10px' },
     });
   }
 
-  isHideCookie(){
+  isHideCookie() {
     this.isCookieBannerVisible = false;
     localStorage.setItem('lastDialogShown', Date.now().toString());
   }
 
-  isShowCookie(){
-    const MILLISECONDS_IN_MONTH = 30 * 24 * 60 * 60 * 1000; 
+  isShowCookie() {
+    const MILLISECONDS_IN_MONTH = 30 * 24 * 60 * 60 * 1000;
     const lastDialogShown = localStorage.getItem('lastDialogShown');
-    this.isCookieBannerVisible = !lastDialogShown || (Date.now() - parseInt(lastDialogShown, 10)) > MILLISECONDS_IN_MONTH;
+    this.isCookieBannerVisible =
+      !lastDialogShown ||
+      Date.now() - parseInt(lastDialogShown, 10) > MILLISECONDS_IN_MONTH;
   }
 
   ngOnDestroy(): void {
