@@ -10,6 +10,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { UtilsService } from '../../../services/core/utils.service';
 import { UiService } from '../../../services/core/ui.service';
+import { UserService } from 'src/app/services/common/user.service';
 
 @Component({
   selector: 'app-header',
@@ -42,7 +43,8 @@ export class HeaderComponent implements OnInit {
     public router: Router,
     public utilsService: UtilsService,
     public uiService: UiService,
-    private productService: ProductService
+    private productService: ProductService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -171,6 +173,11 @@ export class HeaderComponent implements OnInit {
     this.isCookieBannerVisible =
       !lastDialogShown ||
       Date.now() - parseInt(lastDialogShown, 10) > MILLISECONDS_IN_MONTH;
+  }
+
+  onLogout() {
+    this.userService.userLogOut();
+    this.showHideResponsiveNav = !this.showHideResponsiveNav;
   }
 
   ngOnDestroy(): void {
