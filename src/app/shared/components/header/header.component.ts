@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit {
   private subGetProductDetail: Subscription;
   private subGetProductByID: Subscription;
   changeColor: boolean = false;
+  isLoggedIn = false;
 
   constructor(
     private _headerService: HeaderService,
@@ -58,6 +59,7 @@ export class HeaderComponent implements OnInit {
     this.isCookieBannerVisible =
       !lastDialogShown ||
       Date.now() - parseInt(lastDialogShown, 10) > MILLISECONDS_IN_MONTH;
+    this.isLoggedIn = this.userService.getUserStatus();
   }
 
   private getAllProduct() {

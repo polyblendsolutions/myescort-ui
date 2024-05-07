@@ -94,7 +94,7 @@
             >
           </li>
           <hr class="hori-line-mobile" />
-          <li class="logbtn">
+          <li class="logbtn" *ngIf="isLoggedIn">
             <a class="user-logo" routerLinkActive="active" (click)="onLogout()"
               ><i class="fa-regular fa-user profile-mobile-logo"></i
               ><img
@@ -105,7 +105,7 @@
               <span class="profile-icon">Log Ud</span></a
             >
           </li>
-          <hr class="hori-line-mobile" />
+          <hr class="hori-line-mobile" *ngIf="isLoggedIn" />
           <li>
             <a
               class="create-btn"
