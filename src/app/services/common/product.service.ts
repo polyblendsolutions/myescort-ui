@@ -81,6 +81,10 @@ export class ProductService {
     return this.httpClient.put<{ message: string, success: boolean }>(API_PRODUCT + 'update-by-user/' + id, data);
   }
 
+  bumpProductById(id: string) {
+    return this.httpClient.put<{ message: string, success: boolean }>(API_PRODUCT + 'bump-by-user/' + id, {});
+  }
+
   updateMultipleProductById(ids: string[], data: Product) {
     const mData = {...{ids: ids}, ...data}
     return this.httpClient.put<ResponsePayload>(API_PRODUCT + 'update-multiple', mData);

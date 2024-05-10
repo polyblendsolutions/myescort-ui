@@ -158,4 +158,16 @@ export class ListCardComponent implements OnInit, OnDestroy {
       this.subDataOne.unsubscribe();
     }
   }
+
+  bump() {
+    this.isLoading = true;
+    this.productService.bumpProductById(this.data._id).subscribe(response => {
+      if (response.success) {
+        this.uiService.success(response.message);
+      }
+      this.isLoading = false;
+    }, (err) => {
+      this.isLoading = false;
+    })
+  }
 }
