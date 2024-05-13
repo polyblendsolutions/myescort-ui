@@ -19,6 +19,7 @@ export class AppProductAreaComponent implements OnInit, OnDestroy {
   @Input() filter: any = null;
   @Input() pagination: Pagination = null;
   products: Product[] = [];
+  vipProducts: Product[] = [];
   searchQuery: string;
 
   // Subscriptions
@@ -41,6 +42,7 @@ export class AppProductAreaComponent implements OnInit, OnDestroy {
       // this.categorySlug = qParam['category'];
 
       this.searchQueryFromQueryParam(qParam);
+      this.getAllVipProduct();
       this.getAllProduct();
 
       // if (this.id && this.categorySlug) {
@@ -60,7 +62,48 @@ export class AppProductAreaComponent implements OnInit, OnDestroy {
       this.searchQuery = null;
     }
   }
+  private getAllVipProduct() {
+    // Select
+    const mSelect = {
+      image: 1,
+      title: 1,
+      slug: 1,
+      images: 1,
+      shortDescription: 1,
+      name: 1,
+      age: 1,
+      user: 1,
+      createdAt: 1,
+      division: 1,
+      zone: 1,
+      isVipStatusActive: 1,
+      vipStatusActivatedOn: 1
+    };
 
+    const filter: FilterData = {
+      filter: { ...this.filter, ...{ status: 'publish' }, ...{ isVipStatusActive: true } },
+      pagination: this.pagination,
+      select: mSelect,
+      sort: { vipStatusActivatedOn: -1 },
+    };
+
+    this.loadFilteredProductsSubscription = this.productService
+      .getAllProducts(filter, this.searchQuery)
+      .subscribe({
+        next: (res) => {
+          if (res.success) {
+            this.vipProducts = res.data;
+            this.vipProducts.forEach(product => {
+              product.images = product.images?.map(path => path.replace('images', 'preview'))
+            })
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+  }
+  
   private getAllProduct() {
     // Select
     const mSelect = {

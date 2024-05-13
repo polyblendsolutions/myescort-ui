@@ -7,6 +7,9 @@
         <div class="line"></div>
       </div>
       <div class="product-category-area-cards">
+        <ng-container *ngFor="let data of vipProducts">
+          <app-marketplace-card [data]="data"></app-marketplace-card>
+        </ng-container>
         <ng-container *ngFor="let data of products">
           <app-marketplace-card [data]="data"></app-marketplace-card>
         </ng-container>
