@@ -123,7 +123,7 @@ export class AppProductAreaComponent implements OnInit, OnDestroy {
     };
 
     const filter: FilterData = {
-      filter: { ...this.filter, ...{ status: 'publish' } },
+      filter: { ...this.filter, ...{ status: 'publish' }, ...{ nonVIp: true } },
       pagination: this.pagination,
       select: mSelect,
       sort: { vipStatusActivatedOn: -1 },
