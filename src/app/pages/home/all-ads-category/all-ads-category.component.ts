@@ -123,7 +123,7 @@ export class AllAdsCategoryComponent implements OnInit, OnDestroy {
     const filterData: FilterData = {
       select: mSelect,
       // filter: {'division._id' : this.id, status: 'publish'},
-      filter: {'isFeatured': true, status: 'publish'},
+      filter: {'isVipStatusActive': true, status: 'publish'},
       pagination: { pageSize: 12, currentPage: 0 },
       sort: { createdAt: -1 }
     }
