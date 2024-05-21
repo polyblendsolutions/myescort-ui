@@ -1,0 +1,19 @@
+<app-page-top-section [titleData]="filteredData?.pageTitle"></app-page-top-section
+    ><!-- END! page-top-section -->
+    
+    <!-- <app-search-area></app-search-area> -->
+    <app-spot-search-area [pageData]="filteredData"></app-spot-search-area>
+    <!-- END! search-area -->
+    
+    <section class="product-main">
+      <div class="container">
+        <div class="product-list-main">
+          <!-- END! filter-area -->
+          <app-spot-list [pageData]="filteredData"></app-spot-list>
+          <!-- END! product-list-right -->
+        </div>
+        <!-- END! product-list-main -->
+      </div>
+    </section>
+    <!-- END! product-main -->
+    

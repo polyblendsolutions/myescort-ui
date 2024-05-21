@@ -1,0 +1,14 @@
+<section class="search-area">
+    <div class="container">
+        <div class="search-area-child">
+          <app-search-filter></app-search-filter>
+            <div class="heading-data">
+                <h4>{{pageData?.heading }}</h4>
+                <P>{{pageData?.firstPara}} <a routerLink="/">tryk her</a>.</P>
+                <p>{{pageData?.secondPara}} <a routerLink="/ads">tryk her</a>.</p>
+                <P>{{pageData?.thirdPara }} <a routerLink="/login">tryk her</a>.</P>
+            </div>
+        </div>
+        <app-filter-area *ngIf="advanchFilter"></app-filter-area>
+  </div>
+</section>

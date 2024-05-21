@@ -1,0 +1,29 @@
+@import "src/theme/variables";
+@import "src/theme/exports/load-more-btn";
+
+
+.all-item-cards {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  margin: 10px 0 30px;
+}
+
+@media (max-width: 1066px) {
+  .all-item-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 934px) {
+  .all-item-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media (max-width: 667px) {
+  .all-item-cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

@@ -56,56 +56,13 @@ const routes: Routes = [
         path: "blogs",
         loadChildren: () => import('./pages/blogs/blogs.module').then(m => m.BlogsModule)
       },
-
       {
-        path: "massage-aalborg",
-        loadChildren: () => import('./pages/message/aalboarg/aalboarg.module').then(m => m.AalboargModule)
+        path: "massage/:id",
+        loadChildren: () => import('./pages/spot/spot.module').then(m => m.SpotModule)
       },
-
       {
-        path: "escort-aalborg",
-        loadChildren: () => import('./pages/message/aalboarg/aalboarg.module').then(m => m.AalboargModule)
-      },
-
-      {
-        path: "massage-odense",
-        loadChildren: () => import('./pages/message/odense/odense.module').then(m => m.OdenseModule)
-      },
-
-      {
-        path: "escort-odense",
-        loadChildren: () => import('./pages/message/odense/odense.module').then(m => m.OdenseModule)
-      },
-
-
-      {
-        path: "massage-copenhagen",
-        loadChildren: () => import('./pages/message/copenhagen/copenhagen.module').then(m => m.CopenhagenModule)
-      },
-
-      {
-        path: "escort-copenhagen",
-        loadChildren: () => import('./pages/message/copenhagen/copenhagen.module').then(m => m.CopenhagenModule)
-      },
-
-      {
-        path: "massage-aarhus",
-        loadChildren: () => import('./pages/message/aarhus/aarhus.module').then(m => m.AarhusModule)
-      },
-
-      {
-        path: "escort-aarhus",
-        loadChildren: () => import('./pages/message/aarhus/aarhus.module').then(m => m.AarhusModule)
-      },
-
-     {
-        path: "massage-valby",
-        loadChildren: () => import('./pages/message/valby/valby.module').then(m => m.ValbyModule)
-      },
-
-      {
-        path: "escort-valby",
-        loadChildren: () => import('./pages/message/valby/valby.module').then(m => m.ValbyModule)
+        path: "escort/:id",
+        loadChildren: () => import('./pages/spot/spot.module').then(m => m.SpotModule)
       },
       {
         path: "verified-otp",
